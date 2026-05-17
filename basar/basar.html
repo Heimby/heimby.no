@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Basar">
+<meta name="theme-color" content="#0066ff">
+<title>Basar — Loddtrekning</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    margin: 0;
+    padding: 12px;
+    background: #f5f5f7;
+    color: #222;
+    font-size: 16px;
+  }
+  h1 { margin: 0 0 4px; font-size: 24px; }
+  .sub { color: #666; margin-bottom: 16px; font-size: 14px; }
+  .panel {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  button {
+    font-size: 16px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.05s, opacity 0.2s;
+    -webkit-appearance: none;
+    touch-action: manipulation;
+  }
+  button:active { transform: scale(0.97); }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+  .btn-primary {
+    background: #0066ff;
+    color: white;
+    font-size: 20px;
+    padding: 18px 24px;
+    width: 100%;
+    min-height: 60px;
+  }
+  .btn-secondary { background: #e5e5ea; color: #222; flex: 1; min-height: 48px; }
+  .btn-danger { background: #ff3b30; color: white; }
+
+  .draw-result {
+    text-align: center;
+    padding: 28px 16px;
+    margin: 12px 0;
+    border-radius: 12px;
+    background: white;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .draw-result .label { font-size: 16px; color: #666; margin-bottom: 8px; }
+  .draw-result .number {
+    font-size: clamp(64px, 22vw, 140px);
+    font-weight: 800;
+    line-height: 1;
+    margin: 8px 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .draw-result .lodd { font-size: clamp(20px, 5.5vw, 32px); font-weight: 600; margin-top: 10px; }
+  .draw-result.bla .number, .draw-result.bla .lodd { color: #0066ff; }
+  .draw-result.rosa .number, .draw-result.rosa .lodd { color: #e91e63; }
+  .draw-result.idle .number { color: #ccc; font-size: clamp(40px, 12vw, 64px); }
+
+  .history { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; }
+  .history-item {
+    padding: 10px 6px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    border: 2px solid;
+  }
+  .history-item.bla { background: #e7f0ff; border-color: #0066ff; color: #0066ff; }
+  .history-item.rosa { background: #fde6ef; border-color: #e91e63; color: #e91e63; }
+  .history-item .prize-num { font-size: 11px; font-weight: 400; opacity: 0.7; }
+  .history-item .big { font-size: 22px; font-variant-numeric: tabular-nums; }
+  .history-item .small { font-size: 12px; margin-top: 2px; }
+
+  .lodd-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+  .lodd-card {
+    border: 2px solid;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 12px;
+  }
+  .lodd-card.bla { background: #f0f6ff; border-color: #0066ff; }
+  .lodd-card.rosa { background: #fff0f6; border-color: #e91e63; }
+  .lodd-card.bla .title { color: #0066ff; }
+  .lodd-card.rosa .title { color: #e91e63; }
+  .lodd-card .title { font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+  .lodd-card .nums { font-family: ui-monospace, "SF Mono", Menlo, monospace; line-height: 1.4; word-spacing: 2px; }
+  .lodd-card.winner { box-shadow: 0 0 0 3px gold; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .stat { background: #f5f5f7; padding: 10px 8px; border-radius: 8px; text-align: center; }
+  .stat .v { font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .stat .k { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.3px; }
+
+  .tabs { display: flex; gap: 6px; margin-bottom: 12px; }
+  .tab {
+    flex: 1;
+    padding: 12px 8px;
+    background: #e5e5ea;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    text-align: center;
+    font-size: 14px;
+  }
+  .tab.active { background: #222; color: white; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .anim-toggle { display: flex; align-items: center; gap: 6px; font-size: 14px; color: #666; }
+  .anim-toggle input { width: 20px; height: 20px; }
+
+  @media (min-width: 600px) {
+    body { padding: 20px; }
+    h1 { font-size: 28px; }
+    .panel { padding: 24px; }
+    .btn-primary { width: auto; }
+    .btn-secondary { flex: 0 0 auto; }
+  }
+
+  @media print {
+    body { background: white; padding: 0; font-size: 11px; }
+    .no-print { display: none !important; }
+    .lodd-card { break-inside: avoid; }
+    .lodd-list { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<h1>🎟️ Basar — Loddtrekning</h1>
+<p class="sub">100 lodd (50 blå + 50 rosa) · 20 nummer per lodd · 21 premier</p>
+
+<div class="tabs no-print">
+  <div class="tab active" data-tab="trekning">Trekning</div>
+  <div class="tab" data-tab="lodd">Loddoversikt</div>
+  <div class="tab" data-tab="utskrift">Utskrift</div>
+</div>
+
+<!-- TREKNING -->
+<div id="tab-trekning" class="tab-content active">
+  <div class="panel">
+    <div class="stats">
+      <div class="stat"><div class="v" id="stat-drawn">0</div><div class="k">Trukket</div></div>
+      <div class="stat"><div class="v" id="stat-remaining">21</div><div class="k">Igjen</div></div>
+      <div class="stat"><div class="v" id="stat-bla">0</div><div class="k">Blå vinnere</div></div>
+      <div class="stat"><div class="v" id="stat-rosa">0</div><div class="k">Rosa vinnere</div></div>
+    </div>
+  </div>
+
+  <div class="draw-result idle" id="draw-result">
+    <div class="label">Klar for trekning</div>
+    <div class="number">—</div>
+    <div class="lodd">Trykk på knappen for å trekke</div>
+  </div>
+
+  <div class="panel">
+    <button class="btn-primary" id="btn-draw">🎲 Trekk neste vinner</button>
+    <div class="controls" style="margin-top: 10px;">
+      <button class="btn-secondary" id="btn-reset">Nullstill</button>
+      <label class="anim-toggle">
+        <input type="checkbox" id="animate" checked> Animasjon
+      </label>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3 style="margin-top: 0;">Trukne premier</h3>
+    <div class="history" id="history"></div>
+  </div>
+</div>
+
+<!-- LODDOVERSIKT -->
+<div id="tab-lodd" class="tab-content">
+  <div class="panel">
+    <h3 style="margin-top: 0;">Alle 100 lodd</h3>
+    <p class="sub">Vinnerlodd markeres med gull-ramme etter hvert som premier trekkes.</p>
+    <div class="lodd-list" id="lodd-list"></div>
+  </div>
+</div>
+
+<!-- UTSKRIFT -->
+<div id="tab-utskrift" class="tab-content">
+  <div class="panel no-print">
+    <h3 style="margin-top: 0;">Skriv ut lodd</h3>
+    <p>Trykk på knappen for å åpne utskriftsdialog. Loddene kommer 4 per rad — klipp dem ut og selg.</p>
+    <button class="btn-primary" onclick="window.print()">🖨️ Skriv ut alle lodd</button>
+  </div>
+  <div class="lodd-list" id="lodd-list-print"></div>
+</div>
+
+<script>
+// === Oppsett ===
+const NUMS_PER_LODD = 20;
+const LODD_PER_FARGE = 50;
+const TOTAL_NUMS_PER_FARGE = NUMS_PER_LODD * LODD_PER_FARGE; // 1000
+const ANTALL_PREMIER = 21;
+
+// Bygg loddene — sekvensiell nummerering per farge
+function buildLodd(farge) {
+  const lodd = [];
+  for (let i = 0; i < LODD_PER_FARGE; i++) {
+    const start = i * NUMS_PER_LODD + 1;
+    const nums = [];
+    for (let n = 0; n < NUMS_PER_LODD; n++) nums.push(start + n);
+    lodd.push({ farge, nr: i + 1, nums });
+  }
+  return lodd;
+}
+
+const ALLE_LODD = [...buildLodd('bla'), ...buildLodd('rosa')];
+
+// Bygg fulle puljer med "{farge}-{nummer}" identifikatorer
+function buildPool() {
+  const pool = [];
+  for (let i = 1; i <= TOTAL_NUMS_PER_FARGE; i++) pool.push({ farge: 'bla', num: i });
+  for (let i = 1; i <= TOTAL_NUMS_PER_FARGE; i++) pool.push({ farge: 'rosa', num: i });
+  return pool;
+}
+
+// === State ===
+let pool = buildPool();
+let drawn = []; // {farge, num, loddNr, premieNr}
+
+// === Hjelpere ===
+function finnLodd(farge, num) {
+  const loddIdx = Math.floor((num - 1) / NUMS_PER_LODD);
+  return loddIdx + 1;
+}
+
+function fargeNavn(f) { return f === 'bla' ? 'Blå' : 'Rosa'; }
+
+// === Render ===
+function renderStats() {
+  document.getElementById('stat-drawn').textContent = drawn.length;
+  document.getElementById('stat-remaining').textContent = ANTALL_PREMIER - drawn.length;
+  document.getElementById('stat-bla').textContent = drawn.filter(d => d.farge === 'bla').length;
+  document.getElementById('stat-rosa').textContent = drawn.filter(d => d.farge === 'rosa').length;
+}
+
+function renderHistory() {
+  const el = document.getElementById('history');
+  if (drawn.length === 0) {
+    el.innerHTML = '<p style="color:#999;">Ingen trekninger ennå.</p>';
+    return;
+  }
+  el.innerHTML = drawn.map(d => `
+    <div class="history-item ${d.farge}">
+      <div class="prize-num">Premie ${d.premieNr}</div>
+      <div class="big">${d.num}</div>
+      <div class="small">${fargeNavn(d.farge)} · Lodd ${d.loddNr}</div>
+    </div>
+  `).join('');
+}
+
+function renderLoddListe() {
+  const winners = new Set(drawn.map(d => `${d.farge}-${d.loddNr}`));
+  const html = ALLE_LODD.map(l => {
+    const key = `${l.farge}-${l.nr}`;
+    const isWinner = winners.has(key);
+    return `
+      <div class="lodd-card ${l.farge} ${isWinner ? 'winner' : ''}">
+        <div class="title">${fargeNavn(l.farge)} lodd nr ${l.nr}${isWinner ? ' 🏆' : ''}</div>
+        <div class="nums">${l.nums.join(', ')}</div>
+      </div>
+    `;
+  }).join('');
+  document.getElementById('lodd-list').innerHTML = html;
+  document.getElementById('lodd-list-print').innerHTML = html;
+}
+
+function renderDrawResult(d, animating) {
+  const el = document.getElementById('draw-result');
+  if (!d) {
+    el.className = 'draw-result idle';
+    el.innerHTML = '<div class="label">Klar for trekning</div><div class="number">—</div><div class="lodd">Trykk på knappen for å trekke</div>';
+    return;
+  }
+  el.className = `draw-result ${d.farge}`;
+  el.innerHTML = `
+    <div class="label">Premie nr ${d.premieNr}</div>
+    <div class="number">${d.num}</div>
+    <div class="lodd">${fargeNavn(d.farge)} lodd nr ${d.loddNr}</div>
+  `;
+}
+
+function renderAll() {
+  renderStats();
+  renderHistory();
+  renderLoddListe();
+}
+
+// === Trekning ===
+function trekk() {
+  if (drawn.length >= ANTALL_PREMIER) {
+    alert(`Alle ${ANTALL_PREMIER} premier er trukket! Trykk Nullstill for å starte på nytt.`);
+    return;
+  }
+  if (pool.length === 0) {
+    alert('Ingen flere nummer i puljen.');
+    return;
+  }
+
+  const idx = Math.floor(Math.random() * pool.length);
+  const valgt = pool.splice(idx, 1)[0];
+  const entry = {
+    farge: valgt.farge,
+    num: valgt.num,
+    loddNr: finnLodd(valgt.farge, valgt.num),
+    premieNr: drawn.length + 1
+  };
+
+  const animate = document.getElementById('animate').checked;
+  if (animate) {
+    animateDraw(entry);
+  } else {
+    drawn.push(entry);
+    renderDrawResult(entry);
+    renderAll();
+  }
+}
+
+function animateDraw(finalEntry) {
+  const btn = document.getElementById('btn-draw');
+  btn.disabled = true;
+  const el = document.getElementById('draw-result');
+  let ticks = 0;
+  const maxTicks = 15;
+  const interval = setInterval(() => {
+    ticks++;
+    const randNum = Math.floor(Math.random() * TOTAL_NUMS_PER_FARGE) + 1;
+    const randFarge = Math.random() < 0.5 ? 'bla' : 'rosa';
+    el.className = `draw-result ${randFarge}`;
+    el.innerHTML = `
+      <div class="label">Trekker...</div>
+      <div class="number">${randNum}</div>
+      <div class="lodd">&nbsp;</div>
+    `;
+    if (ticks >= maxTicks) {
+      clearInterval(interval);
+      drawn.push(finalEntry);
+      renderDrawResult(finalEntry);
+      renderAll();
+      btn.disabled = false;
+    }
+  }, 80);
+}
+
+function nullstill() {
+  if (drawn.length > 0 && !confirm('Vil du virkelig nullstille trekningen?')) return;
+  pool = buildPool();
+  drawn = [];
+  renderDrawResult(null);
+  renderAll();
+}
+
+// === Tabs ===
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('tab-' + t.dataset.tab).classList.add('active');
+  });
+});
+
+// === Init ===
+document.getElementById('btn-draw').addEventListener('click', trekk);
+document.getElementById('btn-reset').addEventListener('click', nullstill);
+renderAll();
+renderDrawResult(null);
+
+// Tastatur: mellomrom = trekk
+document.addEventListener('keydown', (e) => {
+  if (e.code === 'Space' && document.activeElement.tagName !== 'BUTTON' && document.activeElement.tagName !== 'INPUT') {
+    e.preventDefault();
+    trekk();
+  }
+});
+</script>
+
+</body>
+</html>
