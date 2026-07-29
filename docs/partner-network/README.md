@@ -17,6 +17,7 @@ payout system settled through Revolut Business (the bloodstream).
 | [04 — Proptonomy Embedding](./04-proptonomy-embedding.md) | Where the system lives; agent ↔ network contract; task state machine; data model and mapping from today's heimby.no models; UI surfaces in this repo; security prerequisites (auth, scoped access-code grants); agent roles; rollout phases 0–4 |
 | [05 — Conversational Operations](./05-conversational-operations.md) | How it works in practice over **WhatsApp + email**: channel architecture, WhatsApp Business Platform mechanics (templates, 24-h window, tiers), a message-by-message P0 walkthrough, state-machine ↔ conversation mapping, chat-native partner onboarding, human handoff, security in a chat channel, the conversation router |
 | [06 — Supply Sourcing & Capacity](./06-supply-sourcing-and-capacity.md) | Demand-anchored recruiting around Proptonomy client portfolios: channel playbook (Google Maps + registers, Mittanbud, Facebook), the agent-run outreach/negotiation pipeline, the per-zone capacity model, and a worked example: **Ohana (NZ)** |
+| [Leads — Ohana NZ](./leads-ohana-nz.md) | Point-in-time sourcing snapshot: verified candidate tables per category (cleaning, handyman, electrician, plumber, locksmith, + Tekapo specials) for Christchurch, Lake Tekapo/Mackenzie and Wellington, with recruiting channels and per-city density reads |
 
 ## Reading order
 
