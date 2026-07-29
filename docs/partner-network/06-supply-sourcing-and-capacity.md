@@ -126,8 +126,79 @@ Three properties of this model worth internalizing:
    (season peaks, portfolio growth) and opens §2 campaigns when projected coverage dips below
    target 4+ weeks out.
 
-## 5. Worked example: Ohana
+## 5. Worked example: Ohana (New Zealand)
 
-*Populated from public-source research (see chat summary of findings and assumptions below) —
-to be replaced with live Proptonomy portfolio data, which the Supply Growth agent should treat
-as the source of truth from day one of the engagement.*
+> Public-source research, July 2026. **Identity:** Ohana Property Management Ltd, NZ (company
+> no. 6255004, Christchurch/Prebbleton; brands ohanaproperty.com, ohanastays.co.nz,
+> experiencetekapo.com; PMS: Guesty). Note the register check that matters: **there is no
+> Nordic STR company named Ohana** — the Brønnøysund register has 16 "Ohana" entities, none in
+> STR/property management. The Proptonomy-client link is *probable but unconfirmed* publicly.
+> Every number below is an estimate from public inventory data; **live Guesty/Proptonomy
+> booking data supersedes this sheet on day one.**
+
+### 5.1 Footprint (measured from their live booking inventory)
+
+**~174–176 distinct units** (181 listing pages minus duplicates/combos), corroborating their
+own "180+ properties, 950+ beds" claim. Airbtics models 91 % occupancy, NZ$241 ADR, 4.9
+rating, **+27 % YoY portfolio growth**. Mix skews to **large 3–6BR homes with hot tubs, spas
+and saunas** — long changeovers, heavy linen.
+
+| Zone | Units | Character |
+|---|---|---|
+| Christchurch / Canterbury | ~90 (~50 %) | Metro; mixed urban + big leisure homes |
+| **Lake Tekapo / Mackenzie** | **52 (exact, ~30 %)** | Alpine tourist village, **population ~600**; stopover market, near-daily churn |
+| Wellington (+ Petone/Lower Hutt) | ~32 (~18 %) | Urban apartments, dense CBD cluster; inter-island from the rest |
+| Waitaki / Ohau fringe | ~3–4 | Ops-attached to Tekapo |
+| Auckland | 0 | Marketing page only — **do not staff** |
+
+Demand-side signal worth noting: public reviews recur on **communication and maintenance
+response** — Ohana's pain is precisely the wedge this system exists for (doc 01 §1).
+
+### 5.2 Capacity sheet (model of §4, assumptions stated)
+
+Planning assumptions: occupancy 0.85 (range 0.75–0.91), avg stay — Tekapo 2.0 nights
+(stopover), Christchurch 2.8, Wellington 2.7; Saturday share σ — 0.30 / 0.30 / 0.28 (Tekapo
+churn is spread near-daily, so its "peak day" barely peaks); cleans per cleaner-day k —
+**2.0–2.5 for the big-home/hot-tub mix**, 3 for urban apartments.
+
+| | Christchurch (~90 u) | Tekapo (52 u) | Wellington (~32 u) |
+|---|---|---|---|
+| Turnover cleans / week `T = U·o·7/s` | **~191** | **~155** | **~70** |
+| Peak-day cleans `P = T·σ` | ~57 (Sat) | ~24 (daily, flat) | ~20 (Sat) |
+| Cleaner slots (peak, `⌈P/k⌉·1.3`) | **~30** (≈ 2–3 firms + 8–12 independents) | **~13–16 daily** — see 5.3 | **~9** (1 anchor firm + 4–6 independents) |
+| On-call runners (coverage rule) | 4–6 bench → ~9 liquid | 2–3, drawn from the resident crew | 3–4 (CBD cluster + Petone) |
+| Handymen (M-class, ~1 task/u/mo) | 1–2 part-time — **their in-house renovations carpenter is the natural anchor** | via crew + Twizel/Fairlie travel | 1 part-time |
+| Framework trades (T-class) | elektriker/rørlegger/låsesmed equiv. ×1 each | Timaru/Twizel firms w/ travel fees + **spa/hot-tub technician (critical)** | ×1 each |
+
+### 5.3 What the sheet actually says (the strategic readout)
+
+1. **Tekapo is not a marketplace — it is a logistics operation.** ~155 cleans/week of large
+   hot-tub homes in a village of 600 means a **housed, contracted anchor crew of ~12–16**
+   (worker accommodation included, as is normal in alpine NZ), plus commercial laundry
+   logistics for the linen mass, plus a hot-tub servicing routine per turnover. Archetype C
+   (doc 02 §6) at its purest: dispatch software still runs the checklists, proof and payouts —
+   but supply is secured by *contract and housing*, not by offer broadcasting. This is 30 % of
+   Ohana's portfolio and certainly their hardest operational problem; it is also the zone where
+   a guaranteed-coverage promise is most valuable and most defensible.
+2. **Christchurch is the real marketplace zone** — big enough (~90 units, metro labor pool)
+   for the full bench→liquid path (doc 01 §4.3), and where the maintenance-response complaints
+   are winnable fastest: the §4 rota math says 4–6 on-call runners make sub-hour P0 response
+   real from week one.
+3. **Wellington is a textbook small bench zone** (one anchor firm, a 3–4 runner rota) and is
+   **inter-island** — nothing shares supply with the South Island zones; treat it as its own
+   region in every dispatch and recruiting decision.
+4. **The channel playbook maps 1:1 to NZ:** Google Places + the open NZBN/Companies Office
+   register replace Brønnøysund; **Builderscrack / NoCowboys** replace Mittanbud (same
+   buyer-side posting flow); NZ Facebook job/community groups are strong for the runner
+   segment. The pipeline of §3 is unchanged.
+5. **Region config before first dispatch (NZ ≠ NO — flag for a proper pass):** GST 15 %
+   (registration threshold NZ$60k) and the 2024 marketplace-GST/"app tax" + platform
+   information-reporting rules need a legal read on whether the dispatch model is caught;
+   contractor-vs-employee is live litigation in NZ too (the Uber cases through the Employment
+   Court and Court of Appeal) — the doc 02 §2.1 product guardrails apply verbatim; Health &
+   Safety at Work Act PCBU duties extend to contractors. **Revolut Business availability for a
+   NZ entity is unverified** — if unavailable, the ledger-first design swaps the settlement
+   rail (doc 03 §9.6) without touching anything else.
+6. **Growth math:** at +27 % YoY, every number above grows ~a quarter per year — the Supply
+   Growth agent should recompute this sheet from live bookings monthly and open recruiting
+   campaigns per §2 whenever projected coverage dips 4+ weeks out.
