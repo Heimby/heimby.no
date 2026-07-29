@@ -15,6 +15,7 @@ payout system settled through Revolut Business (the bloodstream).
 | [02 — Regional Playbook](./02-regional-playbook.md) | How it works region by region: Norway deep-dive (worker classification, self-billing, Renholdsregisteret/HMS-kort, a-melding, platform reporting), EU Platform Work Directive & DAC7, Sweden/Denmark, city archetypes (metro vs small city vs cabin markets), the region-config model |
 | [03 — Finance & Revolut](./03-finance-and-revolut.md) | Money flows; the double-entry ledger (source of truth) vs Revolut (settlement rail); payout state machine and clearance; partner tax profiles; owner statements (15 % + MVA frame); Revolut Business API integration architecture; multi-currency/FX; controls, reconciliation, fraud |
 | [04 — Proptonomy Embedding](./04-proptonomy-embedding.md) | Where the system lives; agent ↔ network contract; task state machine; data model and mapping from today's heimby.no models; UI surfaces in this repo; security prerequisites (auth, scoped access-code grants); agent roles; rollout phases 0–4 |
+| [05 — Conversational Operations](./05-conversational-operations.md) | How it works in practice over **WhatsApp + email**: channel architecture, WhatsApp Business Platform mechanics (templates, 24-h window, tiers), a message-by-message P0 walkthrough, state-machine ↔ conversation mapping, chat-native partner onboarding, human handoff, security in a chat channel, the conversation router |
 
 ## Reading order
 

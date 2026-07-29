@@ -139,9 +139,12 @@ Concrete, minimal touchpoints (following the codebase's own patterns):
    `Utbetalinger`: exception queue (unfilled offers, failed verifications, disputes, SLA
    breaches), partner vetting queue, payout-batch approval (doc 03 §5). Real aggregation
    endpoints replace the client-side stat arithmetic.
-4. **Partner PWA** at `/partner` (new route): signup funnel per city, onboarding/vetting flow,
-   shift board, offer accept/decline, job packet view, camera-first proof capture, earnings
-   dashboard. PWA + push/SMS deep links first; native app only once liquidity justifies it.
+4. **Partner surface — conversational-first (see [doc 05](./05-conversational-operations.md)):**
+   Proptonomy talks with partners over **WhatsApp + email**; offers, state transitions, proof
+   photos and support all live in the WhatsApp thread. This repo contributes the signup funnel
+   (`heimby.no/partner/<city>`) and a small **magic-link partner web** for what chat can't do:
+   BankID verification, payout details, document upload, earnings dashboard, dispute forms.
+   No app install; a native app only if liquidity ever justifies it.
 5. **Backend routes in this repo** stay thin proxies to Proptonomy Partner Network APIs (the
    portal's Mongo keeps only UI-cache concerns). New routers follow the `access_locks.py`
    pattern — bare paths under the `/api` prefix.
