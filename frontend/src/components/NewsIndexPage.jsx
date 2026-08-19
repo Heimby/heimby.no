@@ -27,8 +27,8 @@ const NewsIndexPage = () => {
         <meta property="og:title" content={TITLE} />
         <meta property="og:description" content={DESCRIPTION} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://heimby.no/nyheter" />
-        <link rel="canonical" href="https://heimby.no/nyheter" />
+        <meta property="og:url" content="https://heimby.no/nyheter/" />
+        <link rel="canonical" href="https://heimby.no/nyheter/" />
       </Helmet>
 
       <div className="App">

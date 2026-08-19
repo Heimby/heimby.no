@@ -31,7 +31,7 @@ const CityPage = () => {
     return <Navigate to="/" replace />;
   }
 
-  const pageUrl = `https://heimby.no/korttidsutleie-i-${data.slug}`;
+  const pageUrl = `https://heimby.no/korttidsutleie-i-${data.slug}/`;
   return (
     <>
       <Helmet>

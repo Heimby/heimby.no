@@ -20,7 +20,7 @@ const NewsArticlePage = () => {
     return <Navigate to="/nyheter" replace />;
   }
 
-  const pageUrl = `https://heimby.no/nyheter/${article.slug}`;
+  const pageUrl = `https://heimby.no/nyheter/${article.slug}/`;
   const title = `${article.title} — ${article.source} | Heimby`;
   const description = article.summary.slice(0, 160);
 

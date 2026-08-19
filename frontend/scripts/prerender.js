@@ -140,7 +140,7 @@ function cityBody(data) {
   for (const slug of Object.keys(CITY_DATA)) {
     if (slug === data.slug) continue;
     p(
-      `<li><a href="/korttidsutleie-i-${slug}">Korttidsutleie i ${esc(CITY_DATA[slug].name)}</a></li>`,
+      `<li><a href="/korttidsutleie-i-${slug}/">Korttidsutleie i ${esc(CITY_DATA[slug].name)}</a></li>`,
     );
   }
   p(`</ul>`);
@@ -151,7 +151,7 @@ function cityBody(data) {
 }
 
 function citySchemas(data) {
-  const pageUrl = `${SITE}/korttidsutleie-i-${data.slug}`;
+  const pageUrl = `${SITE}/korttidsutleie-i-${data.slug}/`;
   return [
     {
       "@context": "https://schema.org",
@@ -300,7 +300,7 @@ function homeBody() {
   const cityLinks = Object.keys(CITY_DATA)
     .map(
       (slug) =>
-        `<li><a href="/korttidsutleie-i-${slug}">Korttidsutleie i ${esc(CITY_DATA[slug].name)}</a></li>`,
+        `<li><a href="/korttidsutleie-i-${slug}/">Korttidsutleie i ${esc(CITY_DATA[slug].name)}</a></li>`,
     )
     .join("\n");
 
@@ -328,12 +328,12 @@ ${cityLinks}
 </ul>
 
 <h2>Heimby i media</h2>
-<p><a href="/nyheter">Se alle saker om Heimby</a></p>
+<p><a href="/nyheter/">Se alle saker om Heimby</a></p>
 <ul>
 ${MEDIA.articles
   .map(
     (a) =>
-      `<li><a href="/nyheter/${a.slug}">${esc(a.source)}: ${esc(a.title)}</a> — ${esc(a.summary)}</li>`,
+      `<li><a href="/nyheter/${a.slug}/">${esc(a.source)}: ${esc(a.title)}</a> — ${esc(a.summary)}</li>`,
   )
   .join("\n")}
 </ul>
@@ -447,7 +447,7 @@ function newsIndexBody() {
         items
           .map(
             (a) =>
-              `<li><a href="/nyheter/${a.slug}">${esc(a.source)}: ${esc(a.title)}</a>` +
+              `<li><a href="/nyheter/${a.slug}/">${esc(a.source)}: ${esc(a.title)}</a>` +
               `${a.date ? ` (${a.date})` : ""} — ${esc(a.summary)}</li>`,
           )
           .join("\n") +
@@ -460,7 +460,7 @@ function newsIndexBody() {
 <p>Presseomtale, debattinnlegg og podkaster om Heimby, korttidsutleie og utleieforvaltning. Hver sak har et kort sammendrag og lenke til hele artikkelen hos avisen.</p>
 <p>Heimby ble startet i Bergen og forvalter rundt 160 leiligheter for andre boligeiere. Vi tilbyr korttidsutleie, langtidsutleie og en hybrid 10-2-modell, og omtales jevnlig i norske medier i forbindelse med debatten om korttidsutleie og skyggehoteller.</p>
 ${sections}
-<p><a href="/korttidsutleie-i-bergen">Korttidsutleie i Bergen — regler, skatt og inntekt</a> · <a href="/">Heimby — forvaltning av korttidsutleie og langtidsutleie</a></p>
+<p><a href="/korttidsutleie-i-bergen/">Korttidsutleie i Bergen — regler, skatt og inntekt</a> · <a href="/">Heimby — forvaltning av korttidsutleie og langtidsutleie</a></p>
 </main>`;
 }
 
@@ -486,9 +486,9 @@ ${
 
 <h2>Mer omtale av Heimby</h2>
 <ul>
-${related.map((r) => `<li><a href="/nyheter/${r.slug}">${esc(r.source)}: ${esc(r.title)}</a></li>`).join("\n")}
+${related.map((r) => `<li><a href="/nyheter/${r.slug}/">${esc(r.source)}: ${esc(r.title)}</a></li>`).join("\n")}
 </ul>
-<p><a href="/nyheter">Alle nyheter</a> · <a href="/korttidsutleie-i-bergen">Korttidsutleie i Bergen — regler, skatt og inntekt</a></p>
+<p><a href="/nyheter/">Alle nyheter</a> · <a href="/korttidsutleie-i-bergen/">Korttidsutleie i Bergen — regler, skatt og inntekt</a></p>
 </main>`;
 }
 
@@ -498,14 +498,14 @@ function newsIndexSchemas() {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
       name: "Heimby i media",
-      url: `${SITE}/nyheter`,
+      url: `${SITE}/nyheter/`,
       description:
         "Presseomtale, debattinnlegg og podkaster om Heimby, korttidsutleie og utleieforvaltning.",
       isPartOf: { "@id": `${SITE}/#organization` },
       hasPart: newsSorted().map((a) => ({
         "@type": "WebPage",
         name: a.title,
-        url: `${SITE}/nyheter/${a.slug}`,
+        url: `${SITE}/nyheter/${a.slug}/`,
       })),
     },
     {
@@ -513,14 +513,14 @@ function newsIndexSchemas() {
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Heimby", item: `${SITE}/` },
-        { "@type": "ListItem", position: 2, name: "Nyheter", item: `${SITE}/nyheter` },
+        { "@type": "ListItem", position: 2, name: "Nyheter", item: `${SITE}/nyheter/` },
       ],
     },
   ];
 }
 
 function newsArticleSchemas(a) {
-  const pageUrl = `${SITE}/nyheter/${a.slug}`;
+  const pageUrl = `${SITE}/nyheter/${a.slug}/`;
   return [
     {
       "@context": "https://schema.org",
@@ -546,7 +546,7 @@ function newsArticleSchemas(a) {
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Heimby", item: `${SITE}/` },
-        { "@type": "ListItem", position: 2, name: "Nyheter", item: `${SITE}/nyheter` },
+        { "@type": "ListItem", position: 2, name: "Nyheter", item: `${SITE}/nyheter/` },
         { "@type": "ListItem", position: 3, name: a.title, item: pageUrl },
       ],
     },
@@ -589,7 +589,7 @@ function main() {
     fs.writeFileSync(
       path.join(dir, "index.html"),
       buildPage(template, {
-        url: `${SITE}/${route}`,
+        url: `${SITE}/${route}/`,
         title: data.title,
         description: data.metaDescription,
         body: cityBody(data),
@@ -605,7 +605,7 @@ function main() {
   fs.writeFileSync(
     path.join(newsDir, "index.html"),
     buildPage(template, {
-      url: `${SITE}/nyheter`,
+      url: `${SITE}/nyheter/`,
       title: "Heimby i media — presseomtale og podkaster | Heimby",
       description:
         "Samlet oversikt over presseomtale av Heimby: NRK, TV 2, Bergensavisen, Nettavisen, Shifter, Firdaposten og podkaster om korttidsutleie.",
@@ -621,7 +621,7 @@ function main() {
     fs.writeFileSync(
       path.join(dir, "index.html"),
       buildPage(template, {
-        url: `${SITE}/nyheter/${a.slug}`,
+        url: `${SITE}/nyheter/${a.slug}/`,
         title: `${a.title} — ${a.source} | Heimby`,
         description: a.summary.slice(0, 160),
         body: newsArticleBody(a),
@@ -648,14 +648,14 @@ function main() {
   const urls = [
     { loc: `${SITE}/`, priority: "1.0", changefreq: "weekly" },
     ...Object.keys(CITY_DATA).map((slug) => ({
-      loc: `${SITE}/korttidsutleie-i-${slug}`,
+      loc: `${SITE}/korttidsutleie-i-${slug}/`,
       priority: "0.9",
       changefreq: "monthly",
       lastmod: CITY_DATA[slug].lastUpdated,
     })),
-    { loc: `${SITE}/nyheter`, priority: "0.7", changefreq: "monthly" },
+    { loc: `${SITE}/nyheter/`, priority: "0.7", changefreq: "monthly" },
     ...MEDIA.articles.map((a) => ({
-      loc: `${SITE}/nyheter/${a.slug}`,
+      loc: `${SITE}/nyheter/${a.slug}/`,
       priority: "0.5",
       changefreq: "yearly",
       lastmod: a.date,
