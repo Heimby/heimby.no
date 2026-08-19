@@ -1,6 +1,27 @@
 {
   "articles": [
     {
+      "title": "Bergens største på korttidsleie: – Dreper du Airbnb, dreper du turistnæringen",
+      "description": "Bergensavisen møter gründerne bak Heimby, som mener debatten om skyggehoteller er oppkonstruert og at Airbnb-bølgen uansett har passert.",
+      "image": "/media/heimby-grundere.jpg",
+      "source": "Bergensavisen",
+      "url": "https://www.ba.no/bergens-storste-pa-korttidsleie-dreper-du-airbnb-dreper-du-turistnaringen/s/5-8-3444987"
+    },
+    {
+      "title": "Vil stanse «skyggehoteller» i Bergen",
+      "description": "Heimby i debatt om korttidsutleie i Bergen på NRK Dagsnytt 18, mot Redd Bergen som mener deler av sentrum er i ferd med å bli ødelagt.",
+      "image": "/media/nrk-korttidsutleie-bergen.jpg",
+      "source": "NRK Dagsnytt 18",
+      "url": "https://www.youtube.com/watch?v=QIgGkDDnEik"
+    },
+    {
+      "title": "Slik sikrer vi høy rating i korttidsutleie",
+      "description": "Ability FM om samarbeidet med Heimby, der Ability leverer renhold og drift og Heimby står for forvaltningen av korttidsutleien.",
+      "image": "/media/ability-korttidsutleie.jpg",
+      "source": "Ability FM",
+      "url": "https://ability.no/slik-sikrer-vi-hoy-rating-i-korttidsutleie/"
+    },
+    {
       "title": "Ny norsk AI-aktør vil revolusjonere eiendom",
       "description": "Heimby får oppmerksomhet i Estatenyheter for sin innovative tilnærming til eiendomsforvaltning med kunstig intelligens.",
       "image": "https://customer-assets.emergentagent.com/job_property-onboard-1/artifacts/qcxh4qha_image.png",
@@ -13,6 +34,13 @@
       "image": "https://customer-assets.emergentagent.com/job_property-onboard-1/artifacts/7tafy6d7_image.png",
       "source": "GuestyVal Mexico",
       "url": "https://www.youtube.com/watch?v=sT6i93KG8h0"
+    },
+    {
+      "title": "Største på korttidsleie: – Dreper du Airbnb, dreper du turistnæringen",
+      "description": "Nettavisen om Heimby, som forvalter rundt 160 leiligheter og har flest aktive Airbnb-annonser i Bergen.",
+      "image": "/media/heimby-grundere.jpg",
+      "source": "Nettavisen",
+      "url": "https://www.nettavisen.no/heim/storste-pa-korttidsleie-dreper-du-airbnb-dreper-du-turistnaringen/s/5-95-3133554"
     },
     {
       "title": "Fra storbank til startup",
