@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import mediaData from '../data/mediaArticles.json';
 
 // Fisher-Yates, on a copy so the imported JSON stays untouched.
@@ -77,11 +78,9 @@ const MediaSection = () => {
           <div className="hidden md:grid md:grid-cols-4 gap-4 px-8">
             {getVisibleArticles().map((article, index) => {
               return (
-                <a
+                <Link
                   key={index}
-                  href={article.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  to={`/nyheter/${article.slug}`}
                   className="relative shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer"
                   style={{ aspectRatio: '3/4' }}
                 >
@@ -97,7 +96,7 @@ const MediaSection = () => {
                   
                   {/* External Link Icon */}
                   <div className="absolute top-3 right-3 bg-white/90 rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <ExternalLink className="w-4 h-4 text-gray-900" />
+                    <ArrowRight className="w-4 h-4 text-gray-900" />
                   </div>
                   
                   {/* Content */}
@@ -112,7 +111,7 @@ const MediaSection = () => {
                       {article.description}
                     </p>
                   </div>
-                </a>
+                </Link>
               );
             })}
           </div>
@@ -121,11 +120,9 @@ const MediaSection = () => {
           <div className="md:hidden px-8">
             {mediaArticles.map((article, index) => {
               return (
-                <a
+                <Link
                   key={index}
-                  href={article.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  to={`/nyheter/${article.slug}`}
                   className={`relative shadow-lg transition-all duration-300 overflow-hidden ${
                     index === currentIndex ? 'block' : 'hidden'
                   }`}
@@ -143,7 +140,7 @@ const MediaSection = () => {
                   
                   {/* External Link Icon */}
                   <div className="absolute top-3 right-3 bg-white/90 rounded-full p-2">
-                    <ExternalLink className="w-4 h-4 text-gray-900" />
+                    <ArrowRight className="w-4 h-4 text-gray-900" />
                   </div>
                   
                   {/* Content */}
@@ -158,7 +155,7 @@ const MediaSection = () => {
                       {article.description}
                     </p>
                   </div>
-                </a>
+                </Link>
               );
             })}
           </div>

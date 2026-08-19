@@ -12,6 +12,8 @@ import LeadGenSection from "./components/LeadGenSection";
 import LoginPage from "./components/LoginPage";
 import MediaSection from "./components/MediaSection";
 import Navbar from "./components/Navbar";
+import NewsArticlePage from "./components/NewsArticlePage";
+import NewsIndexPage from "./components/NewsIndexPage";
 import OurPresenceSection from "./components/OurPresenceSection";
 import OwnerPortalDashboard from "./components/OwnerPortalDashboard";
 import PricingSection from "./components/PricingSection";
@@ -88,6 +90,10 @@ function App() {
           <Route path="/investors" element={<InvestorPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/admin" element={<AdminDashboard />} />
+
+          {/* Press coverage */}
+          <Route path="/nyheter" element={<NewsIndexPage />} />
+          <Route path="/nyheter/:slug" element={<NewsArticlePage />} />
 
           {/* City-specific landing pages */}
           <Route path="/korttidsutleie-i-oslo" element={<CityPage />} />

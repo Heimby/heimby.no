@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
-const Navbar = ({ isDark = true }) => {
+const Navbar = ({ isDark = true, solid = false }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -13,13 +13,15 @@ const Navbar = ({ isDark = true }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const opaque = solid || isScrolled;
+
   const navLinks = [];
 
   return (
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
+          opaque
             ? "bg-white/95 backdrop-blur-sm border-b border-gray-200"
             : "bg-transparent"
         }`}
@@ -29,7 +31,7 @@ const Navbar = ({ isDark = true }) => {
             {/* Logo */}
             <a href="/" className="flex items-center h-full py-3">
               <img
-                src={isScrolled ? "/heimby-logo-black.svg" : "/heimby-logo.svg"}
+                src={opaque ? "/heimby-logo-black.svg" : "/heimby-logo.svg"}
                 alt="Heimby Logo"
                 className="h-full w-auto transition-all duration-300 hover:scale-110"
                 style={{ transform: "scale(0.7)" }}
@@ -40,7 +42,7 @@ const Navbar = ({ isDark = true }) => {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`lg:hidden p-2 transition-colors ${
-                isScrolled ? "text-gray-900" : "text-white"
+                opaque ? "text-gray-900" : "text-white"
               }`}
               aria-label="Toggle menu"
             >

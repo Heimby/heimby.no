@@ -5,112 +5,337 @@
       "description": "Bergensavisen møter gründerne bak Heimby, som mener debatten om skyggehoteller er oppkonstruert og at Airbnb-bølgen uansett har passert.",
       "image": "/media/heimby-grundere.jpg",
       "source": "Bergensavisen",
-      "url": "https://www.ba.no/bergens-storste-pa-korttidsleie-dreper-du-airbnb-dreper-du-turistnaringen/s/5-8-3444987"
+      "url": "https://www.ba.no/bergens-storste-pa-korttidsleie-dreper-du-airbnb-dreper-du-turistnaringen/s/5-8-3444987",
+      "slug": "ba-bergens-storste-pa-korttidsleie",
+      "date": "2026-07-05",
+      "summary": "Bergensavisen møter gründerne bak Heimby, som mener debatten om skyggehoteller er oppkonstruert og at Airbnb-bølgen i Bergen allerede har passert toppen. Saken omtaler Heimby som Bergens største aktør innen korttidsutleie.",
+      "context": "Bakgrunnen er diskusjonen om hvor stor del av Bergens overnattingsmarked som bør være korttidsutleie. Selve regelverket er uansett tydelig: eierseksjonsloven § 24 setter 90 døgn i året for sameier, og borettslagsloven § 5-4 setter 30 døgn for borettslag.",
+      "topic": "regler",
+      "facts": {
+        "title": "Fakta: hva reglene faktisk sier",
+        "items": [
+          "Korttidsutleie er leieforhold på inntil 30 sammenhengende døgn.",
+          "I et eierseksjonssameie kan hele seksjonen korttidsleies ut i maks 90 døgn per år. Sameiet kan vedtektsfeste 60–120 døgn med 2/3 flertall på årsmøtet (eierseksjonsloven § 24).",
+          "I borettslag er grensen 30 døgn per år uten styrets samtykke, og andelseier må ha registrert bostedsadresse i boligen (borettslagsloven § 5-4).",
+          "For eneboliger og sekundærboliger finnes ingen lovbestemt døgngrense.",
+          "Bergen kommune har per august 2026 ingen kommunal registreringsplikt for korttidsutleie."
+        ]
+      }
     },
     {
       "title": "Vil stanse «skyggehoteller» i Bergen",
       "description": "Heimby i debatt om korttidsutleie i Bergen på NRK Dagsnytt 18, mot Redd Bergen som mener deler av sentrum er i ferd med å bli ødelagt.",
       "image": "/media/nrk-korttidsutleie-bergen.jpg",
       "source": "NRK Dagsnytt 18",
-      "url": "https://www.youtube.com/watch?v=QIgGkDDnEik"
+      "url": "https://www.youtube.com/watch?v=QIgGkDDnEik",
+      "slug": "nrk-dagsnytt-18-skyggehoteller-i-bergen",
+      "date": "2026-08-01",
+      "summary": "Heimby i debatt på NRK Dagsnytt 18 om korttidsutleie i Bergen, mot aksjonsgruppen Redd Bergen, som mener deler av Bergen sentrum allerede er i ferd med å bli ødelagt.",
+      "context": "Debatten handler om profesjonell korttidsutleie i sentrum, ikke om boligeiere som leier ut egen bolig innenfor døgngrensene. Det er to forskjellige ting, og reglene skiller mellom dem.",
+      "topic": "regler",
+      "facts": {
+        "title": "Fakta: hva reglene faktisk sier",
+        "items": [
+          "Korttidsutleie er leieforhold på inntil 30 sammenhengende døgn.",
+          "I et eierseksjonssameie kan hele seksjonen korttidsleies ut i maks 90 døgn per år. Sameiet kan vedtektsfeste 60–120 døgn med 2/3 flertall på årsmøtet (eierseksjonsloven § 24).",
+          "I borettslag er grensen 30 døgn per år uten styrets samtykke, og andelseier må ha registrert bostedsadresse i boligen (borettslagsloven § 5-4).",
+          "For eneboliger og sekundærboliger finnes ingen lovbestemt døgngrense.",
+          "Bergen kommune har per august 2026 ingen kommunal registreringsplikt for korttidsutleie."
+        ]
+      }
     },
     {
       "title": "Slik sikrer vi høy rating i korttidsutleie",
       "description": "Ability FM om samarbeidet med Heimby, der Ability leverer renhold og drift og Heimby står for forvaltningen av korttidsutleien.",
       "image": "/media/ability-korttidsutleie.jpg",
       "source": "Ability FM",
-      "url": "https://ability.no/slik-sikrer-vi-hoy-rating-i-korttidsutleie/"
+      "url": "https://ability.no/slik-sikrer-vi-hoy-rating-i-korttidsutleie/",
+      "slug": "ability-fm-hoy-rating-i-korttidsutleie",
+      "date": "2026-04-20",
+      "summary": "Ability FM skriver om samarbeidet med Heimby, der Ability leverer renhold og drift mens Heimby står for forvaltningen av korttidsutleien.",
+      "context": "Renhold er den enkeltfaktoren som slår hardest ut på gjesteomtaler, og omtaler styrer både synlighet og døgnpris på Airbnb og Booking.com. Derfor er driftsapparatet en del av forvaltningen hos oss, ikke noe som settes ut ad hoc.",
+      "topic": "drift",
+      "facts": {
+        "title": "Fakta: hva drift betyr for inntekten",
+        "items": [
+          "Renhold og gjestekommunikasjon er de to faktorene som slår hardest ut på omtaler.",
+          "Omtaler styrer plassering i søk på Airbnb og Booking.com, som igjen styrer både belegg og døgnpris.",
+          "Heimby tar 15 % av leieinntekten + MVA, uten oppstartskostnad eller bindingstid. Direkte driftskostnader trekkes fra utbetalingen og spesifiseres i eierportalen."
+        ]
+      }
     },
     {
       "title": "Ny norsk AI-aktør vil revolusjonere eiendom",
       "description": "Heimby får oppmerksomhet i Estatenyheter for sin innovative tilnærming til eiendomsforvaltning med kunstig intelligens.",
       "image": "/media/estatenyheter-ny-norsk-ai-aktor-vil-revolusjonere-eiendom.jpg",
       "source": "Estatenyheter",
-      "url": "https://www.estatenyheter.no/bergen-vest/ny-norsk-ai-aktor-vil-revolusjonere-eiendom/479002"
+      "url": "https://www.estatenyheter.no/bergen-vest/ny-norsk-ai-aktor-vil-revolusjonere-eiendom/479002",
+      "slug": "estatenyheter-ny-norsk-ai-aktor",
+      "date": "2025-08-05",
+      "summary": "Estatenyheter om DigiSale-gründerne, som vil snu opp ned på utleiebransjen med AI-agenter som jobber døgnet rundt. Saken forteller også om hackerangrepet på lanseringsdagen og invitasjonen til verdens største korttidsutleiekonferanse.",
+      "context": "AI-agentene håndterer gjestehenvendelser og rutinedrift. Poenget er ikke teknologien i seg selv, men at eieren slipper å bruke tid på den.",
+      "topic": "selskap",
+      "facts": {
+        "title": "Fakta om Heimby",
+        "items": [
+          "Heimby ble startet i Bergen av Njål Hopen Eliasson og Mathias Haugsbø.",
+          "Selskapet forvalter rundt 160 leiligheter for andre boligeiere og har flest aktive Airbnb-annonser i Bergen.",
+          "To av gründerne skrev masteroppgave ved NHH om lønnsomhet og risiko i langtidsutleie, korttidsutleie og dynamiske utleiestrategier.",
+          "Heimby opererer i Bergen, Oslo, Stavanger, Trondheim, Tromsø, Haugesund og Kristiansand."
+        ]
+      }
     },
     {
       "title": "We Grew Too Fast and Nearly Lost Everything",
       "description": "Njål Eliasson i Pillow Talk Sessions om hvordan Heimby gikk fra overskudd første året til tap det andre, og hva som måtte legges om for å prioritere kvalitet framfor vekst.",
       "image": "/media/pillowtalk-heimby.jpg",
       "source": "Pillow Talk Sessions",
-      "url": "https://www.pillowtalksessions.com/we-grew-too-fast-and-nearly-lost-everything-with-njal-elliasson-proptonomy-heimby/"
+      "url": "https://www.pillowtalksessions.com/we-grew-too-fast-and-nearly-lost-everything-with-njal-elliasson-proptonomy-heimby/",
+      "slug": "pillow-talk-sessions-we-grew-too-fast",
+      "date": "2026-06-04",
+      "summary": "Njål Eliasson forteller i Pillow Talk Sessions hvordan Heimby vokste raskt etter oppstarten i 2022 — og hva som skjedde da veksten gikk for fort. Episoden handler om omleggingen fra vekst til kvalitet.",
+      "context": "Erfaringen ligger bak måten vi tar inn boliger på i dag: vi sier nei til objekter vi ikke kan drifte godt, framfor å fylle porteføljen.",
+      "topic": "selskap",
+      "facts": {
+        "title": "Fakta om Heimby",
+        "items": [
+          "Heimby ble startet i Bergen av Njål Hopen Eliasson og Mathias Haugsbø.",
+          "Selskapet forvalter rundt 160 leiligheter for andre boligeiere og har flest aktive Airbnb-annonser i Bergen.",
+          "To av gründerne skrev masteroppgave ved NHH om lønnsomhet og risiko i langtidsutleie, korttidsutleie og dynamiske utleiestrategier.",
+          "Heimby opererer i Bergen, Oslo, Stavanger, Trondheim, Tromsø, Haugesund og Kristiansand."
+        ]
+      }
     },
     {
       "title": "Scaling Too Fast is Deadly",
       "description": "Abode Worldwide klipper høydepunktet fra samtalen med Heimby om hvorfor rask vekst i korttidsutleie kan bli dyrt.",
       "image": "/media/abode-scaling-too-fast.jpg",
       "source": "Abode Worldwide",
-      "url": "https://www.youtube.com/watch?v=VrAayqH_MYk"
+      "url": "https://www.youtube.com/watch?v=VrAayqH_MYk",
+      "slug": "abode-worldwide-scaling-too-fast",
+      "date": "2026-06-08",
+      "summary": "Abode Worldwide klipper høydepunktet fra samtalen med Njål Eliasson om hvorfor for rask vekst i korttidsutleie kan bli dyrt.",
+      "context": "Kortversjonen av den samme historien som i Pillow Talk Sessions-episoden.",
+      "topic": "selskap",
+      "facts": {
+        "title": "Fakta om Heimby",
+        "items": [
+          "Heimby ble startet i Bergen av Njål Hopen Eliasson og Mathias Haugsbø.",
+          "Selskapet forvalter rundt 160 leiligheter for andre boligeiere og har flest aktive Airbnb-annonser i Bergen.",
+          "To av gründerne skrev masteroppgave ved NHH om lønnsomhet og risiko i langtidsutleie, korttidsutleie og dynamiske utleiestrategier.",
+          "Heimby opererer i Bergen, Oslo, Stavanger, Trondheim, Tromsø, Haugesund og Kristiansand."
+        ]
+      }
     },
     {
       "title": "Njål Eliasson i Gründerreisen",
       "description": "Gründerreisen-podkasten om reisen bak Heimby og Proptonomy — fra første leilighet til forvaltning i sju norske byer.",
       "image": "/media/grunderreisen-njal.jpg",
       "source": "Gründerreisen",
-      "url": "https://open.spotify.com/show/7jp9iaW719BWrVrlT6Duvj"
+      "url": "https://open.spotify.com/show/7jp9iaW719BWrVrlT6Duvj",
+      "slug": "grunderreisen-njal-eliasson",
+      "summary": "Gründerreisen-podkasten om reisen bak Heimby og Proptonomy — fra første leilighet til forvaltning i flere norske byer.",
+      "context": "Podkasten dekker oppstarten og hvordan forvaltningsmodellen ble til.",
+      "topic": "selskap",
+      "facts": {
+        "title": "Fakta om Heimby",
+        "items": [
+          "Heimby ble startet i Bergen av Njål Hopen Eliasson og Mathias Haugsbø.",
+          "Selskapet forvalter rundt 160 leiligheter for andre boligeiere og har flest aktive Airbnb-annonser i Bergen.",
+          "To av gründerne skrev masteroppgave ved NHH om lønnsomhet og risiko i langtidsutleie, korttidsutleie og dynamiske utleiestrategier.",
+          "Heimby opererer i Bergen, Oslo, Stavanger, Trondheim, Tromsø, Haugesund og Kristiansand."
+        ]
+      }
     },
     {
       "title": "GuestyVal Mexico | Machine Earning: 10 AI Tactics Powering STR Profits",
       "description": "Heimby & EnsoConnect presenterer på GuestyVal Mexico om AI-drevet profittoptimalisering for korttidsutleie.",
       "image": "/media/guestyval-mexico-guestyval-mexico-machine-earning-10-ai-tact.jpg",
       "source": "GuestyVal Mexico",
-      "url": "https://www.youtube.com/watch?v=sT6i93KG8h0"
+      "url": "https://www.youtube.com/watch?v=sT6i93KG8h0",
+      "slug": "guestyval-mexico-ai-tactics",
+      "date": "2025-10-09",
+      "summary": "Heimby og EnsoConnect på scenen under GuestyVal i Mexico, om hvordan AI brukes til å effektivisere drift, forbedre gjestekommunikasjon og øke inntektene i korttidsutleie.",
+      "context": "GuestyVal er en av de største konferansene i bransjen internasjonalt.",
+      "topic": "drift",
+      "facts": {
+        "title": "Fakta: hva drift betyr for inntekten",
+        "items": [
+          "Renhold og gjestekommunikasjon er de to faktorene som slår hardest ut på omtaler.",
+          "Omtaler styrer plassering i søk på Airbnb og Booking.com, som igjen styrer både belegg og døgnpris.",
+          "Heimby tar 15 % av leieinntekten + MVA, uten oppstartskostnad eller bindingstid. Direkte driftskostnader trekkes fra utbetalingen og spesifiseres i eierportalen."
+        ]
+      }
     },
     {
       "title": "Største på korttidsleie: – Dreper du Airbnb, dreper du turistnæringen",
       "description": "Nettavisen om Heimby, som forvalter rundt 160 leiligheter og har flest aktive Airbnb-annonser i Bergen.",
       "image": "/media/heimby-grundere.jpg",
       "source": "Nettavisen",
-      "url": "https://www.nettavisen.no/heim/storste-pa-korttidsleie-dreper-du-airbnb-dreper-du-turistnaringen/s/5-95-3133554"
+      "url": "https://www.nettavisen.no/heim/storste-pa-korttidsleie-dreper-du-airbnb-dreper-du-turistnaringen/s/5-95-3133554",
+      "slug": "nettavisen-storste-pa-korttidsleie",
+      "date": "2026-07-13",
+      "summary": "Nettavisen kjører samme sak som Bergensavisen: gründerne bak Heimby mener debatten om skyggehoteller er oppkonstruert, og at Airbnb-bølgen uansett har passert.",
+      "context": "Saken er grunnlaget for at vi omtaler oss som størst på korttidsutleie i Bergen.",
+      "topic": "regler",
+      "facts": {
+        "title": "Fakta: hva reglene faktisk sier",
+        "items": [
+          "Korttidsutleie er leieforhold på inntil 30 sammenhengende døgn.",
+          "I et eierseksjonssameie kan hele seksjonen korttidsleies ut i maks 90 døgn per år. Sameiet kan vedtektsfeste 60–120 døgn med 2/3 flertall på årsmøtet (eierseksjonsloven § 24).",
+          "I borettslag er grensen 30 døgn per år uten styrets samtykke, og andelseier må ha registrert bostedsadresse i boligen (borettslagsloven § 5-4).",
+          "For eneboliger og sekundærboliger finnes ingen lovbestemt døgngrense.",
+          "Bergen kommune har per august 2026 ingen kommunal registreringsplikt for korttidsutleie."
+        ]
+      }
     },
     {
       "title": "Fra storbank til startup",
       "description": "Shifter skriver om hvordan Heimby skal bygge skalerbare selskaper i tungrodd bransje.",
       "image": "/media/shifter-fra-storbank-til-startup.jpg",
       "source": "Shifter",
-      "url": "https://www.shifter.no/nyheter/fra-storbank-til-startup-skal-bygge-skalerbare-selskaper-i-tungrodde-bransjer/413476"
+      "url": "https://www.shifter.no/nyheter/fra-storbank-til-startup-skal-bygge-skalerbare-selskaper-i-tungrodde-bransjer/413476",
+      "slug": "shifter-fra-storbank-til-startup",
+      "date": "2025-08-04",
+      "summary": "Shifter skriver om Sarah Sleeman, som etter seks år i DNB og mange år i eiendomsbransjen tar steget ut i gründerlivet med teknologiselskapet DigiSale.",
+      "context": "DigiSale er søsterselskapet på teknologisiden.",
+      "topic": "selskap",
+      "facts": {
+        "title": "Fakta om Heimby",
+        "items": [
+          "Heimby ble startet i Bergen av Njål Hopen Eliasson og Mathias Haugsbø.",
+          "Selskapet forvalter rundt 160 leiligheter for andre boligeiere og har flest aktive Airbnb-annonser i Bergen.",
+          "To av gründerne skrev masteroppgave ved NHH om lønnsomhet og risiko i langtidsutleie, korttidsutleie og dynamiske utleiestrategier.",
+          "Heimby opererer i Bergen, Oslo, Stavanger, Trondheim, Tromsø, Haugesund og Kristiansand."
+        ]
+      }
     },
     {
       "title": "DigiSale-gruppen lanserer plattform for bilsalg og utleie av eiendom",
       "description": "Firdaposten skriver om lanseringen av DigiCar og Heimby som søsterselskaper under en felles organisasjon.",
       "image": "/media/firdaposten-digisale-gruppen-lanserer-plattform-for-bilsalg-.jpg",
       "source": "Firdaposten",
-      "url": "https://www.firdaposten.no/njal-26-vil-selge-bilen-din-med-hjelp-av-ai/s/5-16-924719"
+      "url": "https://www.firdaposten.no/njal-26-vil-selge-bilen-din-med-hjelp-av-ai/s/5-16-924719",
+      "slug": "firdaposten-digisale-gruppen",
+      "date": "2025-08-08",
+      "summary": "Firdaposten om hvordan Njål Hopen Eliasson (26) utvider gründersatsingen fra korttidsutleie til en bredere teknologisatsing med AI og digitalisering, med ambisjon om å forme framtiden for både eiendoms- og bilsalg.",
+      "context": "Heimby og DigiCar er søsterselskaper under samme organisasjon.",
+      "topic": "selskap",
+      "facts": {
+        "title": "Fakta om Heimby",
+        "items": [
+          "Heimby ble startet i Bergen av Njål Hopen Eliasson og Mathias Haugsbø.",
+          "Selskapet forvalter rundt 160 leiligheter for andre boligeiere og har flest aktive Airbnb-annonser i Bergen.",
+          "To av gründerne skrev masteroppgave ved NHH om lønnsomhet og risiko i langtidsutleie, korttidsutleie og dynamiske utleiestrategier.",
+          "Heimby opererer i Bergen, Oslo, Stavanger, Trondheim, Tromsø, Haugesund og Kristiansand."
+        ]
+      }
     },
     {
       "title": "Njål (25) er blitt stor på utleigeforvalting",
       "description": "Firdaposten skriver om vekstreisen til Heimby og hvordan de revolusjonerer utleieforvaltning.",
       "image": "/media/firdaposten-njal-25-er-blitt-stor-pa-utleigeforvalting.jpg",
       "source": "Firdaposten",
-      "url": "https://www.firdaposten.no/njal-25-fra-floro-er-blitt-stor-pa-utleigeforvalting-eg-jobbar-fulltid-pa-fritida/s/5-16-852639"
+      "url": "https://www.firdaposten.no/njal-25-fra-floro-er-blitt-stor-pa-utleigeforvalting-eg-jobbar-fulltid-pa-fritida/s/5-16-852639",
+      "slug": "firdaposten-njal-stor-pa-utleigeforvalting",
+      "date": "2024-11-04",
+      "summary": "Firdaposten om Njål Hopen Eliasson fra Florø, som er blitt en betydelig aktør innen utleieforvaltning i Bergen. Heimby, selskapet han grunnla sammen med to kamerater, vil revolusjonere korttidsutleiemarkedet i Norge.",
+      "context": "Dette er en av de tidligste sakene om selskapet.",
+      "topic": "selskap",
+      "facts": {
+        "title": "Fakta om Heimby",
+        "items": [
+          "Heimby ble startet i Bergen av Njål Hopen Eliasson og Mathias Haugsbø.",
+          "Selskapet forvalter rundt 160 leiligheter for andre boligeiere og har flest aktive Airbnb-annonser i Bergen.",
+          "To av gründerne skrev masteroppgave ved NHH om lønnsomhet og risiko i langtidsutleie, korttidsutleie og dynamiske utleiestrategier.",
+          "Heimby opererer i Bergen, Oslo, Stavanger, Trondheim, Tromsø, Haugesund og Kristiansand."
+        ]
+      }
     },
     {
       "title": "Studenter må flytte ut om sommeren",
       "description": "NRK Vestland rapporterer om Airbnb-ifisering av utleiemarkedet og Heimbys rolle.",
       "image": "/media/nrk-vestland-studenter-ma-flytte-ut-om-sommeren.jpg",
       "source": "NRK Vestland",
-      "url": "https://www.nrk.no/vestland/studenter-ma-flytte-ut-om-sommeren-_-advarer-mot-_airbnb-ifisering_-av-utleiemarkedet-1.17437819"
+      "url": "https://www.nrk.no/vestland/studenter-ma-flytte-ut-om-sommeren-_-advarer-mot-_airbnb-ifisering_-av-utleiemarkedet-1.17437819",
+      "slug": "nrk-vestland-studenter-ma-flytte-ut",
+      "date": "2025-06-01",
+      "summary": "NRK Vestland om utleiere som kan tjene opptil 30 prosent mer på turister om sommeren. Leieboerforeningen mener den hybride utleiepraksisen er ulovlig, og advarer mot «Airbnb-ifisering» av utleiemarkedet.",
+      "context": "Saken er kritisk til hybridmodellen. Kjernen i uenigheten er ikke døgngrensene i eierseksjonsloven, men om tidsbestemte leiekontrakter som utløper til sommeren er i tråd med husleielovens vern for leietaker. Dette er et omdiskutert spørsmål, og Heimby er uenig i Leieboerforeningens tolkning.",
+      "critical": true,
+      "topic": "hybrid",
+      "facts": {
+        "title": "Fakta: hva uenigheten handler om",
+        "items": [
+          "Uenigheten gjelder husleielovens regler om tidsbestemte leiekontrakter, ikke døgngrensene for korttidsutleie i eierseksjonsloven § 24.",
+          "En tidsbestemt leiekontrakt må som hovedregel være på minst tre år, men det finnes unntak — blant annet når utleier selv skal bruke boligen.",
+          "Spørsmålet er om ti måneders studentkontrakt med planlagt sommerutleie faller innenfor unntakene. Dette er omdiskutert, og Leieboerforeningen og Heimby er uenige.",
+          "Døgngrensene gjelder uansett: 90 døgn i sameie, 30 døgn i borettslag."
+        ]
+      }
     },
     {
       "title": "Her får du ikke lov til å bo om sommeren",
       "description": "TV2 dekker hvordan korttidsutleie påvirker boligmarkedet i Norge.",
       "image": "/media/tv2-her-far-du-ikke-lov-til-a-bo-om-sommeren.jpg",
       "source": "TV2",
-      "url": "https://www.tv2.no/nyheter/innenriks/her-far-du-ikke-lov-til-a-bo-om-sommeren/17777568/"
+      "url": "https://www.tv2.no/nyheter/innenriks/her-far-du-ikke-lov-til-a-bo-om-sommeren/17777568/",
+      "slug": "tv2-her-far-du-ikke-lov-til-a-bo-om-sommeren",
+      "date": "2025-05-31",
+      "summary": "TV 2 om utleietilbudet der studenter leier ti måneder og flytter ut om sommeren. Utleiefirma mener tilbudet er populært og gunstig for mange studenter; en advokat mener det er ulovlig.",
+      "context": "Samme uenighet som i NRK-saken: spørsmålet er husleielovens regler om tidsbestemte kontrakter, ikke døgngrensene for korttidsutleie. Studentene det gjelder inngår kontrakten med åpne øyne om at den varer ti måneder.",
+      "critical": true,
+      "topic": "hybrid",
+      "facts": {
+        "title": "Fakta: hva uenigheten handler om",
+        "items": [
+          "Uenigheten gjelder husleielovens regler om tidsbestemte leiekontrakter, ikke døgngrensene for korttidsutleie i eierseksjonsloven § 24.",
+          "En tidsbestemt leiekontrakt må som hovedregel være på minst tre år, men det finnes unntak — blant annet når utleier selv skal bruke boligen.",
+          "Spørsmålet er om ti måneders studentkontrakt med planlagt sommerutleie faller innenfor unntakene. Dette er omdiskutert, og Leieboerforeningen og Heimby er uenige.",
+          "Døgngrensene gjelder uansett: 90 døgn i sameie, 30 døgn i borettslag."
+        ]
+      }
     },
     {
       "title": "Startup-podden med Njål Eliasson",
       "description": "Spotify-podcast om grunnleggeren av Heimby og hans reise i startup-verden.",
       "image": "/media/spotify-startup-podden-med-njal-eliasson.jpg",
       "source": "Spotify",
-      "url": "https://open.spotify.com/episode/7GcqJMfBqogJvAZa4eRqUJ"
+      "url": "https://open.spotify.com/episode/7GcqJMfBqogJvAZa4eRqUJ",
+      "slug": "startup-podden-njal-eliasson",
+      "summary": "Startup-podden med Njål Eliasson om oppstarten av Heimby og veien i gründerverdenen.",
+      "context": "Podkastepisode om selskapets tidlige fase.",
+      "topic": "selskap",
+      "facts": {
+        "title": "Fakta om Heimby",
+        "items": [
+          "Heimby ble startet i Bergen av Njål Hopen Eliasson og Mathias Haugsbø.",
+          "Selskapet forvalter rundt 160 leiligheter for andre boligeiere og har flest aktive Airbnb-annonser i Bergen.",
+          "To av gründerne skrev masteroppgave ved NHH om lønnsomhet og risiko i langtidsutleie, korttidsutleie og dynamiske utleiestrategier.",
+          "Heimby opererer i Bergen, Oslo, Stavanger, Trondheim, Tromsø, Haugesund og Kristiansand."
+        ]
+      }
     },
     {
       "title": "Utleieaktører satser i Stavanger",
       "description": "RA Stavanger om hvordan Heimby ekspanderer til nye markeder i Norge.",
       "image": "/media/ra-stavanger-utleieaktorer-satser-i-stavanger.jpg",
       "source": "RA Stavanger",
-      "url": "https://www.rastavanger.no/utleieaktorer-satser-i-stavanger/s/5-165-48584"
+      "url": "https://www.rastavanger.no/utleieaktorer-satser-i-stavanger/s/5-165-48584",
+      "slug": "ra-stavanger-utleieaktorer-satser",
+      "date": "2025-01-10",
+      "summary": "RA Stavanger om at leieprisene økte mest i Stavanger og Sandnes i 2024. Utleiemegleren frykter at nye aktører vil presse langtidsleien ytterligere opp og ramme studenter, enslige og lavtlønnede.",
+      "context": "Saken omtaler markedet i Stavanger, der Heimby er en av aktørene som har etablert seg.",
+      "critical": true,
+      "topic": "marked",
+      "facts": {
+        "title": "Fakta: leiemarkedet",
+        "items": [
+          "Korttidsutleie er sesongstyrt, og inntekten avhenger mest av hvor mange døgn vedtektene tillater og hvor sentralt boligen ligger.",
+          "En bolig i ren korttidsutleie står tom store deler av lavsesongen, som trekker årssnittet ned.",
+          "Hybridmodeller kombinerer stabil grunninntekt med sesongtoppen, og holder utleien innenfor 90-dagersgrensen i sameier."
+        ]
+      }
     }
   ]
 }
