@@ -37,13 +37,13 @@ const OurPresenceSection = () => {
               style={{ backgroundColor: "#ededed" }}
             >
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-                Norges største tilstedeværelse innen utleie
+                Størst på korttidsutleie i Bergen — og voksende
               </h2>
 
               <p className="text-lg text-gray-700 leading-relaxed">
-                Heimby er det største og mest utbredte
-                eiendomsforvaltningsselskapet i Norge. Vi har lokale team i alle
-                våre markeder.
+                Heimby forvalter rundt 160 leiligheter for andre boligeiere og
+                har flest aktive Airbnb-annonser i Bergen. Vi drifter med eget
+                lokalt apparat for renhold, nøkler og vedlikehold.
               </p>
 
               <div className="space-y-4">

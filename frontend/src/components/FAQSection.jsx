@@ -1,6 +1,5 @@
 import { Minus, Plus } from "lucide-react";
 import { useState } from "react";
-import { Helmet } from "react-helmet";
 
 const FAQSection = ({ faqs, cityName }) => {
   const [expandedIndex, setExpandedIndex] = useState(null);
@@ -9,26 +8,12 @@ const FAQSection = ({ faqs, cityName }) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
 
-  // Generate Schema.org FAQ structured data for SEO
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
+  // No FAQPage JSON-LD here on purpose: scripts/prerender.js already emits it
+  // into the static HTML of every page that renders this section, so adding it
+  // again on mount would leave two identical FAQPage blocks in the DOM.
 
   return (
     <>
-      <Helmet>
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
-      </Helmet>
-
       <section className="py-16 px-6" style={{ backgroundColor: "#F9F8F4" }}>
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">

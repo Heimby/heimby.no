@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import AdminDashboard from "./components/AdminDashboard";
+import FAQSection from "./components/FAQSection";
 import CityPage from "./components/CityPage";
 import Footer from "./components/Footer";
 import HeroSection from "./components/HeroSection";
@@ -20,6 +21,7 @@ import PropertyDocumentation from "./components/PropertyDocumentation";
 import PropertyView from "./components/PropertyView";
 import ResultsSection from "./components/ResultsSection";
 import WhatWeAreSection from "./components/WhatWeAreSection";
+import homeContent from "./data/homeContent.json";
 
 function HomePage() {
   return (
@@ -56,6 +58,9 @@ function HomePage() {
 
       {/* Media Section */}
       <MediaSection />
+
+      {/* FAQ Section */}
+      <FAQSection faqs={homeContent.faqs} cityName="Norge" />
 
       {/* Footer */}
       <Footer />

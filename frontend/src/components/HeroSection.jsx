@@ -22,11 +22,11 @@ const HeroSection = () => {
       <div className="relative h-full flex items-center justify-center">
         <div className="text-center space-y-6 px-6 sm:px-8">
           <div className="space-y-3 sm:space-y-4">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-white tracking-tight leading-tight">
-              Vi hjelper deg med å leie ut
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-light text-white tracking-tight leading-tight">
+              Korttidsutleie og Airbnb-forvaltning i Norge
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 font-light tracking-wide max-w-3xl mx-auto px-4">
-              Vi håndterer alt fra A til Å, mens du beholder full kontroll.
+              Vi håndterer annonsering, prising, gjester, renhold og vedlikehold — du beholder full kontroll.
             </p>
           </div>
 

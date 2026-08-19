@@ -60,58 +60,260 @@
   "bergen": {
     "name": "Bergen",
     "slug": "bergen",
-    "title": "Korttidsutleie i Bergen | Heimby - Profesjonell Eiendomsforvaltning",
-    "metaDescription": "Øk leieinntektene med korttidsutleie i Bergen. Heimby tilbyr komplett forvaltning av Airbnb og korttidsutleie i Norges turisthovedstad.",
+    "title": "Korttidsutleie i Bergen 2026: regler, skatt og inntekt | Heimby",
+    "metaDescription": "Korttidsutleie i Bergen: 90-dagersregelen i sameie, 30 døgn i borettslag, skatt og hva boligen din kan tjene. Heimby forvalter rundt 160 leiligheter.",
+    "lastUpdated": "2026-08-19",
     "heroTitle": "Korttidsutleie i Bergen",
-    "heroSubtitle": "Utnytt Bergens enorme turistpotensial",
-    "heroDescription": "Bergen er en av Europas mest populære turistdestinasjoner med over 1 million besøkende årlig. La Heimby hjelpe deg å maksimere inntektene fra din eiendom.",
-    "introSection": {
-      "title": "Bergen - Perfekt for korttidsutleie",
-      "paragraphs": [
-        "Bergen er Norges turisthovedstad og en av Europas raskest voksende destinasjoner. Med sitt verdensberømte Bryggen, spektakulære fjorder og autentiske sjarm, tiltrekker Bergen over én million besøkende hvert år.",
-        "Etterspørselen etter kvalitetsboliger i Bergen er ekstremt høy, spesielt i sentrale områder som Bryggen, Nordnes, Møhlenpris og Sandviken. Sesongen strekker seg fra mai til september med topp aktivitet, men Bergen opplever også solid etterspørsel resten av året fra forretningsreisende og konferansegjester.",
-        "Heimby har dyptgående kunnskap om Bergen-markedet og et dedikert lokalt team. Vi sørger for at boligen din blir fremhevet blant tusenvis av alternativer og leverer en gjestopplevelse i verdensklasse."
+    "heroSubtitle": "Regler, skatt og reell inntjening — forklart av Bergens største korttidsutleier",
+    "heroDescription": "Heimby forvalter rundt 160 leiligheter i Bergen og har flest aktive Airbnb-annonser i byen. Her får du hele bildet: hva loven tillater, hva du faktisk betaler i skatt, og hvilken utleiestrategi som lønner seg for din bolig.",
+    "keyFacts": {
+      "title": "Korttidsutleie i Bergen — kort fortalt",
+      "intro": "De fem tingene de fleste boligeiere i Bergen lurer på, besvart direkte:",
+      "items": [
+        {
+          "label": "Hva regnes som korttidsutleie?",
+          "value": "Utleie i inntil 30 sammenhengende døgn. Leier du ut i 31 døgn eller mer, er det langtidsutleie juridisk sett."
+        },
+        {
+          "label": "Hvor mye kan du leie ut i et sameie?",
+          "value": "Maks 90 døgn i året for hele seksjonen. Sameiet kan vedtektsfeste en grense mellom 60 og 120 døgn med 2/3 flertall på årsmøtet (eierseksjonsloven § 24)."
+        },
+        {
+          "label": "Hvor mye kan du leie ut i et borettslag?",
+          "value": "30 døgn i året uten styrets samtykke, og du må ha registrert bostedsadresse i boligen. Styret kan utvide grensen, men ikke stramme den inn (borettslagsloven § 5-4)."
+        },
+        {
+          "label": "Hva må du skatte?",
+          "value": "Ved korttidsutleie av egen bolig er de første 15 000 kronene i året skattefrie. Av overskytende regnes 85 % som skattepliktig inntekt, som beskattes med 22 %."
+        },
+        {
+          "label": "Trenger du å registrere deg i Bergen kommune?",
+          "value": "Nei. Bergen har diskutert et kommunalt utleieregister, men har per august 2026 ingen registreringsplikt slik Oslo har innført. Nasjonale regler gjelder."
+        }
       ]
     },
+    "introSection": {
+      "title": "Bergen er Norges sterkeste marked for korttidsutleie",
+      "paragraphs": [
+        "Bergen tar imot over én million tilreisende i året, og korttidsutleie utgjør en langt større del av overnattingsmarkedet her enn i noen annen norsk by. På det mest hektiske i juli er det rundt 17 000 senger tilgjengelig på Airbnb i Bergen, og etter våre beregninger overnatter over halvparten av sommerturistene i byen i en korttidsleid bolig framfor på hotell.",
+        "Det gjør Bergen til et marked med to ansikter. Sommeren fra mai til september er ekstremt sterk, med cruisetrafikk, fjordturisme og festivaler som presser opp både belegg og døgnpris. Resten av året bæres markedet av forretningsreisende, konferanser og et stort studentmiljø knyttet til UiB, NHH og Høgskulen på Vestlandet.",
+        "Nettopp denne sesongprofilen er grunnen til at ren korttidsutleie sjelden er den mest lønnsomme strategien i Bergen. En bolig som står tom i november tjener ingenting, uansett hvor god sommeren var. Kombinasjonen av lang studentsesong og en intens turistsommer gjør at hybridmodeller ofte slår både ren Airbnb og ren langtidsutleie.",
+        "Heimby ble startet i Bergen og har hele driftsapparatet vårt her: renhold, nøkkelhåndtering, vedlikehold og gjestekommunikasjon. Vi forvalter i dag rundt 160 leiligheter for andre boligeiere i byen, i tillegg til våre egne."
+      ]
+    },
+    "rulesSection": {
+      "title": "Reglene for korttidsutleie i Bergen",
+      "intro": "Bergen har ingen egne kommunale utleieregler for korttidsutleie. Det er boligtypen din — ikke adressen — som avgjør hva du har lov til. Her er de fire tilfellene:",
+      "cases": [
+        {
+          "type": "Eierseksjon / sameie",
+          "limit": "Maks 90 døgn per år",
+          "law": "Eierseksjonsloven § 24",
+          "detail": "Grensen gjelder korttidsutleie av hele seksjonen. Sameiet kan endre grensen til et sted mellom 60 og 120 døgn, men det krever vedtektsendring med minst 2/3 flertall av avgitte stemmer på årsmøtet. Sjekk vedtektene dine før du starter — mange sameier i Bergen sentrum har allerede senket grensen til 60 døgn.",
+          "note": "Leier du ut kun et rom mens du selv bor der, rammes du ikke av 90-dagersgrensen."
+        },
+        {
+          "type": "Borettslag",
+          "limit": "30 døgn per år",
+          "law": "Borettslagsloven § 5-4",
+          "detail": "Du har rett til å leie ut på døgn- og ukebasis i inntil 30 døgn i året uten å spørre styret. Du må ha registrert bostedsadresse i boligen, men trenger ikke være til stede under oppholdet. Gratis utlån til venner og familie teller med i de 30 døgnene.",
+          "note": "Styret kan utvide grensen ut over 30 døgn, men kan ikke sette den lavere."
+        },
+        {
+          "type": "Enebolig, rekkehus og tomannsbolig",
+          "limit": "Ingen døgngrense",
+          "law": "Ingen sameie- eller borettslagsbegrensning",
+          "detail": "Eier du boligen alene og den ikke er del av et sameie eller borettslag, finnes ingen lovbestemt grense på antall utleiedøgn. Du må fortsatt forholde deg til skattereglene, brannkrav og eventuelle reguleringsbestemmelser.",
+          "note": "Dette er den mest fleksible boligtypen for korttidsutleie i Bergen."
+        },
+        {
+          "type": "Sekundærbolig og fritidsbolig",
+          "limit": "Ingen døgngrense, men full skatteplikt",
+          "law": "Skatteloven kapittel 7",
+          "detail": "Leier du ut en bolig du ikke selv bor i, gjelder ingen 90- eller 30-dagersgrense fra din side som eier — men eventuelle sameievedtekter gjelder fortsatt. Til gjengjeld er hele leieinntekten skattepliktig fra første krone.",
+          "note": "Ved høy aktivitet og mange enheter kan utleien bli klassifisert som virksomhet, med andre skatteregler."
+        }
+      ],
+      "extra": {
+        "title": "Brannkrav i Bergens trehusbebyggelse",
+        "text": "Store deler av Bergen sentrum, Nordnes og Sandviken består av verneverdig trehusbebyggelse med strenge brannkrav. Før du tar imot gjester må røykvarslere, slokkeutstyr og rømningsveier være på plass og dokumentert. Dette er et av punktene vi går gjennom i befaringen før oppstart."
+      }
+    },
+    "taxSection": {
+      "title": "Skatt på korttidsutleie i Bergen",
+      "intro": "Skattereglene skiller mellom boligen du selv bor i og boliger du ikke bor i. Kommunen har ingenting med dette å gjøre — reglene er nasjonale.",
+      "rows": [
+        {
+          "situation": "Korttidsutleie av egen bolig (under 30 døgn per leieforhold)",
+          "rule": "De første 15 000 kronene i året er skattefrie. 85 % av det du tjener over dette regnes som skattepliktig inntekt.",
+          "example": "Tjener du 100 000 kr, blir 72 250 kr skattepliktig inntekt (85 % av 85 000 kr). Med 22 % skatt betaler du rundt 15 900 kr."
+        },
+        {
+          "situation": "Langtidsutleie av del av egen bolig",
+          "rule": "Skattefritt så lenge du selv bruker minst halvparten av boligen målt i utleieverdi — eller så lenge brutto leieinntekt er under 20 000 kr i året.",
+          "example": "Leier du ut en sokkelleilighet som utgjør under halve utleieverdien og bor i resten selv, er inntekten skattefri."
+        },
+        {
+          "situation": "Utleie av sekundærbolig",
+          "rule": "Hele leieinntekten er skattepliktig fra første krone, men du får fradrag for faktiske kostnader knyttet til utleien.",
+          "example": "Forvaltningshonorar, renhold, forbruksvarer, forsikring og vedlikehold trekkes fra før skatt."
+        }
+      ],
+      "note": "Fra 2026 rapporterer utleieplattformer som Airbnb og Booking.com inntektene dine direkte til Skatteetaten gjennom de nye DPI-rapporteringsreglene. Inntekten er altså kjent for skattemyndighetene uansett om du fører den opp selv. Heimby leverer en ferdig årsoppgave som viser brutto inntekt, kostnader og netto utbetaling per bolig."
+    },
+    "strategySection": {
+      "title": "Hvilken utleiestrategi lønner seg i Bergen?",
+      "intro": "To av Heimbys gründere skrev masteroppgave ved NHH om lønnsomhet og risiko i ulike utleiestrategier i det norske boligmarkedet. Konklusjonen som gjelder Bergen spesielt: den store sesongforskjellen gjør at hybridmodeller ofte slår begge rendyrkede alternativer.",
+      "options": [
+        {
+          "name": "Ren langtidsutleie",
+          "profile": "Lavest inntekt, lavest risiko",
+          "description": "Fast leietaker hele året. Forutsigbart, lite arbeid, men du får aldri betalt for at boligen din ligger i en by der juli-prisene er mangedoblet.",
+          "bestFor": "Boliger utenfor sentrum og eiere som prioriterer stabilitet over avkastning."
+        },
+        {
+          "name": "Ren korttidsutleie (Airbnb)",
+          "profile": "Høyest inntektspotensial, høyest variasjon",
+          "description": "Maksimal inntjening i mai–september, men lavsesongen fra november til mars trekker årssnittet betydelig ned. Krever mest drift, og i sameier stopper 90-dagersgrensen deg uansett midt i sesongen.",
+          "bestFor": "Sentrumsnære sekundærboliger uten døgnbegrensning i vedtektene."
+        },
+        {
+          "name": "Hybrid 10-2-modell",
+          "profile": "Høy inntekt, moderat risiko — vår mest brukte modell i Bergen",
+          "description": "Studentkontrakt fra august til juni gir stabil grunninntekt gjennom hele lavsesongen, og så legges boligen ut som korttidsutleie i de to sommermånedene der døgnprisene i Bergen er på sitt høyeste. Modellen holder deg samtidig godt innenfor 90-dagersgrensen i sameier.",
+          "bestFor": "De fleste sentrumsnære leiligheter i Bergen, særlig i studentområdene."
+        }
+      ],
+      "closing": "Hvilken modell som gir mest for akkurat din bolig avhenger av bydel, størrelse, standard og hva vedtektene tillater. Vi regner på alle tre og viser deg tallene før du bestemmer deg."
+    },
+    "districtsSection": {
+      "title": "Bydeler og områder i Bergen",
+      "intro": "Etterspørselen i Bergen er sterkt geografisk konsentrert. Gangavstand til Bryggen, Torgallmenningen og Fisketorget er den enkeltfaktoren som betyr mest for døgnpris i høysesongen.",
+      "districts": [
+        {
+          "name": "Bergen sentrum",
+          "profile": "Sterkest etterspørsel hele året. Kort vei til Bryggen, Fisketorget og cruisekaien gir både høyest døgnpris og høyest belegg. Mange sameier her har vedtektsfestet 60-dagersgrense — sjekk før du starter."
+        },
+        {
+          "name": "Nordnes",
+          "profile": "Populært blant tilreisende som vil bo i den historiske trehusbebyggelsen. Høy sommeretterspørsel, sjarmfaktor gir gode anmeldelser. Strenge brannkrav i eldre trehus."
+        },
+        {
+          "name": "Møhlenpris",
+          "profile": "Tett på UiB og sentrum. Sterk studentetterspørsel ti måneder i året og god turistetterspørsel om sommeren — dette er kanskje det beste området i Bergen for 10-2-modellen."
+        },
+        {
+          "name": "Nygårdshøyden",
+          "profile": "Universitetsområdet. Svært høy studentetterspørsel, og gangavstand til sentrum gjør sommerutleie enkelt. Mange små leiligheter og hybler."
+        },
+        {
+          "name": "Sandviken",
+          "profile": "Rolig, vakkert og bare noen minutter fra Bryggen. Tiltrekker gjester som vil ha mer plass enn i sentrum. Sterk sommersesong, roligere vinter."
+        },
+        {
+          "name": "Årstad og Danmarksplass",
+          "profile": "God bybanetilknytning og nær Haukeland universitetssjukehus. Stabil etterspørsel fra pasienter, pårørende, pendlere og helsepersonell året rundt."
+        },
+        {
+          "name": "Laksevåg",
+          "profile": "Rimeligere inngangsbillett med kort vei til sentrum over Puddefjordsbroen. Best egnet for langtidsutleie eller hybridmodell."
+        },
+        {
+          "name": "Fana og Ytrebygda",
+          "profile": "Nær Bergen lufthavn Flesland og Lagunen. Etterspørsel fra forretningsreisende og familier som vil ha plass og parkering."
+        },
+        {
+          "name": "Åsane",
+          "profile": "Familieboliger og god plass. Svakest turistetterspørsel av områdene, men solid marked for langtidsutleie."
+        },
+        {
+          "name": "Fyllingsdalen",
+          "profile": "Etablert boligområde med bybanetilknytning. Primært langtidsmarked, med noe korttidsetterspørsel knyttet til arrangementer i byen."
+        }
+      ]
+    },
+    "trustSection": {
+      "title": "Hvorfor Heimby i Bergen",
+      "points": [
+        {
+          "stat": "≈160",
+          "label": "leiligheter forvaltet i Bergen",
+          "detail": "Vi annonserer og drifter rundt 160 leiligheter for andre boligeiere i byen, i tillegg til våre egne."
+        },
+        {
+          "stat": "Flest",
+          "label": "aktive Airbnb-annonser i Bergen",
+          "detail": "Heimby er den aktøren med flest annonser ute på Airbnb i Bergen, omtalt blant annet av Nettavisen."
+        },
+        {
+          "stat": "NHH",
+          "label": "masteroppgave som faglig grunnlag",
+          "detail": "To av gründerne skrev masteroppgave ved Norges Handelshøyskole om lønnsomhet og risiko i langtidsutleie, korttidsutleie og dynamiske utleiestrategier."
+        },
+        {
+          "stat": "15 %",
+          "label": "av leieinntekten — alt inkludert",
+          "detail": "Ingen oppstartskostnad og ingen abonnement. Direkte driftskostnader som renhold og forbruksvarer trekkes fra utbetalingen din, og alt vises linje for linje i eierportalen."
+        }
+      ],
+      "closing": "Hele driftsapparatet vårt sitter i Bergen — renhold, nøkler, vedlikehold og gjestehåndtering. Det er forskjellen på en forvalter med lokalt team og en plattform som setter ut jobben."
+    },
     "benefits": [
-      "Bergensmarkedet gir opp til 40% høyere avkastning i høysesongen",
-      "Over 1 million turister besøker Bergen hvert år",
-      "Lang høysesong fra mai til september med solid grunnbelegg året rundt",
-      "Lokalt Bergen-team med ekspertise på destinasjonen",
-      "Nærhet til verdensarvstedet Bryggen og fjordene"
+      "Over én million tilreisende til Bergen hvert år, med rundt 17 000 Airbnb-senger tilgjengelig på det travleste i juli",
+      "Lang høysesong fra mai til september, båret av cruise, fjordturisme og festivaler",
+      "Stor studentbase fra UiB, NHH og HVL gir stabil etterspørsel de ti andre månedene",
+      "10-2-modellen kombinerer studentkontrakt og sommerutleie — og holder deg innenfor 90-dagersgrensen i sameier",
+      "Lokalt Bergen-team med eget apparat for renhold, nøkler og vedlikehold",
+      "Fast pris på 15 % av leieinntekten, uten oppstartskostnad eller bindingstid"
     ],
     "faqs": [
       {
         "question": "Er korttidsutleie lovlig i Bergen?",
-        "answer": "Ja, korttidsutleie er lovlig i Bergen kommune. Heimby veileder deg gjennom prosessen og sikrer at alle krav oppfylles."
+        "answer": "Ja. Bergen kommune har ingen egne regler som forbyr korttidsutleie, og har per august 2026 heller ingen registreringsplikt slik Oslo har innført. Det er boligtypen som avgjør grensene: i et eierseksjonssameie kan du korttidsleie ut hele boligen i inntil 90 døgn i året, i et borettslag i inntil 30 døgn, og i en enebolig eller sekundærbolig finnes ingen lovbestemt døgngrense."
+      },
+      {
+        "question": "Hva er reglene for korttidsutleie i sameie og borettslag?",
+        "answer": "I eierseksjonssameier setter eierseksjonsloven § 24 en grense på 90 døgn per år for korttidsutleie av hele seksjonen. Sameiet kan vedtektsfeste en annen grense mellom 60 og 120 døgn, og det krever minst 2/3 flertall av avgitte stemmer på årsmøtet. I borettslag gir borettslagsloven § 5-4 deg rett til 30 døgn i året uten styrets samtykke, forutsatt at du har registrert bostedsadresse i boligen. Gratis utlån teller med i de 30 døgnene, og styret kan utvide grensen men ikke stramme den inn."
+      },
+      {
+        "question": "Er det lov å korttidsleie ut deler av egen bolig?",
+        "answer": "Ja, og dette er mindre regulert enn å leie ut hele boligen. Leier du ut et rom mens du selv bor i boligen, rammes du ikke av 90-dagersgrensen i eierseksjonsloven § 24, siden den gjelder utleie av hele seksjonen. Skattemessig gjelder de samme reglene som for annen korttidsutleie av egen bolig: første 15 000 kroner er skattefrie, og 85 % av overskytende er skattepliktig."
+      },
+      {
+        "question": "Hva må jeg skatte av korttidsutleie i Bergen?",
+        "answer": "Ved korttidsutleie av boligen du selv bor i, er de første 15 000 kronene i året skattefrie. Av det du tjener utover dette regnes 85 % som skattepliktig inntekt, som beskattes med 22 %. Tjener du 100 000 kroner, blir altså 72 250 kroner skattepliktig og skatten rundt 15 900 kroner. Leier du ut en sekundærbolig du ikke selv bor i, er hele inntekten skattepliktig fra første krone, men da får du fradrag for faktiske kostnader. Fra 2026 rapporterer Airbnb og Booking.com inntektene dine direkte til Skatteetaten."
       },
       {
         "question": "Hvor mye kan jeg tjene på korttidsutleie i Bergen?",
-        "answer": "Bergen er et av Norges mest lønnsomme markeder for korttidsutleie. I høysesongen (mai-september) kan du oppnå 40-50% høyere inntekter enn ved tradisjonell utleie. Vi gir deg et skreddersydd estimat basert på din bolig."
+        "answer": "Det avhenger mest av bydel, størrelse og hvor mange døgn vedtektene tillater. Bergen har Norges skarpeste sesongkurve: døgnprisene i juli ligger langt over årssnittet, mens november til mars er svak. Derfor er det årsinntekten og ikke sommerprisen som avgjør hva som lønner seg. Vi regner på tre scenarioer for boligen din — ren langtidsutleie, ren korttidsutleie og 10-2-modellen — og viser deg tallene før du bestemmer deg. Vurderingen er gratis og uforpliktende."
       },
       {
         "question": "Hvilke områder i Bergen er best for korttidsutleie?",
-        "answer": "De mest ettertraktede områdene er sentrale bydeler som Bryggen, Nordnes, Møhlenpris, Sandviken, Nygårdshøyden og områder nær Fløyen. Nærhet til sentrum, havnen og offentlig transport er svært viktig for gjestene."
+        "answer": "Gangavstand til Bryggen, Torgallmenningen og Fisketorget betyr mest for døgnprisen. Bergen sentrum, Nordnes og Sandviken er sterkest på ren turistetterspørsel. Møhlenpris og Nygårdshøyden er de beste områdene for 10-2-modellen, fordi nærheten til UiB gir sterk studentetterspørsel ti måneder i året og god turistetterspørsel om sommeren. Årstad og Danmarksplass har jevn etterspørsel året rundt på grunn av Haukeland universitetssjukehus."
       },
       {
-        "question": "Hvordan fungerer prissettingen i Bergen?",
-        "answer": "Vi bruker dynamisk prissetting som automatisk justerer prisene basert på etterspørsel, sesong, lokale arrangementer og konkurranse. I høysesongen (mai-september) er prisene høyere, mens vi optimaliserer for belegg i lavsesong. Dette maksimerer din totale årsinntekt."
+        "question": "Hva er 10-2-modellen?",
+        "answer": "10-2-modellen er en hybrid utleiestrategi: du leier ut på studentkontrakt fra august til juni, og legger boligen ut som korttidsutleie i de to sommermånedene når døgnprisene i Bergen er på topp. Du får stabil grunninntekt gjennom hele lavsesongen og tar samtidig ut sommertoppen. Modellen holder deg dessuten godt innenfor 90-dagersgrensen i eierseksjonsloven, siden sommerutleien typisk utgjør rundt 60 døgn. Dette er den modellen vi bruker for flest boliger i Bergen."
       },
       {
-        "question": "Hva gjør Heimby spesielt i Bergen?",
-        "answer": "Vi har et dedikert lokalt team i Bergen som kjenner markedet inn og ut. Vi samarbeider med de beste lokale renholderne, vedlikeholdsfirmaene og leverandørene for å sikre konsistent høy kvalitet. Vårt Bergen-team er alltid tilgjengelig for både eiere og gjester."
+        "question": "Hvordan fungerer prissettingen?",
+        "answer": "Vi bruker dynamisk prissetting som justerer døgnprisen løpende etter etterspørsel, sesong, ukedag, cruiseanløp og lokale arrangementer. I Bergen betyr det at prisene settes markant opp rundt festivaler, konferanser og store cruisedager, mens vi i lavsesong prioriterer belegg framfor døgnpris. Målet er å maksimere årsinntekten, ikke enkeltdøgn."
       },
       {
-        "question": "Kan dere håndtere boligen min i Bergen om jeg bor andre steder?",
-        "answer": "Absolutt! Mange av våre eiere i Bergen bor i andre byer eller land. Vi håndterer alt lokalt - fra nøkkelutveksling og rengjøring til akutt vedlikehold. Du får regelmessige oppdateringer og full innsikt gjennom vår plattform."
+        "question": "Hva koster Heimby?",
+        "answer": "15 % av leieinntekten pluss MVA. Det dekker annonsering, prissetting, all gjestekommunikasjon, booking, koordinering av renhold og vedlikehold, samt rapportering. Det er ingen oppstartskostnad, ingen abonnementsavgift og ingen bindingstid. Direkte driftskostnader som renhold, forbruksvarer og eventuelle reparasjoner trekkes fra utbetalingen og vises spesifisert i eierportalen, slik at du ser nøyaktig hva som er brutto inntekt, kostnader og netto utbetaling."
       },
       {
-        "question": "Hvordan markedsfører dere boligen min i Bergen?",
-        "answer": "Vi lager profesjonelt fotomateriale som fremhever boligens unike kvaliteter og Bergens sjarm. Annonsen optimaliseres for søkemotorer og distribueres på Airbnb og andre relevante plattformer. Vi fremhever nærhet til attraksjoner som Bryggen, Fløyen, Fisketorget og fjordene."
+        "question": "Kan dere håndtere boligen min i Bergen om jeg bor et annet sted?",
+        "answer": "Ja. En stor andel av eierne vi jobber for bor i en annen by eller i utlandet. Vi har eget apparat i Bergen for nøkkelhåndtering, renhold, tilsyn og akutt vedlikehold, så du trenger ikke være i byen i det hele tatt. Du følger driften i eierportalen og får månedlig rapport med belegg, inntekter og kostnader."
       },
       {
-        "question": "Hva koster Heimbys tjeneste i Bergen?",
-        "answer": "Vi tar 15% av leieinntektene som omfatter all administrasjon, markedsføring, gjestekommunikasjon, rengjøring, vedlikehold og forbruksvarer. Ingen oppstartskostnader eller skjulte avgifter. Du får 75% av inntektene med null tidsinnsats."
+        "question": "Hvor lang tid tar det å komme i gang?",
+        "answer": "Fra signert avtale til første gjest tar det normalt én til to uker. Vi gjør en befaring, sjekker vedtekter og brannkrav, tar profesjonelle bilder, oppretter og optimaliserer annonsene på Airbnb og Booking.com, og setter opp nøkkelløsning. Du leverer nøklene, vi tar resten."
+      },
+      {
+        "question": "Hva skjer hvis noe blir ødelagt?",
+        "answer": "Vi dokumenterer boligen grundig ved oppstart og etter hvert opphold, slik at eventuelle skader kan knyttes til riktig booking. Skader dekkes primært gjennom plattformenes vertsgaranti, og vi håndterer hele kravsprosessen for deg. Vi anbefaler i tillegg at du sjekker at innboforsikringen din dekker utleie — det er et av punktene vi går gjennom før oppstart."
       }
     ]
   },

@@ -1,0 +1,57 @@
+# Heimby
+
+> Heimby forvalter korttidsutleie, langtidsutleie og hybride utleiestrategier for
+> boligeiere i Norge. Selskapet ble startet i Bergen av Njål Hopen Eliasson og
+> Mathias Haugsbø, forvalter rundt 160 leiligheter for andre boligeiere, og har
+> flest aktive Airbnb-annonser i Bergen.
+
+## Om selskapet
+
+- Navn: Heimby
+- Hovedkontor: Bergen, Norge
+- Kontakt: endre.jenssen@heimby.no
+- Tjenester: Airbnb-forvaltning, korttidsutleie, langtidsutleie, hybrid 10-2-modell
+- Pris: 15 % av leieinntekten + MVA. Ingen oppstartskostnad, ingen abonnement, ingen bindingstid.
+- Byer: Bergen, Oslo, Stavanger, Trondheim, Tromsø, Haugesund, Kristiansand
+- Faglig grunnlag: To av gründerne skrev masteroppgave ved Norges Handelshøyskole
+  (NHH) om lønnsomhet og risiko i langtidsutleie, korttidsutleie og dynamiske
+  utleiestrategier i det norske boligmarkedet.
+
+## Utleiemodeller
+
+- **Korttidsutleie (Airbnb/Booking.com)**: høyest inntektspotensial, høyest sesongvariasjon.
+- **Langtidsutleie**: lavest inntekt, mest forutsigbart.
+- **Hybrid 10-2**: ti måneder langtids-/studentkontrakt for stabil grunninntekt, pluss to
+  måneder korttidsutleie i høysesong. Holder utleien innenfor 90-dagersgrensen i
+  eierseksjonsloven § 24. Heimbys mest brukte modell i Bergen.
+
+## Regler for korttidsutleie i Norge (kort)
+
+- Korttidsutleie = leieforhold på inntil 30 sammenhengende døgn.
+- Eierseksjon/sameie: maks 90 døgn per år for hele seksjonen (eierseksjonsloven § 24).
+  Sameiet kan vedtektsfeste 60–120 døgn med 2/3 flertall på årsmøtet.
+- Borettslag: 30 døgn per år uten styrets samtykke, og andelseier må ha registrert
+  bostedsadresse i boligen (borettslagsloven § 5-4). Gratis utlån teller med.
+  Styret kan utvide grensen, men ikke stramme den inn.
+- Enebolig og sekundærbolig: ingen lovbestemt døgngrense.
+- Bergen kommune har per august 2026 ingen kommunal registreringsplikt for korttidsutleie.
+
+## Skatt (kort)
+
+- Korttidsutleie av egen bolig: første 15 000 kr per år er skattefritt; 85 % av
+  overskytende er skattepliktig inntekt, beskattet med 22 %.
+- Langtidsutleie av del av egen bolig: skattefritt hvis du selv bruker minst halvparten
+  målt i utleieverdi, eller hvis brutto leieinntekt er under 20 000 kr per år.
+- Sekundærbolig: hele leieinntekten er skattepliktig, med fradrag for faktiske kostnader.
+- Fra 2026 rapporterer utleieplattformer inntekter direkte til Skatteetaten (DPI).
+
+## Sider
+
+- [Forside](https://heimby.no/): tjenester, priser og modeller
+- [Korttidsutleie i Bergen](https://heimby.no/korttidsutleie-i-bergen): regler, skatt, bydeler, inntjening
+- [Korttidsutleie i Oslo](https://heimby.no/korttidsutleie-i-oslo)
+- [Korttidsutleie i Stavanger](https://heimby.no/korttidsutleie-i-stavanger)
+- [Korttidsutleie i Trondheim](https://heimby.no/korttidsutleie-i-trondheim)
+- [Korttidsutleie i Tromsø](https://heimby.no/korttidsutleie-i-tromso)
+- [Korttidsutleie i Haugesund](https://heimby.no/korttidsutleie-i-haugesund)
+- [Korttidsutleie i Kristiansand](https://heimby.no/korttidsutleie-i-kristiansand)

@@ -1,0 +1,36 @@
+{
+  "faqs": [
+    {
+      "question": "Hva gjør Heimby?",
+      "answer": "Heimby forvalter utleieboliger for boligeiere i Norge. Vi håndterer annonsering på Airbnb og Booking.com, dynamisk prissetting, all gjestekommunikasjon, booking, renhold mellom opphold, vedlikehold og rapportering. Du beholder eierskapet og full innsikt i eierportalen, men bruker ingen tid på driften. Vi tilbyr korttidsutleie, langtidsutleie og en hybrid 10-2-modell."
+    },
+    {
+      "question": "Hva koster Heimby?",
+      "answer": "15 % av leieinntekten pluss MVA. Det er ingen oppstartskostnad, ingen abonnementsavgift og ingen bindingstid — du betaler kun når boligen faktisk genererer inntekt. Direkte driftskostnader som renhold, forbruksvarer og eventuelle reparasjoner trekkes fra utbetalingen og spesifiseres linje for linje, slik at du ser brutto inntekt, kostnader og netto utbetaling per bolig."
+    },
+    {
+      "question": "Hva er 10-2-modellen?",
+      "answer": "10-2-modellen er en hybrid utleiestrategi: ti måneder med langtids- eller studentkontrakt gir stabil grunninntekt gjennom lavsesongen, og to måneder med korttidsutleie i høysesongen tar ut inntektstoppen. Modellen holder deg samtidig innenfor 90-dagersgrensen for korttidsutleie i eierseksjonsloven § 24. Den bygger på masteroppgaven to av gründerne skrev ved NHH om lønnsomhet og risiko i ulike utleiestrategier."
+    },
+    {
+      "question": "Hvor mange døgn kan jeg leie ut boligen min?",
+      "answer": "Det avhenger av boligtypen. I et eierseksjonssameie kan du korttidsleie ut hele seksjonen i inntil 90 døgn per år, og sameiet kan vedtektsfeste en grense mellom 60 og 120 døgn med 2/3 flertall på årsmøtet (eierseksjonsloven § 24). I et borettslag har du rett til 30 døgn per år uten styrets samtykke, forutsatt at du har registrert bostedsadresse i boligen (borettslagsloven § 5-4). For eneboliger og sekundærboliger finnes ingen lovbestemt døgngrense."
+    },
+    {
+      "question": "Hva må jeg skatte av utleien?",
+      "answer": "Ved korttidsutleie av boligen du selv bor i er de første 15 000 kronene i året skattefrie, og 85 % av det du tjener utover dette regnes som skattepliktig inntekt, beskattet med 22 %. Leier du ut en sekundærbolig, er hele inntekten skattepliktig fra første krone, men du får fradrag for faktiske kostnader. Fra 2026 rapporterer Airbnb og Booking.com inntektene dine direkte til Skatteetaten."
+    },
+    {
+      "question": "Hvilke byer opererer dere i?",
+      "answer": "Vi har lokalt driftsapparat i Bergen, der vi forvalter rundt 160 leiligheter for andre boligeiere og har flest aktive Airbnb-annonser i byen. Vi opererer i tillegg i Oslo, Stavanger, Trondheim, Tromsø, Haugesund og Kristiansand."
+    },
+    {
+      "question": "Hvor lang tid tar det å komme i gang?",
+      "answer": "Normalt én til to uker fra signert avtale til første gjest. Vi gjør en befaring, sjekker vedtekter og brannkrav, tar profesjonelle bilder, oppretter og optimaliserer annonsene, og setter opp nøkkelløsning. Du leverer nøklene, vi tar resten."
+    },
+    {
+      "question": "Kan dere forvalte boligen min hvis jeg bor et annet sted?",
+      "answer": "Ja. Mange av eierne vi jobber for bor i en annen by eller i utlandet. Vi har eget apparat for nøkkelhåndtering, renhold, tilsyn og akutt vedlikehold, så du trenger ikke være til stede. Du følger driften i eierportalen og får månedlig rapport med belegg, inntekter og kostnader."
+    }
+  ]
+}
