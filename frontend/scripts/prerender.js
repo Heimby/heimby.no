@@ -474,7 +474,7 @@ function newsArticleBody(a) {
 
 <h2>Om saken</h2>
 <p>${esc(a.summary)}</p>
-${a.context ? `<h2>Heimbys kommentar</h2>\n<p>${esc(a.context)}</p>` : ""}
+${a.context ? `<h2>Heimbys kommentar</h2>\n${a.context.split("\n\n").map((p) => `<p>${esc(p)}</p>`).join("\n")}` : ""}
 ${
   a.facts
     ? `<h2>${esc(a.facts.title)}</h2>\n<ul>\n${a.facts.items.map((i) => `<li>${esc(i)}</li>`).join("\n")}\n</ul>`

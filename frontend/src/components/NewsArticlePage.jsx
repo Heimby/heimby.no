@@ -89,9 +89,16 @@ const NewsArticlePage = () => {
                 <h2 className="text-xl font-bold text-gray-900 mb-3">
                   Heimbys kommentar
                 </h2>
-                <p className="text-lg text-gray-700 leading-relaxed mb-10">
-                  {article.context}
-                </p>
+                <div className="space-y-4 mb-10">
+                  {article.context.split("\n\n").map((para, index) => (
+                    <p
+                      key={index}
+                      className="text-lg text-gray-700 leading-relaxed"
+                    >
+                      {para}
+                    </p>
+                  ))}
+                </div>
               </>
             )}
 
