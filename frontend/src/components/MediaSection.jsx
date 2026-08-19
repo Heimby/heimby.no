@@ -2,9 +2,21 @@ import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import mediaData from '../data/mediaArticles.json';
 
+// Fisher-Yates, on a copy so the imported JSON stays untouched.
+const shuffle = (items) => {
+  const out = [...items];
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+};
+
 const MediaSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const mediaArticles = mediaData.articles;
+  // Shuffled once per mount via the lazy initializer, so the order stays put
+  // while the carousel is being used instead of reshuffling on every render.
+  const [mediaArticles] = useState(() => shuffle(mediaData.articles));
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % mediaArticles.length);
