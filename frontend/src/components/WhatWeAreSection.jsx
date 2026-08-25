@@ -27,7 +27,7 @@ const WhatWeAreSection = () => {
     <section className="relative py-0 px-0 sm:px-6" style={{ backgroundColor: '#F9F8F4' }}>
       <div className="relative min-h-[600px] mx-auto sm:mx-auto" style={{ maxWidth: '100%', '--tw-max-width': '95%' }}>
         <img
-          src="https://customer-assets.emergentagent.com/job_neo-copier/artifacts/6utvdueb_the_image_carries_image.jpeg"
+          src="/img/the-image-carries.jpg"
           alt="Property Management"
           className="absolute inset-0 w-full h-full object-cover"
         />

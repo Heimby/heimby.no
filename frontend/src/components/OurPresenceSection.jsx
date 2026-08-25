@@ -23,7 +23,7 @@ const OurPresenceSection = () => {
         style={{ maxWidth: "100%" }}
       >
         <img
-          src="https://customer-assets.emergentagent.com/job_homeeasy-app/artifacts/o346zaa7_create_a_mix_of_no_image%20%281%29.jpeg"
+          src="/img/create-a-mix-of-no-1.jpg"
           alt="Norway Properties"
           className="absolute inset-0 w-full h-full object-cover"
         />

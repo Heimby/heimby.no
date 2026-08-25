@@ -8,32 +8,32 @@ const ProfessionalServicesSection = () => {
     {
       title: 'Sertifiserte renholdere',
       description: 'Profesjonelt trente renholdere leverer hotellstandard. Hver rengjøring dokumenteres og verifiseres digitalt.',
-      image: 'https://customer-assets.emergentagent.com/job_homeeasy-app/artifacts/vh2we7fs_a_candid_lifestyle_image%20%281%29.jpeg',
+      image: '/img/a-candid-lifestyle-1.jpg',
     },
     {
       title: 'Vedlikehold & Tekniske tjenester',
       description: 'Lisensierte teknikere håndterer alt fra rutinejobber til akutte reparasjoner. Forebyggende vedlikehold holder eiendommen i god stand.',
-      image: 'https://customer-assets.emergentagent.com/job_homeeasy-app/artifacts/i4c1bl7s_a_candid_lifestyle_image.jpeg',
+      image: '/img/a-candid-lifestyle.jpg',
     },
     {
       title: 'Forbruksvarer & Lagerstyring',
       description: 'Automatisk lagersporing og lokale leverandører holder boligen godt utstyrt. Du betaler ikke for mye, og gjestene går aldri tom.',
-      image: 'https://customer-assets.emergentagent.com/job_homeeasy-app/artifacts/lmyvu6xn_a_candid_lifestyle_image%20%282%29.jpeg',
+      image: '/img/a-candid-lifestyle-2.jpg',
     },
     {
       title: 'Sengetøy & Vaskerilogistikk',
       description: 'Glem bryet med vask og brett. Vi håndterer rotasjon av sengetøy og håndklær med profesjonell vaskeriservice for hotellstandard hygiene.',
-      image: 'https://customer-assets.emergentagent.com/job_homeeasy-app/artifacts/6z1bkvn0_a_candid_lifestyle_image%20%284%29.jpeg',
+      image: '/img/a-candid-lifestyle-4.jpg',
     },
     {
       title: 'Lokale spesialister i hvert marked',
       description: 'Fra inspektører til fotografer og leverandører – alle partnere er nøye vurdert og evaluert for å opprettholde Heimbys standard.',
-      image: 'https://customer-assets.emergentagent.com/job_homeeasy-app/artifacts/jh9h3rva_a_candid_waist_up_image.jpeg',
+      image: '/img/a-candid-waist-up.jpg',
     },
     {
       title: '24/7 Kommunikasjon & Analyse',
       description: '24/7 kommunikasjon og prisanalytikere sikrer at eiendommen din presterer best mulig med datadrevne innsikter.',
-      image: 'https://customer-assets.emergentagent.com/job_homeeasy-app/artifacts/eci7fzi0_a_candid_lifestyle_image%20%283%29.jpeg',
+      image: '/img/a-candid-lifestyle-3.jpg',
     },
   ];
 

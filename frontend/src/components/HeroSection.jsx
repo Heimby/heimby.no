@@ -12,7 +12,7 @@ const HeroSection = () => {
     <section className="relative h-screen w-full overflow-hidden">
       <div className="absolute inset-0">
         <img
-          src="https://customer-assets.emergentagent.com/job_homeeasy-app/artifacts/mgfizfzg__repeat_3_extreme_image.jpeg"
+          src="/img/repeat-3-extreme.jpg"
           alt="Moderne Eiendomsforvaltning"
           className="w-full h-full object-cover hero-background-image"
         />

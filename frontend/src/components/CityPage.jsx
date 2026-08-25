@@ -56,7 +56,7 @@ const CityPage = () => {
             className="absolute inset-0 bg-cover bg-center"
             style={{
               backgroundImage:
-                "url(https://customer-assets.emergentagent.com/job_homeeasy-app/artifacts/o346zaa7_create_a_mix_of_no_image%20%281%29.jpeg)",
+                "url(/img/create-a-mix-of-no-1.jpg)",
             }}
           >
             <div className="absolute inset-0 bg-black/50"></div>

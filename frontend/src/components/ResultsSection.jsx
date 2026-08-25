@@ -23,7 +23,7 @@ const ResultsSection = () => {
     <section className="relative py-0 px-0 sm:px-6" style={{ backgroundColor: '#F9F8F4' }}>
       <div className="relative min-h-[600px] mx-auto" style={{ maxWidth: '100%' }}>
         <img
-          src="https://customer-assets.emergentagent.com/job_neo-copier/artifacts/f0coiy18_image_of_a_norwegi_image.jpeg"
+          src="/img/image-of-a-norwegi.jpg"
           alt="Property Results"
           className="absolute inset-0 w-full h-full object-cover"
         />
