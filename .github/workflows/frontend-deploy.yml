@@ -59,3 +59,11 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # Notify Bing/Yandex/Seznam/Naver that these URLs changed. Runs after the
+      # deploy so the crawler finds the new content, and never fails the job —
+      # the site is already live by this point.
+      - name: Ping IndexNow
+        continue-on-error: true
+        working-directory: ./frontend
+        run: node scripts/indexnow.js
