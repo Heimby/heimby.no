@@ -172,6 +172,17 @@ const MediaSection = () => {
               />
             ))}
           </div>
+
+          {/* Route into the full archive — the carousel only shows four at a time */}
+          <div className="flex justify-center mt-10">
+            <Link
+              to="/nyheter"
+              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-gray-900 text-white rounded-full text-base font-medium hover:bg-gray-800 transition-colors"
+            >
+              Se alle {mediaArticles.length} saker
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>
