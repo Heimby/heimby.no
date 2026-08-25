@@ -11,15 +11,15 @@ const WhatWeAreSection = () => {
   const services = [
     {
       title: 'Airbnb-utleie',
-      description: 'Vi håndterer hele Airbnb-prosessen for deg: fra opprettelse av annonse med profesjonelle bilder, til prissetting, gjestekommunikasjon, og rengjøring etter hvert opphold. Du trenger ikke å bekymre deg for noe - vi sørger for at boligen din tjener best mulig mens gjestene får en perfekt opplevelse.'
+      description: 'Vi lager annonsen med profesjonelle bilder, setter prisen løpende etter etterspørsel, svarer gjestene og koordinerer renhold mellom hvert opphold. Du leverer nøklene og ser tallene i eierportalen.'
     },
     {
       title: 'Langtidsutleie',
-      description: 'Vi tar oss av alt ved langtidsutleie: annonsering, visninger, leietakersjekk, kontrakt, innflytting og løpende kommunikasjon med leietaker. Du får en trygg og problemfri utleiehverdag med faste månedlige inntekter, mens vi holder kontakten med leietaker og følger opp eventuelle behov.'
+      description: 'Annonsering, visninger, kredittsjekk av leietaker, kontrakt, innflytting og all løpende kontakt. Du får fast månedlig leie, og vi tar telefonen når leietaker ringer.'
     },
     {
       title: 'Dynamisk (10-2)',
-      description: 'Vår unike 10-2 modell gir deg det beste fra begge verdener: 10 måneder langtidsutleie med stabil inntekt, og 2 måneder Airbnb i høysesongen for maksimal avkastning. Vi håndterer overgangen sømløst, slik at du får trygghet og forutsigbarhet kombinert med høyere inntjening når det er mest etterspørsel.'
+      description: 'Ti måneder på studentkontrakt gir stabil grunninntekt gjennom lavsesongen, og to sommermåneder på Airbnb tar ut inntektstoppen. Modellen holder deg samtidig innenfor 90-dagersgrensen i eierseksjonsloven § 24. Dette er modellen vi bruker for flest boliger i Bergen.'
     }
   ];
 
@@ -62,7 +62,7 @@ const WhatWeAreSection = () => {
                   </li>
                   <li className="flex items-start">
                     <span className="mr-2">•</span>
-                    <span>100% redusert tidsbruk</span>
+                    <span>Null timer brukt på gjester og leietakere</span>
                   </li>
                   <li className="flex items-start">
                     <span className="mr-2">•</span>

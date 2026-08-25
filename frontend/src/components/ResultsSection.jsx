@@ -5,7 +5,7 @@ const ResultsSection = () => {
     {
       stat: '30%',
       label: 'høyere leieinntekt',
-      description: 'Dobbel utleiestrategi maksimerer inntekten',
+      description: '10-2-modellen kombinerer studentkontrakt og sommerutleie',
     },
     {
       stat: '0',

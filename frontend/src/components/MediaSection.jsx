@@ -45,13 +45,12 @@ const MediaSection = () => {
             Heimby i media
           </h2>
           <p className="text-xl text-gray-700 font-light">
-            Oppmerksomhet i ledende medier for innovasjon innen eiendomsforvaltning
+            NRK, TV 2, Bergensavisen, Nettavisen og Firdaposten om korttidsutleie
           </p>
           <p className="text-base text-gray-600 font-light leading-relaxed pt-4">
-            Heimby får anerkjennelse i både lokale og nasjonale medier for vår innovative tilnærming 
-            til eiendomsforvaltning. Fra AI-drevet teknologi til profesjonell service – vi setter nye 
-            standarder i bransjen. Les hva mediene skriver om oss og vår reise mot å revolusjonere 
-            utleiemarkedet i Norge.
+            Vi er omtalt som Bergens største aktør på korttidsutleie, og vi stiller i debatten
+            om korttidsutleie og skyggehoteller når den kommer opp. Her er sakene — også de som er
+            kritiske til oss — med kort sammendrag og lenke til hele artikkelen.
           </p>
         </div>
 

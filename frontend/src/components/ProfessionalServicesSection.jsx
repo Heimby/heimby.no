@@ -63,13 +63,13 @@ const ProfessionalServicesSection = () => {
             Heimbys økosystem
           </h2>
           <p className="text-xl text-gray-700 font-light">
-            Et fullt integrert nettverk av lokale fagfolk som gir pålitelig eiendomsforvaltning
+            Renhold, vaktmester, nøkler og vedlikehold — med faste folk i hver by
           </p>
           <p className="text-base text-gray-600 font-light leading-relaxed pt-4">
-            Heimbys økosystem sikrer at hver eiendom mottar den høyeste standarden av service, i hver by. 
-            Vi kombinerer sertifiserte tjenesteleverandører, digital overvåking og lokale team på bakken til én 
-            sømløs driftsmotor. Vår visjon er enkel: tilgang til profesjonelle eiendomstjenester skal 
-            føles like enkelt som å bestille en Uber.
+            Vi bruker faste leverandører vi har jobbet med over tid, ikke tilfeldige innleide. Renhold
+            er det som slår hardest ut på gjesteomtaler, og omtaler avgjør hvor høyt boligen ligger i
+            søket på Airbnb og Booking.com. Derfor er drift en del av forvaltningen hos oss, ikke noe
+            som settes bort når det haster.
           </p>
         </div>
 

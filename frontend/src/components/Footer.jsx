@@ -43,8 +43,9 @@ const Footer = () => {
 							style={{ filter: "brightness(0) invert(1)" }}
 						/>
 						<p className="text-sm text-gray-400 mb-6 max-w-sm">
-							Datadrevet eiendomsforvaltning med menneskelig service. Maksimerer
-							dine leieinntekter på tvers av Airbnb og langtidsutleie.
+							Forvaltning av korttidsutleie og langtidsutleie. Vi annonserer,
+							priser, tar gjestene og koordinerer renhold — du beholder
+							kontrollen og ser tallene i eierportalen.
 						</p>
 
 						<div className="space-y-3">
