@@ -1,17 +1,16 @@
 {
   "articles": [
     {
-      "title": "Åpner for forbud mot Airbnb",
-      "description": "TV 2 om at regjeringen vil la kommunene forby Airbnb i deler av boligmarkedet.",
+      "title": "Regjeringen åpner for mulig forbud mot Airbnb",
+      "description": "TV 2: Regjeringen vurderer tiltak for å begrense enkelte former for korttidsutleie for å beskytte boligmarkedet.",
       "image": "/media/tv2-apner-for-forbud-mot-airbnb.jpg",
       "source": "TV 2",
       "url": "https://www.tv2.no/nyheter/apner-for-forbud-mot-airbnb/19136180/",
       "slug": "tv2-apner-for-forbud-mot-airbnb",
-      "date": "2026-08-24",
-      "summary": "TV 2 skriver at regjeringen åpner for å la kommunene forby Airbnb i deler av boligmarkedet. Naboer fortviler over utviklingen i nabolaget, og forslaget er en del av arbeidet med å begrense såkalte skyggehoteller.",
-      "context": "Vi følger dette tett, og vi er ikke imot regulering — vi er imot regulering bygget på feil tallgrunnlag. I juli 2025 hadde Bergen 2 199 aktive Airbnb-annonser (AirDNA), og bare 286 av dem ble leid ut hele året. Det er 0,19 prosent av boligmassen i byen. Et kommunalt forbud vil altså ikke frigjøre boliger i noe merkbart omfang, men det vil treffe vanlige boligeiere som leier ut i ferier og i sommermånedene.\n\nVil kommunene ha flere familieboliger og studentboliger i sentrum, ligger løsningen i tempoet på nybygging og regulering — ikke i å stenge ned en næring som legger igjen 1,5–2 milliarder kroner i Bergen hvert år. Vi stiller gjerne med tall i den debatten.\n\nFor deg som eier bolig endrer ingenting seg i dag: dagens regler gjelder, og vi holder boligene innenfor 90-dagersgrensen i eierseksjonsloven § 24 og 30-døgnsgrensen i borettslagsloven § 5-4. Skulle reglene endres, er det vår jobb å legge om driften for deg.",
+      "date": "2026-08-25",
+      "summary": "TV 2 skriver at regjeringen åpner for muligheten til å forby visse former for korttidsutleie for å begrense skyggehoteller og beskytte boligmarkedet.",
+      "context": "Heimby følger utviklingen nøye. Vi mener regelverket må balansere hensynet til nabolag og langtidsmarkedet mot eiere og deres mulighet til å bruke og forvalte egne eiendommer. Konkrete tiltak må vurderes i lys av lokale forhold og eksisterende unntak i husleieloven.",
       "topic": "regler",
-      "critical": true,
       "facts": {
         "title": "Fakta: hva reglene faktisk sier",
         "items": [
