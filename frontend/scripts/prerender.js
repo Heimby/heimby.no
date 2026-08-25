@@ -20,6 +20,8 @@ const BUILD_DIR = path.join(__dirname, "..", "build");
 const CITY_DATA = require("../src/data/cityData.json");
 const HOME_CONTENT = require("../src/data/homeContent.json");
 const MEDIA = require("../src/data/mediaArticles.json");
+const DATA_PAGE = require("../src/data/dataPage.json");
+const RULES_PAGE = require("../src/data/rulesPage.json");
 
 const SITE = "https://heimby.no";
 const OG_IMAGE = `${SITE}/og-image.jpg`;
@@ -554,8 +556,181 @@ function newsArticleSchemas(a) {
 }
 
 /* ------------------------------------------------------------------ *
+ * /data — earnings explainer. The URL was indexed before the rewrite and
+ * still ranks, so it keeps its path rather than being redirected away.
+ * ------------------------------------------------------------------ */
+
+function dataPageBody() {
+  const d = DATA_PAGE;
+  const cityLinks = Object.keys(CITY_DATA)
+    .map(
+      (slug) =>
+        `<li><a href="/korttidsutleie-i-${slug}/">Korttidsutleie i ${esc(CITY_DATA[slug].name)}</a></li>`,
+    )
+    .join("\n");
+
+  return `<main class="prerendered">
+<h1>${esc(d.h1)}</h1>
+${d.intro.map((p) => `<p>${esc(p)}</p>`).join("\n")}
+
+<h2>Fire ting avgjør tallet</h2>
+${d.drivers.map((x) => `<h3>${esc(x.title)}</h3>\n<p>${esc(x.body)}</p>`).join("\n")}
+
+<h2>${esc(d.strategies.title)}</h2>
+<p>${esc(d.strategies.intro)}</p>
+<table><thead><tr><th>Strategi</th><th>Inntekt</th><th>Risiko</th><th>Kommentar</th></tr></thead><tbody>
+${d.strategies.rows.map((r) => `<tr><td>${esc(r.name)}</td><td>${esc(r.income)}</td><td>${esc(r.risk)}</td><td>${esc(r.note)}</td></tr>`).join("\n")}
+</tbody></table>
+
+<h2>${esc(d.netSection.title)}</h2>
+<p>${esc(d.netSection.intro)}</p>
+<ol>
+${d.netSection.steps.map((x) => `<li>${esc(x)}</li>`).join("\n")}
+</ol>
+<p>${esc(d.netSection.note)}</p>
+
+<h2>Regler og marked, by for by</h2>
+<ul>
+${cityLinks}
+</ul>
+
+<h2>Ofte stilte spørsmål</h2>
+${d.faqs.map((f) => `<h3>${esc(f.question)}</h3>\n<p>${esc(f.answer)}</p>`).join("\n")}
+
+<p><a href="/">Heimby — forvaltning av korttidsutleie og langtidsutleie</a></p>
+</main>`;
+}
+
+function dataPageSchemas() {
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: DATA_PAGE.h1,
+      description: DATA_PAGE.metaDescription,
+      url: `${SITE}/data/`,
+      dateModified: DATA_PAGE.lastUpdated,
+      inLanguage: "nb-NO",
+      author: { "@id": `${SITE}/#organization` },
+      publisher: { "@id": `${SITE}/#organization` },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: DATA_PAGE.faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      })),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Heimby", item: `${SITE}/` },
+        { "@type": "ListItem", position: 2, name: DATA_PAGE.h1, item: `${SITE}/data/` },
+      ],
+    },
+  ];
+}
+
+/* ------------------------------------------------------------------ *
+ * /korttidsutleie-regler — national rules explainer
+ * ------------------------------------------------------------------ */
+
+function rulesPageBody() {
+  const d = RULES_PAGE;
+  const cityLinks = Object.keys(CITY_DATA)
+    .map(
+      (slug) =>
+        `<li><a href="/korttidsutleie-i-${slug}/">Korttidsutleie i ${esc(CITY_DATA[slug].name)}</a></li>`,
+    )
+    .join("\n");
+
+  return `<main class="prerendered">
+<h1>${esc(d.h1)}</h1>
+${d.intro.map((p) => `<p>${esc(p)}</p>`).join("\n")}
+
+<h2>${esc(d.definition.title)}</h2>
+<p>${esc(d.definition.body)}</p>
+
+<h2>Grenser etter boligtype</h2>
+${d.cases
+  .map(
+    (c) =>
+      `<h3>${esc(c.type)} — ${esc(c.limit)}</h3>\n<p>${esc(c.detail)}</p>\n` +
+      `<p><strong>Merk:</strong> ${esc(c.note)}</p>\n<p>Hjemmel: ${esc(c.law)}</p>`,
+  )
+  .join("\n")}
+
+<h2>${esc(d.tax.title.replace(" i Bergen", ""))}</h2>
+<p>${esc(d.tax.intro)}</p>
+<table><thead><tr><th>Situasjon</th><th>Regel</th><th>Eksempel</th></tr></thead><tbody>
+${d.tax.rows.map((r) => `<tr><td>${esc(r.situation)}</td><td>${esc(r.rule)}</td><td>${esc(r.example)}</td></tr>`).join("\n")}
+</tbody></table>
+<p>${esc(d.tax.note)}</p>
+
+<h2>${esc(d.changes.title)}</h2>
+<ul>
+${d.changes.items.map((x) => `<li>${esc(x)}</li>`).join("\n")}
+</ul>
+
+<h2>Reglene der du bor</h2>
+<ul>
+${cityLinks}
+</ul>
+<p><a href="/data/">Hva kan du tjene på Airbnb? Slik regner du det ut</a></p>
+
+<h2>Ofte stilte spørsmål</h2>
+${d.faqs.map((f) => `<h3>${esc(f.question)}</h3>\n<p>${esc(f.answer)}</p>`).join("\n")}
+
+<p><a href="/">Heimby — forvaltning av korttidsutleie og langtidsutleie</a></p>
+</main>`;
+}
+
+function rulesPageSchemas() {
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: RULES_PAGE.h1,
+      description: RULES_PAGE.metaDescription,
+      url: `${SITE}/korttidsutleie-regler/`,
+      dateModified: RULES_PAGE.lastUpdated,
+      inLanguage: "nb-NO",
+      author: { "@id": `${SITE}/#organization` },
+      publisher: { "@id": `${SITE}/#organization` },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: RULES_PAGE.faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      })),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Heimby", item: `${SITE}/` },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: RULES_PAGE.h1,
+          item: `${SITE}/korttidsutleie-regler/`,
+        },
+      ],
+    },
+  ];
+}
+
+/* ------------------------------------------------------------------ *
  * Run
  * ------------------------------------------------------------------ */
+
+
 
 
 function main() {
@@ -598,6 +773,36 @@ function main() {
     );
     written.push(`/${route}`);
   }
+
+  // Earnings explainer at its original indexed path.
+  const dataDir = path.join(BUILD_DIR, "data");
+  fs.mkdirSync(dataDir, { recursive: true });
+  fs.writeFileSync(
+    path.join(dataDir, "index.html"),
+    buildPage(template, {
+      url: `${SITE}/data/`,
+      title: DATA_PAGE.title,
+      description: DATA_PAGE.metaDescription,
+      body: dataPageBody(),
+      schemas: dataPageSchemas(),
+    }),
+  );
+  written.push("/data");
+
+  // National rules explainer.
+  const rulesDir = path.join(BUILD_DIR, "korttidsutleie-regler");
+  fs.mkdirSync(rulesDir, { recursive: true });
+  fs.writeFileSync(
+    path.join(rulesDir, "index.html"),
+    buildPage(template, {
+      url: `${SITE}/korttidsutleie-regler/`,
+      title: RULES_PAGE.title,
+      description: RULES_PAGE.metaDescription,
+      body: rulesPageBody(),
+      schemas: rulesPageSchemas(),
+    }),
+  );
+  written.push("/korttidsutleie-regler");
 
   // Press coverage index and one page per article.
   const newsDir = path.join(BUILD_DIR, "nyheter");
@@ -653,6 +858,8 @@ function main() {
       changefreq: "monthly",
       lastmod: CITY_DATA[slug].lastUpdated,
     })),
+    { loc: `${SITE}/data/`, priority: "0.9", changefreq: "monthly", lastmod: DATA_PAGE.lastUpdated },
+    { loc: `${SITE}/korttidsutleie-regler/`, priority: "0.9", changefreq: "monthly", lastmod: RULES_PAGE.lastUpdated },
     { loc: `${SITE}/nyheter/`, priority: "0.7", changefreq: "monthly" },
     ...MEDIA.articles.map((a) => ({
       loc: `${SITE}/nyheter/${a.slug}/`,

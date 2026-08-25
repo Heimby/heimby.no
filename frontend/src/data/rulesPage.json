@@ -1,0 +1,104 @@
+{
+  "title": "Korttidsutleie: regler 2026 — 90 dager, borettslag og skatt | Heimby",
+  "metaDescription": "Reglene for korttidsutleie i Norge: 90 døgn i sameie (kan settes til 60–120), 30 døgn i borettslag, ingen grense i enebolig. Pluss skatt, frister og hva som gjelder per by.",
+  "lastUpdated": "2026-08-25",
+  "h1": "Regler for korttidsutleie i Norge",
+  "intro": [
+    "Det er boligtypen din som avgjør hvor mye du har lov til å leie ut, ikke kommunen du bor i. Under står grensene for hver boligtype, med hjemmel, og hva som skjer hvis du bommer.",
+    "Sist oppdatert 25. august 2026. Innholdet bygger på eierseksjonsloven § 24, borettslagsloven § 5-4 og Skatteetatens regler for utleie av bolig."
+  ],
+  "definition": {
+    "title": "Hva regnes som korttidsutleie?",
+    "body": "Korttidsutleie er leieforhold på inntil 30 sammenhengende døgn. Leier du ut til samme leietaker i 31 døgn eller mer, er det langtidsutleie juridisk sett, og det teller ikke mot døgngrensene under. Dette skillet er grunnen til at hybridmodeller som 10-2 fungerer: studentkontrakten på ti måneder er langtidsutleie, og bare sommermånedene teller mot kvoten."
+  },
+  "cases": [
+    {
+      "type": "Eierseksjon / sameie",
+      "limit": "Maks 90 døgn per år",
+      "law": "Eierseksjonsloven § 24",
+      "detail": "Grensen gjelder korttidsutleie av hele seksjonen. Sameiet kan endre grensen til et sted mellom 60 og 120 døgn, men det krever vedtektsendring med minst 2/3 flertall av avgitte stemmer på årsmøtet. Sjekk vedtektene dine før du starter — mange sameier i Bergen sentrum har allerede senket grensen til 60 døgn.",
+      "note": "Leier du ut kun et rom mens du selv bor der, rammes du ikke av 90-dagersgrensen."
+    },
+    {
+      "type": "Borettslag",
+      "limit": "30 døgn per år",
+      "law": "Borettslagsloven § 5-4",
+      "detail": "Du har rett til å leie ut på døgn- og ukebasis i inntil 30 døgn i året uten å spørre styret. Du må ha registrert bostedsadresse i boligen, men trenger ikke være til stede under oppholdet. Gratis utlån til venner og familie teller med i de 30 døgnene.",
+      "note": "Styret kan utvide grensen ut over 30 døgn, men kan ikke sette den lavere."
+    },
+    {
+      "type": "Enebolig, rekkehus og tomannsbolig",
+      "limit": "Ingen døgngrense",
+      "law": "Ingen sameie- eller borettslagsbegrensning",
+      "detail": "Eier du boligen alene og den ikke er del av et sameie eller borettslag, finnes ingen lovbestemt grense på antall utleiedøgn. Du må fortsatt forholde deg til skattereglene, brannkrav og eventuelle reguleringsbestemmelser.",
+      "note": "Dette er den mest fleksible boligtypen for korttidsutleie i Bergen."
+    },
+    {
+      "type": "Sekundærbolig og fritidsbolig",
+      "limit": "Ingen døgngrense, men full skatteplikt",
+      "law": "Skatteloven kapittel 7",
+      "detail": "Leier du ut en bolig du ikke selv bor i, gjelder ingen 90- eller 30-dagersgrense fra din side som eier — men eventuelle sameievedtekter gjelder fortsatt. Til gjengjeld er hele leieinntekten skattepliktig fra første krone.",
+      "note": "Ved høy aktivitet og mange enheter kan utleien bli klassifisert som virksomhet, med andre skatteregler."
+    }
+  ],
+  "tax": {
+    "title": "Skatt på korttidsutleie i Bergen",
+    "intro": "Skattereglene skiller mellom boligen du selv bor i og boliger du ikke bor i. Kommunen har ingenting med dette å gjøre — reglene er nasjonale.",
+    "rows": [
+      {
+        "situation": "Korttidsutleie av egen bolig (under 30 døgn per leieforhold)",
+        "rule": "De første 15 000 kronene i året er skattefrie. 85 % av det du tjener over dette regnes som skattepliktig inntekt.",
+        "example": "Tjener du 100 000 kr, blir 72 250 kr skattepliktig inntekt (85 % av 85 000 kr). Med 22 % skatt betaler du rundt 15 900 kr."
+      },
+      {
+        "situation": "Langtidsutleie av del av egen bolig",
+        "rule": "Skattefritt så lenge du selv bruker minst halvparten av boligen målt i utleieverdi — eller så lenge brutto leieinntekt er under 20 000 kr i året.",
+        "example": "Leier du ut en sokkelleilighet som utgjør under halve utleieverdien og bor i resten selv, er inntekten skattefri."
+      },
+      {
+        "situation": "Utleie av sekundærbolig",
+        "rule": "Hele leieinntekten er skattepliktig fra første krone, men du får fradrag for faktiske kostnader knyttet til utleien.",
+        "example": "Forvaltningshonorar, renhold, forbruksvarer, forsikring og vedlikehold trekkes fra før skatt."
+      }
+    ],
+    "note": "Fra 2026 rapporterer utleieplattformer som Airbnb og Booking.com inntektene dine direkte til Skatteetaten gjennom de nye DPI-rapporteringsreglene. Inntekten er altså kjent for skattemyndighetene uansett om du fører den opp selv. Heimby leverer en ferdig årsoppgave som viser brutto inntekt, kostnader og netto utbetaling per bolig."
+  },
+  "changes": {
+    "title": "Det som er i endring",
+    "items": [
+      "Fra 2026 rapporterer utleieplattformer som Airbnb og Booking.com inntektene dine direkte til Skatteetaten gjennom DPI-reglene. Inntekten er kjent for skattemyndighetene uansett om du fører den opp selv.",
+      "Regjeringen har åpnet for å la kommunene forby eller begrense korttidsutleie i deler av boligmarkedet. Ingenting er vedtatt per 25. august 2026, og dagens regler gjelder til noe annet er bestemt.",
+      "Oslo har innført kommunal registreringsplikt. Bergen har diskutert det, men har per i dag ingen tilsvarende ordning."
+    ]
+  },
+  "faqs": [
+    {
+      "question": "Hva er 90-dagersregelen?",
+      "answer": "I et eierseksjonssameie kan du korttidsleie ut hele seksjonen i maks 90 døgn per år. Sameiet kan vedtektsfeste en annen grense mellom 60 og 120 døgn, og det krever minst 2/3 flertall av avgitte stemmer på årsmøtet. Grensen står i eierseksjonsloven § 24 og gjelder bare utleie av hele seksjonen — leier du ut et rom mens du selv bor der, rammes du ikke."
+    },
+    {
+      "question": "Hvor mange dager kan jeg leie ut i borettslag?",
+      "answer": "30 døgn i året uten styrets samtykke, etter borettslagsloven § 5-4. Du må ha registrert bostedsadresse i boligen, men trenger ikke være til stede under oppholdet. Gratis utlån til venner og familie teller med i de 30 døgnene. Styret kan utvide grensen, men kan ikke sette den lavere enn 30."
+    },
+    {
+      "question": "Gjelder grensene for enebolig?",
+      "answer": "Nei. Eier du boligen alene og den ikke er del av et sameie eller borettslag, finnes ingen lovbestemt grense på antall utleiedøgn. Du må fortsatt forholde deg til skattereglene, brannkrav og eventuelle reguleringsbestemmelser."
+    },
+    {
+      "question": "Hva skjer hvis jeg leier ut for mange døgn?",
+      "answer": "Styret eller sameiet kan kreve at utleien opphører, og ved gjentatte eller grove brudd kan det ende i pålegg om salg etter eierseksjonsloven. I praksis starter det som regel med en skriftlig advarsel. Før opp utleiedøgnene fortløpende, slik at du kan dokumentere at grensen er holdt hvis spørsmålet kommer."
+    },
+    {
+      "question": "Må jeg registrere korttidsutleie hos kommunen?",
+      "answer": "Det avhenger av kommunen. Oslo har innført registreringsplikt. Bergen og de fleste andre norske kommuner har det ikke per august 2026. Regjeringen har åpnet for å gi kommunene større adgang til å regulere, så dette kan endre seg."
+    },
+    {
+      "question": "Hva må jeg skatte av korttidsutleie?",
+      "answer": "Ved korttidsutleie av boligen du selv bor i er de første 15 000 kronene i året skattefrie, og 85 % av det overskytende er skattepliktig inntekt beskattet med 22 %. Leier du ut en sekundærbolig, er hele inntekten skattepliktig fra første krone, men du får fradrag for faktiske kostnader som renhold, forvaltning, forsikring og vedlikehold."
+    },
+    {
+      "question": "Teller gratis utlån med i kvoten?",
+      "answer": "I borettslag, ja — låner du ut boligen gratis, teller det med i de 30 døgnene etter borettslagsloven § 5-4. I eierseksjonssameier gjelder 90-dagersgrensen utleie, og gratis utlån til nærstående regnes normalt ikke som utleie, men sjekk vedtektene dine."
+    }
+  ]
+}

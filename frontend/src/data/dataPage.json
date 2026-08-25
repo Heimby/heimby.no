@@ -1,0 +1,89 @@
+{
+  "title": "Hva kan du tjene på Airbnb? Slik regner du det ut | Heimby",
+  "metaDescription": "Hva en bolig tjener på Airbnb avhenger av bydel, størrelse, sesong og hvor mange døgn vedtektene tillater. Slik regner du på det — og hva du får utbetalt etter skatt og kostnader.",
+  "lastUpdated": "2026-08-25",
+  "h1": "Hva kan du tjene på Airbnb?",
+  "intro": [
+    "Det finnes ikke ett tall. To leiligheter i samme gate kan skille tusenvis av kroner i måneden, fordi inntekten styres av fire ting: hvor mange døgn du faktisk har lov til å leie ut, hvor sentralt boligen ligger, hvor sterk sesongprofilen i byen er, og hvor godt annonsen og driften fungerer.",
+    "Under går vi gjennom hver av dem, slik at du kan regne på din egen bolig i stedet for å lete etter et gjennomsnitt som ikke gjelder deg. Vil du heller ha et konkret tall, regner vi på tre scenarioer for boligen din gratis."
+  ],
+  "drivers": [
+    {
+      "title": "1. Hvor mange døgn har du lov til å leie ut?",
+      "body": "Dette er den harde grensen, og den settes av boligtypen — ikke av markedet. I et eierseksjonssameie kan hele seksjonen korttidsleies ut i maks 90 døgn per år, og sameiet kan vedtektsfeste alt fra 60 til 120 døgn med 2/3 flertall på årsmøtet (eierseksjonsloven § 24). I borettslag er grensen 30 døgn i året uten styrets samtykke, og du må ha registrert bostedsadresse i boligen (borettslagsloven § 5-4). For enebolig, rekkehus og sekundærbolig finnes ingen lovbestemt døgngrense. Sjekk vedtektene før du regner på noe annet: en 60-dagersgrense halverer sommersesongen din."
+    },
+    {
+      "title": "2. Beliggenhet",
+      "body": "Gangavstand til det gjestene faktisk kommer for betyr mer enn standarden på kjøkkenet. I Bergen er det Bryggen, Torgallmenningen og Fisketorget. I Tromsø er det nordlyssesongen og sentrum. I Stavanger er det både forretningsreisende i ukedagene og Preikestolen-turister om sommeren. En bolig ti minutters gange lenger unna sentrum kan ligge markant lavere i døgnpris hele året."
+    },
+    {
+      "title": "3. Sesongprofil",
+      "body": "Dette er tallet folk oftest glemmer. En bolig som gjør det svært godt i juli, men står tom fra november til mars, kan ende under en vanlig langtidskontrakt målt over året. Det er årsinntekten som avgjør hva som lønner seg, ikke toppdøgnprisen. Bergen har en av landets skarpeste sesongkurver; Tromsø har sin topp om vinteren i stedet for om sommeren."
+    },
+    {
+      "title": "4. Drift og annonse",
+      "body": "Døgnpris og belegg henger sammen med omtaler, og omtaler henger sammen med renhold og responstid. Profesjonelle bilder, dynamisk prising som følger etterspørsel, cruiseanløp og arrangementer, og rask respons på henvendelser er det som skiller en annonse som ligger øverst i søket fra en som ligger på side tre."
+    }
+  ],
+  "strategies": {
+    "title": "Tre strategier, tre helt ulike regnestykker",
+    "intro": "To av Heimbys gründere skrev masteroppgave ved NHH om lønnsomhet og risiko i ulike utleiestrategier. Kortversjonen: hybridmodeller slår ofte begge de rendyrkede alternativene i byer med sterk sesong.",
+    "rows": [
+      {
+        "name": "Langtidsutleie",
+        "income": "Lavest, men jevn",
+        "risk": "Lav",
+        "note": "Fast leietaker hele året. Forutsigbart, men du får aldri betalt for at boligen ligger i en by der juli-prisene er mangedoblet."
+      },
+      {
+        "name": "Ren korttidsutleie",
+        "income": "Høyest potensial, størst svingning",
+        "risk": "Høy",
+        "note": "Maksimal inntjening i høysesongen, men lavsesongen trekker årssnittet ned. I sameier stopper 90-dagersgrensen deg uansett midt i sesongen."
+      },
+      {
+        "name": "Hybrid 10-2",
+        "income": "Høy, med stabil bunn",
+        "risk": "Moderat",
+        "note": "Ti måneder studentkontrakt eller langtidsleie gir grunninntekt gjennom lavsesongen, og to sommermåneder tar ut toppen. Holder deg samtidig godt innenfor 90-dagersgrensen. Dette er modellen vi bruker for flest boliger."
+      }
+    ]
+  },
+  "netSection": {
+    "title": "Fra døgnpris til det du sitter igjen med",
+    "intro": "Brutto leieinntekt er ikke det du får utbetalt. Slik ser veien fra gjestens betaling til din konto ut:",
+    "steps": [
+      "Brutto leieinntekt — det gjestene betaler for oppholdet.",
+      "Minus direkte driftskostnader: renhold mellom opphold, forbruksvarer, eventuelle reparasjoner.",
+      "Minus forvaltningshonorar: hos Heimby 15 % av leieinntekten + MVA. Ingen oppstartskostnad, ingen abonnement, ingen bindingstid.",
+      "Minus skatt: ved korttidsutleie av egen bolig er de første 15 000 kronene i året skattefrie, og 85 % av det overskytende er skattepliktig inntekt beskattet med 22 %. Leier du ut sekundærbolig, er hele inntekten skattepliktig, men du får fradrag for faktiske kostnader."
+    ],
+    "note": "Fra 2026 rapporterer Airbnb og Booking.com inntektene dine direkte til Skatteetaten. Vi leverer en årsoppgave som viser brutto inntekt, kostnader og netto utbetaling per bolig, slik at tallene er klare til selvangivelsen."
+  },
+  "faqs": [
+    {
+      "question": "Hva kan jeg tjene på Airbnb i Bergen?",
+      "answer": "Det avhenger av bydel, størrelse og hvor mange døgn vedtektene tillater. Bergen har en av Norges skarpeste sesongkurver: juli ligger langt over årssnittet, mens november til mars er svakt. Derfor er det årsinntekten som avgjør hva som lønner seg, ikke sommerprisen. Vi regner på tre scenarioer for boligen din — ren langtidsutleie, ren korttidsutleie og 10-2-modellen — og viser deg tallene før du bestemmer deg."
+    },
+    {
+      "question": "Lønner Airbnb seg bedre enn langtidsutleie?",
+      "answer": "Ikke alltid. Ren korttidsutleie har høyest inntektspotensial, men også størst svingning, og i et eierseksjonssameie stopper 90-dagersgrensen deg uansett. For sentrumsnære boliger i byer med sterk sesong gir hybridmodellen ofte høyest årsinntekt med lavere risiko, fordi du har stabil inntekt i lavsesongen og tar ut toppen om sommeren."
+    },
+    {
+      "question": "Hvor mange døgn kan jeg leie ut?",
+      "answer": "I eierseksjonssameie: maks 90 døgn i året for hele seksjonen, og sameiet kan vedtektsfeste mellom 60 og 120 døgn med 2/3 flertall (eierseksjonsloven § 24). I borettslag: 30 døgn i året uten styrets samtykke, og du må ha registrert bostedsadresse i boligen (borettslagsloven § 5-4). I enebolig eller sekundærbolig finnes ingen lovbestemt døgngrense."
+    },
+    {
+      "question": "Hva må jeg skatte av inntekten?",
+      "answer": "Ved korttidsutleie av boligen du selv bor i er de første 15 000 kronene i året skattefrie, og 85 % av det du tjener over dette regnes som skattepliktig inntekt, beskattet med 22 %. Tjener du 100 000 kroner, blir 72 250 kroner skattepliktig og skatten rundt 15 900 kroner. Leier du ut en sekundærbolig, er hele inntekten skattepliktig fra første krone, men du får fradrag for faktiske kostnader."
+    },
+    {
+      "question": "Hva koster det å bruke Heimby?",
+      "answer": "15 % av leieinntekten pluss MVA. Det dekker annonsering, dynamisk prissetting, all gjestekommunikasjon, booking, koordinering av renhold og vedlikehold, samt rapportering. Ingen oppstartskostnad, ingen abonnementsavgift og ingen bindingstid — du betaler kun når boligen genererer inntekt."
+    },
+    {
+      "question": "Hvordan får jeg et konkret tall for min bolig?",
+      "answer": "Send oss adresse, størrelse og boligtype, så regner vi på tre scenarioer og viser deg hva hver av dem gir over et helt år. Vurderingen er gratis og uforpliktende."
+    }
+  ]
+}

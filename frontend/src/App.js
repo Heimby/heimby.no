@@ -4,6 +4,7 @@ import "./App.css";
 import AdminDashboard from "./components/AdminDashboard";
 import FAQSection from "./components/FAQSection";
 import CityPage from "./components/CityPage";
+import DataPage from "./components/DataPage";
 import Footer from "./components/Footer";
 import HeroSection from "./components/HeroSection";
 import InvestorPage from "./components/InvestorPage";
@@ -18,6 +19,7 @@ import OurPresenceSection from "./components/OurPresenceSection";
 import OwnerPortalDashboard from "./components/OwnerPortalDashboard";
 import PricingSection from "./components/PricingSection";
 import ProcessTimelineSection from "./components/ProcessTimelineSection";
+import RulesPage from "./components/RulesPage";
 import ProfessionalServicesSection from "./components/ProfessionalServicesSection";
 import PropertyDocumentation from "./components/PropertyDocumentation";
 import PropertyView from "./components/PropertyView";
@@ -90,6 +92,13 @@ function App() {
           <Route path="/investors" element={<InvestorPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/admin" element={<AdminDashboard />} />
+
+          {/* Earnings explainer — this URL was indexed before the rewrite
+              and still ranks, so it keeps its path. */}
+          <Route path="/data" element={<DataPage />} />
+
+          {/* National rules explainer — the query digihome owns today */}
+          <Route path="/korttidsutleie-regler" element={<RulesPage />} />
 
           {/* Press coverage */}
           <Route path="/nyheter" element={<NewsIndexPage />} />
