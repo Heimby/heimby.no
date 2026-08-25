@@ -1,6 +1,29 @@
 {
   "articles": [
     {
+      "title": "Slik driver Heimby 247 leiligheter med AI",
+      "description": "Tretti dager med produksjonstall fra Heimby: 15 257 gjestemeldinger inn, 94 % av svarene sendt av AI-en.",
+      "image": "/media/proptonomy-endre-kundehistorie.jpg",
+      "source": "Proptonomy",
+      "url": "https://proptonomy.ai/news/heimby-runs-on-proptonomy",
+      "slug": "proptonomy-slik-driver-vi-247-leiligheter",
+      "date": "2026-08-25",
+      "summary": "Heimby bruker Proptonomy i den daglige driften. Vi har telt hva AI-en faktisk gjorde i løpet av tretti dager: svarte gjester, sendte renholdere og håndverkere ut på jobb, og løftet 2 448 saker til et menneske når det trengtes.",
+      "context": "Vi bygde Proptonomy fordi vi kjente problemet på kroppen selv. Da porteføljen vokste, vokste også flommen av gjestemeldinger, renholdsoppdrag og vedlikeholdssaker. Valget stod mellom å ansette flere folk eller å bygge noe smartere.\n\nI dag går driften vår på Proptonomy. AI-en svarer gjestene i Guesty-innboksen, briefer renholdere og håndverkere på WhatsApp, følger hver jobb til den er kvittert ut, og varsler oss når noe faktisk krever et menneske.\n\n«Proptonomy sitter bak rattet. Vi har hevet kvaliteten og fått ned stresset,» sier daglig leder Endre Nesvoll-Jenssen.\n\nTallene under er telt i produksjonsdatabasen for de tretti dagene fram til 25. august 2026. Det viktigste tallet er ikke de 94 prosentene. Det er de 2 448 gangene AI-en løftet noe til et menneske: den forsøker ikke å håndtere alt, den håndterer det den skal og setter en person foran resten.",
+      "topic": "drift",
+      "facts": {
+        "title": "Fakta: tretti dager med Proptonomy i Heimby-drift",
+        "items": [
+          "365 leiligheter synkronisert, 247 aktive, og 166 av dem hadde en levende gjestesamtale i perioden.",
+          "15 257 meldinger kom inn fordelt på fem innbokser: Guesty, WhatsApp, Hybel.no, felles e-post og den interne driftskanalen.",
+          "10 741 svar ble sendt av AI-en, 698 av et menneske. 94 % av alt Heimby sendte kom fra Proptonomy.",
+          "670 gjestesamtaler ble avsluttet uten en eneste melding fra teamet. Av 1 407 samtaler med en gjestemelding svarte AI-en i 988.",
+          "2 448 ganger løftet AI-en en sak til et menneske, og 1 577 oppfølginger ble planlagt slik at ingenting ble liggende.",
+          "21 918 AI-kjøringer fullført. Kunnskapsbasen vokste med 461 nye oppføringer og 875 oppdateringer, lært av arbeidet selv."
+        ]
+      }
+    },
+    {
       "title": "Regjeringen åpner for mulig forbud mot Airbnb",
       "description": "TV 2: Regjeringen vurderer tiltak for å begrense enkelte former for korttidsutleie for å beskytte boligmarkedet.",
       "image": "/media/tv2-apner-for-forbud-mot-airbnb.jpg",
