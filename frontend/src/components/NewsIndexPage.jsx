@@ -5,9 +5,9 @@ import mediaData from "../data/mediaArticles.json";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
-const TITLE = "Heimby i media — presseomtale og podkaster | Heimby";
+const TITLE = "Nyheter og guider om utleie | Heimby";
 const DESCRIPTION =
-  "Samlet oversikt over presseomtale av Heimby: NRK, TV 2, Bergensavisen, Nettavisen, Shifter, Firdaposten og podkaster om korttidsutleie og utleieforvaltning.";
+  "Guider, nyheter og presseomtale om Airbnb, korttidsutleie, regler, skatt og profesjonell utleieforvaltning fra Heimby.";
 
 const NewsIndexPage = () => {
   useEffect(() => {
@@ -37,12 +37,12 @@ const NewsIndexPage = () => {
         <section className="pt-28 pb-12 px-6" style={{ backgroundColor: "#FFFFFF" }}>
           <div className="max-w-5xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-5">
-              Heimby i media
+              Nyheter og guider
             </h1>
             <p className="text-lg text-gray-700 max-w-2xl leading-relaxed">
-              Presseomtale, debattinnlegg og podkaster om Heimby, korttidsutleie
-              og utleieforvaltning. Hver sak har et kort sammendrag og lenke til
-              hele artikkelen hos avisen.
+              Praktiske guider om korttidsutleie, nyheter fra Heimby,
+              presseomtale, debattinnlegg og podkaster. Her finner du regler,
+              skatt og konkrete råd til bedre utleie.
             </p>
           </div>
         </section>

@@ -1,6 +1,255 @@
 {
   "articles": [
     {
+      "kind": "guide",
+      "title": "Hvordan leie ut på Airbnb: regler, skatt og sjekkliste",
+      "metaTitle": "Hvordan leie ut på Airbnb og drive korttidsutleie | Heimby",
+      "description": "Komplett guide til Airbnb-utleie: skatt, regler for borettslag, sameie og selveier, bilder, utstyr, nøkler og profesjonell drift.",
+      "image": "/img/repeat-3-extreme.jpg",
+      "imageAlt": "Lys og ryddig stue klargjort for korttidsutleie",
+      "imageCaption": "Illustrasjonsbilde: Heimby",
+      "source": "Guide fra Heimby",
+      "slug": "slik-leier-du-ut-boligen-pa-airbnb",
+      "date": "2026-08-27",
+      "summary": "Skal du leie ut boligen på Airbnb, må du først avklare reglene for boligtypen, skatten og nøkkelløsningen. Deretter avgjør bilder, riktig utstyr, profesjonelt renhold og rask gjesteoppfølging hvor godt utleien fungerer.",
+      "topic": "guide",
+      "guide": {
+        "intro": [
+          "Airbnb-utleie kan være en god måte å tjene penger på en bolig som ellers står tom. Det gjelder også ferieutleie: Skal du være bortreist i to uker, kan boligen leies ut i akkurat denne perioden og være ferdig vasket når du kommer hjem.",
+          "Det viktigste er å gjøre ting i riktig rekkefølge. Start med vedtekter og skatteregler. Lag deretter en presis annonse, sørg for hotellgod klargjøring og velg en nøkkelløsning som også fungerer når noe uventet skjer."
+        ],
+        "highlight": {
+          "title": "Bortreist i to uker? Lei ut mens du er på ferie",
+          "body": "En ferie på 14 dager passer innenfor den årlige grensen både i borettslag og eierseksjonssameie, så lenge du selv bor i borettslagsboligen, ikke allerede har brukt opp døgnkvoten og vedtektene ikke sier noe annet. Heimby kan ta seg av vurdering, bilder, annonse, prising, gjester, renhold og nøkkel – og levere boligen tilbake klar til hjemkomst."
+        },
+        "sections": [
+          {
+            "id": "regler",
+            "title": "1. Sjekk reglene for boligtypen din",
+            "intro": "Døgngrensen følger eierformen og vedtektene, ikke hvilken utleieplattform du bruker. Tell all korttidsutleie av hele boligen gjennom året, også bookinger utenfor Airbnb.",
+            "cards": [
+              {
+                "title": "Borettslag",
+                "badge": "30 døgn per år",
+                "paragraphs": [
+                  "Når du selv bor i borettslagsboligen, kan du overlate hele boligen til andre i opptil 30 døgn i løpet av året uten styrets samtykke. Skal du leie ut mer, må du avklare det med styret.",
+                  "En ferieutleie på to uker bruker 14 av de 30 døgnene. Sjekk vedtektene og tell tidligere utlån eller utleie før du åpner kalenderen."
+                ],
+                "link": "https://lovdata.no/lov/2003-06-06-39/%C2%A75-4",
+                "linkLabel": "Burettslagslova § 5-4"
+              },
+              {
+                "title": "Eierseksjon i sameie",
+                "badge": "Normalt 90 døgn per år",
+                "paragraphs": [
+                  "Korttidsutleie av hele boligseksjonen er normalt tillatt i inntil 90 døgn per år. Sameiet kan vedtektsfeste en grense mellom 60 og 120 døgn med minst to tredjedels flertall på årsmøtet.",
+                  "Regelen gjelder opphold på inntil 30 sammenhengende døgn. Vanlige regler om støy og urimelig ulempe for naboene gjelder uansett."
+                ],
+                "link": "https://lovdata.no/lov/2017-06-16-65/%C2%A724",
+                "linkLabel": "Eierseksjonsloven § 24"
+              },
+              {
+                "title": "Selveier",
+                "badge": "Sjekk hva du faktisk eier",
+                "paragraphs": [
+                  "En selveierleilighet er vanligvis en eierseksjon i et sameie. Da gjelder sameiets vedtekter og 90-dagersregelen over. Ordet «selveier» gir altså ikke i seg selv fri utleie.",
+                  "Eier du en frittstående enebolig som ikke er del av sameie eller borettslag, gjelder ikke disse nasjonale 30- og 90-dagersgrensene. Du må fortsatt følge skatte-, brann-, forsikrings- og eventuelle lokale regler."
+                ]
+              }
+            ],
+            "note": "Leier du boligen selv, må du i tillegg ha utleiers samtykke til fremleie. Er du usikker, få styret eller forretningsføreren til å bekrefte reglene skriftlig før du tar imot bookinger."
+          },
+          {
+            "id": "skatt",
+            "title": "2. Slik fungerer skatten",
+            "intro": "Skattereglene avgjøres først og fremst av om dette er boligen du selv bor i. Borettslag, sameie og selveier beskattes ikke forskjellig bare på grunn av eierformen.",
+            "cards": [
+              {
+                "title": "Egen bolig, opphold under 30 dager",
+                "badge": "15 000 kr skattefritt",
+                "paragraphs": [
+                  "De første 15 000 kronene i samlet brutto leieinntekt per bolig og kalenderår er skattefrie. Av inntekten over 15 000 kroner regnes 85 prosent som skattepliktig inntekt.",
+                  "Beløpet beregnes før provisjonen til bookingplattform eller forvalter trekkes fra. Betaling for enkle tilleggstjenester som utvask og strøm kan også inngå i brutto leieinntekt. Du får ikke egne kostnadsfradrag når denne sjablongregelen brukes."
+                ],
+                "link": "https://www.skatteetaten.no/rettskilder/type/handboker/skatte-abc/gjeldende/b-17-bolig--utleie-fritaksbehandling/B-17.010/B-17.016/",
+                "linkLabel": "Skatteetatens regler for korttidsutleie"
+              },
+              {
+                "title": "Bolig du ikke bruker selv",
+                "badge": "Overskuddet er normalt skattepliktig",
+                "paragraphs": [
+                  "For en sekundær- eller utleiebolig er netto utleieinntekt normalt skattepliktig fra første krone. Du kan til gjengjeld få fradrag for relevante kostnader. Skatteetaten oppgir at overskudd normalt beskattes med 22 prosent.",
+                  "Omfattende eller svært aktiv utleie kan bli vurdert som næringsvirksomhet. Da kan andre regler og satser gjelde."
+                ],
+                "link": "https://www.skatteetaten.no/person/skatt/hjelp-til-riktig-skatt/bolig-og-eiendeler/bolig-eiendom-tomt/utleie/",
+                "linkLabel": "Skatteetatens utleieveileder"
+              }
+            ],
+            "note": "Eksempel: Har du 50 000 kroner i brutto korttidsinntekt fra egen bolig, blir 29 750 kroner skattepliktig inntekt: (50 000 − 15 000) × 85 %."
+          },
+          {
+            "id": "bilder",
+            "title": "3. Gode bilder gjør annonsen synlig",
+            "intro": "Bildene er gjestens første visning. De skal være lyse og innbydende, men samtidig vise boligen slik den faktisk er.",
+            "bullets": [
+              "Rydd alle flater og fjern private papirer, medisiner, verdisaker og familiebilder.",
+              "Fotografer i dagslys, med gardinene åpne og alle lyskilder slått på.",
+              "Ta både oversiktsbilder og detaljbilder. Vis stue, kjøkken, alle soverom, bad, inngang og uteområde.",
+              "La de første fem bildene fortelle hele historien: beste rom, viktigste fasilitet, hovedsoverom, kjøkken og bad.",
+              "Unngå vidvinkel som får rommene til å se større ut enn de er. Forventningsbrudd gir dårligere anmeldelser.",
+              "Bruk profesjonell boligfotograf når inntekten forsvarer det. Bildene kan brukes gjennom hele utleieperioden."
+            ]
+          },
+          {
+            "id": "utstyr",
+            "title": "4. Utstyr boligen for et friksjonsfritt opphold",
+            "intro": "Gjester forventer ikke luksus overalt, men de forventer at det grunnleggende finnes, virker og er enkelt å finne.",
+            "cards": [
+              {
+                "title": "Soverom og bad",
+                "bullets": [
+                  "Hotellrent sengetøy og minst ett stort og ett lite håndkle per gjest",
+                  "Hårføner, håndsåpe, toalettpapir og en liten avfallsbøtte",
+                  "Mørklegging, leselys, kleshengere og plass til bagasje"
+                ]
+              },
+              {
+                "title": "Kjøkken",
+                "bullets": [
+                  "Vannkoker og kaffeløsning med enkel bruksanvisning",
+                  "Nok glass, kopper, tallerkener og bestikk til alle sengeplassene",
+                  "Gryter, stekepanne, skarp kniv, skjærebrett, oppvaskmiddel, klut og håndkle",
+                  "Salt, pepper og litt olje i rene, tydelig merkede beholdere"
+                ]
+              },
+              {
+                "title": "Trygghet og praktisk informasjon",
+                "bullets": [
+                  "Fungerende røykvarslere, slokkeutstyr og synlig rømningsinformasjon",
+                  "Stabilt wifi, tydelig nettverksnavn og passord",
+                  "Kort husmanual med innsjekk, utsjekk, søppel, parkering og husregler",
+                  "Kontaktpunkt som svarer raskt dersom noe går galt"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "nokler",
+            "title": "5. Ha en reserveplan for nøklene",
+            "intro": "Ikke bygg innsjekken rundt den eneste nøkkelen du har. Nøkkelproblemer skjer gjerne sent på kvelden, når en gjest står utenfor.",
+            "bullets": [
+              "Ha minst én reservenøkkel hos en lokal person eller driftsaktør.",
+              "Vurder smartlås med tidsstyrte koder. Test batteri, app, mekanisk nøkkel og hva som skjer uten nett.",
+              "Bruk aldri en synlig nøkkelboks uten at plassering og regler er avklart med styret eller gårdeier.",
+              "Easypick er en aktuell aktør for nøkkelhenting og -levering når du ønsker en betjent løsning."
+            ],
+            "links": [
+              {
+                "label": "Se Easypicks løsning for nøkkelhåndtering",
+                "url": "https://easypick.no/"
+              }
+            ]
+          },
+          {
+            "id": "profesjonell-drift",
+            "title": "6. Vurder profesjonell drift",
+            "intro": "En god annonse skaffer den første bookingen. Jevn kvalitet på renhold, logistikk og gjestekommunikasjon skaffer de neste.",
+            "cards": [
+              {
+                "title": "Renhold og klargjøring",
+                "paragraphs": [
+                  "Profesjonelle driftsleverandører setter byttevask, sengetøy, håndklær, forbruksvarer, kvalitetssikring og avvikshåndtering i system. Ability beskriver hvordan de leverer denne delen i samarbeid med Heimby for å sikre jevn kvalitet og høy rating over tid."
+                ],
+                "link": "https://ability.no/slik-sikrer-vi-hoy-rating-i-korttidsutleie/",
+                "linkLabel": "Slik sikrer Ability og Heimby høy rating"
+              },
+              {
+                "title": "Full forvaltning fra A til Å",
+                "paragraphs": [
+                  "Et forvaltningsselskap kan håndtere bilder, annonsering, dynamisk prising, booking, gjester, renhold, nøkler, vedlikehold og rapportering. Heimby tilbyr dette for korttidsutleie, langtidsutleie og ferieutleie. Enkelbnb er en annen aktør som tilbyr korttidsutleie og full forvaltning."
+                ],
+                "links": [
+                  {
+                    "label": "Få et gratis utleieestimat fra Heimby",
+                    "url": "/#lead-gen"
+                  },
+                  {
+                    "label": "Se enkelbnb.no",
+                    "url": "https://www.enkelbnb.no/"
+                  }
+                ]
+              }
+            ],
+            "note": "Sammenlign alltid hva som er inkludert, hvordan kostnader trekkes, hvem som eier annonsen og gjesteomtalene, responstid ved avvik, bindingstid og hvordan boligen kontrolleres før den leveres tilbake."
+          }
+        ],
+        "checklist": {
+          "title": "Sjekkliste før du åpner kalenderen",
+          "items": [
+            "Les vedtektene og avklar årets tilgjengelige utleiedøgn.",
+            "Sjekk forsikringen og avklar ansvar ved skader.",
+            "Fjern verdisaker, personlige dokumenter og medisiner.",
+            "Bestill bilder etter at boligen er ferdig ryddet og klargjort.",
+            "Legg frem hårføner, vannkoker, sengetøy, håndklær og basisvarer.",
+            "Test røykvarslere, slokkeutstyr, wifi og alle hvitevarer.",
+            "Lag en enkel husmanual og tydelige husregler.",
+            "Test smartlås eller nøkkelhenting, og plasser en reservenøkkel lokalt.",
+            "Avtal hvem som svarer gjestene, vasker og håndterer avvik.",
+            "Ta bilder av boligens tilstand før første innsjekk."
+          ]
+        },
+        "faqs": [
+          {
+            "question": "Kan jeg leie ut boligen mens jeg er på ferie i to uker?",
+            "answer": "Ja, som hovedregel. To uker er 14 døgn og ligger innenfor både 30-døgnsgrensen i borettslag og normalgrensen på 90 døgn i eierseksjonssameier. Du må selv bo i borettslagsboligen, ha ledige døgn igjen og kontrollere vedtektene før du publiserer annonsen."
+          },
+          {
+            "question": "Hvor mye kan jeg tjene skattefritt på Airbnb?",
+            "answer": "Ved korttidsutleie av egen bolig er de første 15 000 kronene i samlet brutto leieinntekt per kalenderår skattefrie. Av beløpet over dette regnes 85 prosent som skattepliktig inntekt. Andre regler gjelder for en bolig du ikke bruker selv."
+          },
+          {
+            "question": "Gjelder 90-dagersregelen for alle selveiere?",
+            "answer": "Nei. Den gjelder korttidsutleie av hele boligseksjoner i eierseksjonssameier. En selveierleilighet er vanligvis en slik seksjon. En frittstående enebolig uten sameie eller borettslag omfattes ikke av denne døgngrensen."
+          },
+          {
+            "question": "Må jeg ha smartlås?",
+            "answer": "Nei, men du trenger en robust løsning for innsjekk og en reserveplan. Smartlås med tidsstyrte koder kan fungere godt. Alternativt kan en lokal driftsaktør eller nøkkeltjeneste som Easypick håndtere utleveringen."
+          },
+          {
+            "question": "Kan Heimby håndtere bare en kort ferieperiode?",
+            "answer": "Ja. Heimby kan vurdere ferieutleie for perioden boligen står tom og håndtere klargjøring, annonse, prising, gjester, renhold og nøkkel, avhengig av bolig, sted og tilgjengelige datoer."
+          }
+        ],
+        "sources": [
+          {
+            "label": "Skatteetaten: korttidsutleie av egen bolig",
+            "url": "https://www.skatteetaten.no/rettskilder/type/handboker/skatte-abc/gjeldende/b-17-bolig--utleie-fritaksbehandling/B-17.010/B-17.016/"
+          },
+          {
+            "label": "Lovdata: eierseksjonsloven § 24",
+            "url": "https://lovdata.no/lov/2017-06-16-65/%C2%A724"
+          },
+          {
+            "label": "Lovdata: burettslagslova § 5-4",
+            "url": "https://lovdata.no/lov/2003-06-06-39/%C2%A75-4"
+          },
+          {
+            "label": "Ability: slik sikrer vi høy rating i korttidsutleie",
+            "url": "https://ability.no/slik-sikrer-vi-hoy-rating-i-korttidsutleie/"
+          },
+          {
+            "label": "Easypick: nøkkelhåndtering",
+            "url": "https://easypick.no/"
+          },
+          {
+            "label": "Enkelbnb: full forvaltning",
+            "url": "https://www.enkelbnb.no/"
+          }
+        ],
+        "disclaimer": "Regler, vedtekter og skattesituasjon kan variere. Guiden er generell informasjon, ikke juridisk eller skattemessig rådgivning. Sjekk alltid gjeldende vedtekter, forsikring og opplysninger fra Skatteetaten før utleie."
+      }
+    },
+    {
       "title": "Slik driver Heimby 247 leiligheter med AI",
       "description": "Tretti dager med produksjonstall fra Heimby: 15 257 gjestemeldinger inn, 94 % av svarene sendt av AI-en.",
       "image": "/media/proptonomy-endre-kundehistorie.jpg",

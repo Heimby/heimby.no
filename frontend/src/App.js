@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import AdminDashboard from "./components/AdminDashboard";
 import FAQSection from "./components/FAQSection";
@@ -26,6 +26,19 @@ import PropertyView from "./components/PropertyView";
 import ResultsSection from "./components/ResultsSection";
 import WhatWeAreSection from "./components/WhatWeAreSection";
 import homeContent from "./data/homeContent.json";
+
+function HashScroller() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (!hash) return;
+
+    const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+    if (target) target.scrollIntoView({ behavior: "auto", block: "start" });
+  }, [pathname, hash]);
+
+  return null;
+}
 
 function HomePage() {
   return (
@@ -80,6 +93,7 @@ function App() {
 
   return (
     <Router>
+      <HashScroller />
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />

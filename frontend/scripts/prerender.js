@@ -237,7 +237,10 @@ const PRERENDER_STYLE = `<style>
 .prerendered a{color:#1a1a1a}
 </style>`;
 
-function buildPage(template, { url, title, description, body, schemas }) {
+function buildPage(
+  template,
+  { url, title, description, body, schemas, image = OG_IMAGE, ogType = "website" },
+) {
   let html = template;
 
   html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`);
@@ -262,6 +265,14 @@ function buildPage(template, { url, title, description, body, schemas }) {
     `<meta property="og:description" content="${esc(description)}"/>`,
   );
   html = html.replace(
+    /<meta property="og:type" content="[^"]*"\s*\/?>/,
+    `<meta property="og:type" content="${esc(ogType)}"/>`,
+  );
+  html = html.replace(
+    /<meta property="og:image" content="[^"]*"\s*\/?>/,
+    `<meta property="og:image" content="${esc(image)}"/>`,
+  );
+  html = html.replace(
     /<meta name="twitter:title" content="[^"]*"\s*\/?>/,
     `<meta name="twitter:title" content="${esc(title)}"/>`,
   );
@@ -269,16 +280,27 @@ function buildPage(template, { url, title, description, body, schemas }) {
     /<meta name="twitter:description" content="[^"]*"\s*\/?>/,
     `<meta name="twitter:description" content="${esc(description)}"/>`,
   );
+  html = html.replace(
+    /<meta name="twitter:url" content="[^"]*"\s*\/?>/,
+    `<meta name="twitter:url" content="${esc(url)}"/>`,
+  );
+  html = html.replace(
+    /<meta name="twitter:image" content="[^"]*"\s*\/?>/,
+    `<meta name="twitter:image" content="${esc(image)}"/>`,
+  );
 
-  // Drop the template's Organization JSON-LD on city pages; page-specific
-  // schemas replace it so we never ship two competing descriptions.
+  // Remove every schema inherited from the homepage template. Page-specific
+  // schemas replace them so deep routes never claim to be the homepage or
+  // duplicate FAQ data after React mounts.
   if (schemas) {
     html = html.replace(
-      /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
-      schemas
-        .map((s) => `<script type="application/ld+json">${jsonLd(s)}</script>`)
-        .join(""),
+      /<script type="application\/ld\+json">[\s\S]*?<\/script>/g,
+      "",
     );
+    const schemaMarkup = schemas
+      .map((s) => `<script type="application/ld+json">${jsonLd(s)}</script>`)
+      .join("");
+    html = html.replace("</head>", `${schemaMarkup}</head>`);
   }
 
   html = html.replace("</head>", `${PRERENDER_STYLE}</head>`);
@@ -379,7 +401,7 @@ function homeSchemas() {
         "https://www.instagram.com/heimby",
         "https://www.linkedin.com/company/heimby",
       ],
-      subjectOf: MEDIA.articles.map((a) => ({
+      subjectOf: MEDIA.articles.filter((a) => a.kind !== "guide").map((a) => ({
         "@type": "NewsArticle",
         headline: a.title,
         url: a.url,
@@ -458,8 +480,8 @@ function newsIndexBody() {
     .join("\n");
 
   return `<main class="prerendered">
-<h1>Heimby i media</h1>
-<p>Presseomtale, debattinnlegg og podkaster om Heimby, korttidsutleie og utleieforvaltning. Hver sak har et kort sammendrag og lenke til hele artikkelen hos avisen.</p>
+<h1>Nyheter og guider</h1>
+<p>Praktiske guider om korttidsutleie, nyheter fra Heimby, presseomtale, debattinnlegg og podkaster. Her finner du regler, skatt og konkrete råd til bedre utleie.</p>
 <p>Heimby ble startet i Bergen og forvalter rundt 160 leiligheter for andre boligeiere. Vi tilbyr korttidsutleie, langtidsutleie og en hybrid 10-2-modell, og omtales jevnlig i norske medier i forbindelse med debatten om korttidsutleie og skyggehoteller.</p>
 ${sections}
 <p><a href="/korttidsutleie-i-bergen/">Korttidsutleie i Bergen — regler, skatt og inntekt</a> · <a href="/">Heimby — forvaltning av korttidsutleie og langtidsutleie</a></p>
@@ -467,6 +489,8 @@ ${sections}
 }
 
 function newsArticleBody(a) {
+  if (a.kind === "guide") return guideArticleBody(a);
+
   const related = MEDIA.articles.filter((x) => x.slug !== a.slug).slice(0, 3);
   return `<main class="prerendered">
 <h1>${esc(a.title)}</h1>
@@ -494,15 +518,96 @@ ${related.map((r) => `<li><a href="/nyheter/${r.slug}/">${esc(r.source)}: ${esc(
 </main>`;
 }
 
+function guideLinks(item) {
+  const links = item.links ||
+    (item.link ? [{ label: item.linkLabel, url: item.link }] : []);
+  if (!links.length) return "";
+  return `<ul>\n${links
+    .map((link) => `<li><a href="${esc(link.url)}">${esc(link.label)}</a></li>`)
+    .join("\n")}\n</ul>`;
+}
+
+function guideCardBody(card) {
+  return `<section>
+${card.badge ? `<p><strong>${esc(card.badge)}</strong></p>` : ""}
+<h3>${esc(card.title)}</h3>
+${(card.paragraphs || []).map((p) => `<p>${esc(p)}</p>`).join("\n")}
+${card.bullets ? `<ul>\n${card.bullets.map((item) => `<li>${esc(item)}</li>`).join("\n")}\n</ul>` : ""}
+${guideLinks(card)}
+</section>`;
+}
+
+function guideArticleBody(a) {
+  const guide = a.guide;
+  const related = MEDIA.articles.filter((x) => x.slug !== a.slug).slice(0, 3);
+  return `<main class="prerendered">
+<p>${esc(a.source)} · ${esc(a.date)}</p>
+<h1>${esc(a.title)}</h1>
+<img src="${esc(a.image)}" alt="${esc(a.imageAlt || a.title)}">
+<p>${esc(a.imageCaption || "Illustrasjonsbilde: Heimby")}</p>
+${guide.intro.map((p) => `<p>${esc(p)}</p>`).join("\n")}
+
+<aside>
+<h2>${esc(guide.highlight.title)}</h2>
+<p>${esc(guide.highlight.body)}</p>
+<p><a href="/#lead-gen">Få et gratis utleieestimat</a></p>
+</aside>
+
+<h2>I denne guiden</h2>
+<ol>
+${guide.sections.map((section) => `<li><a href="#${esc(section.id)}">${esc(section.title)}</a></li>`).join("\n")}
+</ol>
+
+${guide.sections
+  .map(
+    (section) => `<section id="${esc(section.id)}">
+<h2>${esc(section.title)}</h2>
+${section.intro ? `<p>${esc(section.intro)}</p>` : ""}
+${(section.cards || []).map(guideCardBody).join("\n")}
+${section.bullets ? `<ul>\n${section.bullets.map((item) => `<li>${esc(item)}</li>`).join("\n")}\n</ul>` : ""}
+${guideLinks(section)}
+${section.note ? `<p><strong>Husk:</strong> ${esc(section.note)}</p>` : ""}
+</section>`,
+  )
+  .join("\n")}
+
+<section>
+<h2>${esc(guide.checklist.title)}</h2>
+<ul>
+${guide.checklist.items.map((item) => `<li>${esc(item)}</li>`).join("\n")}
+</ul>
+</section>
+
+<section>
+<h2>Ofte stilte spørsmål</h2>
+${guide.faqs.map((faq) => `<h3>${esc(faq.question)}</h3>\n<p>${esc(faq.answer)}</p>`).join("\n")}
+</section>
+
+<section>
+<h2>Kilder og videre lesning</h2>
+<ul>
+${guide.sources.map((source) => `<li><a href="${esc(source.url)}">${esc(source.label)}</a></li>`).join("\n")}
+</ul>
+<p>${esc(guide.disclaimer)}</p>
+</section>
+
+<h2>Mer fra Heimby</h2>
+<ul>
+${related.map((r) => `<li><a href="/nyheter/${r.slug}/">${esc(r.source)}: ${esc(r.title)}</a></li>`).join("\n")}
+</ul>
+<p><a href="/nyheter/">Alle nyheter og guider</a> · <a href="/korttidsutleie-regler/">Regler for korttidsutleie</a></p>
+</main>`;
+}
+
 function newsIndexSchemas() {
   return [
     {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
-      name: "Heimby i media",
+      name: "Nyheter og guider fra Heimby",
       url: `${SITE}/nyheter/`,
       description:
-        "Presseomtale, debattinnlegg og podkaster om Heimby, korttidsutleie og utleieforvaltning.",
+        "Guider, nyheter og presseomtale om Airbnb, korttidsutleie, regler, skatt og profesjonell utleieforvaltning.",
       isPartOf: { "@id": `${SITE}/#organization` },
       hasPart: newsSorted().map((a) => ({
         "@type": "WebPage",
@@ -523,6 +628,43 @@ function newsIndexSchemas() {
 
 function newsArticleSchemas(a) {
   const pageUrl = `${SITE}/nyheter/${a.slug}/`;
+  if (a.kind === "guide") {
+    return [
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: a.title,
+        description: a.summary,
+        url: pageUrl,
+        mainEntityOfPage: pageUrl,
+        image: `${SITE}${a.image}`,
+        datePublished: a.date,
+        dateModified: a.date,
+        inLanguage: "nb-NO",
+        author: { "@id": `${SITE}/#organization` },
+        publisher: { "@id": `${SITE}/#organization` },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: a.guide.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: { "@type": "Answer", text: faq.answer },
+        })),
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Heimby", item: `${SITE}/` },
+          { "@type": "ListItem", position: 2, name: "Nyheter", item: `${SITE}/nyheter/` },
+          { "@type": "ListItem", position: 3, name: a.title, item: pageUrl },
+        ],
+      },
+    ];
+  }
+
   return [
     {
       "@context": "https://schema.org",
@@ -811,9 +953,9 @@ function main() {
     path.join(newsDir, "index.html"),
     buildPage(template, {
       url: `${SITE}/nyheter/`,
-      title: "Heimby i media — presseomtale og podkaster | Heimby",
+      title: "Nyheter og guider om utleie | Heimby",
       description:
-        "Samlet oversikt over presseomtale av Heimby: NRK, TV 2, Bergensavisen, Nettavisen, Shifter, Firdaposten og podkaster om korttidsutleie.",
+        "Guider, nyheter og presseomtale om Airbnb, korttidsutleie, regler, skatt og profesjonell utleieforvaltning fra Heimby.",
       body: newsIndexBody(),
       schemas: newsIndexSchemas(),
     }),
@@ -827,8 +969,10 @@ function main() {
       path.join(dir, "index.html"),
       buildPage(template, {
         url: `${SITE}/nyheter/${a.slug}/`,
-        title: `${a.title} — ${a.source} | Heimby`,
-        description: a.summary.slice(0, 160),
+        title: a.metaTitle || `${a.title} — ${a.source} | Heimby`,
+        description: (a.description || a.summary).slice(0, 160),
+        image: `${SITE}${a.image}`,
+        ogType: "article",
         body: newsArticleBody(a),
         schemas: newsArticleSchemas(a),
       }),
@@ -863,8 +1007,8 @@ function main() {
     { loc: `${SITE}/nyheter/`, priority: "0.7", changefreq: "monthly" },
     ...MEDIA.articles.map((a) => ({
       loc: `${SITE}/nyheter/${a.slug}/`,
-      priority: "0.5",
-      changefreq: "yearly",
+      priority: a.kind === "guide" ? "0.8" : "0.5",
+      changefreq: a.kind === "guide" ? "monthly" : "yearly",
       lastmod: a.date,
     })),
   ];
