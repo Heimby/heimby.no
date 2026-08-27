@@ -8,11 +8,18 @@ import Footer from "./Footer";
 import LeadGenSection from "./LeadGenSection";
 import Navbar from "./Navbar";
 
-const PAGE_URL = "https://heimby.no/data/";
+const PAGE_URL = "https://heimby.no/hvor-mye-kan-man-tjene-pa-airbnb/";
 
 const DataPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    // The prerendered page provides a canonical before JavaScript loads.
+    // Remove that unmanaged tag after hydration so client-side navigation from
+    // the homepage cannot leave its old canonical alongside this page's URL.
+    document
+      .querySelectorAll('link[rel="canonical"]:not([data-react-helmet])')
+      .forEach((link) => link.remove());
   }, []);
 
   return (

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import { Navigate, Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import AdminDashboard from "./components/AdminDashboard";
 import FAQSection from "./components/FAQSection";
@@ -41,8 +42,18 @@ function HashScroller() {
 }
 
 function HomePage() {
+  useEffect(() => {
+    document
+      .querySelectorAll('link[rel="canonical"]:not([data-react-helmet])')
+      .forEach((link) => link.remove());
+  }, []);
+
   return (
     <>
+      <Helmet>
+        <link rel="canonical" href="https://heimby.no/" />
+      </Helmet>
+
       {/* Main Navbar */}
       <Navbar />
 
@@ -107,9 +118,23 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/admin" element={<AdminDashboard />} />
 
-          {/* Earnings explainer — this URL was indexed before the rewrite
-              and still ranks, so it keeps its path. */}
-          <Route path="/data" element={<DataPage />} />
+          {/* Earnings explainer and legacy path. */}
+          <Route
+            path="/hvor-mye-kan-man-tjene-pa-airbnb"
+            element={<DataPage />}
+          />
+          <Route
+            path="/hvor-mye-kan-man-tjene-pa-airbnb/"
+            element={<DataPage />}
+          />
+          <Route
+            path="/data"
+            element={<Navigate replace to="/hvor-mye-kan-man-tjene-pa-airbnb" />}
+          />
+          <Route
+            path="/data/"
+            element={<Navigate replace to="/hvor-mye-kan-man-tjene-pa-airbnb" />}
+          />
 
           {/* National rules explainer — the query digihome owns today */}
           <Route path="/korttidsutleie-regler" element={<RulesPage />} />

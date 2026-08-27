@@ -19,6 +19,10 @@ const Footer = () => {
 			// { name: 'Eierportal', href: '/owner-portal' },
 		],
 		resources: [
+			{
+				name: "Hva kan du tjene på Airbnb?",
+				href: "/hvor-mye-kan-man-tjene-pa-airbnb",
+			},
 			// { name: 'Investeringspartnere', href: '/investors' },
 			// { name: 'Priser', href: '#' },
 			// { name: 'Ofte Stilte Spørsmål', href: '#' },

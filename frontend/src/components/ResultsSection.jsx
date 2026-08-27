@@ -1,4 +1,6 @@
+import { ArrowRight } from 'lucide-react';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ResultsSection = () => {
   const results = [
@@ -56,6 +58,14 @@ const ResultsSection = () => {
                   </div>
                 ))}
               </div>
+
+              <Link
+                to="/hvor-mye-kan-man-tjene-pa-airbnb"
+                className="group inline-flex w-fit items-center gap-2 rounded-full bg-gray-900 px-6 py-3 text-base font-medium text-white transition-colors hover:bg-gray-800"
+              >
+                Hvor mye kan du tjene på Airbnb?
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
           </div>
         </div>

@@ -187,7 +187,10 @@ const RulesPage = () => {
             </div>
             <p className="text-base text-gray-700 mt-6">
               Vil du vite hva boligen din kan tjene innenfor disse grensene?{" "}
-              <Link to="/data" className="font-semibold text-gray-900 underline">
+              <Link
+                to="/hvor-mye-kan-man-tjene-pa-airbnb"
+                className="font-semibold text-gray-900 underline"
+              >
                 Se hvordan regnestykket ser ut
               </Link>
               .

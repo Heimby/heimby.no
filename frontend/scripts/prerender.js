@@ -342,6 +342,7 @@ function homeBody() {
 
 <h2>Hva koster det?</h2>
 <p>15 % av leieinntekten pluss MVA. Ingen oppstartskostnad, ingen abonnementsavgift og ingen bindingstid. Direkte driftskostnader som renhold og forbruksvarer trekkes fra utbetalingen og spesifiseres linje for linje i eierportalen.</p>
+<p><a href="/hvor-mye-kan-man-tjene-pa-airbnb/">Hvor mye kan du tjene på Airbnb? Se hva som avgjør inntekten</a></p>
 
 <h2>Bakgrunnen vår</h2>
 <p>Heimby ble startet i Bergen av Njål Hopen Eliasson og Mathias Haugsbø. Vi forvalter rundt 160 leiligheter for andre boligeiere og har flest aktive Airbnb-annonser i Bergen. To av gründerne skrev masteroppgave ved Norges Handelshøyskole (NHH) om lønnsomhet og risiko i langtidsutleie, korttidsutleie og dynamiske utleiestrategier i det norske boligmarkedet — det faglige grunnlaget for 10-2-modellen.</p>
@@ -698,8 +699,7 @@ function newsArticleSchemas(a) {
 }
 
 /* ------------------------------------------------------------------ *
- * /data — earnings explainer. The URL was indexed before the rewrite and
- * still ranks, so it keeps its path rather than being redirected away.
+ * /hvor-mye-kan-man-tjene-pa-airbnb — earnings explainer.
  * ------------------------------------------------------------------ */
 
 function dataPageBody() {
@@ -755,7 +755,7 @@ function dataPageSchemas() {
       "@type": "Article",
       headline: DATA_PAGE.h1,
       description: DATA_PAGE.metaDescription,
-      url: `${SITE}/data/`,
+      url: `${SITE}/hvor-mye-kan-man-tjene-pa-airbnb/`,
       dateModified: DATA_PAGE.lastUpdated,
       inLanguage: "nb-NO",
       author: { "@id": `${SITE}/#organization` },
@@ -775,7 +775,7 @@ function dataPageSchemas() {
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Heimby", item: `${SITE}/` },
-        { "@type": "ListItem", position: 2, name: DATA_PAGE.h1, item: `${SITE}/data/` },
+        { "@type": "ListItem", position: 2, name: DATA_PAGE.h1, item: `${SITE}/hvor-mye-kan-man-tjene-pa-airbnb/` },
       ],
     },
   ];
@@ -826,7 +826,7 @@ ${d.changes.items.map((x) => `<li>${esc(x)}</li>`).join("\n")}
 <ul>
 ${cityLinks}
 </ul>
-<p><a href="/data/">Hva kan du tjene på Airbnb? Slik regner du det ut</a></p>
+<p><a href="/hvor-mye-kan-man-tjene-pa-airbnb/">Hva kan du tjene på Airbnb? Slik regner du det ut</a></p>
 
 <h2>Ofte stilte spørsmål</h2>
 ${d.faqs.map((f) => `<h3>${esc(f.question)}</h3>\n<p>${esc(f.answer)}</p>`).join("\n")}
@@ -921,20 +921,39 @@ function main() {
     written.push(`/${route}`);
   }
 
-  // Earnings explainer at its original indexed path.
-  const dataDir = path.join(BUILD_DIR, "data");
-  fs.mkdirSync(dataDir, { recursive: true });
+  // Earnings explainer at its descriptive path.
+  const earningsRoute = "hvor-mye-kan-man-tjene-pa-airbnb";
+  const earningsDir = path.join(BUILD_DIR, earningsRoute);
+  fs.mkdirSync(earningsDir, { recursive: true });
   fs.writeFileSync(
-    path.join(dataDir, "index.html"),
+    path.join(earningsDir, "index.html"),
     buildPage(template, {
-      url: `${SITE}/data/`,
+      url: `${SITE}/${earningsRoute}/`,
       title: DATA_PAGE.title,
       description: DATA_PAGE.metaDescription,
       body: dataPageBody(),
       schemas: dataPageSchemas(),
     }),
   );
-  written.push("/data");
+  written.push(`/${earningsRoute}`);
+
+  // Preserve the indexed legacy URL and move visitors to the descriptive URL.
+  const legacyDataDir = path.join(BUILD_DIR, "data");
+  fs.mkdirSync(legacyDataDir, { recursive: true });
+  const legacyTarget = `${SITE}/${earningsRoute}/`;
+  let legacyPage = buildPage(template, {
+    url: legacyTarget,
+    title: `Siden har flyttet | Heimby`,
+    description: DATA_PAGE.metaDescription,
+    body: `<main class="prerendered"><h1>Siden har flyttet</h1><p><a href="/${earningsRoute}/">Gå til ${esc(DATA_PAGE.h1)}</a></p></main>`,
+    schemas: [],
+  });
+  legacyPage = legacyPage.replace(
+    "</head>",
+    `<meta name="robots" content="noindex,follow"/><meta http-equiv="refresh" content="0;url=${legacyTarget}"/></head>`,
+  );
+  fs.writeFileSync(path.join(legacyDataDir, "index.html"), legacyPage);
+  written.push("/data (redirect)");
 
   // National rules explainer.
   const rulesDir = path.join(BUILD_DIR, "korttidsutleie-regler");
@@ -1007,7 +1026,7 @@ function main() {
       changefreq: "monthly",
       lastmod: CITY_DATA[slug].lastUpdated,
     })),
-    { loc: `${SITE}/data/`, priority: "0.9", changefreq: "monthly", lastmod: DATA_PAGE.lastUpdated },
+    { loc: `${SITE}/hvor-mye-kan-man-tjene-pa-airbnb/`, priority: "0.9", changefreq: "monthly", lastmod: DATA_PAGE.lastUpdated },
     { loc: `${SITE}/korttidsutleie-regler/`, priority: "0.9", changefreq: "monthly", lastmod: RULES_PAGE.lastUpdated },
     { loc: `${SITE}/nyheter/`, priority: "0.7", changefreq: "monthly" },
     ...MEDIA.articles.map((a) => ({
