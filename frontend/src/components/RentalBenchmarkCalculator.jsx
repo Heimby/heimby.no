@@ -46,7 +46,7 @@ const SummaryCard = ({ icon: Icon, label, value, note, dark = false }) => (
   </div>
 );
 
-const ScenarioCard = ({ eyebrow, title, ownerValue, grossValue, highlighted = false }) => (
+const ScenarioCard = ({ eyebrow, title, value, highlighted = false }) => (
   <div
     className={`rounded-2xl border p-5 md:p-6 ${
       highlighted
@@ -58,14 +58,10 @@ const ScenarioCard = ({ eyebrow, title, ownerValue, grossValue, highlighted = fa
       {eyebrow}
     </p>
     <h4 className="mt-2 text-lg font-bold">{title}</h4>
-    <p className="mt-5 text-3xl font-bold tracking-tight md:text-4xl">{money(ownerValue)}</p>
+    <p className="mt-5 text-3xl font-bold tracking-tight md:text-4xl">{money(value)}</p>
     <p className={`mt-1 text-sm ${highlighted ? "text-white/65" : "text-gray-500"}`}>
-      beregnet til eier per bolig
+      bruttoinntekt per bolig
     </p>
-    <div className={`mt-5 border-t pt-4 ${highlighted ? "border-white/15" : "border-gray-200"}`}>
-      <p className={`text-sm ${highlighted ? "text-white/65" : "text-gray-500"}`}>Brutto i samme utvalg</p>
-      <p className="mt-1 text-lg font-bold">{money(grossValue)}</p>
-    </div>
   </div>
 );
 
@@ -142,9 +138,9 @@ const RentalBenchmarkCalculator = () => {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <SummaryCard
             icon={Banknote}
-            label="Snitt til eier per bolig"
-            value={money(overall.ownerPerPropertyAvg)}
-            note={`For boliger med komplett kostnadsoppsett. Brutto for de samme boligene var i snitt ${money(overall.ownerSampleGrossPerPropertyAvg)}.`}
+            label="Brutto i snitt per bolig"
+            value={money(overall.grossPerPropertyAvg)}
+            note={`Avrundet gruppesnitt. Midtre 50 %: ${money(overall.grossPerPropertyP25)}–${money(overall.grossPerPropertyP75)}.`}
             dark
           />
           <SummaryCard
@@ -170,39 +166,35 @@ const RentalBenchmarkCalculator = () => {
         <div className="mt-12">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-gray-500">Tre historiske nivåer</p>
           <h3 className="mt-2 text-2xl font-bold text-gray-900 md:text-3xl">
-            Hva kan én bolig sitte igjen med?
+            Hva kan én bolig omsette for?
           </h3>
           <p className="mt-3 max-w-3xl leading-relaxed text-gray-600">
             Eksemplene viser nedre kvartil, median og øvre kvartil for måneden. De er
-            avrundede observasjoner fra de samme boligene med komplett kostnadsoppsett,
-            ikke et inntektsløfte.
+            avrundede bruttoobservasjoner per bolig, ikke et inntektsløfte eller et
+            publisert regnskapsoppgjør.
           </p>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             <ScenarioCard
               eyebrow="Nedre kvartil"
               title="Forsiktig eksempel"
-              ownerValue={overall.ownerPerPropertyP25}
-              grossValue={overall.ownerSampleGrossPerPropertyP25}
+              value={overall.grossPerPropertyP25}
             />
             <ScenarioCard
               eyebrow="Median"
               title="Typisk eksempel"
-              ownerValue={overall.ownerPerPropertyMedian}
-              grossValue={overall.ownerSampleGrossPerPropertyMedian}
+              value={overall.grossPerPropertyMedian}
               highlighted
             />
             <ScenarioCard
               eyebrow="Øvre kvartil"
               title="Sterkt eksempel"
-              ownerValue={overall.ownerPerPropertyP75}
-              grossValue={overall.ownerSampleGrossPerPropertyP75}
+              value={overall.grossPerPropertyP75}
             />
           </div>
           <div className="mt-4 rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm leading-relaxed text-gray-600">
-            Beregnet til eier er Guesty-utbetaling minus registrert Heimby-provisjon og
-            turnover-renhold. Eierens skatt, ekstra vedlikehold, skader og andre individuelle
-            kostnader kommer i tillegg. Gjennomsnittlig registrert renhold per utsjekk denne
-            måneden er <span className="font-semibold text-gray-900">{money(overall.cleaningPerCheckout)}</span>.
+            Tallene viser bare anonymiserte bruttoeksempler. Interne kostnader,
+            provisjoner, renholdspriser og eieroppgjør publiseres ikke. Kontakt Heimby
+            for en privat nettoberegning for din bolig.
           </div>
         </div>
 
@@ -234,15 +226,13 @@ const RentalBenchmarkCalculator = () => {
           </div>
 
           <div className="mt-6 overflow-x-auto rounded-2xl border border-gray-200 bg-white">
-            <table className="min-w-[940px] w-full text-left text-sm">
+            <table className="min-w-[760px] w-full text-left text-sm">
               <thead className="border-b border-gray-200 bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
                 <tr>
                   <th className="px-4 py-3 font-bold">Gruppe</th>
                   <th className="px-4 py-3 font-bold">Belegg</th>
                   <th className="px-4 py-3 font-bold">ADR</th>
                   <th className="px-4 py-3 font-bold">Brutto / bolig</th>
-                  <th className="px-4 py-3 font-bold">Til eier / bolig</th>
-                  <th className="px-4 py-3 font-bold">Renhold / utsjekk</th>
                   <th className="px-4 py-3 font-bold">Reviewscore</th>
                 </tr>
               </thead>
@@ -263,15 +253,6 @@ const RentalBenchmarkCalculator = () => {
                       </span>
                     </td>
                     <td className="px-4 py-4 text-gray-700">
-                      {money(row.ownerPerPropertyAvg)}
-                      {row.ownerPerPropertyAvg != null && (
-                        <span className="mt-1 block text-xs text-gray-400">
-                          Midtre 50 %: {money(row.ownerPerPropertyP25)}–{money(row.ownerPerPropertyP75)}
-                        </span>
-                      )}
-                    </td>
-                    <td className="px-4 py-4 text-gray-700">{money(row.cleaningPerCheckout)}</td>
-                    <td className="px-4 py-4 text-gray-700">
                       {row.averageRating10 == null
                         ? "For lite data"
                         : `${String(row.averageRating10).replace(".", ",")} / 10`}
@@ -289,7 +270,7 @@ const RentalBenchmarkCalculator = () => {
           <p className="mt-2">{benchmarks.method.availability}</p>
           <p className="mt-2">{benchmarks.privacy.groupRule} {benchmarks.privacy.rounding}</p>
           <p className="mt-3 text-xs text-gray-500">
-            Kilde: live Guesty-kalender, anonymiserte reservasjoner, økonomidata og
+            Kilde: live Guesty-kalender, anonymiserte reservasjons- og markedstall og
             Airbnb- og Booking.com-anmeldelser i Proptonomy. Oppdatert 27. august 2026.
           </p>
         </div>

@@ -730,8 +730,6 @@ ${benchmark ? `<h3>Eksempel: 2 soverom og 1 bad i Bergen, juli 2026</h3>
 <dt>Vektet ADR</dt><dd>${esc(nok(benchmark.adr))}</dd>
 <dt>Belegg av salgbare døgn</dt><dd>${esc(benchmark.occupancyPct)} %</dd>
 <dt>Bruttoinntekt, snitt per aktiv bolig</dt><dd>${esc(nok(benchmark.grossPerPropertyAvg))}</dd>
-<dt>Beregnet til eier, snitt for boliger med komplett kostnadsoppsett</dt><dd>${esc(nok(benchmark.ownerPerPropertyAvg))}</dd>
-<dt>Renhold per utsjekk</dt><dd>${esc(nok(benchmark.cleaningPerCheckout))}</dd>
 </dl>
 <p>Eksemplet er et avrundet gruppesnitt per bolig. Det er historisk og ikke en garanti for fremtidig inntekt.</p>` : ""}
 
@@ -770,7 +768,7 @@ function dataPageSchemas() {
       "@type": "Dataset",
       name: RENTAL_BENCHMARKS.title,
       description:
-        "Anonymiserte, avrundede nøkkeltall for korttidsutleie i Heimby-porteføljen, med ADR, belegg, bruttoinntekt, renhold og estimert eierinntekt.",
+        "Anonymiserte, avrundede markedsmål for korttidsutleie, med ADR, belegg og bruttoeksempler per bolig.",
       url: `${SITE}/hvor-mye-kan-man-tjene-pa-airbnb/`,
       temporalCoverage: `${RENTAL_BENCHMARKS.period.from}/${RENTAL_BENCHMARKS.period.to}`,
       spatialCoverage: [...new Set(RENTAL_BENCHMARKS.groups.city.map((row) => row.label))].map(
@@ -784,8 +782,6 @@ function dataPageSchemas() {
         "Average daily rate (ADR)",
         "Occupancy rate",
         "Gross rental income",
-        "Cleaning cost per checkout",
-        "Estimated owner income",
       ],
     },
     {
