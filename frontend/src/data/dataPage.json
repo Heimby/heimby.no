@@ -1,6 +1,6 @@
 {
   "title": "Hvor mye kan man tjene på Airbnb-utleie? | Heimby",
-  "metaDescription": "Se faktiske, anonymiserte Heimby-tall for ADR, belegg, bruttoinntekt, renhold og estimert eierinntekt – filtrert på by og boligtype.",
+  "metaDescription": "Se faktiske Heimby-tall for juni–august: ADR, belegg av salgbare døgn, brutto, eierinntekt og renhold – gruppert på by, soverom og reviews.",
   "lastUpdated": "2026-08-27",
   "h1": "Hvor mye kan man tjene på Airbnb-utleie?",
   "answerBox": {
@@ -72,7 +72,11 @@
     },
     {
       "question": "Hva viser Heimbys faktiske Airbnb-tall?",
-      "answer": "For boliger med 2 soverom og 1 bad i Bergen i juli 2026 var median ADR 1 500 kroner, medianbelegget 71 prosent og median bruttoinntekt 48 500 kroner. Estimert inntekt til eier var 20 500 kroner før skatt og ekstra vedlikehold. Eksemplet bygger på 34 anonymiserte boliger og 194 opphold; tallene er historiske medianer, ikke en garanti."
+      "answer": "For 30 aktive boliger med 2 soverom og 1 bad i Bergen i juli 2026 var vektet ADR 1 650 kroner og belegget 74,8 prosent av salgbare døgn. Gruppen omsatte brutto for omtrent 1 482 000 kroner, tilsvarende 49 500 kroner i snitt per aktiv bolig. For de 21 boligene med komplett kostnadsoppsett var beregnet inntekt til eier i snitt 45 500 kroner før skatt og ekstra vedlikehold."
+    },
+    {
+      "question": "Hvordan beregner Heimby belegg når boligen bare var åpen deler av måneden?",
+      "answer": "Heimby deler bookede Airbnb- og Booking.com-døgn på døgn boligen faktisk kunne selges. Ledige og bookede døgn teller som salgbare. Eierblokker, manuelle reservasjoner, stengte kalenderdøgn og perioden før annonsen ble aktiv trekkes fra. Boligen må også være aktiv og publisert i Guesty, ha en live kanaltilkobling og minst sju salgbare døgn i måneden."
     },
     {
       "question": "Hva betyr ADR i korttidsutleie?",

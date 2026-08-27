@@ -1,33 +1,15 @@
 import {
-  ArrowRight,
   Banknote,
-  Bath,
   BedDouble,
+  Building2,
+  CalendarCheck,
   CalendarDays,
   Gauge,
   MapPin,
-  Sparkles,
+  Star,
 } from "lucide-react";
 import { useMemo, useState } from "react";
 import benchmarks from "../data/rentalBenchmarks.json";
-
-const bedroomLabels = {
-  all: "Alle størrelser",
-  studio: "Studio",
-  1: "1 soverom",
-  2: "2 soverom",
-  3: "3 soverom",
-  "4+": "4+ soverom",
-};
-
-const bathroomLabels = {
-  all: "Alle bad",
-  1: "1 bad",
-  "2+": "2+ bad",
-};
-
-const bedroomOrder = ["all", "studio", "1", "2", "3", "4+"];
-const bathroomOrder = ["all", "1", "2+"];
 
 const nok = new Intl.NumberFormat("nb-NO", {
   style: "currency",
@@ -35,250 +17,241 @@ const nok = new Intl.NumberFormat("nb-NO", {
   maximumFractionDigits: 0,
 });
 
-const money = (value) => nok.format(value);
+const integer = new Intl.NumberFormat("nb-NO", { maximumFractionDigits: 0 });
+const money = (value) => (value == null ? "Ikke publisert" : nok.format(value));
 
-const latestMonth = (rows) => Math.max(...rows.map((row) => row.month));
+const dimensions = [
+  { key: "city", label: "By og marked", icon: MapPin },
+  { key: "bedrooms", label: "Antall soverom", icon: BedDouble },
+  { key: "reviews", label: "Anmeldelser", icon: Star },
+];
 
-const Range = ({ metric, suffix = "" }) => (
-  <p className="mt-2 text-sm leading-relaxed text-gray-500">
-    Midtre 50 %: {suffix ? `${metric.low}${suffix}–${metric.high}${suffix}` : `${money(metric.low)}–${money(metric.high)}`}
-  </p>
-);
-
-const MetricCard = ({ icon: Icon, label, value, metric, suffix, note, featured = false }) => (
+const SummaryCard = ({ icon: Icon, label, value, note, dark = false }) => (
   <div
     className={`rounded-2xl border p-5 md:p-6 ${
-      featured
+      dark
         ? "border-gray-900 bg-gray-900 text-white"
         : "border-gray-200 bg-white text-gray-900"
     }`}
   >
     <div className="mb-5 flex items-center gap-2">
-      <Icon className={`h-5 w-5 ${featured ? "text-white/70" : "text-gray-500"}`} />
-      <span className={`text-sm font-semibold ${featured ? "text-white/70" : "text-gray-600"}`}>
+      <Icon className={`h-5 w-5 ${dark ? "text-white/65" : "text-gray-500"}`} aria-hidden="true" />
+      <span className={`text-sm font-semibold ${dark ? "text-white/65" : "text-gray-600"}`}>
         {label}
       </span>
     </div>
     <p className="text-3xl font-bold tracking-tight md:text-4xl">{value}</p>
-    <div className={featured ? "[&>p]:text-white/60" : ""}>
-      <Range metric={metric} suffix={suffix} />
-    </div>
-    {note && (
-      <p className={`mt-3 text-xs leading-relaxed ${featured ? "text-white/55" : "text-gray-500"}`}>
-        {note}
-      </p>
-    )}
+    <p className={`mt-3 text-sm leading-relaxed ${dark ? "text-white/60" : "text-gray-500"}`}>
+      {note}
+    </p>
   </div>
 );
 
 const RentalBenchmarkCalculator = () => {
-  const [city, setCity] = useState("Bergen");
-  const [bedrooms, setBedrooms] = useState("2");
-  const [bathrooms, setBathrooms] = useState("1");
   const [month, setMonth] = useState(7);
+  const [dimension, setDimension] = useState("city");
 
-  const cities = useMemo(
-    () => [...new Set(benchmarks.cohorts.map((row) => row.city))],
-    [],
+  const overall = benchmarks.groups.overall.find((row) => row.month === month);
+  const rows = useMemo(
+    () => benchmarks.groups[dimension].filter((row) => row.month === month),
+    [dimension, month],
   );
 
-  const cityRows = benchmarks.cohorts.filter((row) => row.city === city);
-  const bedroomOptions = bedroomOrder.filter((value) =>
-    cityRows.some((row) => row.bedrooms === value),
-  );
-  const bedroomRows = cityRows.filter((row) => row.bedrooms === bedrooms);
-  const bathroomOptions = bathroomOrder.filter((value) =>
-    bedroomRows.some((row) => row.bathrooms === value),
-  );
-  const selectionRows = bedroomRows.filter((row) => row.bathrooms === bathrooms);
-  const monthOptions = [...new Map(selectionRows.map((row) => [row.month, row.monthLabel])).entries()]
-    .sort(([first], [second]) => first - second);
-  const cohort =
-    selectionRows.find((row) => row.month === month) ||
-    selectionRows[selectionRows.length - 1];
+  if (!overall) return null;
 
-  const changeCity = (event) => {
-    const nextCity = event.target.value;
-    const nextRows = benchmarks.cohorts.filter(
-      (row) => row.city === nextCity && row.bedrooms === "all" && row.bathrooms === "all",
-    );
-    setCity(nextCity);
-    setBedrooms("all");
-    setBathrooms("all");
-    setMonth(latestMonth(nextRows));
-  };
-
-  const changeBedrooms = (event) => {
-    const nextBedrooms = event.target.value;
-    const nextRows = benchmarks.cohorts.filter(
-      (row) =>
-        row.city === city && row.bedrooms === nextBedrooms && row.bathrooms === "all",
-    );
-    setBedrooms(nextBedrooms);
-    setBathrooms("all");
-    setMonth(latestMonth(nextRows));
-  };
-
-  const changeBathrooms = (event) => {
-    const nextBathrooms = event.target.value;
-    const nextRows = benchmarks.cohorts.filter(
-      (row) =>
-        row.city === city &&
-        row.bedrooms === bedrooms &&
-        row.bathrooms === nextBathrooms,
-    );
-    setBathrooms(nextBathrooms);
-    setMonth(latestMonth(nextRows));
-  };
-
-  if (!cohort) return null;
+  const selectedMonth = benchmarks.months.find((item) => item.value === month);
 
   return (
-    <section id="inntektskalkulator" className="px-6 py-16 md:py-20" style={{ backgroundColor: "#F9F8F4" }}>
-      <div className="mx-auto max-w-5xl">
-        <div className="mb-9 max-w-3xl">
+    <section id="inntektskalkulator" className="bg-[#F9F8F4] px-6 py-16 md:py-20">
+      <div className="mx-auto max-w-6xl">
+        <div className="max-w-4xl">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-gray-700">
-            <Sparkles className="h-3.5 w-3.5" />
+            <CalendarCheck className="h-3.5 w-3.5" aria-hidden="true" />
             {benchmarks.title}
           </div>
-          <h2 className="mb-4 text-3xl font-bold leading-tight text-gray-900 md:text-4xl">
-            Se hva lignende boliger faktisk leverte
+          <h2 className="text-3xl font-bold leading-tight text-gray-900 md:text-5xl">
+            Faktisk sommeromsetning – bare for døgn boligen kunne selges
           </h2>
-          <p className="text-lg leading-relaxed text-gray-700">
-            Velg marked og boligtype. Vi viser medianen fra {benchmarks.coverage.stays.toLocaleString("nb-NO")} opphold i {benchmarks.coverage.properties} anonymiserte boliger – ikke et teoretisk toppscenario.
+          <p className="mt-5 text-lg leading-relaxed text-gray-700">
+            Vi har kontrollert annonsestatus og kalenderen dag for dag. Boliger som
+            startet sent eller bare var åpne i en ferieperiode får derfor ikke resten
+            av måneden registrert som tomgang.
           </p>
         </div>
 
-        <div className="mb-6 grid gap-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:grid-cols-2 lg:grid-cols-4 md:p-6">
-          <label className="block">
-            <span className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700">
-              <MapPin className="h-4 w-4" /> Marked
-            </span>
-            <select
-              value={city}
-              onChange={changeCity}
-              className="w-full rounded-lg border border-gray-300 bg-white px-3 py-3 text-base text-gray-900 outline-none transition focus:border-gray-900 focus:ring-2 focus:ring-gray-900/10"
+        <div className="my-8 flex flex-wrap gap-2" aria-label="Velg måned">
+          {benchmarks.months.map((item) => (
+            <button
+              key={item.value}
+              type="button"
+              onClick={() => setMonth(item.value)}
+              aria-pressed={month === item.value}
+              className={`min-h-11 rounded-full px-5 py-2.5 text-sm font-bold transition-colors ${
+                month === item.value
+                  ? "bg-gray-900 text-white"
+                  : "border border-gray-300 bg-white text-gray-700 hover:border-gray-900"
+              }`}
             >
-              {cities.map((value) => (
-                <option key={value} value={value}>{value}</option>
-              ))}
-            </select>
-          </label>
-
-          <label className="block">
-            <span className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700">
-              <BedDouble className="h-4 w-4" /> Størrelse
-            </span>
-            <select
-              value={bedrooms}
-              onChange={changeBedrooms}
-              className="w-full rounded-lg border border-gray-300 bg-white px-3 py-3 text-base text-gray-900 outline-none transition focus:border-gray-900 focus:ring-2 focus:ring-gray-900/10"
-            >
-              {bedroomOptions.map((value) => (
-                <option key={value} value={value}>{bedroomLabels[value]}</option>
-              ))}
-            </select>
-          </label>
-
-          <label className="block">
-            <span className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700">
-              <Bath className="h-4 w-4" /> Bad
-            </span>
-            <select
-              value={bathrooms}
-              onChange={changeBathrooms}
-              className="w-full rounded-lg border border-gray-300 bg-white px-3 py-3 text-base text-gray-900 outline-none transition focus:border-gray-900 focus:ring-2 focus:ring-gray-900/10"
-            >
-              {bathroomOptions.map((value) => (
-                <option key={value} value={value}>{bathroomLabels[value]}</option>
-              ))}
-            </select>
-          </label>
-
-          <label className="block">
-            <span className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700">
-              <CalendarDays className="h-4 w-4" /> Måned
-            </span>
-            <select
-              value={cohort.month}
-              onChange={(event) => setMonth(Number(event.target.value))}
-              className="w-full rounded-lg border border-gray-300 bg-white px-3 py-3 text-base text-gray-900 outline-none transition focus:border-gray-900 focus:ring-2 focus:ring-gray-900/10"
-            >
-              {monthOptions.map(([value, label]) => (
-                <option key={value} value={value}>{label}</option>
-              ))}
-            </select>
-          </label>
+              {item.label}
+            </button>
+          ))}
         </div>
+
+        {month === 8 && (
+          <p className="mb-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-relaxed text-amber-950">
+            August viser bekreftede bookinger og åpne kalenderdøgn per 27. august,
+            inkludert de siste dagene i måneden. Tallet er derfor en oppdatert bookingstatus,
+            ikke et endelig månedsoppgjør.
+          </p>
+        )}
 
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-gray-200 bg-white px-5 py-4">
           <p className="font-semibold text-gray-900">
-            {cohort.properties} boliger · {cohort.stays} opphold
+            {overall.properties} aktive boliger · {integer.format(overall.saleableNights)} salgbare døgn · {integer.format(overall.stays)} opphold
           </p>
-          <p className="text-sm text-gray-500">Median · midtre 50 % vises som intervall</p>
+          <p className="text-sm text-gray-500">{selectedMonth.label} 2026</p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <MetricCard
+        <p className="mb-5 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm leading-relaxed text-emerald-950">
+          Å dele på alle kalenderdager ville gitt {String(overall.calendarMonthOccupancyPct).replace(".", ",")} % belegg.
+          Når bare reelt salgbare døgn brukes, er riktig porteføljebelegg {String(overall.occupancyPct).replace(".", ",")} %.
+        </p>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <SummaryCard
+            icon={Banknote}
+            label="Brutto totalt"
+            value={money(overall.grossTotal)}
+            note="Sum losji, gjestebetalt renhold og registrerte gjesteskatter."
+            dark
+          />
+          <SummaryCard
+            icon={Building2}
+            label="Brutto per aktiv bolig"
+            value={money(overall.grossPerPropertyAvg)}
+            note={`Median ${money(overall.grossPerPropertyMedian)}. Midtre 50 %: ${money(overall.grossPerPropertyP25)}–${money(overall.grossPerPropertyP75)}.`}
+          />
+          <SummaryCard
             icon={Gauge}
-            label="ADR · døgnpris"
-            value={money(cohort.adr.median)}
-            metric={cohort.adr}
-            note="Losjiinntekt per solgte natt, uten renholdsgebyr og skatter."
+            label="Belegg av salgbare døgn"
+            value={`${String(overall.occupancyPct).replace(".", ",")} %`}
+            note={`${integer.format(overall.bookedNights)} bookede av ${integer.format(overall.saleableNights)} åpne eller bookede døgn.`}
           />
-          <MetricCard
+          <SummaryCard
             icon={CalendarDays}
-            label="Belegg"
-            value={`${cohort.occupancy.median} %`}
-            metric={cohort.occupancy}
-            suffix=" %"
-            note="Eierblokkerte dager er ikke trukket fra."
+            label="ADR"
+            value={money(overall.adr)}
+            note="Vektet losjiinntekt per Airbnb- og Booking.com-natt."
           />
-          <MetricCard
-            icon={Banknote}
-            label="Bruttoinntekt"
-            value={money(cohort.grossIncome.median)}
-            metric={cohort.grossIncome}
-            note="Losji, gjestebetalt renhold og gjesteskatter før kostnader."
-          />
-          <MetricCard
-            icon={Banknote}
-            label="Estimert til eier"
-            value={money(cohort.ownerIncome.median)}
-            metric={cohort.ownerIncome}
-            featured
-            note="Etter standard drift og forvaltning, før skatt og ekstra vedlikehold."
-          />
-          <MetricCard
-            icon={Sparkles}
-            label="Renhold per utsjekk"
-            value={money(cohort.cleaningPerCheckout.median)}
-            metric={cohort.cleaningPerCheckout}
-            note="Standard turnover-kostnad; søndag og helligdag kan koste mer."
-          />
-          <div className="flex flex-col justify-between rounded-2xl border border-dashed border-gray-400 bg-white/60 p-5 md:p-6">
-            <div>
-              <p className="mb-3 text-sm font-semibold text-gray-600">Vil du ha ditt eget regnestykke?</p>
-              <p className="text-xl font-bold leading-snug text-gray-900">
-                Vi bruker adresse, standard og tilgjengelige datoer for et mer presist estimat.
-              </p>
+        </div>
+
+        <div className="mt-4 grid gap-4 md:grid-cols-2">
+          <div className="rounded-2xl border border-gray-200 bg-white p-5 md:p-6">
+            <p className="text-sm font-semibold text-gray-600">Beregnet til huseier</p>
+            <div className="mt-2 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+              <p className="text-3xl font-bold text-gray-900">{money(overall.ownerPerPropertyAvg)}</p>
+              <p className="text-sm text-gray-500">i snitt per bolig</p>
             </div>
-            <a
-              href="#lead-gen"
-              className="mt-6 inline-flex items-center gap-2 font-semibold text-gray-900 underline decoration-gray-300 underline-offset-4 hover:decoration-gray-900"
-            >
-              Få gratis estimat <ArrowRight className="h-4 w-4" />
-            </a>
+            <p className="mt-3 text-sm leading-relaxed text-gray-500">
+              Sum {money(overall.ownerTotal)} for {overall.ownerSampleProperties} boliger med komplett
+              kostnadsoppsett. Guesty-utbetaling minus registrert Heimby-provisjon og turnover-renhold,
+              før eierens skatt og ekstra vedlikehold.
+            </p>
+          </div>
+          <div className="rounded-2xl border border-gray-200 bg-white p-5 md:p-6">
+            <p className="text-sm font-semibold text-gray-600">Renhold per utsjekk</p>
+            <p className="mt-2 text-3xl font-bold text-gray-900">{money(overall.cleaningPerCheckout)}</p>
+            <p className="mt-3 text-sm leading-relaxed text-gray-500">
+              Vektet turnover-kostnad fra boliger med registrert renholdsoppsett. Søndag,
+              helligdag, ekstraarbeid og skader kan komme i tillegg.
+            </p>
           </div>
         </div>
 
-        <div className="mt-7 rounded-xl border border-gray-200 bg-white/70 p-5 text-sm leading-relaxed text-gray-600">
-          <p className="mb-2 font-semibold text-gray-900">Slik leser du tallene</p>
-          <p>
-            Dataperiode: {benchmarks.period.label}. Små grupper skjules; hver visning bygger på minst {benchmarks.privacy.minimumProperties} boliger og {benchmarks.privacy.minimumStays} opphold. Historiske tall er ikke en garanti for fremtidig inntekt.
+        <div className="mt-14">
+          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-gray-500">Sammenlign gruppene</p>
+              <h3 className="mt-2 text-2xl font-bold text-gray-900 md:text-3xl">
+                Statistikk per by, størrelse og reviewhistorikk
+              </h3>
+            </div>
+            <div className="flex flex-wrap gap-2" aria-label="Velg gruppering">
+              {dimensions.map(({ key, label, icon: Icon }) => (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => setDimension(key)}
+                  aria-pressed={dimension === key}
+                  className={`inline-flex min-h-11 items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors ${
+                    dimension === key
+                      ? "bg-gray-900 text-white"
+                      : "border border-gray-300 bg-white text-gray-700 hover:border-gray-900"
+                  }`}
+                >
+                  <Icon className="h-4 w-4" aria-hidden="true" /> {label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 overflow-x-auto rounded-2xl border border-gray-200 bg-white">
+            <table className="min-w-[1080px] w-full text-left text-sm">
+              <thead className="border-b border-gray-200 bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
+                <tr>
+                  <th className="px-4 py-3 font-bold">Gruppe</th>
+                  <th className="px-4 py-3 font-bold">Boliger</th>
+                  <th className="px-4 py-3 font-bold">Salgbare døgn</th>
+                  <th className="px-4 py-3 font-bold">Belegg</th>
+                  <th className="px-4 py-3 font-bold">ADR</th>
+                  <th className="px-4 py-3 font-bold">Brutto sum</th>
+                  <th className="px-4 py-3 font-bold">Snitt / bolig</th>
+                  <th className="px-4 py-3 font-bold">Til eier / bolig</th>
+                  <th className="px-4 py-3 font-bold">Reviewscore</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {rows.map((row) => (
+                  <tr key={`${row.key}-${row.month}`}>
+                    <th scope="row" className="whitespace-nowrap px-4 py-4 font-bold text-gray-900">
+                      {row.label}
+                    </th>
+                    <td className="px-4 py-4 text-gray-700">{row.properties}</td>
+                    <td className="px-4 py-4 text-gray-700">{integer.format(row.saleableNights)}</td>
+                    <td className="px-4 py-4 font-semibold text-gray-900">
+                      {String(row.occupancyPct).replace(".", ",")} %
+                    </td>
+                    <td className="px-4 py-4 text-gray-700">{money(row.adr)}</td>
+                    <td className="px-4 py-4 font-semibold text-gray-900">{money(row.grossTotal)}</td>
+                    <td className="px-4 py-4 text-gray-700">{money(row.grossPerPropertyAvg)}</td>
+                    <td className="px-4 py-4 text-gray-700">
+                      {money(row.ownerPerPropertyAvg)}
+                      {row.ownerPerPropertyAvg != null && (
+                        <span className="mt-1 block text-xs text-gray-400">{row.ownerSampleProperties} boliger</span>
+                      )}
+                    </td>
+                    <td className="px-4 py-4 text-gray-700">
+                      {row.averageRating10 == null
+                        ? "For lite data"
+                        : `${String(row.averageRating10).replace(".", ",")} / 10`}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="mt-8 rounded-xl border border-gray-200 bg-white/70 p-5 text-sm leading-relaxed text-gray-600">
+          <p className="font-semibold text-gray-900">Hva som er med – og hva som er trukket fra</p>
+          <p className="mt-2">{benchmarks.method.basis}</p>
+          <p className="mt-2">{benchmarks.method.saleableNights}</p>
+          <p className="mt-2">
+            Små grupper skjules. Hver rad har minst {benchmarks.privacy.minimumProperties} boliger og {benchmarks.privacy.minimumStays} opphold.
+            {" "}{benchmarks.privacy.rounding}
           </p>
-          <p className="mt-2 text-xs text-gray-500">
-            Kilde: anonymiserte reservasjons- og økonomidata fra Proptonomy, kvalitetssikret mot Heimbys oppgjørsdata for 2026. Oppdatert 27. august 2026.
+          <p className="mt-3 text-xs text-gray-500">
+            Kilde: live Guesty-kalender, anonymiserte reservasjoner, økonomidata og {integer.format(benchmarks.coverage.reviews)} Airbnb- og Booking.com-anmeldelser i Proptonomy. Oppdatert 27. august 2026.
           </p>
         </div>
       </div>

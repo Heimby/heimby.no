@@ -1,809 +1,1162 @@
 {
-  "title": "Heimby markedstall 2026",
+  "title": "Heimby sommerstatistikk 2026",
   "updated": "2026-08-27",
   "period": {
-    "from": "2026-01-01",
-    "to": "2026-07-31",
-    "label": "januar–juli 2026"
+    "from": "2026-06-01",
+    "to": "2026-08-31",
+    "label": "juni–august 2026"
   },
   "privacy": {
     "minimumProperties": 5,
     "minimumStays": 20,
-    "rounding": "Alle kronebeløp og prosenter er avrundet."
+    "rounding": "Summer er avrundet til nærmeste 1 000 kroner. Boliggjennomsnitt og medianer er avrundet til nærmeste 500 kroner."
   },
   "coverage": {
-    "properties": 173,
-    "stays": 2335,
-    "markets": 4
+    "properties": 163,
+    "propertyMonths": 407,
+    "stays": 2436,
+    "propertyMonthStayReferences": 2528,
+    "reviews": 2991,
+    "saleableNights": 9719,
+    "bookedNights": 6133,
+    "markets": 4,
+    "activeListedWithLiveOta": 171
   },
   "method": {
-    "basis": "Anonymiserte reservasjoner fra Heimby-porteføljen. Bare boligmåneder med minst ett inntektsgivende opphold er med.",
-    "adr": "Losjiinntekt delt på solgte netter. Renholdsgebyr og skatter er ikke med i ADR.",
-    "occupancy": "Bookede netter delt på kalenderdager i måneden. Eierblokkerte dager er ikke trukket fra.",
-    "grossIncome": "Losji, gjestebetalt renhold og gjesteskatter før kostnader.",
-    "ownerIncome": "Estimert etter plattformgebyr, 15 % forvaltning, renhold, sengetøy, forbruksvarer, Booking.com-betalingsgebyr og MVA på driftskostnader; før skatt og ekstra vedlikehold."
+    "basis": "Bare boliger som var aktive og publiserte i Guesty, hadde en live Airbnb- eller Booking.com-kobling og minst sju salgbare kalenderdøgn i måneden er med.",
+    "saleableNights": "Ledige døgn pluss Airbnb- og Booking.com-bookede døgn. Eierblokker, manuelle reservasjoner, stengte døgn og tid før annonsen åpnet er trukket fra.",
+    "adr": "Losjiinntekt delt på Airbnb- og Booking.com-netter med inntektsdata.",
+    "occupancy": "Airbnb- og Booking.com-bookede døgn delt på salgbare døgn, vektet på tvers av boligene.",
+    "grossIncome": "Losji, gjestebetalt renhold og registrerte gjesteskatter periodisert over oppholdets netter.",
+    "ownerIncome": "Beregnet Guesty-utbetaling minus Heimbys registrerte provisjon og registrert turnover-renhold. Vises bare når minst fem boliger har komplett kostnadsoppsett; før eierens skatt og ekstra vedlikehold.",
+    "reviews": "Reviewgruppe og rating er basert på publiserte anmeldelser som forelå ved starten av måneden.",
+    "august": "August omfatter bekreftede bookinger og åpne kalenderdøgn per 27. august 2026, også de siste dagene av måneden.",
+    "naiveOccupancyPct": 49.2,
+    "correctedOccupancyPct": 63.1
   },
+  "months": [
+    {
+      "value": 6,
+      "label": "Juni"
+    },
+    {
+      "value": 7,
+      "label": "Juli"
+    },
+    {
+      "value": 8,
+      "label": "August"
+    }
+  ],
+  "groups": {
+    "overall": [
+      {
+        "key": "all",
+        "label": "Alle aktive boliger",
+        "month": 6,
+        "monthLabel": "Juni",
+        "properties": 143,
+        "saleableNights": 3301,
+        "bookedNights": 1354,
+        "occupancyPct": 41.0,
+        "calendarMonthOccupancyPct": 31.6,
+        "medianSaleableNights": 25,
+        "stays": 478,
+        "checkouts": 437,
+        "adr": 1800,
+        "adrMedianProperty": 1600,
+        "grossTotal": 3292000,
+        "grossPerPropertyAvg": 23000,
+        "grossPerPropertyMedian": 19500,
+        "grossPerPropertyP25": 0,
+        "grossPerPropertyP75": 38500,
+        "ownerSampleProperties": 73,
+        "ownerTotal": 2284000,
+        "ownerPerPropertyAvg": 31500,
+        "ownerPerPropertyMedian": 29000,
+        "cleaningPerCheckout": 600,
+        "reviewsAtMonthStart": 1131,
+        "averageRating10": 7.95
+      },
+      {
+        "key": "all",
+        "label": "Alle aktive boliger",
+        "month": 7,
+        "monthLabel": "Juli",
+        "properties": 153,
+        "saleableNights": 3892,
+        "bookedNights": 2768,
+        "occupancyPct": 71.1,
+        "calendarMonthOccupancyPct": 58.4,
+        "medianSaleableNights": 27,
+        "stays": 1130,
+        "checkouts": 1038,
+        "adr": 1850,
+        "adrMedianProperty": 1600,
+        "grossTotal": 7430000,
+        "grossPerPropertyAvg": 48500,
+        "grossPerPropertyMedian": 44000,
+        "grossPerPropertyP25": 26000,
+        "grossPerPropertyP75": 65000,
+        "ownerSampleProperties": 78,
+        "ownerTotal": 3991000,
+        "ownerPerPropertyAvg": 51000,
+        "ownerPerPropertyMedian": 43500,
+        "cleaningPerCheckout": 600,
+        "reviewsAtMonthStart": 1468,
+        "averageRating10": 8.15
+      },
+      {
+        "key": "all",
+        "label": "Alle aktive boliger",
+        "month": 8,
+        "monthLabel": "August",
+        "properties": 111,
+        "saleableNights": 2526,
+        "bookedNights": 2011,
+        "occupancyPct": 79.6,
+        "calendarMonthOccupancyPct": 58.4,
+        "medianSaleableNights": 26,
+        "stays": 920,
+        "checkouts": 930,
+        "adr": 2200,
+        "adrMedianProperty": 2050,
+        "grossTotal": 6181000,
+        "grossPerPropertyAvg": 55500,
+        "grossPerPropertyMedian": 55500,
+        "grossPerPropertyP25": 31000,
+        "grossPerPropertyP75": 76500,
+        "ownerSampleProperties": 57,
+        "ownerTotal": 3024000,
+        "ownerPerPropertyAvg": 53000,
+        "ownerPerPropertyMedian": 50000,
+        "cleaningPerCheckout": 550,
+        "reviewsAtMonthStart": 1320,
+        "averageRating10": 7.95
+      }
+    ],
+    "city": [
+      {
+        "key": "Bergen",
+        "label": "Bergen",
+        "month": 6,
+        "monthLabel": "Juni",
+        "properties": 85,
+        "saleableNights": 1743,
+        "bookedNights": 966,
+        "occupancyPct": 55.4,
+        "calendarMonthOccupancyPct": 37.9,
+        "medianSaleableNights": 21,
+        "stays": 296,
+        "checkouts": 267,
+        "adr": 1750,
+        "adrMedianProperty": 1650,
+        "grossTotal": 2334000,
+        "grossPerPropertyAvg": 27500,
+        "grossPerPropertyMedian": 27000,
+        "grossPerPropertyP25": 11500,
+        "grossPerPropertyP75": 42500,
+        "ownerSampleProperties": 58,
+        "ownerTotal": 1658000,
+        "ownerPerPropertyAvg": 28500,
+        "ownerPerPropertyMedian": 25500,
+        "cleaningPerCheckout": 800,
+        "reviewsAtMonthStart": 1090,
+        "averageRating10": 7.79
+      },
+      {
+        "key": "Hardanger",
+        "label": "Hardanger",
+        "month": 6,
+        "monthLabel": "Juni",
+        "properties": 27,
+        "saleableNights": 784,
+        "bookedNights": 209,
+        "occupancyPct": 26.7,
+        "calendarMonthOccupancyPct": 25.8,
+        "medianSaleableNights": 30,
+        "stays": 112,
+        "checkouts": 106,
+        "adr": 1900,
+        "adrMedianProperty": 1400,
+        "grossTotal": 547000,
+        "grossPerPropertyAvg": 20500,
+        "grossPerPropertyMedian": 3500,
+        "grossPerPropertyP25": 0,
+        "grossPerPropertyP75": 43500,
+        "ownerSampleProperties": 9,
+        "ownerTotal": 473000,
+        "ownerPerPropertyAvg": 52500,
+        "ownerPerPropertyMedian": 59000,
+        "cleaningPerCheckout": 0,
+        "reviewsAtMonthStart": 32,
+        "averageRating10": 8.33
+      },
+      {
+        "key": "Oslo",
+        "label": "Oslo",
+        "month": 6,
+        "monthLabel": "Juni",
+        "properties": 12,
+        "saleableNights": 246,
+        "bookedNights": 106,
+        "occupancyPct": 43.1,
+        "calendarMonthOccupancyPct": 29.4,
+        "medianSaleableNights": 22.0,
+        "stays": 25,
+        "checkouts": 24,
+        "adr": 1700,
+        "adrMedianProperty": 1800,
+        "grossTotal": 241000,
+        "grossPerPropertyAvg": 20000,
+        "grossPerPropertyMedian": 14000,
+        "grossPerPropertyP25": 0,
+        "grossPerPropertyP75": 27500,
+        "ownerSampleProperties": 5,
+        "ownerTotal": 136000,
+        "ownerPerPropertyAvg": 27000,
+        "ownerPerPropertyMedian": 34000,
+        "cleaningPerCheckout": 800,
+        "reviewsAtMonthStart": 9,
+        "averageRating10": 9.19
+      },
+      {
+        "key": "Bergen",
+        "label": "Bergen",
+        "month": 7,
+        "monthLabel": "Juli",
+        "properties": 92,
+        "saleableNights": 2327,
+        "bookedNights": 1809,
+        "occupancyPct": 77.7,
+        "calendarMonthOccupancyPct": 63.4,
+        "medianSaleableNights": 27.0,
+        "stays": 583,
+        "checkouts": 522,
+        "adr": 1850,
+        "adrMedianProperty": 1600,
+        "grossTotal": 4837000,
+        "grossPerPropertyAvg": 52500,
+        "grossPerPropertyMedian": 50500,
+        "grossPerPropertyP25": 30500,
+        "grossPerPropertyP75": 65000,
+        "ownerSampleProperties": 63,
+        "ownerTotal": 2952000,
+        "ownerPerPropertyAvg": 47000,
+        "ownerPerPropertyMedian": 43500,
+        "cleaningPerCheckout": 800,
+        "reviewsAtMonthStart": 1362,
+        "averageRating10": 8.11
+      },
+      {
+        "key": "Hardanger",
+        "label": "Hardanger",
+        "month": 7,
+        "monthLabel": "Juli",
+        "properties": 26,
+        "saleableNights": 752,
+        "bookedNights": 465,
+        "occupancyPct": 61.8,
+        "calendarMonthOccupancyPct": 57.7,
+        "medianSaleableNights": 31.0,
+        "stays": 301,
+        "checkouts": 292,
+        "adr": 1850,
+        "adrMedianProperty": 1150,
+        "grossTotal": 1228000,
+        "grossPerPropertyAvg": 47000,
+        "grossPerPropertyMedian": 34500,
+        "grossPerPropertyP25": 15500,
+        "grossPerPropertyP75": 86000,
+        "ownerSampleProperties": 8,
+        "ownerTotal": 831000,
+        "ownerPerPropertyAvg": 104000,
+        "ownerPerPropertyMedian": 104000,
+        "cleaningPerCheckout": 0,
+        "reviewsAtMonthStart": 55,
+        "averageRating10": 8.43
+      },
+      {
+        "key": "Oslo",
+        "label": "Oslo",
+        "month": 7,
+        "monthLabel": "Juli",
+        "properties": 16,
+        "saleableNights": 379,
+        "bookedNights": 260,
+        "occupancyPct": 68.6,
+        "calendarMonthOccupancyPct": 52.4,
+        "medianSaleableNights": 25.0,
+        "stays": 83,
+        "checkouts": 71,
+        "adr": 2050,
+        "adrMedianProperty": 1850,
+        "grossTotal": 758000,
+        "grossPerPropertyAvg": 47500,
+        "grossPerPropertyMedian": 53500,
+        "grossPerPropertyP25": 32500,
+        "grossPerPropertyP75": 68000,
+        "ownerSampleProperties": 6,
+        "ownerTotal": 180000,
+        "ownerPerPropertyAvg": 30000,
+        "ownerPerPropertyMedian": 30500,
+        "cleaningPerCheckout": 950,
+        "reviewsAtMonthStart": 33,
+        "averageRating10": 9.28
+      },
+      {
+        "key": "Voss",
+        "label": "Voss",
+        "month": 7,
+        "monthLabel": "Juli",
+        "properties": 10,
+        "saleableNights": 234,
+        "bookedNights": 72,
+        "occupancyPct": 30.8,
+        "calendarMonthOccupancyPct": 23.2,
+        "medianSaleableNights": 23.0,
+        "stays": 57,
+        "checkouts": 48,
+        "adr": 1700,
+        "adrMedianProperty": 1650,
+        "grossTotal": 179000,
+        "grossPerPropertyAvg": 18000,
+        "grossPerPropertyMedian": 11500,
+        "grossPerPropertyP25": 6000,
+        "grossPerPropertyP75": 33000,
+        "ownerSampleProperties": 0,
+        "ownerTotal": null,
+        "ownerPerPropertyAvg": null,
+        "ownerPerPropertyMedian": null,
+        "cleaningPerCheckout": null,
+        "reviewsAtMonthStart": 0,
+        "averageRating10": null
+      },
+      {
+        "key": "Bergen",
+        "label": "Bergen",
+        "month": 8,
+        "monthLabel": "August",
+        "properties": 58,
+        "saleableNights": 1169,
+        "bookedNights": 1060,
+        "occupancyPct": 90.7,
+        "calendarMonthOccupancyPct": 59.0,
+        "medianSaleableNights": 19.5,
+        "stays": 380,
+        "checkouts": 382,
+        "adr": 2450,
+        "adrMedianProperty": 2250,
+        "grossTotal": 3584000,
+        "grossPerPropertyAvg": 62000,
+        "grossPerPropertyMedian": 60500,
+        "grossPerPropertyP25": 39000,
+        "grossPerPropertyP75": 78500,
+        "ownerSampleProperties": 41,
+        "ownerTotal": 2045000,
+        "ownerPerPropertyAvg": 50000,
+        "ownerPerPropertyMedian": 48500,
+        "cleaningPerCheckout": 750,
+        "reviewsAtMonthStart": 1042,
+        "averageRating10": 7.86
+      },
+      {
+        "key": "Hardanger",
+        "label": "Hardanger",
+        "month": 8,
+        "monthLabel": "August",
+        "properties": 26,
+        "saleableNights": 704,
+        "bookedNights": 476,
+        "occupancyPct": 67.6,
+        "calendarMonthOccupancyPct": 59.1,
+        "medianSaleableNights": 30.0,
+        "stays": 298,
+        "checkouts": 303,
+        "adr": 1700,
+        "adrMedianProperty": 1150,
+        "grossTotal": 1160000,
+        "grossPerPropertyAvg": 44500,
+        "grossPerPropertyMedian": 34000,
+        "grossPerPropertyP25": 23500,
+        "grossPerPropertyP75": 68000,
+        "ownerSampleProperties": 9,
+        "ownerTotal": 716000,
+        "ownerPerPropertyAvg": 79500,
+        "ownerPerPropertyMedian": 87000,
+        "cleaningPerCheckout": 0,
+        "reviewsAtMonthStart": 164,
+        "averageRating10": 8.08
+      },
+      {
+        "key": "Oslo",
+        "label": "Oslo",
+        "month": 8,
+        "monthLabel": "August",
+        "properties": 12,
+        "saleableNights": 215,
+        "bookedNights": 163,
+        "occupancyPct": 75.8,
+        "calendarMonthOccupancyPct": 43.8,
+        "medianSaleableNights": 17.0,
+        "stays": 46,
+        "checkouts": 46,
+        "adr": 2300,
+        "adrMedianProperty": 1850,
+        "grossTotal": 484000,
+        "grossPerPropertyAvg": 40500,
+        "grossPerPropertyMedian": 36500,
+        "grossPerPropertyP25": 26500,
+        "grossPerPropertyP75": 53000,
+        "ownerSampleProperties": 6,
+        "ownerTotal": 188000,
+        "ownerPerPropertyAvg": 31500,
+        "ownerPerPropertyMedian": 32500,
+        "cleaningPerCheckout": 850,
+        "reviewsAtMonthStart": 48,
+        "averageRating10": 8.28
+      },
+      {
+        "key": "Voss",
+        "label": "Voss",
+        "month": 8,
+        "monthLabel": "August",
+        "properties": 8,
+        "saleableNights": 232,
+        "bookedNights": 167,
+        "occupancyPct": 72.0,
+        "calendarMonthOccupancyPct": 67.3,
+        "medianSaleableNights": 30.0,
+        "stays": 110,
+        "checkouts": 112,
+        "adr": 2200,
+        "adrMedianProperty": 2150,
+        "grossTotal": 541000,
+        "grossPerPropertyAvg": 67500,
+        "grossPerPropertyMedian": 67000,
+        "grossPerPropertyP25": 61500,
+        "grossPerPropertyP75": 75500,
+        "ownerSampleProperties": 0,
+        "ownerTotal": null,
+        "ownerPerPropertyAvg": null,
+        "ownerPerPropertyMedian": null,
+        "cleaningPerCheckout": null,
+        "reviewsAtMonthStart": 16,
+        "averageRating10": 7.83
+      }
+    ],
+    "bedrooms": [
+      {
+        "key": "1",
+        "label": "1 soverom",
+        "month": 6,
+        "monthLabel": "Juni",
+        "properties": 47,
+        "saleableNights": 1114,
+        "bookedNights": 403,
+        "occupancyPct": 36.2,
+        "calendarMonthOccupancyPct": 28.6,
+        "medianSaleableNights": 27,
+        "stays": 115,
+        "checkouts": 106,
+        "adr": 1350,
+        "adrMedianProperty": 1250,
+        "grossTotal": 715000,
+        "grossPerPropertyAvg": 15000,
+        "grossPerPropertyMedian": 12500,
+        "grossPerPropertyP25": 0,
+        "grossPerPropertyP75": 24500,
+        "ownerSampleProperties": 15,
+        "ownerTotal": 427000,
+        "ownerPerPropertyAvg": 28500,
+        "ownerPerPropertyMedian": 24000,
+        "cleaningPerCheckout": 500,
+        "reviewsAtMonthStart": 113,
+        "averageRating10": 7.53
+      },
+      {
+        "key": "2",
+        "label": "2 soverom",
+        "month": 6,
+        "monthLabel": "Juni",
+        "properties": 46,
+        "saleableNights": 1064,
+        "bookedNights": 474,
+        "occupancyPct": 44.5,
+        "calendarMonthOccupancyPct": 34.3,
+        "medianSaleableNights": 24.0,
+        "stays": 163,
+        "checkouts": 147,
+        "adr": 1750,
+        "adrMedianProperty": 1750,
+        "grossTotal": 1114000,
+        "grossPerPropertyAvg": 24000,
+        "grossPerPropertyMedian": 20000,
+        "grossPerPropertyP25": 0,
+        "grossPerPropertyP75": 42500,
+        "ownerSampleProperties": 27,
+        "ownerTotal": 778000,
+        "ownerPerPropertyAvg": 29000,
+        "ownerPerPropertyMedian": 30500,
+        "cleaningPerCheckout": 600,
+        "reviewsAtMonthStart": 560,
+        "averageRating10": 7.85
+      },
+      {
+        "key": "3",
+        "label": "3 soverom",
+        "month": 6,
+        "monthLabel": "Juni",
+        "properties": 24,
+        "saleableNights": 571,
+        "bookedNights": 230,
+        "occupancyPct": 40.3,
+        "calendarMonthOccupancyPct": 31.9,
+        "medianSaleableNights": 27.5,
+        "stays": 100,
+        "checkouts": 90,
+        "adr": 1850,
+        "adrMedianProperty": 1800,
+        "grossTotal": 624000,
+        "grossPerPropertyAvg": 26000,
+        "grossPerPropertyMedian": 26000,
+        "grossPerPropertyP25": 5500,
+        "grossPerPropertyP75": 39500,
+        "ownerSampleProperties": 14,
+        "ownerTotal": 444000,
+        "ownerPerPropertyAvg": 31500,
+        "ownerPerPropertyMedian": 23000,
+        "cleaningPerCheckout": 500,
+        "reviewsAtMonthStart": 218,
+        "averageRating10": 8.3
+      },
+      {
+        "key": "4+",
+        "label": "4+ soverom",
+        "month": 6,
+        "monthLabel": "Juni",
+        "properties": 21,
+        "saleableNights": 429,
+        "bookedNights": 174,
+        "occupancyPct": 40.6,
+        "calendarMonthOccupancyPct": 27.6,
+        "medianSaleableNights": 21,
+        "stays": 87,
+        "checkouts": 81,
+        "adr": 3100,
+        "adrMedianProperty": 2900,
+        "grossTotal": 718000,
+        "grossPerPropertyAvg": 34000,
+        "grossPerPropertyMedian": 33000,
+        "grossPerPropertyP25": 0,
+        "grossPerPropertyP75": 57000,
+        "ownerSampleProperties": 13,
+        "ownerTotal": 539000,
+        "ownerPerPropertyAvg": 41500,
+        "ownerPerPropertyMedian": 38000,
+        "cleaningPerCheckout": 750,
+        "reviewsAtMonthStart": 173,
+        "averageRating10": 8.16
+      },
+      {
+        "key": "1",
+        "label": "1 soverom",
+        "month": 7,
+        "monthLabel": "Juli",
+        "properties": 49,
+        "saleableNights": 1215,
+        "bookedNights": 844,
+        "occupancyPct": 69.5,
+        "calendarMonthOccupancyPct": 55.6,
+        "medianSaleableNights": 27,
+        "stays": 363,
+        "checkouts": 331,
+        "adr": 1350,
+        "adrMedianProperty": 1250,
+        "grossTotal": 1642000,
+        "grossPerPropertyAvg": 33500,
+        "grossPerPropertyMedian": 31000,
+        "grossPerPropertyP25": 23500,
+        "grossPerPropertyP75": 43000,
+        "ownerSampleProperties": 16,
+        "ownerTotal": 587000,
+        "ownerPerPropertyAvg": 36500,
+        "ownerPerPropertyMedian": 36500,
+        "cleaningPerCheckout": 450,
+        "reviewsAtMonthStart": 175,
+        "averageRating10": 7.97
+      },
+      {
+        "key": "2",
+        "label": "2 soverom",
+        "month": 7,
+        "monthLabel": "Juli",
+        "properties": 46,
+        "saleableNights": 1279,
+        "bookedNights": 841,
+        "occupancyPct": 65.8,
+        "calendarMonthOccupancyPct": 59.0,
+        "medianSaleableNights": 29.0,
+        "stays": 308,
+        "checkouts": 279,
+        "adr": 1750,
+        "adrMedianProperty": 1600,
+        "grossTotal": 2130000,
+        "grossPerPropertyAvg": 46500,
+        "grossPerPropertyMedian": 49500,
+        "grossPerPropertyP25": 24000,
+        "grossPerPropertyP75": 63000,
+        "ownerSampleProperties": 26,
+        "ownerTotal": 1265000,
+        "ownerPerPropertyAvg": 48500,
+        "ownerPerPropertyMedian": 43500,
+        "cleaningPerCheckout": 600,
+        "reviewsAtMonthStart": 622,
+        "averageRating10": 8.16
+      },
+      {
+        "key": "3",
+        "label": "3 soverom",
+        "month": 7,
+        "monthLabel": "Juli",
+        "properties": 27,
+        "saleableNights": 696,
+        "bookedNights": 547,
+        "occupancyPct": 78.6,
+        "calendarMonthOccupancyPct": 65.4,
+        "medianSaleableNights": 28,
+        "stays": 235,
+        "checkouts": 221,
+        "adr": 2150,
+        "adrMedianProperty": 2050,
+        "grossTotal": 1644000,
+        "grossPerPropertyAvg": 61000,
+        "grossPerPropertyMedian": 59500,
+        "grossPerPropertyP25": 41000,
+        "grossPerPropertyP75": 82000,
+        "ownerSampleProperties": 16,
+        "ownerTotal": 985000,
+        "ownerPerPropertyAvg": 61500,
+        "ownerPerPropertyMedian": 49000,
+        "cleaningPerCheckout": 600,
+        "reviewsAtMonthStart": 297,
+        "averageRating10": 8.62
+      },
+      {
+        "key": "4+",
+        "label": "4+ soverom",
+        "month": 7,
+        "monthLabel": "Juli",
+        "properties": 26,
+        "saleableNights": 577,
+        "bookedNights": 458,
+        "occupancyPct": 79.4,
+        "calendarMonthOccupancyPct": 56.8,
+        "medianSaleableNights": 23.5,
+        "stays": 206,
+        "checkouts": 194,
+        "adr": 2950,
+        "adrMedianProperty": 2600,
+        "grossTotal": 1845000,
+        "grossPerPropertyAvg": 71000,
+        "grossPerPropertyMedian": 71500,
+        "grossPerPropertyP25": 45500,
+        "grossPerPropertyP75": 87500,
+        "ownerSampleProperties": 16,
+        "ownerTotal": 1037000,
+        "ownerPerPropertyAvg": 65000,
+        "ownerPerPropertyMedian": 59500,
+        "cleaningPerCheckout": 800,
+        "reviewsAtMonthStart": 303,
+        "averageRating10": 8.08
+      },
+      {
+        "key": "1",
+        "label": "1 soverom",
+        "month": 8,
+        "monthLabel": "August",
+        "properties": 38,
+        "saleableNights": 932,
+        "bookedNights": 719,
+        "occupancyPct": 77.1,
+        "calendarMonthOccupancyPct": 61.0,
+        "medianSaleableNights": 27.5,
+        "stays": 348,
+        "checkouts": 355,
+        "adr": 1650,
+        "adrMedianProperty": 1650,
+        "grossTotal": 1747000,
+        "grossPerPropertyAvg": 46000,
+        "grossPerPropertyMedian": 41500,
+        "grossPerPropertyP25": 31000,
+        "grossPerPropertyP75": 63000,
+        "ownerSampleProperties": 14,
+        "ownerTotal": 620000,
+        "ownerPerPropertyAvg": 44500,
+        "ownerPerPropertyMedian": 38000,
+        "cleaningPerCheckout": 500,
+        "reviewsAtMonthStart": 265,
+        "averageRating10": 7.71
+      },
+      {
+        "key": "2",
+        "label": "2 soverom",
+        "month": 8,
+        "monthLabel": "August",
+        "properties": 35,
+        "saleableNights": 778,
+        "bookedNights": 638,
+        "occupancyPct": 82.0,
+        "calendarMonthOccupancyPct": 58.8,
+        "medianSaleableNights": 25,
+        "stays": 271,
+        "checkouts": 273,
+        "adr": 2250,
+        "adrMedianProperty": 2150,
+        "grossTotal": 1953000,
+        "grossPerPropertyAvg": 56000,
+        "grossPerPropertyMedian": 56000,
+        "grossPerPropertyP25": 27500,
+        "grossPerPropertyP75": 77500,
+        "ownerSampleProperties": 19,
+        "ownerTotal": 971000,
+        "ownerPerPropertyAvg": 51000,
+        "ownerPerPropertyMedian": 53000,
+        "cleaningPerCheckout": 600,
+        "reviewsAtMonthStart": 466,
+        "averageRating10": 7.94
+      },
+      {
+        "key": "3",
+        "label": "3 soverom",
+        "month": 8,
+        "monthLabel": "August",
+        "properties": 19,
+        "saleableNights": 426,
+        "bookedNights": 344,
+        "occupancyPct": 80.8,
+        "calendarMonthOccupancyPct": 58.4,
+        "medianSaleableNights": 26,
+        "stays": 168,
+        "checkouts": 170,
+        "adr": 2400,
+        "adrMedianProperty": 2500,
+        "grossTotal": 1140000,
+        "grossPerPropertyAvg": 60000,
+        "grossPerPropertyMedian": 49500,
+        "grossPerPropertyP25": 35000,
+        "grossPerPropertyP75": 82000,
+        "ownerSampleProperties": 12,
+        "ownerTotal": 698000,
+        "ownerPerPropertyAvg": 58000,
+        "ownerPerPropertyMedian": 58500,
+        "cleaningPerCheckout": 450,
+        "reviewsAtMonthStart": 303,
+        "averageRating10": 8.18
+      },
+      {
+        "key": "4+",
+        "label": "4+ soverom",
+        "month": 8,
+        "monthLabel": "August",
+        "properties": 15,
+        "saleableNights": 275,
+        "bookedNights": 228,
+        "occupancyPct": 82.9,
+        "calendarMonthOccupancyPct": 49.0,
+        "medianSaleableNights": 16,
+        "stays": 107,
+        "checkouts": 107,
+        "adr": 3950,
+        "adrMedianProperty": 4050,
+        "grossTotal": 1151000,
+        "grossPerPropertyAvg": 76500,
+        "grossPerPropertyMedian": 83500,
+        "grossPerPropertyP25": 42500,
+        "grossPerPropertyP75": 88500,
+        "ownerSampleProperties": 9,
+        "ownerTotal": 587000,
+        "ownerPerPropertyAvg": 65500,
+        "ownerPerPropertyMedian": 48500,
+        "cleaningPerCheckout": 650,
+        "reviewsAtMonthStart": 211,
+        "averageRating10": 8.4
+      }
+    ],
+    "reviews": [
+      {
+        "key": "0-4",
+        "label": "Ny / 0–4 anmeldelser",
+        "month": 6,
+        "monthLabel": "Juni",
+        "properties": 107,
+        "saleableNights": 2507,
+        "bookedNights": 770,
+        "occupancyPct": 30.7,
+        "calendarMonthOccupancyPct": 24.0,
+        "medianSaleableNights": 26,
+        "stays": 265,
+        "checkouts": 241,
+        "adr": 1650,
+        "adrMedianProperty": 1400,
+        "grossTotal": 1743000,
+        "grossPerPropertyAvg": 16500,
+        "grossPerPropertyMedian": 10000,
+        "grossPerPropertyP25": 0,
+        "grossPerPropertyP75": 28500,
+        "ownerSampleProperties": 38,
+        "ownerTotal": 1074000,
+        "ownerPerPropertyAvg": 28500,
+        "ownerPerPropertyMedian": 23500,
+        "cleaningPerCheckout": 500,
+        "reviewsAtMonthStart": 38,
+        "averageRating10": 7.83
+      },
+      {
+        "key": "5-19",
+        "label": "5–19 anmeldelser",
+        "month": 6,
+        "monthLabel": "Juni",
+        "properties": 16,
+        "saleableNights": 362,
+        "bookedNights": 260,
+        "occupancyPct": 71.8,
+        "calendarMonthOccupancyPct": 54.2,
+        "medianSaleableNights": 24.0,
+        "stays": 106,
+        "checkouts": 95,
+        "adr": 2050,
+        "adrMedianProperty": 2050,
+        "grossTotal": 685000,
+        "grossPerPropertyAvg": 43000,
+        "grossPerPropertyMedian": 44000,
+        "grossPerPropertyP25": 26500,
+        "grossPerPropertyP75": 57000,
+        "ownerSampleProperties": 15,
+        "ownerTotal": 518000,
+        "ownerPerPropertyAvg": 34500,
+        "ownerPerPropertyMedian": 33000,
+        "cleaningPerCheckout": 550,
+        "reviewsAtMonthStart": 122,
+        "averageRating10": 8.27
+      },
+      {
+        "key": "20+",
+        "label": "20+ anmeldelser",
+        "month": 6,
+        "monthLabel": "Juni",
+        "properties": 20,
+        "saleableNights": 432,
+        "bookedNights": 324,
+        "occupancyPct": 75.0,
+        "calendarMonthOccupancyPct": 54.0,
+        "medianSaleableNights": 21.0,
+        "stays": 107,
+        "checkouts": 101,
+        "adr": 1900,
+        "adrMedianProperty": 1750,
+        "grossTotal": 864000,
+        "grossPerPropertyAvg": 43000,
+        "grossPerPropertyMedian": 42000,
+        "grossPerPropertyP25": 33500,
+        "grossPerPropertyP75": 48500,
+        "ownerSampleProperties": 20,
+        "ownerTotal": 692000,
+        "ownerPerPropertyAvg": 34500,
+        "ownerPerPropertyMedian": 31500,
+        "cleaningPerCheckout": 800,
+        "reviewsAtMonthStart": 971,
+        "averageRating10": 7.8
+      },
+      {
+        "key": "0-4",
+        "label": "Ny / 0–4 anmeldelser",
+        "month": 7,
+        "monthLabel": "Juli",
+        "properties": 107,
+        "saleableNights": 2645,
+        "bookedNights": 1680,
+        "occupancyPct": 63.5,
+        "calendarMonthOccupancyPct": 50.6,
+        "medianSaleableNights": 27,
+        "stays": 689,
+        "checkouts": 626,
+        "adr": 1700,
+        "adrMedianProperty": 1400,
+        "grossTotal": 4130000,
+        "grossPerPropertyAvg": 38500,
+        "grossPerPropertyMedian": 35000,
+        "grossPerPropertyP25": 20000,
+        "grossPerPropertyP75": 50500,
+        "ownerSampleProperties": 36,
+        "ownerTotal": 1562000,
+        "ownerPerPropertyAvg": 43500,
+        "ownerPerPropertyMedian": 36000,
+        "cleaningPerCheckout": 600,
+        "reviewsAtMonthStart": 89,
+        "averageRating10": 8.26
+      },
+      {
+        "key": "5-19",
+        "label": "5–19 anmeldelser",
+        "month": 7,
+        "monthLabel": "Juli",
+        "properties": 23,
+        "saleableNights": 647,
+        "bookedNights": 572,
+        "occupancyPct": 88.4,
+        "calendarMonthOccupancyPct": 80.2,
+        "medianSaleableNights": 30,
+        "stays": 257,
+        "checkouts": 244,
+        "adr": 2250,
+        "adrMedianProperty": 2250,
+        "grossTotal": 1739000,
+        "grossPerPropertyAvg": 75500,
+        "grossPerPropertyMedian": 75000,
+        "grossPerPropertyP25": 56000,
+        "grossPerPropertyP75": 87500,
+        "ownerSampleProperties": 19,
+        "ownerTotal": 1182000,
+        "ownerPerPropertyAvg": 62000,
+        "ownerPerPropertyMedian": 50500,
+        "cleaningPerCheckout": 450,
+        "reviewsAtMonthStart": 225,
+        "averageRating10": 8.22
+      },
+      {
+        "key": "20+",
+        "label": "20+ anmeldelser",
+        "month": 7,
+        "monthLabel": "Juli",
+        "properties": 23,
+        "saleableNights": 600,
+        "bookedNights": 516,
+        "occupancyPct": 86.0,
+        "calendarMonthOccupancyPct": 72.4,
+        "medianSaleableNights": 28,
+        "stays": 184,
+        "checkouts": 168,
+        "adr": 2100,
+        "adrMedianProperty": 2000,
+        "grossTotal": 1562000,
+        "grossPerPropertyAvg": 68000,
+        "grossPerPropertyMedian": 62500,
+        "grossPerPropertyP25": 55000,
+        "grossPerPropertyP75": 71000,
+        "ownerSampleProperties": 23,
+        "ownerTotal": 1247000,
+        "ownerPerPropertyAvg": 54000,
+        "ownerPerPropertyMedian": 50000,
+        "cleaningPerCheckout": 800,
+        "reviewsAtMonthStart": 1154,
+        "averageRating10": 7.88
+      },
+      {
+        "key": "0-4",
+        "label": "Ny / 0–4 anmeldelser",
+        "month": 8,
+        "monthLabel": "August",
+        "properties": 57,
+        "saleableNights": 1258,
+        "bookedNights": 925,
+        "occupancyPct": 73.5,
+        "calendarMonthOccupancyPct": 52.3,
+        "medianSaleableNights": 25,
+        "stays": 395,
+        "checkouts": 402,
+        "adr": 1900,
+        "adrMedianProperty": 1750,
+        "grossTotal": 2455000,
+        "grossPerPropertyAvg": 43000,
+        "grossPerPropertyMedian": 38000,
+        "grossPerPropertyP25": 23500,
+        "grossPerPropertyP75": 61000,
+        "ownerSampleProperties": 15,
+        "ownerTotal": 511000,
+        "ownerPerPropertyAvg": 34000,
+        "ownerPerPropertyMedian": 31000,
+        "cleaningPerCheckout": 650,
+        "reviewsAtMonthStart": 88,
+        "averageRating10": 7.84
+      },
+      {
+        "key": "5-19",
+        "label": "5–19 anmeldelser",
+        "month": 8,
+        "monthLabel": "August",
+        "properties": 37,
+        "saleableNights": 906,
+        "bookedNights": 764,
+        "occupancyPct": 84.3,
+        "calendarMonthOccupancyPct": 66.6,
+        "medianSaleableNights": 29,
+        "stays": 387,
+        "checkouts": 389,
+        "adr": 2450,
+        "adrMedianProperty": 2500,
+        "grossTotal": 2456000,
+        "grossPerPropertyAvg": 66500,
+        "grossPerPropertyMedian": 69000,
+        "grossPerPropertyP25": 43500,
+        "grossPerPropertyP75": 83500,
+        "ownerSampleProperties": 26,
+        "ownerTotal": 1551000,
+        "ownerPerPropertyAvg": 59500,
+        "ownerPerPropertyMedian": 58000,
+        "cleaningPerCheckout": 400,
+        "reviewsAtMonthStart": 390,
+        "averageRating10": 8.1
+      },
+      {
+        "key": "20+",
+        "label": "20+ anmeldelser",
+        "month": 8,
+        "monthLabel": "August",
+        "properties": 17,
+        "saleableNights": 362,
+        "bookedNights": 322,
+        "occupancyPct": 89.0,
+        "calendarMonthOccupancyPct": 61.1,
+        "medianSaleableNights": 24,
+        "stays": 138,
+        "checkouts": 139,
+        "adr": 2600,
+        "adrMedianProperty": 2450,
+        "grossTotal": 1270000,
+        "grossPerPropertyAvg": 74500,
+        "grossPerPropertyMedian": 76000,
+        "grossPerPropertyP25": 44500,
+        "grossPerPropertyP75": 94000,
+        "ownerSampleProperties": 16,
+        "ownerTotal": 962000,
+        "ownerPerPropertyAvg": 60000,
+        "ownerPerPropertyMedian": 58000,
+        "cleaningPerCheckout": 750,
+        "reviewsAtMonthStart": 842,
+        "averageRating10": 7.89
+      }
+    ]
+  },
+  "featured": [
+    {
+      "key": "bergen-2-1",
+      "label": "Bergen · 2 soverom · 1 bad",
+      "month": 6,
+      "monthLabel": "Juni",
+      "properties": 29,
+      "saleableNights": 639,
+      "bookedNights": 346,
+      "occupancyPct": 54.1,
+      "calendarMonthOccupancyPct": 39.8,
+      "medianSaleableNights": 23,
+      "stays": 110,
+      "checkouts": 98,
+      "adr": 1650,
+      "adrMedianProperty": 1550,
+      "grossTotal": 788000,
+      "grossPerPropertyAvg": 27000,
+      "grossPerPropertyMedian": 27000,
+      "grossPerPropertyP25": 10000,
+      "grossPerPropertyP75": 42500,
+      "ownerSampleProperties": 20,
+      "ownerTotal": 555000,
+      "ownerPerPropertyAvg": 28000,
+      "ownerPerPropertyMedian": 30500,
+      "cleaningPerCheckout": 700,
+      "reviewsAtMonthStart": 541,
+      "averageRating10": 7.61
+    },
+    {
+      "key": "bergen-2-1",
+      "label": "Bergen · 2 soverom · 1 bad",
+      "month": 7,
+      "monthLabel": "Juli",
+      "properties": 30,
+      "saleableNights": 804,
+      "bookedNights": 601,
+      "occupancyPct": 74.8,
+      "calendarMonthOccupancyPct": 64.6,
+      "medianSaleableNights": 28.0,
+      "stays": 195,
+      "checkouts": 177,
+      "adr": 1650,
+      "adrMedianProperty": 1600,
+      "grossTotal": 1482000,
+      "grossPerPropertyAvg": 49500,
+      "grossPerPropertyMedian": 51000,
+      "grossPerPropertyP25": 31500,
+      "grossPerPropertyP75": 61000,
+      "ownerSampleProperties": 21,
+      "ownerTotal": 953000,
+      "ownerPerPropertyAvg": 45500,
+      "ownerPerPropertyMedian": 43500,
+      "cleaningPerCheckout": 700,
+      "reviewsAtMonthStart": 590,
+      "averageRating10": 8.12
+    },
+    {
+      "key": "bergen-2-1",
+      "label": "Bergen · 2 soverom · 1 bad",
+      "month": 8,
+      "monthLabel": "August",
+      "properties": 21,
+      "saleableNights": 419,
+      "bookedNights": 384,
+      "occupancyPct": 91.6,
+      "calendarMonthOccupancyPct": 59.0,
+      "medianSaleableNights": 20,
+      "stays": 143,
+      "checkouts": 144,
+      "adr": 2400,
+      "adrMedianProperty": 2150,
+      "grossTotal": 1252000,
+      "grossPerPropertyAvg": 59500,
+      "grossPerPropertyMedian": 58500,
+      "grossPerPropertyP25": 29000,
+      "grossPerPropertyP75": 88500,
+      "ownerSampleProperties": 14,
+      "ownerTotal": 709000,
+      "ownerPerPropertyAvg": 50500,
+      "ownerPerPropertyMedian": 53500,
+      "cleaningPerCheckout": 700,
+      "reviewsAtMonthStart": 392,
+      "averageRating10": 7.7
+    }
+  ],
   "cohorts": [
     {
       "city": "Bergen",
-      "bedrooms": "all",
-      "bathrooms": "all",
-      "month": 1,
-      "monthLabel": "Januar",
-      "properties": 12,
-      "stays": 40,
+      "bedrooms": "2",
+      "bathrooms": "1",
+      "month": 6,
+      "monthLabel": "Juni",
+      "properties": 29,
+      "stays": 110,
       "adr": {
-        "median": 1150,
-        "low": 900,
-        "high": 1300
+        "median": 1650,
+        "low": 1550,
+        "high": 1550
       },
       "occupancy": {
-        "median": 32,
-        "low": 18,
-        "high": 47
+        "median": 54.1,
+        "low": 54.1,
+        "high": 54.1
       },
       "grossIncome": {
-        "median": 15500,
-        "low": 9500,
-        "high": 26000
+        "median": 27000,
+        "low": 10000,
+        "high": 42500
       },
       "ownerIncome": {
-        "median": 5500,
-        "low": 4000,
-        "high": 9000
-      },
-      "cleaningPerCheckout": {
-        "median": 825,
-        "low": 725,
-        "high": 850
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "all",
-      "bathrooms": "all",
-      "month": 2,
-      "monthLabel": "Februar",
-      "properties": 14,
-      "stays": 38,
-      "adr": {
-        "median": 1150,
-        "low": 950,
-        "high": 1250
-      },
-      "occupancy": {
-        "median": 39,
-        "low": 30,
-        "high": 53
-      },
-      "grossIncome": {
-        "median": 12500,
-        "low": 8500,
-        "high": 20500
-      },
-      "ownerIncome": {
-        "median": 5000,
-        "low": 2500,
-        "high": 7500
-      },
-      "cleaningPerCheckout": {
-        "median": 800,
-        "low": 700,
-        "high": 850
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "all",
-      "bathrooms": "all",
-      "month": 3,
-      "monthLabel": "Mars",
-      "properties": 15,
-      "stays": 37,
-      "adr": {
-        "median": 900,
-        "low": 650,
-        "high": 1000
-      },
-      "occupancy": {
-        "median": 32,
-        "low": 18,
-        "high": 47
-      },
-      "grossIncome": {
-        "median": 8000,
-        "low": 5500,
-        "high": 16000
-      },
-      "ownerIncome": {
-        "median": 3000,
-        "low": 1000,
-        "high": 6000
-      },
-      "cleaningPerCheckout": {
-        "median": 750,
-        "low": 700,
-        "high": 825
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "all",
-      "bathrooms": "all",
-      "month": 4,
-      "monthLabel": "April",
-      "properties": 21,
-      "stays": 75,
-      "adr": {
-        "median": 1150,
-        "low": 950,
-        "high": 1350
-      },
-      "occupancy": {
-        "median": 53,
-        "low": 33,
-        "high": 70
-      },
-      "grossIncome": {
-        "median": 19500,
-        "low": 12500,
-        "high": 32000
-      },
-      "ownerIncome": {
-        "median": 8500,
-        "low": 4500,
-        "high": 12500
-      },
-      "cleaningPerCheckout": {
-        "median": 750,
-        "low": 700,
-        "high": 825
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "all",
-      "bathrooms": "all",
-      "month": 5,
-      "monthLabel": "Mai",
-      "properties": 40,
-      "stays": 248,
-      "adr": {
-        "median": 1500,
-        "low": 1100,
-        "high": 1900
-      },
-      "occupancy": {
-        "median": 76,
-        "low": 52,
-        "high": 87
-      },
-      "grossIncome": {
-        "median": 45500,
-        "low": 34500,
-        "high": 62000
-      },
-      "ownerIncome": {
-        "median": 23000,
-        "low": 15000,
+        "median": 28000,
+        "low": 30500,
         "high": 30500
       },
       "cleaningPerCheckout": {
-        "median": 750,
-        "low": 700,
-        "high": 850
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "all",
-      "bathrooms": "all",
-      "month": 6,
-      "monthLabel": "Juni",
-      "properties": 84,
-      "stays": 378,
-      "adr": {
-        "median": 1500,
-        "low": 1200,
-        "high": 2000
-      },
-      "occupancy": {
-        "median": 53,
-        "low": 27,
-        "high": 67
-      },
-      "grossIncome": {
-        "median": 28500,
-        "low": 14500,
-        "high": 46000
-      },
-      "ownerIncome": {
-        "median": 13500,
-        "low": 6500,
-        "high": 23000
-      },
-      "cleaningPerCheckout": {
-        "median": 750,
-        "low": 700,
-        "high": 850
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "all",
-      "bathrooms": "all",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 100,
-      "stays": 596,
-      "adr": {
-        "median": 1600,
-        "low": 1150,
-        "high": 2300
-      },
-      "occupancy": {
-        "median": 71,
-        "low": 48,
-        "high": 81
-      },
-      "grossIncome": {
-        "median": 45000,
-        "low": 26500,
-        "high": 69500
-      },
-      "ownerIncome": {
-        "median": 21500,
-        "low": 13000,
-        "high": 35000
-      },
-      "cleaningPerCheckout": {
-        "median": 750,
-        "low": 700,
-        "high": 875
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "1",
-      "bathrooms": "all",
-      "month": 5,
-      "monthLabel": "Mai",
-      "properties": 8,
-      "stays": 30,
-      "adr": {
-        "median": 1050,
-        "low": 850,
-        "high": 1200
-      },
-      "occupancy": {
-        "median": 82,
-        "low": 64,
-        "high": 89
-      },
-      "grossIncome": {
-        "median": 36000,
-        "low": 23500,
-        "high": 48500
-      },
-      "ownerIncome": {
-        "median": 20000,
-        "low": 12500,
-        "high": 27000
-      },
-      "cleaningPerCheckout": {
-        "median": 600,
-        "low": 600,
-        "high": 625
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "1",
-      "bathrooms": "all",
-      "month": 6,
-      "monthLabel": "Juni",
-      "properties": 20,
-      "stays": 62,
-      "adr": {
-        "median": 1100,
-        "low": 950,
-        "high": 1300
-      },
-      "occupancy": {
-        "median": 50,
-        "low": 25,
-        "high": 77
-      },
-      "grossIncome": {
-        "median": 21000,
-        "low": 7000,
-        "high": 32500
-      },
-      "ownerIncome": {
-        "median": 10000,
-        "low": 3500,
-        "high": 16000
-      },
-      "cleaningPerCheckout": {
-        "median": 675,
-        "low": 600,
-        "high": 725
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "1",
-      "bathrooms": "all",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 26,
-      "stays": 107,
-      "adr": {
-        "median": 1150,
-        "low": 1050,
-        "high": 1350
-      },
-      "occupancy": {
-        "median": 61,
-        "low": 37,
-        "high": 74
-      },
-      "grossIncome": {
-        "median": 33500,
-        "low": 19500,
-        "high": 44000
-      },
-      "ownerIncome": {
-        "median": 14000,
-        "low": 9000,
-        "high": 22500
-      },
-      "cleaningPerCheckout": {
-        "median": 725,
-        "low": 600,
-        "high": 725
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "1",
-      "bathrooms": "1",
-      "month": 5,
-      "monthLabel": "Mai",
-      "properties": 8,
-      "stays": 30,
-      "adr": {
-        "median": 1050,
-        "low": 850,
-        "high": 1200
-      },
-      "occupancy": {
-        "median": 82,
-        "low": 64,
-        "high": 89
-      },
-      "grossIncome": {
-        "median": 36000,
-        "low": 23500,
-        "high": 48500
-      },
-      "ownerIncome": {
-        "median": 20000,
-        "low": 12500,
-        "high": 27000
-      },
-      "cleaningPerCheckout": {
-        "median": 600,
-        "low": 600,
-        "high": 625
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "1",
-      "bathrooms": "1",
-      "month": 6,
-      "monthLabel": "Juni",
-      "properties": 20,
-      "stays": 62,
-      "adr": {
-        "median": 1100,
-        "low": 950,
-        "high": 1300
-      },
-      "occupancy": {
-        "median": 50,
-        "low": 25,
-        "high": 77
-      },
-      "grossIncome": {
-        "median": 21000,
-        "low": 7000,
-        "high": 32500
-      },
-      "ownerIncome": {
-        "median": 10000,
-        "low": 3500,
-        "high": 16000
-      },
-      "cleaningPerCheckout": {
-        "median": 675,
-        "low": 600,
-        "high": 725
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "1",
-      "bathrooms": "1",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 26,
-      "stays": 107,
-      "adr": {
-        "median": 1150,
-        "low": 1050,
-        "high": 1350
-      },
-      "occupancy": {
-        "median": 61,
-        "low": 37,
-        "high": 74
-      },
-      "grossIncome": {
-        "median": 33500,
-        "low": 19500,
-        "high": 44000
-      },
-      "ownerIncome": {
-        "median": 14000,
-        "low": 9000,
-        "high": 22500
-      },
-      "cleaningPerCheckout": {
-        "median": 725,
-        "low": 600,
-        "high": 725
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "2",
-      "bathrooms": "all",
-      "month": 2,
-      "monthLabel": "Februar",
-      "properties": 7,
-      "stays": 21,
-      "adr": {
-        "median": 1100,
-        "low": 900,
-        "high": 1200
-      },
-      "occupancy": {
-        "median": 50,
-        "low": 41,
-        "high": 55
-      },
-      "grossIncome": {
-        "median": 15500,
-        "low": 11000,
-        "high": 19500
-      },
-      "ownerIncome": {
-        "median": 7500,
-        "low": 3000,
-        "high": 8000
-      },
-      "cleaningPerCheckout": {
-        "median": 750,
-        "low": 700,
-        "high": 750
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "2",
-      "bathrooms": "all",
-      "month": 3,
-      "monthLabel": "Mars",
-      "properties": 8,
-      "stays": 24,
-      "adr": {
-        "median": 700,
-        "low": 600,
-        "high": 800
-      },
-      "occupancy": {
-        "median": 34,
-        "low": 18,
-        "high": 52
-      },
-      "grossIncome": {
-        "median": 7500,
-        "low": 5500,
-        "high": 18500
-      },
-      "ownerIncome": {
-        "median": 2000,
-        "low": 1000,
-        "high": 7000
-      },
-      "cleaningPerCheckout": {
-        "median": 750,
-        "low": 700,
-        "high": 750
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "2",
-      "bathrooms": "all",
-      "month": 4,
-      "monthLabel": "April",
-      "properties": 9,
-      "stays": 44,
-      "adr": {
-        "median": 1100,
-        "low": 1000,
-        "high": 1200
-      },
-      "occupancy": {
-        "median": 40,
-        "low": 37,
-        "high": 70
-      },
-      "grossIncome": {
-        "median": 20000,
-        "low": 16000,
-        "high": 35000
-      },
-      "ownerIncome": {
-        "median": 8500,
-        "low": 5500,
-        "high": 12500
-      },
-      "cleaningPerCheckout": {
-        "median": 750,
-        "low": 700,
-        "high": 750
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "2",
-      "bathrooms": "all",
-      "month": 5,
-      "monthLabel": "Mai",
-      "properties": 17,
-      "stays": 104,
-      "adr": {
-        "median": 1500,
-        "low": 1400,
-        "high": 1850
-      },
-      "occupancy": {
-        "median": 65,
-        "low": 52,
-        "high": 81
-      },
-      "grossIncome": {
-        "median": 43500,
-        "low": 38500,
-        "high": 50500
-      },
-      "ownerIncome": {
-        "median": 24000,
-        "low": 19500,
-        "high": 29000
-      },
-      "cleaningPerCheckout": {
-        "median": 750,
-        "low": 700,
-        "high": 750
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "2",
-      "bathrooms": "all",
-      "month": 6,
-      "monthLabel": "Juni",
-      "properties": 31,
-      "stays": 130,
-      "adr": {
-        "median": 1550,
-        "low": 1200,
-        "high": 1800
-      },
-      "occupancy": {
-        "median": 53,
-        "low": 22,
-        "high": 68
-      },
-      "grossIncome": {
-        "median": 26000,
-        "low": 10500,
-        "high": 42500
-      },
-      "ownerIncome": {
-        "median": 13500,
-        "low": 4500,
-        "high": 21000
-      },
-      "cleaningPerCheckout": {
-        "median": 750,
-        "low": 700,
-        "high": 775
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "2",
-      "bathrooms": "all",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 35,
-      "stays": 198,
-      "adr": {
-        "median": 1500,
-        "low": 1200,
-        "high": 1850
-      },
-      "occupancy": {
-        "median": 71,
-        "low": 42,
-        "high": 79
-      },
-      "grossIncome": {
-        "median": 44500,
-        "low": 22500,
-        "high": 57000
-      },
-      "ownerIncome": {
-        "median": 19500,
-        "low": 10000,
-        "high": 28500
-      },
-      "cleaningPerCheckout": {
-        "median": 750,
-        "low": 700,
-        "high": 800
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "2",
-      "bathrooms": "1",
-      "month": 3,
-      "monthLabel": "Mars",
-      "properties": 7,
-      "stays": 20,
-      "adr": {
-        "median": 700,
-        "low": 650,
-        "high": 800
-      },
-      "occupancy": {
-        "median": 32,
-        "low": 16,
-        "high": 56
-      },
-      "grossIncome": {
-        "median": 6500,
-        "low": 5500,
-        "high": 19500
-      },
-      "ownerIncome": {
-        "median": 2000,
-        "low": 1500,
-        "high": 8000
-      },
-      "cleaningPerCheckout": {
-        "median": 750,
-        "low": 700,
-        "high": 750
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "2",
-      "bathrooms": "1",
-      "month": 4,
-      "monthLabel": "April",
-      "properties": 8,
-      "stays": 37,
-      "adr": {
-        "median": 1100,
-        "low": 1050,
-        "high": 1250
-      },
-      "occupancy": {
-        "median": 40,
-        "low": 37,
-        "high": 58
-      },
-      "grossIncome": {
-        "median": 18000,
-        "low": 15500,
-        "high": 27000
-      },
-      "ownerIncome": {
-        "median": 8000,
-        "low": 5000,
-        "high": 11500
-      },
-      "cleaningPerCheckout": {
-        "median": 750,
-        "low": 700,
-        "high": 750
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "2",
-      "bathrooms": "1",
-      "month": 5,
-      "monthLabel": "Mai",
-      "properties": 15,
-      "stays": 98,
-      "adr": {
-        "median": 1500,
-        "low": 1350,
-        "high": 1800
-      },
-      "occupancy": {
-        "median": 65,
-        "low": 52,
-        "high": 82
-      },
-      "grossIncome": {
-        "median": 44000,
-        "low": 41500,
-        "high": 54500
-      },
-      "ownerIncome": {
-        "median": 25500,
-        "low": 23000,
-        "high": 29500
-      },
-      "cleaningPerCheckout": {
         "median": 700,
         "low": 700,
-        "high": 750
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "2",
-      "bathrooms": "1",
-      "month": 6,
-      "monthLabel": "Juni",
-      "properties": 28,
-      "stays": 125,
-      "adr": {
-        "median": 1550,
-        "low": 1250,
-        "high": 1850
-      },
-      "occupancy": {
-        "median": 53,
-        "low": 25,
-        "high": 70
-      },
-      "grossIncome": {
-        "median": 28000,
-        "low": 11500,
-        "high": 43000
-      },
-      "ownerIncome": {
-        "median": 14000,
-        "low": 6000,
-        "high": 21000
-      },
-      "cleaningPerCheckout": {
-        "median": 725,
-        "low": 700,
-        "high": 750
+        "high": 700
       }
     },
     {
@@ -812,1120 +1165,66 @@
       "bathrooms": "1",
       "month": 7,
       "monthLabel": "Juli",
-      "properties": 34,
-      "stays": 194,
+      "properties": 30,
+      "stays": 195,
       "adr": {
-        "median": 1500,
-        "low": 1150,
-        "high": 1900
+        "median": 1650,
+        "low": 1600,
+        "high": 1600
       },
       "occupancy": {
-        "median": 71,
-        "low": 40,
-        "high": 80
+        "median": 74.8,
+        "low": 74.8,
+        "high": 74.8
       },
       "grossIncome": {
-        "median": 48500,
-        "low": 22000,
-        "high": 57000
-      },
-      "ownerIncome": {
-        "median": 20500,
-        "low": 9000,
-        "high": 29000
-      },
-      "cleaningPerCheckout": {
-        "median": 750,
-        "low": 700,
-        "high": 800
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "3",
-      "bathrooms": "all",
-      "month": 6,
-      "monthLabel": "Juni",
-      "properties": 15,
-      "stays": 72,
-      "adr": {
-        "median": 1700,
-        "low": 1500,
-        "high": 1800
-      },
-      "occupancy": {
-        "median": 43,
-        "low": 28,
-        "high": 62
-      },
-      "grossIncome": {
-        "median": 26000,
-        "low": 13000,
-        "high": 39000
-      },
-      "ownerIncome": {
-        "median": 9000,
-        "low": 4500,
-        "high": 16500
-      },
-      "cleaningPerCheckout": {
-        "median": 875,
-        "low": 825,
-        "high": 875
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "3",
-      "bathrooms": "all",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 15,
-      "stays": 115,
-      "adr": {
-        "median": 2150,
-        "low": 1850,
-        "high": 2350
-      },
-      "occupancy": {
-        "median": 77,
-        "low": 73,
-        "high": 81
-      },
-      "grossIncome": {
-        "median": 69500,
-        "low": 59000,
-        "high": 75000
-      },
-      "ownerIncome": {
-        "median": 37500,
-        "low": 28000,
-        "high": 39000
-      },
-      "cleaningPerCheckout": {
-        "median": 875,
-        "low": 825,
-        "high": 875
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "3",
-      "bathrooms": "1",
-      "month": 6,
-      "monthLabel": "Juni",
-      "properties": 13,
-      "stays": 64,
-      "adr": {
-        "median": 1700,
-        "low": 1450,
-        "high": 1800
-      },
-      "occupancy": {
-        "median": 43,
-        "low": 33,
-        "high": 67
-      },
-      "grossIncome": {
-        "median": 28500,
-        "low": 16500,
-        "high": 42500
-      },
-      "ownerIncome": {
-        "median": 11500,
-        "low": 7000,
-        "high": 20000
-      },
-      "cleaningPerCheckout": {
-        "median": 825,
-        "low": 825,
-        "high": 875
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "3",
-      "bathrooms": "1",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 13,
-      "stays": 86,
-      "adr": {
-        "median": 2050,
-        "low": 1800,
-        "high": 2350
-      },
-      "occupancy": {
-        "median": 77,
-        "low": 71,
-        "high": 81
-      },
-      "grossIncome": {
-        "median": 69500,
-        "low": 56000,
-        "high": 72000
-      },
-      "ownerIncome": {
-        "median": 37500,
-        "low": 29500,
-        "high": 39000
-      },
-      "cleaningPerCheckout": {
-        "median": 875,
-        "low": 825,
-        "high": 875
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "4+",
-      "bathrooms": "all",
-      "month": 5,
-      "monthLabel": "Mai",
-      "properties": 8,
-      "stays": 60,
-      "adr": {
-        "median": 2150,
-        "low": 1800,
-        "high": 2350
-      },
-      "occupancy": {
-        "median": 68,
-        "low": 48,
-        "high": 76
-      },
-      "grossIncome": {
-        "median": 67000,
-        "low": 39000,
-        "high": 79000
-      },
-      "ownerIncome": {
-        "median": 27000,
-        "low": 12000,
-        "high": 41000
-      },
-      "cleaningPerCheckout": {
-        "median": 950,
-        "low": 925,
-        "high": 950
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "4+",
-      "bathrooms": "all",
-      "month": 6,
-      "monthLabel": "Juni",
-      "properties": 14,
-      "stays": 99,
-      "adr": {
-        "median": 3100,
-        "low": 2500,
-        "high": 3500
-      },
-      "occupancy": {
-        "median": 57,
-        "low": 38,
-        "high": 68
-      },
-      "grossIncome": {
-        "median": 68500,
-        "low": 48500,
-        "high": 72500
-      },
-      "ownerIncome": {
-        "median": 30500,
-        "low": 26000,
-        "high": 41000
-      },
-      "cleaningPerCheckout": {
-        "median": 950,
-        "low": 900,
-        "high": 950
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "4+",
-      "bathrooms": "all",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 21,
-      "stays": 162,
-      "adr": {
-        "median": 2500,
-        "low": 2300,
-        "high": 3300
-      },
-      "occupancy": {
-        "median": 71,
-        "low": 58,
-        "high": 84
-      },
-      "grossIncome": {
-        "median": 81500,
-        "low": 43500,
-        "high": 92500
-      },
-      "ownerIncome": {
-        "median": 34500,
-        "low": 17500,
-        "high": 58000
-      },
-      "cleaningPerCheckout": {
-        "median": 950,
-        "low": 925,
-        "high": 950
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "4+",
-      "bathrooms": "1",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 9,
-      "stays": 56,
-      "adr": {
-        "median": 2300,
-        "low": 1700,
-        "high": 2600
-      },
-      "occupancy": {
-        "median": 61,
-        "low": 45,
-        "high": 71
-      },
-      "grossIncome": {
-        "median": 51500,
-        "low": 41000,
-        "high": 68500
-      },
-      "ownerIncome": {
-        "median": 18500,
-        "low": 15000,
-        "high": 34500
-      },
-      "cleaningPerCheckout": {
-        "median": 875,
-        "low": 825,
-        "high": 950
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "4+",
-      "bathrooms": "2+",
-      "month": 5,
-      "monthLabel": "Mai",
-      "properties": 6,
-      "stays": 39,
-      "adr": {
-        "median": 1950,
-        "low": 1750,
-        "high": 2500
-      },
-      "occupancy": {
-        "median": 60,
-        "low": 27,
-        "high": 71
-      },
-      "grossIncome": {
-        "median": 55500,
-        "low": 21500,
-        "high": 73500
-      },
-      "ownerIncome": {
-        "median": 18000,
-        "low": 7500,
-        "high": 37000
-      },
-      "cleaningPerCheckout": {
-        "median": 950,
-        "low": 950,
-        "high": 950
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "4+",
-      "bathrooms": "2+",
-      "month": 6,
-      "monthLabel": "Juni",
-      "properties": 10,
-      "stays": 71,
-      "adr": {
-        "median": 3300,
-        "low": 2500,
-        "high": 3500
-      },
-      "occupancy": {
-        "median": 60,
-        "low": 41,
-        "high": 68
-      },
-      "grossIncome": {
-        "median": 68500,
-        "low": 49500,
-        "high": 72500
-      },
-      "ownerIncome": {
-        "median": 28500,
-        "low": 26000,
-        "high": 40000
-      },
-      "cleaningPerCheckout": {
-        "median": 950,
-        "low": 950,
-        "high": 975
-      }
-    },
-    {
-      "city": "Bergen",
-      "bedrooms": "4+",
-      "bathrooms": "2+",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 12,
-      "stays": 106,
-      "adr": {
-        "median": 3200,
-        "low": 2450,
-        "high": 3500
-      },
-      "occupancy": {
-        "median": 76,
-        "low": 69,
-        "high": 84
-      },
-      "grossIncome": {
-        "median": 89000,
-        "low": 80000,
-        "high": 112500
-      },
-      "ownerIncome": {
-        "median": 51000,
+        "median": 49500,
         "low": 31500,
-        "high": 60000
-      },
-      "cleaningPerCheckout": {
-        "median": 950,
-        "low": 950,
-        "high": 1000
-      }
-    },
-    {
-      "city": "Oslo",
-      "bedrooms": "all",
-      "bathrooms": "all",
-      "month": 6,
-      "monthLabel": "Juni",
-      "properties": 12,
-      "stays": 37,
-      "adr": {
-        "median": 1750,
-        "low": 1000,
-        "high": 2400
-      },
-      "occupancy": {
-        "median": 28,
-        "low": 19,
-        "high": 48
-      },
-      "grossIncome": {
-        "median": 17000,
-        "low": 10000,
-        "high": 36000
-      },
-      "ownerIncome": {
-        "median": 7000,
-        "low": 4500,
-        "high": 20000
-      },
-      "cleaningPerCheckout": {
-        "median": 800,
-        "low": 750,
-        "high": 850
-      }
-    },
-    {
-      "city": "Oslo",
-      "bedrooms": "all",
-      "bathrooms": "all",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 18,
-      "stays": 90,
-      "adr": {
-        "median": 1850,
-        "low": 1550,
-        "high": 2550
-      },
-      "occupancy": {
-        "median": 55,
-        "low": 36,
-        "high": 74
-      },
-      "grossIncome": {
-        "median": 39500,
-        "low": 28000,
         "high": 61000
       },
       "ownerIncome": {
-        "median": 16000,
-        "low": 13000,
-        "high": 28000
+        "median": 45500,
+        "low": 43500,
+        "high": 43500
       },
       "cleaningPerCheckout": {
-        "median": 825,
-        "low": 750,
-        "high": 950
+        "median": 700,
+        "low": 700,
+        "high": 700
       }
     },
     {
-      "city": "Oslo",
-      "bedrooms": "1",
-      "bathrooms": "all",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 7,
-      "stays": 24,
-      "adr": {
-        "median": 1650,
-        "low": 1200,
-        "high": 1850
-      },
-      "occupancy": {
-        "median": 35,
-        "low": 24,
-        "high": 50
-      },
-      "grossIncome": {
-        "median": 29500,
-        "low": 10000,
-        "high": 33500
-      },
-      "ownerIncome": {
-        "median": 11000,
-        "low": 4000,
-        "high": 17000
-      },
-      "cleaningPerCheckout": {
-        "median": 725,
-        "low": 725,
-        "high": 750
-      }
-    },
-    {
-      "city": "Oslo",
-      "bedrooms": "1",
-      "bathrooms": "1",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 7,
-      "stays": 24,
-      "adr": {
-        "median": 1650,
-        "low": 1200,
-        "high": 1850
-      },
-      "occupancy": {
-        "median": 35,
-        "low": 24,
-        "high": 50
-      },
-      "grossIncome": {
-        "median": 29500,
-        "low": 10000,
-        "high": 33500
-      },
-      "ownerIncome": {
-        "median": 11000,
-        "low": 4000,
-        "high": 17000
-      },
-      "cleaningPerCheckout": {
-        "median": 725,
-        "low": 725,
-        "high": 750
-      }
-    },
-    {
-      "city": "Oslo",
-      "bedrooms": "2",
-      "bathrooms": "all",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 5,
-      "stays": 27,
-      "adr": {
-        "median": 1650,
-        "low": 1550,
-        "high": 2050
-      },
-      "occupancy": {
-        "median": 65,
-        "low": 58,
-        "high": 81
-      },
-      "grossIncome": {
-        "median": 57000,
-        "low": 29000,
-        "high": 62500
-      },
-      "ownerIncome": {
-        "median": 21500,
-        "low": 15000,
-        "high": 24500
-      },
-      "cleaningPerCheckout": {
-        "median": 850,
-        "low": 800,
-        "high": 850
-      }
-    },
-    {
-      "city": "Hardanger",
-      "bedrooms": "all",
-      "bathrooms": "all",
-      "month": 4,
-      "monthLabel": "April",
-      "properties": 7,
-      "stays": 35,
-      "adr": {
-        "median": 1050,
-        "low": 800,
-        "high": 1250
-      },
-      "occupancy": {
-        "median": 47,
-        "low": 40,
-        "high": 62
-      },
-      "grossIncome": {
-        "median": 17500,
-        "low": 17500,
-        "high": 22000
-      },
-      "ownerIncome": {
-        "median": 4000,
-        "low": 2500,
-        "high": 5000
-      },
-      "cleaningPerCheckout": {
-        "median": 800,
-        "low": 750,
-        "high": 875
-      }
-    },
-    {
-      "city": "Hardanger",
-      "bedrooms": "all",
-      "bathrooms": "all",
-      "month": 5,
-      "monthLabel": "Mai",
-      "properties": 8,
-      "stays": 58,
-      "adr": {
-        "median": 1200,
-        "low": 950,
-        "high": 1600
-      },
-      "occupancy": {
-        "median": 55,
-        "low": 50,
-        "high": 71
-      },
-      "grossIncome": {
-        "median": 37500,
-        "low": 32000,
-        "high": 53500
-      },
-      "ownerIncome": {
-        "median": 12000,
-        "low": 9000,
-        "high": 14000
-      },
-      "cleaningPerCheckout": {
-        "median": 850,
-        "low": 775,
-        "high": 900
-      }
-    },
-    {
-      "city": "Hardanger",
-      "bedrooms": "all",
-      "bathrooms": "all",
-      "month": 6,
-      "monthLabel": "Juni",
-      "properties": 22,
-      "stays": 137,
-      "adr": {
-        "median": 1400,
-        "low": 1200,
-        "high": 1800
-      },
-      "occupancy": {
-        "median": 32,
-        "low": 5,
-        "high": 63
-      },
-      "grossIncome": {
-        "median": 13000,
-        "low": 2000,
-        "high": 52500
-      },
-      "ownerIncome": {
-        "median": 2000,
-        "low": 0,
-        "high": 16500
-      },
-      "cleaningPerCheckout": {
-        "median": 725,
-        "low": 725,
-        "high": 800
-      }
-    },
-    {
-      "city": "Hardanger",
-      "bedrooms": "all",
-      "bathrooms": "all",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 34,
-      "stays": 377,
-      "adr": {
-        "median": 1100,
-        "low": 900,
-        "high": 1600
-      },
-      "occupancy": {
-        "median": 58,
-        "low": 23,
-        "high": 90
-      },
-      "grossIncome": {
-        "median": 28500,
-        "low": 7500,
-        "high": 47500
-      },
-      "ownerIncome": {
-        "median": 0,
-        "low": -500,
-        "high": 14500
-      },
-      "cleaningPerCheckout": {
-        "median": 725,
-        "low": 725,
-        "high": 800
-      }
-    },
-    {
-      "city": "Hardanger",
-      "bedrooms": "1",
-      "bathrooms": "all",
-      "month": 6,
-      "monthLabel": "Juni",
-      "properties": 11,
-      "stays": 42,
-      "adr": {
-        "median": 1350,
-        "low": 1200,
-        "high": 1400
-      },
-      "occupancy": {
-        "median": 20,
-        "low": 3,
-        "high": 40
-      },
-      "grossIncome": {
-        "median": 10000,
-        "low": 1500,
-        "high": 17000
-      },
-      "ownerIncome": {
-        "median": 1000,
-        "low": 0,
-        "high": 8500
-      },
-      "cleaningPerCheckout": {
-        "median": 725,
-        "low": 725,
-        "high": 725
-      }
-    },
-    {
-      "city": "Hardanger",
-      "bedrooms": "1",
-      "bathrooms": "all",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 15,
-      "stays": 174,
-      "adr": {
-        "median": 1050,
-        "low": 900,
-        "high": 1200
-      },
-      "occupancy": {
-        "median": 55,
-        "low": 35,
-        "high": 77
-      },
-      "grossIncome": {
-        "median": 26000,
-        "low": 15500,
-        "high": 35500
-      },
-      "ownerIncome": {
-        "median": 0,
-        "low": -1000,
-        "high": 2500
-      },
-      "cleaningPerCheckout": {
-        "median": 725,
-        "low": 725,
-        "high": 725
-      }
-    },
-    {
-      "city": "Hardanger",
-      "bedrooms": "1",
-      "bathrooms": "1",
-      "month": 6,
-      "monthLabel": "Juni",
-      "properties": 11,
-      "stays": 42,
-      "adr": {
-        "median": 1350,
-        "low": 1200,
-        "high": 1400
-      },
-      "occupancy": {
-        "median": 20,
-        "low": 3,
-        "high": 40
-      },
-      "grossIncome": {
-        "median": 10000,
-        "low": 1500,
-        "high": 17000
-      },
-      "ownerIncome": {
-        "median": 1000,
-        "low": 0,
-        "high": 8500
-      },
-      "cleaningPerCheckout": {
-        "median": 725,
-        "low": 725,
-        "high": 725
-      }
-    },
-    {
-      "city": "Hardanger",
-      "bedrooms": "1",
-      "bathrooms": "1",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 12,
-      "stays": 159,
-      "adr": {
-        "median": 1100,
-        "low": 1000,
-        "high": 1250
-      },
-      "occupancy": {
-        "median": 65,
-        "low": 47,
-        "high": 81
-      },
-      "grossIncome": {
-        "median": 30500,
-        "low": 22500,
-        "high": 37000
-      },
-      "ownerIncome": {
-        "median": 1000,
-        "low": -1500,
-        "high": 4000
-      },
-      "cleaningPerCheckout": {
-        "median": 725,
-        "low": 725,
-        "high": 725
-      }
-    },
-    {
-      "city": "Hardanger",
-      "bedrooms": "2",
-      "bathrooms": "all",
-      "month": 6,
-      "monthLabel": "Juni",
-      "properties": 5,
-      "stays": 42,
-      "adr": {
-        "median": 1250,
-        "low": 1200,
-        "high": 2200
-      },
-      "occupancy": {
-        "median": 63,
-        "low": 33,
-        "high": 70
-      },
-      "grossIncome": {
-        "median": 22000,
-        "low": 12500,
-        "high": 54000
-      },
-      "ownerIncome": {
-        "median": -500,
-        "low": -1000,
-        "high": 18500
-      },
-      "cleaningPerCheckout": {
-        "median": 800,
-        "low": 800,
-        "high": 800
-      }
-    },
-    {
-      "city": "Hardanger",
-      "bedrooms": "2",
-      "bathrooms": "all",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 10,
-      "stays": 111,
-      "adr": {
-        "median": 1050,
-        "low": 1000,
-        "high": 1100
-      },
-      "occupancy": {
-        "median": 53,
-        "low": 15,
-        "high": 90
-      },
-      "grossIncome": {
-        "median": 19000,
-        "low": 7000,
-        "high": 36000
-      },
-      "ownerIncome": {
-        "median": -500,
-        "low": -1000,
-        "high": 2000
-      },
-      "cleaningPerCheckout": {
-        "median": 800,
-        "low": 800,
-        "high": 800
-      }
-    },
-    {
-      "city": "Hardanger",
+      "city": "Bergen",
       "bedrooms": "2",
       "bathrooms": "1",
-      "month": 6,
-      "monthLabel": "Juni",
-      "properties": 5,
-      "stays": 42,
+      "month": 8,
+      "monthLabel": "August",
+      "properties": 21,
+      "stays": 143,
       "adr": {
-        "median": 1250,
-        "low": 1200,
-        "high": 2200
-      },
-      "occupancy": {
-        "median": 63,
-        "low": 33,
-        "high": 70
-      },
-      "grossIncome": {
-        "median": 22000,
-        "low": 12500,
-        "high": 54000
-      },
-      "ownerIncome": {
-        "median": -500,
-        "low": -1000,
-        "high": 18500
-      },
-      "cleaningPerCheckout": {
-        "median": 800,
-        "low": 800,
-        "high": 800
-      }
-    },
-    {
-      "city": "Hardanger",
-      "bedrooms": "2",
-      "bathrooms": "1",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 10,
-      "stays": 111,
-      "adr": {
-        "median": 1050,
-        "low": 1000,
-        "high": 1100
-      },
-      "occupancy": {
-        "median": 53,
-        "low": 15,
-        "high": 90
-      },
-      "grossIncome": {
-        "median": 19000,
-        "low": 7000,
-        "high": 36000
-      },
-      "ownerIncome": {
-        "median": -500,
-        "low": -1000,
-        "high": 2000
-      },
-      "cleaningPerCheckout": {
-        "median": 800,
-        "low": 800,
-        "high": 800
-      }
-    },
-    {
-      "city": "Hardanger",
-      "bedrooms": "3",
-      "bathrooms": "all",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 5,
-      "stays": 68,
-      "adr": {
-        "median": 2050,
-        "low": 1950,
-        "high": 2200
-      },
-      "occupancy": {
-        "median": 100,
-        "low": 71,
-        "high": 100
-      },
-      "grossIncome": {
-        "median": 104000,
-        "low": 49500,
-        "high": 107500
-      },
-      "ownerIncome": {
-        "median": 33500,
-        "low": 15500,
-        "high": 35500
-      },
-      "cleaningPerCheckout": {
-        "median": 875,
-        "low": 875,
-        "high": 875
-      }
-    },
-    {
-      "city": "Voss",
-      "bedrooms": "all",
-      "bathrooms": "all",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 13,
-      "stays": 132,
-      "adr": {
-        "median": 1700,
-        "low": 1250,
+        "median": 2400,
+        "low": 2150,
         "high": 2150
       },
       "occupancy": {
-        "median": 42,
-        "low": 13,
-        "high": 74
+        "median": 91.6,
+        "low": 91.6,
+        "high": 91.6
       },
       "grossIncome": {
-        "median": 32000,
-        "low": 9000,
-        "high": 39500
+        "median": 59500,
+        "low": 29000,
+        "high": 88500
       },
       "ownerIncome": {
-        "median": 9500,
-        "low": 1500,
-        "high": 13500
+        "median": 50500,
+        "low": 53500,
+        "high": 53500
       },
       "cleaningPerCheckout": {
-        "median": 800,
-        "low": 725,
-        "high": 800
-      }
-    },
-    {
-      "city": "Voss",
-      "bedrooms": "1",
-      "bathrooms": "all",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 6,
-      "stays": 58,
-      "adr": {
-        "median": 1700,
-        "low": 1700,
-        "high": 2050
-      },
-      "occupancy": {
-        "median": 47,
-        "low": 42,
-        "high": 52
-      },
-      "grossIncome": {
-        "median": 33000,
-        "low": 29500,
-        "high": 34500
-      },
-      "ownerIncome": {
-        "median": 10000,
-        "low": 9000,
-        "high": 10500
-      },
-      "cleaningPerCheckout": {
-        "median": 725,
-        "low": 725,
-        "high": 725
-      }
-    },
-    {
-      "city": "Voss",
-      "bedrooms": "1",
-      "bathrooms": "1",
-      "month": 7,
-      "monthLabel": "Juli",
-      "properties": 6,
-      "stays": 58,
-      "adr": {
-        "median": 1700,
-        "low": 1700,
-        "high": 2050
-      },
-      "occupancy": {
-        "median": 47,
-        "low": 42,
-        "high": 52
-      },
-      "grossIncome": {
-        "median": 33000,
-        "low": 29500,
-        "high": 34500
-      },
-      "ownerIncome": {
-        "median": 10000,
-        "low": 9000,
-        "high": 10500
-      },
-      "cleaningPerCheckout": {
-        "median": 725,
-        "low": 725,
-        "high": 725
+        "median": 700,
+        "low": 700,
+        "high": 700
       }
     }
   ]
