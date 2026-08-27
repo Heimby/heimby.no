@@ -1,8 +1,13 @@
 {
-  "title": "Hva kan du tjene på Airbnb? Slik regner du det ut | Heimby",
-  "metaDescription": "Hva en bolig tjener på Airbnb avhenger av bydel, størrelse, sesong og hvor mange døgn vedtektene tillater. Slik regner du på det — og hva du får utbetalt etter skatt og kostnader.",
-  "lastUpdated": "2026-08-25",
-  "h1": "Hva kan du tjene på Airbnb?",
+  "title": "Hvor mye kan man tjene på Airbnb-utleie? | Heimby",
+  "metaDescription": "Det finnes ingen fast øvre inntektsgrense på Airbnb. Se hva som avgjør døgnpris, belegg og netto inntekt etter kostnader og skatt.",
+  "lastUpdated": "2026-08-27",
+  "h1": "Hvor mye kan man tjene på Airbnb-utleie?",
+  "answerBox": {
+    "label": "Kort svar",
+    "answer": "Ingen fast øvre inntektsgrense",
+    "body": "Det finnes ingen fast øvre inntektsgrense på Airbnb. Du setter døgnprisen, men faktisk inntekt bestemmes av beliggenhet, boligtype, sesong, belegg, standard og antall døgn du har lov til å leie ut. Bruttoinntekt er døgnpris ganger utleide døgn; nettoinntekt er dette beløpet minus drift, forvaltning og skatt."
+  },
   "intro": [
     "Det finnes ikke ett tall. To leiligheter i samme gate kan skille tusenvis av kroner i måneden, fordi inntekten styres av fire ting: hvor mange døgn du faktisk har lov til å leie ut, hvor sentralt boligen ligger, hvor sterk sesongprofilen i byen er, og hvor godt annonsen og driften fungerer.",
     "Under går vi gjennom hver av dem, slik at du kan regne på din egen bolig i stedet for å lete etter et gjennomsnitt som ikke gjelder deg. Vil du heller ha et konkret tall, regner vi på tre scenarioer for boligen din gratis."
@@ -61,6 +66,10 @@
     "note": "Fra 2026 rapporterer Airbnb og Booking.com inntektene dine direkte til Skatteetaten. Vi leverer en årsoppgave som viser brutto inntekt, kostnader og netto utbetaling per bolig, slik at tallene er klare til selvangivelsen."
   },
   "faqs": [
+    {
+      "question": "Hvor mye kan man tjene på Airbnb-utleie?",
+      "answer": "Det finnes ingen fast øvre inntektsgrense på Airbnb. Du setter døgnprisen, men faktisk inntekt bestemmes av beliggenhet, boligtype, sesong, belegg, standard og antall døgn du har lov til å leie ut. Bruttoinntekt er døgnpris ganger utleide døgn; nettoinntekt er dette beløpet minus drift, forvaltning og skatt."
+    },
     {
       "question": "Hva kan jeg tjene på Airbnb i Bergen?",
       "answer": "Det avhenger av bydel, størrelse og hvor mange døgn vedtektene tillater. Bergen har en av Norges skarpeste sesongkurver: juli ligger langt over årssnittet, mens november til mars er svakt. Derfor er det årsinntekten som avgjør hva som lønner seg, ikke sommerprisen. Vi regner på tre scenarioer for boligen din — ren langtidsutleie, ren korttidsutleie og 10-2-modellen — og viser deg tallene før du bestemmer deg."

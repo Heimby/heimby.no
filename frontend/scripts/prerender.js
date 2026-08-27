@@ -713,6 +713,11 @@ function dataPageBody() {
 
   return `<main class="prerendered">
 <h1>${esc(d.h1)}</h1>
+<section aria-labelledby="kort-svar-tittel">
+<p><strong>${esc(d.answerBox.label)}</strong></p>
+<h2 id="kort-svar-tittel">${esc(d.answerBox.answer)}</h2>
+<p>${esc(d.answerBox.body)}</p>
+</section>
 ${d.intro.map((p) => `<p>${esc(p)}</p>`).join("\n")}
 
 <h2>Fire ting avgjør tallet</h2>

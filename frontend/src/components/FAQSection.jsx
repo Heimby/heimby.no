@@ -1,8 +1,8 @@
 import { Minus, Plus } from "lucide-react";
 import { useState } from "react";
 
-const FAQSection = ({ faqs, cityName }) => {
-  const [expandedIndex, setExpandedIndex] = useState(null);
+const FAQSection = ({ faqs, cityName, defaultExpandedIndex = null }) => {
+  const [expandedIndex, setExpandedIndex] = useState(defaultExpandedIndex);
 
   const toggleExpand = (index) => {
     setExpandedIndex(expandedIndex === index ? null : index);
@@ -32,6 +32,8 @@ const FAQSection = ({ faqs, cityName }) => {
                 <button
                   type="button"
                   onClick={() => toggleExpand(index)}
+                  aria-expanded={expandedIndex === index}
+                  aria-controls={`faq-answer-${index}`}
                   className="w-full flex items-start justify-between p-6 text-left hover:bg-gray-50 transition-colors"
                 >
                   <span className="text-lg font-semibold text-gray-900 pr-8">
@@ -43,11 +45,13 @@ const FAQSection = ({ faqs, cityName }) => {
                     <Plus className="w-6 h-6 text-gray-700 flex-shrink-0 mt-1" />
                   )}
                 </button>
-                {expandedIndex === index && (
-                  <div className="px-6 pb-6 text-base text-gray-700 leading-relaxed animate-fade-in">
+                <div
+                  id={`faq-answer-${index}`}
+                  hidden={expandedIndex !== index}
+                  className="px-6 pb-6 text-base text-gray-700 leading-relaxed animate-fade-in"
+                >
                     {faq.answer}
-                  </div>
-                )}
+                </div>
               </div>
             ))}
           </div>

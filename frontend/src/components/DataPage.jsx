@@ -35,6 +35,23 @@ const DataPage = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
               {content.h1}
             </h1>
+            <aside
+              aria-labelledby="kort-svar-tittel"
+              className="mb-8 rounded-2xl bg-gray-900 p-7 text-white md:p-9"
+            >
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-white/60">
+                {content.answerBox.label}
+              </p>
+              <h2
+                id="kort-svar-tittel"
+                className="mb-4 text-2xl font-bold leading-tight md:text-3xl"
+              >
+                {content.answerBox.answer}
+              </h2>
+              <p className="text-base leading-relaxed text-white/85 md:text-lg">
+                {content.answerBox.body}
+              </p>
+            </aside>
             {content.intro.map((para, index) => (
               <p
                 key={index}
@@ -178,7 +195,11 @@ const DataPage = () => {
           <LeadGenSection />
         </div>
 
-        <FAQSection faqs={content.faqs} cityName="Norge" />
+        <FAQSection
+          faqs={content.faqs}
+          cityName="Norge"
+          defaultExpandedIndex={0}
+        />
 
         <Footer />
       </div>
