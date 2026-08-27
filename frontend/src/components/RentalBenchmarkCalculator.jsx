@@ -67,15 +67,20 @@ const RentalBenchmarkCalculator = () => {
   const [month, setMonth] = useState(8);
   const [dimension, setDimension] = useState("city");
 
-  const overall = benchmarks.groups.overall.find((row) => row.month === month);
+  const bergen = benchmarks.groups.city.find(
+    (row) => row.key === "Bergen" && row.month === month,
+  );
   const rows = useMemo(
     () => benchmarks.groups[dimension].filter((row) => row.month === month),
     [dimension, month],
   );
 
-  if (!overall) return null;
+  if (!bergen) return null;
 
   const selectedMonth = benchmarks.months.find((item) => item.value === month);
+  const visibleRows = dimension === "city"
+    ? rows.filter((row) => row.key !== "Bergen")
+    : rows;
 
   return (
     <section id="inntektskalkulator" className="bg-[#F9F8F4] px-6 py-16 md:py-20">
@@ -123,40 +128,41 @@ const RentalBenchmarkCalculator = () => {
 
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-gray-200 bg-white px-5 py-4">
           <p className="font-semibold text-gray-900">
-            Anonymiserte nøkkeltall og eksempler per aktiv bolig
+            Bergen som markedseksempel
           </p>
           <p className="text-sm text-gray-500">{selectedMonth.label} 2026</p>
         </div>
 
         <p className="mb-5 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm leading-relaxed text-emerald-950">
-          Belegget beregnes bare av døgn boligen faktisk kunne selges. Tid før annonsen
-          åpnet, eierblokker og andre stengte døgn registreres ikke som tomgang.
+          Bergen er markedet som presterer best i dette utvalget. Belegget beregnes bare
+          av døgn boligen faktisk kunne selges; tid før annonsen åpnet, eierblokker og
+          andre stengte døgn registreres ikke som tomgang.
         </p>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <SummaryCard
             icon={Banknote}
             label="Brutto per bolig"
-            value={money(overall.grossPerPropertyAvg)}
-            note={`Avrundet gruppesnitt. Midtre 50 %: ${money(overall.grossPerPropertyP25)}–${money(overall.grossPerPropertyP75)}.`}
+            value={money(bergen.grossPerPropertyAvg)}
+            note={`Avrundet Bergen-snitt. Topp 25 %: fra ${money(bergen.grossPerPropertyP75)} per bolig.`}
             dark
           />
           <SummaryCard
             icon={Building2}
             label="Beregnet til eier per bolig"
-            value={money(overall.ownerIncomePerPropertyAvg)}
-            note={`Etter Airbnb/Booking.com, Heimby og renhold. Midtre 50 %: ${money(overall.ownerIncomePerPropertyP25)}–${money(overall.ownerIncomePerPropertyP75)}.`}
+            value={money(bergen.ownerIncomePerPropertyAvg)}
+            note={`Etter Airbnb/Booking.com, Heimby og renhold. Topp 25 %: fra ${money(bergen.ownerIncomePerPropertyP75)}.`}
           />
           <SummaryCard
             icon={Gauge}
             label="Belegg av salgbare døgn"
-            value={`${String(overall.occupancyPct).replace(".", ",")} %`}
+            value={`${String(bergen.occupancyPct).replace(".", ",")} %`}
             note="Bookede Airbnb- og Booking.com-døgn delt på døgn boligene faktisk var åpne for salg."
           />
           <SummaryCard
             icon={CalendarDays}
             label="ADR"
-            value={money(overall.adr)}
+            value={money(bergen.adr)}
             note="Vektet losjiinntekt per Airbnb- og Booking.com-natt."
           />
         </div>
@@ -165,7 +171,7 @@ const RentalBenchmarkCalculator = () => {
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-gray-500">
-                Kostnader per aktiv bolig
+                Kostnader per aktiv bolig i Bergen
               </p>
               <h3 className="mt-1 text-xl font-bold text-gray-900">
                 Fra bruttoinntekt til beregnet eierinntekt
@@ -175,11 +181,11 @@ const RentalBenchmarkCalculator = () => {
           </div>
           <dl className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {[
-              ["Bruttoinntekt", overall.grossPerPropertyAvg, false],
-              ["Airbnb / Booking.com", overall.platformCommissionPerPropertyAvg, true],
-              ["Heimby inkl. MVA", overall.heimbyCommissionPerPropertyAvg, true],
-              ["Renhold inkl. MVA", overall.cleaningCostPerPropertyAvg, true],
-              ["Beregnet til eier", overall.ownerIncomePerPropertyAvg, false],
+              ["Bruttoinntekt", bergen.grossPerPropertyAvg, false],
+              ["Airbnb / Booking.com", bergen.platformCommissionPerPropertyAvg, true],
+              ["Heimby inkl. MVA", bergen.heimbyCommissionPerPropertyAvg, true],
+              ["Renhold inkl. MVA", bergen.cleaningCostPerPropertyAvg, true],
+              ["Beregnet til eier", bergen.ownerIncomePerPropertyAvg, false],
             ].map(([label, value, deduction], index) => (
               <div
                 key={label}
@@ -199,31 +205,33 @@ const RentalBenchmarkCalculator = () => {
         </div>
 
         <div className="mt-12">
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-gray-500">Tre historiske nivåer</p>
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-gray-500">
+            Bergen · {selectedMonth.label} 2026
+          </p>
           <h3 className="mt-2 text-2xl font-bold text-gray-900 md:text-3xl">
-            Hva kan én bolig sitte igjen med?
+            Hva kan én bolig i Bergen sitte igjen med?
           </h3>
           <p className="mt-3 max-w-3xl leading-relaxed text-gray-600">
-            Eksemplene viser nedre kvartil, median og øvre kvartil for måneden. De er
-            anonymiserte og avrundede beregninger per bolig etter de tre viste kostnadene,
-            ikke et inntektsløfte eller et individuelt eieroppgjør.
+            Eksemplene viser gjennomsnitt, median og terskelen for topp 25 prosent i Bergen.
+            De er anonymiserte og avrundede beregninger per bolig etter de tre viste
+            kostnadene, ikke et inntektsløfte eller et individuelt eieroppgjør.
           </p>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             <ScenarioCard
-              eyebrow="Nedre kvartil"
-              title="Forsiktig eksempel"
-              value={overall.ownerIncomePerPropertyP25}
+              eyebrow="Gjennomsnitt"
+              title="Gjennomsnittlig eksempel"
+              value={bergen.ownerIncomePerPropertyAvg}
             />
             <ScenarioCard
               eyebrow="Median"
               title="Typisk eksempel"
-              value={overall.ownerIncomePerPropertyMedian}
+              value={bergen.ownerIncomePerPropertyMedian}
               highlighted
             />
             <ScenarioCard
-              eyebrow="Øvre kvartil"
+              eyebrow="Topp 25 %"
               title="Sterkt eksempel"
-              value={overall.ownerIncomePerPropertyP75}
+              value={bergen.ownerIncomePerPropertyP75}
             />
           </div>
           <div className="mt-4 rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm leading-relaxed text-gray-600">
@@ -236,9 +244,11 @@ const RentalBenchmarkCalculator = () => {
         <div className="mt-14">
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-gray-500">Sammenlign gruppene</p>
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-gray-500">
+                {dimension === "city" ? "Sammenlign andre byer" : "Sammenlign boligstørrelser"}
+              </p>
               <h3 className="mt-2 text-2xl font-bold text-gray-900 md:text-3xl">
-                Statistikk per by og størrelse
+                {dimension === "city" ? "Andre byer sammenlignet med Bergen" : "Statistikk per antall soverom"}
               </h3>
             </div>
             <div className="flex flex-wrap gap-2" aria-label="Velg gruppering">
@@ -260,6 +270,12 @@ const RentalBenchmarkCalculator = () => {
             </div>
           </div>
 
+          {dimension === "city" && (
+            <p className="mt-4 text-sm leading-relaxed text-gray-600">
+              Bergen-eksemplet vises over. Tabellen viser de øvrige markedene for samme måned.
+            </p>
+          )}
+
           <div className="mt-6 overflow-x-auto rounded-2xl border border-gray-200 bg-white">
             <table className="min-w-[1180px] w-full text-left text-sm">
               <thead className="border-b border-gray-200 bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
@@ -275,7 +291,7 @@ const RentalBenchmarkCalculator = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
-                {rows.map((row) => (
+                {visibleRows.map((row) => (
                   <tr key={`${row.key}-${row.month}`}>
                     <th scope="row" className="whitespace-nowrap px-4 py-4 font-bold text-gray-900">
                       {row.label}
@@ -287,7 +303,7 @@ const RentalBenchmarkCalculator = () => {
                     <td className="px-4 py-4 text-gray-700">
                       <span className="font-semibold text-gray-900">{money(row.grossPerPropertyAvg)}</span>
                       <span className="mt-1 block text-xs text-gray-400">
-                        Midtre 50 %: {money(row.grossPerPropertyP25)}–{money(row.grossPerPropertyP75)}
+                        Topp 25 %: fra {money(row.grossPerPropertyP75)}
                       </span>
                     </td>
                     <td className="px-4 py-4 text-gray-700">{money(row.platformCommissionPerPropertyAvg)}</td>
@@ -296,7 +312,7 @@ const RentalBenchmarkCalculator = () => {
                     <td className="px-4 py-4 text-gray-700">
                       <span className="font-semibold text-gray-900">{money(row.ownerIncomePerPropertyAvg)}</span>
                       <span className="mt-1 block text-xs text-gray-400">
-                        Midtre 50 %: {money(row.ownerIncomePerPropertyP25)}–{money(row.ownerIncomePerPropertyP75)}
+                        Topp 25 %: fra {money(row.ownerIncomePerPropertyP75)}
                       </span>
                     </td>
                   </tr>

@@ -705,7 +705,12 @@ function newsArticleSchemas(a) {
 
 function dataPageBody() {
   const d = DATA_PAGE;
-  const benchmark = RENTAL_BENCHMARKS.featured.find((row) => row.month === 8);
+  const benchmark = RENTAL_BENCHMARKS.groups.city.find(
+    (row) => row.key === "Bergen" && row.month === 8,
+  );
+  const comparison = RENTAL_BENCHMARKS.groups.city.filter(
+    (row) => row.key !== "Bergen" && row.month === 8,
+  );
   const nok = (value) => `${new Intl.NumberFormat("nb-NO").format(value)} kr`;
   const cityLinks = Object.keys(CITY_DATA)
     .map(
@@ -723,19 +728,29 @@ function dataPageBody() {
 </section>
 ${d.intro.map((p) => `<p>${esc(p)}</p>`).join("\n")}
 
-<h2>Faktiske markedstall fra Heimby-porteføljen</h2>
+<h2>Faktiske markedstall fra Heimby</h2>
 <p>Datagrunnlaget er et anonymisert utvalg fra ${esc(RENTAL_BENCHMARKS.period.label)}. Bare aktive og publiserte annonser med live Airbnb- eller Booking.com-tilkobling og minst sju salgbare kalenderdøgn i måneden er med. Små grupper skjules, og eksakte antall boliger, opphold, døgn og porteføljesummer publiseres ikke.</p>
-${benchmark ? `<h3>Eksempel: 2 soverom og 1 bad i Bergen, august 2026</h3>
+${benchmark ? `<h3>Eksempel: Bergen, august 2026</h3>
 <dl>
 <dt>Vektet ADR</dt><dd>${esc(nok(benchmark.adr))}</dd>
-<dt>Belegg av salgbare døgn</dt><dd>${esc(benchmark.occupancyPct)} %</dd>
+<dt>Belegg av salgbare døgn</dt><dd>${esc(String(benchmark.occupancyPct).replace(".", ","))} %</dd>
 <dt>Bruttoinntekt, snitt per aktiv bolig</dt><dd>${esc(nok(benchmark.grossPerPropertyAvg))}</dd>
+<dt>Topp 25 % bruttoinntekt per bolig</dt><dd>Fra ${esc(nok(benchmark.grossPerPropertyP75))}</dd>
 <dt>Airbnb- og Booking.com-kommisjon per bolig</dt><dd>${esc(nok(benchmark.platformCommissionPerPropertyAvg))}</dd>
 <dt>Heimby-kommisjon inkludert MVA per bolig</dt><dd>${esc(nok(benchmark.heimbyCommissionPerPropertyAvg))}</dd>
 <dt>Renhold inkludert MVA per bolig</dt><dd>${esc(nok(benchmark.cleaningCostPerPropertyAvg))}</dd>
 <dt>Beregnet til eier per bolig</dt><dd>${esc(nok(benchmark.ownerIncomePerPropertyAvg))}</dd>
+<dt>Topp 25 % beregnet eierinntekt per bolig</dt><dd>Fra ${esc(nok(benchmark.ownerIncomePerPropertyP75))}</dd>
 </dl>
 <p>Eksemplet er et avrundet gruppesnitt per bolig. Det er historisk og ikke en garanti for fremtidig inntekt.</p>` : ""}
+
+<h3>Andre byer sammenlignet med Bergen</h3>
+<table>
+<thead><tr><th>By</th><th>ADR</th><th>Belegg</th><th>Brutto per bolig</th><th>Beregnet til eier</th></tr></thead>
+<tbody>
+${comparison.map((row) => `<tr><td>${esc(row.label)}</td><td>${esc(nok(row.adr))}</td><td>${esc(String(row.occupancyPct).replace(".", ","))} %</td><td>${esc(nok(row.grossPerPropertyAvg))}</td><td>${esc(nok(row.ownerIncomePerPropertyAvg))}</td></tr>`).join("\n")}
+</tbody>
+</table>
 
 <h2>Fire ting avgjør tallet</h2>
 ${d.drivers.map((x) => `<h3>${esc(x.title)}</h3>\n<p>${esc(x.body)}</p>`).join("\n")}
@@ -781,7 +796,7 @@ function dataPageSchemas() {
       creator: { "@id": `${SITE}/#organization` },
       dateModified: RENTAL_BENCHMARKS.updated,
       measurementTechnique:
-        "Vektet ADR og belegg av salgbare døgn, med avrundede gjennomsnitt, medianer og kvartiler per aktiv bolig. Små grupper og eksakte utvalgsstørrelser publiseres ikke.",
+        "Vektet ADR og belegg av salgbare døgn, med avrundede gjennomsnitt, medianer og terskel for topp 25 prosent per aktiv bolig. Små grupper og eksakte utvalgsstørrelser publiseres ikke.",
       variableMeasured: [
         "Average daily rate (ADR)",
         "Occupancy rate",
