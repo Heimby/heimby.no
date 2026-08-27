@@ -17,6 +17,21 @@ const nok = new Intl.NumberFormat("nb-NO", {
 });
 
 const money = (value) => (value == null ? "Ikke publisert" : nok.format(value));
+const roundTo = (value, nearest = 500) => nearest * Math.round(value / nearest);
+
+const top25Breakdown = (row) => {
+  const gross = row.grossPerPropertyP75;
+  const platform = roundTo(gross * 0.16);
+  const heimby = roundTo(gross * 0.15 * 1.25);
+  const cleaning = roundTo(gross * 0.15);
+  return {
+    gross,
+    platform,
+    heimby,
+    cleaning,
+    owner: gross - platform - heimby - cleaning,
+  };
+};
 
 const dimensions = [
   { key: "city", label: "By og marked", icon: MapPin },
@@ -44,25 +59,6 @@ const SummaryCard = ({ icon: Icon, label, value, note, dark = false }) => (
   </div>
 );
 
-const ScenarioCard = ({ eyebrow, title, value, highlighted = false }) => (
-  <div
-    className={`rounded-2xl border p-5 md:p-6 ${
-      highlighted
-        ? "border-gray-900 bg-gray-900 text-white"
-        : "border-gray-200 bg-white text-gray-900"
-    }`}
-  >
-    <p className={`text-xs font-bold uppercase tracking-[0.16em] ${highlighted ? "text-white/60" : "text-gray-500"}`}>
-      {eyebrow}
-    </p>
-    <h4 className="mt-2 text-lg font-bold">{title}</h4>
-    <p className="mt-5 text-3xl font-bold tracking-tight md:text-4xl">{money(value)}</p>
-    <p className={`mt-1 text-sm ${highlighted ? "text-white/65" : "text-gray-500"}`}>
-      beregnet til eier per bolig
-    </p>
-  </div>
-);
-
 const RentalBenchmarkCalculator = () => {
   const [year, setYear] = useState(benchmarks.years[0]);
   const [month, setMonth] = useState(8);
@@ -84,6 +80,7 @@ const RentalBenchmarkCalculator = () => {
   const visibleRows = dimension === "city"
     ? rows.filter((row) => row.key !== "Bergen")
     : rows;
+  const bergenTop25 = top25Breakdown(bergen);
 
   return (
     <section id="inntektskalkulator" className="bg-[#F9F8F4] px-6 py-16 md:py-20">
@@ -163,16 +160,16 @@ const RentalBenchmarkCalculator = () => {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <SummaryCard
             icon={Banknote}
-            label="Brutto per bolig"
-            value={money(bergen.grossPerPropertyAvg)}
-            note={`Avrundet Bergen-snitt. Topp 25 %: fra ${money(bergen.grossPerPropertyP75)} per bolig.`}
+            label="Brutto · topp 25 %"
+            value={money(bergenTop25.gross)}
+            note="Terskelen for den best presterende fjerdedelen av Bergen-boligene."
             dark
           />
           <SummaryCard
             icon={Building2}
-            label="Beregnet til eier per bolig"
-            value={money(bergen.ownerIncomePerPropertyAvg)}
-            note={`Etter plattform 16 %, Heimby 15 % + MVA og renhold. Topp 25 %: fra ${money(bergen.ownerIncomePerPropertyP75)}.`}
+            label="Til eier · topp 25 %"
+            value={money(bergenTop25.owner)}
+            note="Etter plattform 16 %, Heimby 15 % + MVA og ca. 15 % renhold."
           />
           <SummaryCard
             icon={Gauge}
@@ -192,21 +189,21 @@ const RentalBenchmarkCalculator = () => {
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-gray-500">
-                Kostnader per aktiv bolig i Bergen
+                Topp 25 % i Bergen
               </p>
               <h3 className="mt-1 text-xl font-bold text-gray-900">
                 Fra bruttoinntekt til beregnet eierinntekt
               </h3>
             </div>
-            <p className="text-sm text-gray-500">Gjennomsnitt · {selectedMonth.label} {year}</p>
+            <p className="text-sm text-gray-500">Terskel · {selectedMonth.label} {year}</p>
           </div>
           <dl className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {[
-              ["Bruttoinntekt", bergen.grossPerPropertyAvg, false],
-              ["Plattform 16 %", bergen.platformCommissionPerPropertyAvg, true],
-              ["Heimby 15 % + MVA", bergen.heimbyCommissionPerPropertyAvg, true],
-              ["Renhold inkl. MVA", bergen.cleaningCostPerPropertyAvg, true],
-              ["Beregnet til eier", bergen.ownerIncomePerPropertyAvg, false],
+              ["Bruttoinntekt", bergenTop25.gross, false],
+              ["Plattform 16 %", bergenTop25.platform, true],
+              ["Heimby 15 % + MVA", bergenTop25.heimby, true],
+              ["Renhold ca. 15 %", bergenTop25.cleaning, true],
+              ["Beregnet til eier", bergenTop25.owner, false],
             ].map(([label, value, deduction], index) => (
               <div
                 key={label}
@@ -221,46 +218,10 @@ const RentalBenchmarkCalculator = () => {
           </dl>
           <p className="mt-4 text-sm leading-relaxed text-gray-500">
             Plattformkommisjonen er standardisert til 16 prosent for sammenligning.
-            Heimby-honoraret er 15 prosent pluss MVA.
+            Heimby-honoraret er 15 prosent pluss MVA, og renhold er estimert til
+            omtrent 15 prosent.
             Eierbeløpet er før skatt, vedlikehold, skader, refusjoner og andre individuelle kostnader.
           </p>
-        </div>
-
-        <div className="mt-12">
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-gray-500">
-            Bergen · {selectedMonth.label} {year}
-          </p>
-          <h3 className="mt-2 text-2xl font-bold text-gray-900 md:text-3xl">
-            Hva kan én bolig i Bergen sitte igjen med?
-          </h3>
-          <p className="mt-3 max-w-3xl leading-relaxed text-gray-600">
-            Eksemplene viser gjennomsnitt, median og terskelen for topp 25 prosent i Bergen.
-            De er anonymiserte og avrundede beregninger per bolig etter de tre viste
-            kostnadene, ikke et inntektsløfte eller et individuelt eieroppgjør.
-          </p>
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <ScenarioCard
-              eyebrow="Gjennomsnitt"
-              title="Gjennomsnittlig eksempel"
-              value={bergen.ownerIncomePerPropertyAvg}
-            />
-            <ScenarioCard
-              eyebrow="Median"
-              title="Typisk eksempel"
-              value={bergen.ownerIncomePerPropertyMedian}
-              highlighted
-            />
-            <ScenarioCard
-              eyebrow="Topp 25 %"
-              title="Sterkt eksempel"
-              value={bergen.ownerIncomePerPropertyP75}
-            />
-          </div>
-          <div className="mt-4 rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm leading-relaxed text-gray-600">
-            Kostnadene er anonymiserte snitt per bolig. Porteføljesummer, eksakte
-            utvalgsstørrelser og individuelle eieroppgjør publiseres ikke. Kontakt Heimby
-            for en beregning tilpasset din bolig.
-          </div>
         </div>
 
         <div className="mt-14">
@@ -308,15 +269,17 @@ const RentalBenchmarkCalculator = () => {
                   <th className="px-4 py-3 font-bold">Gruppe</th>
                   <th className="px-4 py-3 font-bold">Belegg</th>
                   <th className="px-4 py-3 font-bold">ADR</th>
-                  <th className="px-4 py-3 font-bold">Brutto / bolig</th>
+                  <th className="px-4 py-3 font-bold">Brutto · topp 25 %</th>
                   <th className="px-4 py-3 font-bold">Plattform 16 %</th>
                   <th className="px-4 py-3 font-bold">Heimby 15 % + MVA</th>
-                  <th className="px-4 py-3 font-bold">Renhold inkl. MVA</th>
-                  <th className="px-4 py-3 font-bold">Til eier / bolig</th>
+                  <th className="px-4 py-3 font-bold">Renhold ca. 15 %</th>
+                  <th className="px-4 py-3 font-bold">Til eier · topp 25 %</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
-                {visibleRows.map((row) => (
+                {visibleRows.map((row) => {
+                  const top25 = top25Breakdown(row);
+                  return (
                   <tr key={`${row.key}-${row.year}-${row.month}`}>
                     <th scope="row" className="whitespace-nowrap px-4 py-4 font-bold text-gray-900">
                       {row.label}
@@ -325,23 +288,14 @@ const RentalBenchmarkCalculator = () => {
                       {String(row.occupancyPct).replace(".", ",")} %
                     </td>
                     <td className="px-4 py-4 text-gray-700">{money(row.adr)}</td>
-                    <td className="px-4 py-4 text-gray-700">
-                      <span className="font-semibold text-gray-900">{money(row.grossPerPropertyAvg)}</span>
-                      <span className="mt-1 block text-xs text-gray-400">
-                        Topp 25 %: fra {money(row.grossPerPropertyP75)}
-                      </span>
-                    </td>
-                    <td className="px-4 py-4 text-gray-700">{money(row.platformCommissionPerPropertyAvg)}</td>
-                    <td className="px-4 py-4 text-gray-700">{money(row.heimbyCommissionPerPropertyAvg)}</td>
-                    <td className="px-4 py-4 text-gray-700">{money(row.cleaningCostPerPropertyAvg)}</td>
-                    <td className="px-4 py-4 text-gray-700">
-                      <span className="font-semibold text-gray-900">{money(row.ownerIncomePerPropertyAvg)}</span>
-                      <span className="mt-1 block text-xs text-gray-400">
-                        Topp 25 %: fra {money(row.ownerIncomePerPropertyP75)}
-                      </span>
-                    </td>
+                    <td className="px-4 py-4 font-semibold text-gray-900">{money(top25.gross)}</td>
+                    <td className="px-4 py-4 text-gray-700">{money(top25.platform)}</td>
+                    <td className="px-4 py-4 text-gray-700">{money(top25.heimby)}</td>
+                    <td className="px-4 py-4 text-gray-700">{money(top25.cleaning)}</td>
+                    <td className="px-4 py-4 font-semibold text-gray-900">{money(top25.owner)}</td>
                   </tr>
-                ))}
+                  );
+                })}
               </tbody>
             </table>
           </div>

@@ -715,6 +715,16 @@ function dataPageBody() {
     (row) => row.key === "Bergen" && row.year === 2025 && row.month === 8,
   );
   const nok = (value) => `${new Intl.NumberFormat("nb-NO").format(value)} kr`;
+  const roundTo = (value, nearest = 500) => nearest * Math.round(value / nearest);
+  const top25Breakdown = (row) => {
+    const gross = row.grossPerPropertyP75;
+    const platform = roundTo(gross * 0.16);
+    const heimby = roundTo(gross * 0.15 * 1.25);
+    const cleaning = roundTo(gross * 0.15);
+    return { gross, platform, heimby, cleaning, owner: gross - platform - heimby - cleaning };
+  };
+  const benchmarkTop25 = benchmark ? top25Breakdown(benchmark) : null;
+  const historicalTop25 = historicalBenchmark ? top25Breakdown(historicalBenchmark) : null;
   const cityLinks = Object.keys(CITY_DATA)
     .map(
       (slug) =>
@@ -737,21 +747,22 @@ ${benchmark ? `<h3>Eksempel: Bergen, august 2026</h3>
 <dl>
 <dt>Vektet ADR</dt><dd>${esc(nok(benchmark.adr))}</dd>
 <dt>Belegg av salgbare døgn</dt><dd>${esc(String(benchmark.occupancyPct).replace(".", ","))} %</dd>
-<dt>Bruttoinntekt, snitt per aktiv bolig</dt><dd>${esc(nok(benchmark.grossPerPropertyAvg))}</dd>
-<dt>Topp 25 % bruttoinntekt per bolig</dt><dd>Fra ${esc(nok(benchmark.grossPerPropertyP75))}</dd>
-<dt>Plattformkommisjon, 16 % per bolig</dt><dd>${esc(nok(benchmark.platformCommissionPerPropertyAvg))}</dd>
-<dt>Heimby, 15 % pluss MVA per bolig</dt><dd>${esc(nok(benchmark.heimbyCommissionPerPropertyAvg))}</dd>
-<dt>Renhold inkludert MVA per bolig</dt><dd>${esc(nok(benchmark.cleaningCostPerPropertyAvg))}</dd>
-<dt>Beregnet til eier per bolig</dt><dd>${esc(nok(benchmark.ownerIncomePerPropertyAvg))}</dd>
-<dt>Topp 25 % beregnet eierinntekt per bolig</dt><dd>Fra ${esc(nok(benchmark.ownerIncomePerPropertyP75))}</dd>
+<dt>Bruttoinntekt, terskel for topp 25 %</dt><dd>${esc(nok(benchmarkTop25.gross))}</dd>
+<dt>Plattformkommisjon, 16 %</dt><dd>${esc(nok(benchmarkTop25.platform))}</dd>
+<dt>Heimby, 15 % pluss MVA</dt><dd>${esc(nok(benchmarkTop25.heimby))}</dd>
+<dt>Renhold, cirka 15 %</dt><dd>${esc(nok(benchmarkTop25.cleaning))}</dd>
+<dt>Beregnet til eier, topp 25 %</dt><dd>${esc(nok(benchmarkTop25.owner))}</dd>
 </dl>
-<p>Eksemplet er et avrundet gruppesnitt per bolig. Det er historisk og ikke en garanti for fremtidig inntekt.</p>` : ""}
+<p>Eksemplet viser den avrundede terskelen for topp 25 prosent per bolig. Det er historisk og ikke en garanti for fremtidig inntekt.</p>` : ""}
 
 <h3>Andre byer sammenlignet med Bergen</h3>
 <table>
-<thead><tr><th>By</th><th>ADR</th><th>Belegg</th><th>Brutto per bolig</th><th>Beregnet til eier</th></tr></thead>
+<thead><tr><th>By</th><th>ADR</th><th>Belegg</th><th>Brutto, topp 25 %</th><th>Til eier, topp 25 %</th></tr></thead>
 <tbody>
-${comparison.map((row) => `<tr><td>${esc(row.label)}</td><td>${esc(nok(row.adr))}</td><td>${esc(String(row.occupancyPct).replace(".", ","))} %</td><td>${esc(nok(row.grossPerPropertyAvg))}</td><td>${esc(nok(row.ownerIncomePerPropertyAvg))}</td></tr>`).join("\n")}
+${comparison.map((row) => {
+  const top25 = top25Breakdown(row);
+  return `<tr><td>${esc(row.label)}</td><td>${esc(nok(row.adr))}</td><td>${esc(String(row.occupancyPct).replace(".", ","))} %</td><td>${esc(nok(top25.gross))}</td><td>${esc(nok(top25.owner))}</td></tr>`;
+}).join("\n")}
 </tbody>
 </table>
 
@@ -759,9 +770,8 @@ ${historicalBenchmark ? `<h3>Bergen i august 2025</h3>
 <dl>
 <dt>Vektet ADR</dt><dd>${esc(nok(historicalBenchmark.adr))}</dd>
 <dt>Belegg av salgbare døgn</dt><dd>${esc(String(historicalBenchmark.occupancyPct).replace(".", ","))} %</dd>
-<dt>Bruttoinntekt, snitt per aktiv bolig</dt><dd>${esc(nok(historicalBenchmark.grossPerPropertyAvg))}</dd>
-<dt>Beregnet til eier per bolig</dt><dd>${esc(nok(historicalBenchmark.ownerIncomePerPropertyAvg))}</dd>
-<dt>Topp 25 % beregnet eierinntekt per bolig</dt><dd>Fra ${esc(nok(historicalBenchmark.ownerIncomePerPropertyP75))}</dd>
+<dt>Bruttoinntekt, terskel for topp 25 %</dt><dd>${esc(nok(historicalTop25.gross))}</dd>
+<dt>Beregnet til eier, topp 25 %</dt><dd>${esc(nok(historicalTop25.owner))}</dd>
 </dl>
 <p>2025-tallene er hentet fra de samme reservasjons- og kalenderkildene og filtrert på faktisk opprettet OTA-tilkobling og salgbare døgn.</p>` : ""}
 

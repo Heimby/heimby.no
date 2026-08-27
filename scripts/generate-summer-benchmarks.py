@@ -36,6 +36,8 @@ MIN_PROPERTIES = 5
 MIN_STAYS = 20
 PLATFORM_COMMISSION_RATE = 0.16
 HEIMBY_COMMISSION_RATE = 0.15
+CLEANING_COST_RATE = 0.15
+COST_VAT_RATE = 0.25
 
 
 def sql(query):
@@ -106,7 +108,6 @@ SELECT eei."ExternalEntityId" AS listing_id,
        p."Bedrooms" AS bedrooms,
        p."Bathrooms" AS bathrooms,
        p."IsActive" AS property_active,
-       p."CleaningTurnoverCost" AS cleaning_turnover_cost,
        a."City" AS city,
        a."PostalCode" AS postal_code
 FROM "ExternalEntityIntegration" eei
@@ -115,16 +116,6 @@ LEFT JOIN "PropertyAddress" a ON a."Id" = p."AddressId"
 WHERE eei."ExternalIntegrationId" = '{INTEGRATION}'
   AND p."OrganizationId" = '{ORG}'
 """)
-
-finance_defaults = sql_json(f"""
-SELECT "DefaultManagementFee" AS management_fee,
-       "DefaultCleaningFeeBase" AS cleaning_base,
-       "DefaultCleaningFeePerBedroom" AS cleaning_per_bedroom,
-       "DefaultCleaningFeePerBathroom" AS cleaning_per_bathroom,
-       COALESCE("CostVatRate", 0.25) AS cost_vat_rate
-FROM "BaseOrganization"
-WHERE "Id" = '{ORG}'
-""")[0]
 
 leases = sql_json(f"""
 SELECT l."Id" AS lease_id,
@@ -239,7 +230,6 @@ property_month = defaultdict(lambda: {
     "cleaning_cost": 0.0,
     "revenue_nights": 0,
     "stays": set(),
-    "checkouts": 0,
 })
 
 for day in calendar_days:
@@ -294,39 +284,17 @@ for lease in leases:
             row["gross"] += accommodation + guest_cleaning + taxes
             row["revenue_nights"] += overlap
             row["stays"].add(lease["lease_id"])
-    for year in YEARS:
-        if dt.date(year, 6, 1) <= end < dt.date(year, 9, 1):
-            property_month[(lease["property_id"], year, end.month)]["checkouts"] += 1
-
 props_by_id = {row["property_id"]: row for row in properties}
 
 
-def resolved_cleaning_cost(prop):
-    value = prop.get("cleaning_turnover_cost")
-    if value is not None:
-        return float(value)
-    terms = [
-        finance_defaults.get("cleaning_base"),
-        finance_defaults.get("cleaning_per_bedroom"),
-        finance_defaults.get("cleaning_per_bathroom"),
-    ]
-    if all(value is None for value in terms):
-        return 0.0
-    return (
-        float(finance_defaults.get("cleaning_base") or 0)
-        + float(finance_defaults.get("cleaning_per_bedroom") or 0) * int(prop.get("bedrooms") or 0)
-        + float(finance_defaults.get("cleaning_per_bathroom") or 0) * float(prop.get("bathrooms") or 0)
-    )
-
-
-cost_vat_multiplier = 1 + float(finance_defaults.get("cost_vat_rate") or 0)
+cost_vat_multiplier = 1 + COST_VAT_RATE
 for (property_id, year, month), row in property_month.items():
     prop = props_by_id.get(property_id)
     if not prop:
         continue
     row["platform_commission"] = row["gross"] * PLATFORM_COMMISSION_RATE
     row["heimby_commission"] = row["gross"] * HEIMBY_COMMISSION_RATE * cost_vat_multiplier
-    row["cleaning_cost"] = row["checkouts"] * resolved_cleaning_cost(prop) * cost_vat_multiplier
+    row["cleaning_cost"] = row["gross"] * CLEANING_COST_RATE
 
 
 eligible = {}
@@ -482,7 +450,7 @@ result = {
         "grossIncome": "Losji, gjestebetalt renhold og registrerte gjesteskatter periodisert over oppholdets netter.",
         "platformCommission": "Standardisert Airbnb- og Booking.com-kommisjon på 16 prosent av bruttoinntekten, vist som snitt per aktiv bolig.",
         "heimbyCommission": "Heimby-kommisjon på 15 prosent av bruttoinntekten, pluss MVA, vist som snitt per aktiv bolig.",
-        "cleaningCost": "Registrert renholdskostnad per utsjekk med organisasjonens standardformel som reserve, inkludert registrert kostnads-MVA.",
+        "cleaningCost": "Standardisert renholdsestimat på omtrent 15 prosent av bruttoinntekten, vist som snitt per aktiv bolig.",
         "ownerIncome": "Bruttoinntekt minus plattformkommisjon, Heimby-kommisjon og renhold. Før eierens skatt, vedlikehold, skader og andre individuelle kostnader.",
         "august": "August omfatter bekreftede bookinger og åpne kalenderdøgn per 28. august 2026, også de siste dagene av måneden.",
     },

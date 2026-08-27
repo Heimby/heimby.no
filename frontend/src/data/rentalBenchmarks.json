@@ -18,7 +18,7 @@
     "grossIncome": "Losji, gjestebetalt renhold og registrerte gjesteskatter periodisert over oppholdets netter.",
     "platformCommission": "Standardisert Airbnb- og Booking.com-kommisjon på 16 prosent av bruttoinntekten, vist som snitt per aktiv bolig.",
     "heimbyCommission": "Heimby-kommisjon på 15 prosent av bruttoinntekten, pluss MVA, vist som snitt per aktiv bolig.",
-    "cleaningCost": "Registrert renholdskostnad per utsjekk med organisasjonens standardformel som reserve, inkludert registrert kostnads-MVA.",
+    "cleaningCost": "Standardisert renholdsestimat på omtrent 15 prosent av bruttoinntekten, vist som snitt per aktiv bolig.",
     "ownerIncome": "Bruttoinntekt minus plattformkommisjon, Heimby-kommisjon og renhold. Før eierens skatt, vedlikehold, skader og andre individuelle kostnader.",
     "august": "August omfatter bekreftede bookinger og åpne kalenderdøgn per 28. august 2026, også de siste dagene av måneden."
   },
@@ -56,11 +56,11 @@
         "grossPerPropertyP75": 63500,
         "platformCommissionPerPropertyAvg": 8000,
         "heimbyCommissionPerPropertyAvg": 9500,
-        "cleaningCostPerPropertyAvg": 9000,
-        "ownerIncomePerPropertyAvg": 24500,
-        "ownerIncomePerPropertyMedian": 25500,
-        "ownerIncomePerPropertyP25": 16500,
-        "ownerIncomePerPropertyP75": 30500
+        "cleaningCostPerPropertyAvg": 7500,
+        "ownerIncomePerPropertyAvg": 25500,
+        "ownerIncomePerPropertyMedian": 27000,
+        "ownerIncomePerPropertyP25": 20000,
+        "ownerIncomePerPropertyP75": 32000
       },
       {
         "key": "all",
@@ -76,11 +76,11 @@
         "grossPerPropertyP75": 75000,
         "platformCommissionPerPropertyAvg": 10000,
         "heimbyCommissionPerPropertyAvg": 11500,
-        "cleaningCostPerPropertyAvg": 10500,
-        "ownerIncomePerPropertyAvg": 29500,
-        "ownerIncomePerPropertyMedian": 30000,
-        "ownerIncomePerPropertyP25": 20000,
-        "ownerIncomePerPropertyP75": 38000
+        "cleaningCostPerPropertyAvg": 9000,
+        "ownerIncomePerPropertyAvg": 31000,
+        "ownerIncomePerPropertyMedian": 33000,
+        "ownerIncomePerPropertyP25": 23000,
+        "ownerIncomePerPropertyP75": 37500
       },
       {
         "key": "all",
@@ -97,10 +97,10 @@
         "platformCommissionPerPropertyAvg": 11500,
         "heimbyCommissionPerPropertyAvg": 13500,
         "cleaningCostPerPropertyAvg": 10500,
-        "ownerIncomePerPropertyAvg": 36000,
-        "ownerIncomePerPropertyMedian": 35000,
+        "ownerIncomePerPropertyAvg": 35500,
+        "ownerIncomePerPropertyMedian": 36500,
         "ownerIncomePerPropertyP25": 22500,
-        "ownerIncomePerPropertyP75": 46500
+        "ownerIncomePerPropertyP75": 46000
       },
       {
         "key": "all",
@@ -116,11 +116,11 @@
         "grossPerPropertyP75": 44500,
         "platformCommissionPerPropertyAvg": 5000,
         "heimbyCommissionPerPropertyAvg": 6000,
-        "cleaningCostPerPropertyAvg": 3500,
-        "ownerIncomePerPropertyAvg": 16500,
-        "ownerIncomePerPropertyMedian": 15000,
-        "ownerIncomePerPropertyP25": 8000,
-        "ownerIncomePerPropertyP75": 24000
+        "cleaningCostPerPropertyAvg": 4500,
+        "ownerIncomePerPropertyAvg": 15500,
+        "ownerIncomePerPropertyMedian": 14500,
+        "ownerIncomePerPropertyP25": 7000,
+        "ownerIncomePerPropertyP75": 22500
       },
       {
         "key": "all",
@@ -136,11 +136,11 @@
         "grossPerPropertyP75": 67000,
         "platformCommissionPerPropertyAvg": 8000,
         "heimbyCommissionPerPropertyAvg": 9500,
-        "cleaningCostPerPropertyAvg": 6000,
-        "ownerIncomePerPropertyAvg": 27000,
-        "ownerIncomePerPropertyMedian": 25000,
+        "cleaningCostPerPropertyAvg": 7500,
+        "ownerIncomePerPropertyAvg": 25500,
+        "ownerIncomePerPropertyMedian": 23500,
         "ownerIncomePerPropertyP25": 14000,
-        "ownerIncomePerPropertyP75": 35500
+        "ownerIncomePerPropertyP75": 33500
       },
       {
         "key": "all",
@@ -156,11 +156,11 @@
         "grossPerPropertyP75": 76500,
         "platformCommissionPerPropertyAvg": 9000,
         "heimbyCommissionPerPropertyAvg": 10500,
-        "cleaningCostPerPropertyAvg": 7000,
-        "ownerIncomePerPropertyAvg": 29000,
-        "ownerIncomePerPropertyMedian": 27000,
-        "ownerIncomePerPropertyP25": 13500,
-        "ownerIncomePerPropertyP75": 42000
+        "cleaningCostPerPropertyAvg": 8500,
+        "ownerIncomePerPropertyAvg": 28000,
+        "ownerIncomePerPropertyMedian": 28000,
+        "ownerIncomePerPropertyP25": 15500,
+        "ownerIncomePerPropertyP75": 38500
       }
     ],
     "city": [
@@ -178,11 +178,11 @@
         "grossPerPropertyP75": 62000,
         "platformCommissionPerPropertyAvg": 8000,
         "heimbyCommissionPerPropertyAvg": 9000,
-        "cleaningCostPerPropertyAvg": 9000,
-        "ownerIncomePerPropertyAvg": 23000,
-        "ownerIncomePerPropertyMedian": 25500,
-        "ownerIncomePerPropertyP25": 16000,
-        "ownerIncomePerPropertyP75": 30000
+        "cleaningCostPerPropertyAvg": 7500,
+        "ownerIncomePerPropertyAvg": 24500,
+        "ownerIncomePerPropertyMedian": 27000,
+        "ownerIncomePerPropertyP25": 19500,
+        "ownerIncomePerPropertyP75": 31000
       },
       {
         "key": "Bergen",
@@ -198,11 +198,11 @@
         "grossPerPropertyP75": 71000,
         "platformCommissionPerPropertyAvg": 9500,
         "heimbyCommissionPerPropertyAvg": 11500,
-        "cleaningCostPerPropertyAvg": 10500,
-        "ownerIncomePerPropertyAvg": 29000,
-        "ownerIncomePerPropertyMedian": 29000,
-        "ownerIncomePerPropertyP25": 20000,
-        "ownerIncomePerPropertyP75": 37500
+        "cleaningCostPerPropertyAvg": 9000,
+        "ownerIncomePerPropertyAvg": 30500,
+        "ownerIncomePerPropertyMedian": 33000,
+        "ownerIncomePerPropertyP25": 23000,
+        "ownerIncomePerPropertyP75": 35500
       },
       {
         "key": "Bergen",
@@ -220,9 +220,9 @@
         "heimbyCommissionPerPropertyAvg": 13500,
         "cleaningCostPerPropertyAvg": 10500,
         "ownerIncomePerPropertyAvg": 36000,
-        "ownerIncomePerPropertyMedian": 36500,
+        "ownerIncomePerPropertyMedian": 37000,
         "ownerIncomePerPropertyP25": 22000,
-        "ownerIncomePerPropertyP75": 47000
+        "ownerIncomePerPropertyP75": 46500
       },
       {
         "key": "Bergen",
@@ -238,11 +238,11 @@
         "grossPerPropertyP75": 44500,
         "platformCommissionPerPropertyAvg": 5500,
         "heimbyCommissionPerPropertyAvg": 6000,
-        "cleaningCostPerPropertyAvg": 4000,
-        "ownerIncomePerPropertyAvg": 18000,
-        "ownerIncomePerPropertyMedian": 17500,
-        "ownerIncomePerPropertyP25": 11000,
-        "ownerIncomePerPropertyP75": 23500
+        "cleaningCostPerPropertyAvg": 5000,
+        "ownerIncomePerPropertyAvg": 16500,
+        "ownerIncomePerPropertyMedian": 16000,
+        "ownerIncomePerPropertyP25": 10000,
+        "ownerIncomePerPropertyP75": 22500
       },
       {
         "key": "Hardanger",
@@ -258,11 +258,11 @@
         "grossPerPropertyP75": 53000,
         "platformCommissionPerPropertyAvg": 4000,
         "heimbyCommissionPerPropertyAvg": 5000,
-        "cleaningCostPerPropertyAvg": 1000,
-        "ownerIncomePerPropertyAvg": 16000,
-        "ownerIncomePerPropertyMedian": 3500,
-        "ownerIncomePerPropertyP25": 0,
-        "ownerIncomePerPropertyP75": 34500
+        "cleaningCostPerPropertyAvg": 4000,
+        "ownerIncomePerPropertyAvg": 13000,
+        "ownerIncomePerPropertyMedian": 6500,
+        "ownerIncomePerPropertyP25": 500,
+        "ownerIncomePerPropertyP75": 26500
       },
       {
         "key": "Oslo",
@@ -278,11 +278,11 @@
         "grossPerPropertyP75": 51500,
         "platformCommissionPerPropertyAvg": 5000,
         "heimbyCommissionPerPropertyAvg": 5500,
-        "cleaningCostPerPropertyAvg": 3000,
-        "ownerIncomePerPropertyAvg": 16500,
-        "ownerIncomePerPropertyMedian": 10500,
-        "ownerIncomePerPropertyP25": 8000,
-        "ownerIncomePerPropertyP75": 28500
+        "cleaningCostPerPropertyAvg": 4500,
+        "ownerIncomePerPropertyAvg": 15000,
+        "ownerIncomePerPropertyMedian": 10000,
+        "ownerIncomePerPropertyP25": 7000,
+        "ownerIncomePerPropertyP75": 26000
       },
       {
         "key": "Bergen",
@@ -298,11 +298,11 @@
         "grossPerPropertyP75": 65500,
         "platformCommissionPerPropertyAvg": 8500,
         "heimbyCommissionPerPropertyAvg": 10000,
-        "cleaningCostPerPropertyAvg": 6000,
-        "ownerIncomePerPropertyAvg": 29000,
-        "ownerIncomePerPropertyMedian": 27500,
-        "ownerIncomePerPropertyP25": 17000,
-        "ownerIncomePerPropertyP75": 35000
+        "cleaningCostPerPropertyAvg": 8000,
+        "ownerIncomePerPropertyAvg": 26500,
+        "ownerIncomePerPropertyMedian": 25500,
+        "ownerIncomePerPropertyP25": 16000,
+        "ownerIncomePerPropertyP75": 33000
       },
       {
         "key": "Hardanger",
@@ -318,11 +318,11 @@
         "grossPerPropertyP75": 86000,
         "platformCommissionPerPropertyAvg": 7500,
         "heimbyCommissionPerPropertyAvg": 9000,
-        "cleaningCostPerPropertyAvg": 6000,
-        "ownerIncomePerPropertyAvg": 25000,
-        "ownerIncomePerPropertyMedian": 7500,
-        "ownerIncomePerPropertyP25": 3000,
-        "ownerIncomePerPropertyP75": 56000
+        "cleaningCostPerPropertyAvg": 7000,
+        "ownerIncomePerPropertyAvg": 23500,
+        "ownerIncomePerPropertyMedian": 17500,
+        "ownerIncomePerPropertyP25": 8000,
+        "ownerIncomePerPropertyP75": 43000
       },
       {
         "key": "Oslo",
@@ -338,11 +338,11 @@
         "grossPerPropertyP75": 68000,
         "platformCommissionPerPropertyAvg": 7500,
         "heimbyCommissionPerPropertyAvg": 9000,
-        "cleaningCostPerPropertyAvg": 5000,
-        "ownerIncomePerPropertyAvg": 25500,
-        "ownerIncomePerPropertyMedian": 29000,
-        "ownerIncomePerPropertyP25": 18000,
-        "ownerIncomePerPropertyP75": 36500
+        "cleaningCostPerPropertyAvg": 7000,
+        "ownerIncomePerPropertyAvg": 24000,
+        "ownerIncomePerPropertyMedian": 27000,
+        "ownerIncomePerPropertyP25": 16500,
+        "ownerIncomePerPropertyP75": 34000
       },
       {
         "key": "Bergen",
@@ -358,11 +358,11 @@
         "grossPerPropertyP75": 78500,
         "platformCommissionPerPropertyAvg": 10000,
         "heimbyCommissionPerPropertyAvg": 11500,
-        "cleaningCostPerPropertyAvg": 6500,
-        "ownerIncomePerPropertyAvg": 34000,
-        "ownerIncomePerPropertyMedian": 33500,
-        "ownerIncomePerPropertyP25": 21500,
-        "ownerIncomePerPropertyP75": 43000
+        "cleaningCostPerPropertyAvg": 9500,
+        "ownerIncomePerPropertyAvg": 31000,
+        "ownerIncomePerPropertyMedian": 30500,
+        "ownerIncomePerPropertyP25": 19500,
+        "ownerIncomePerPropertyP75": 39500
       },
       {
         "key": "Hardanger",
@@ -378,11 +378,11 @@
         "grossPerPropertyP75": 68000,
         "platformCommissionPerPropertyAvg": 7000,
         "heimbyCommissionPerPropertyAvg": 8500,
-        "cleaningCostPerPropertyAvg": 7000,
+        "cleaningCostPerPropertyAvg": 6500,
         "ownerIncomePerPropertyAvg": 22500,
-        "ownerIncomePerPropertyMedian": 8000,
-        "ownerIncomePerPropertyP25": 5500,
-        "ownerIncomePerPropertyP75": 44000
+        "ownerIncomePerPropertyMedian": 17500,
+        "ownerIncomePerPropertyP25": 11500,
+        "ownerIncomePerPropertyP75": 34000
       },
       {
         "key": "Oslo",
@@ -398,11 +398,11 @@
         "grossPerPropertyP75": 53000,
         "platformCommissionPerPropertyAvg": 6500,
         "heimbyCommissionPerPropertyAvg": 7500,
-        "cleaningCostPerPropertyAvg": 4000,
-        "ownerIncomePerPropertyAvg": 22000,
-        "ownerIncomePerPropertyMedian": 21000,
+        "cleaningCostPerPropertyAvg": 6000,
+        "ownerIncomePerPropertyAvg": 20500,
+        "ownerIncomePerPropertyMedian": 18500,
         "ownerIncomePerPropertyP25": 13500,
-        "ownerIncomePerPropertyP75": 30000
+        "ownerIncomePerPropertyP75": 26500
       },
       {
         "key": "Voss",
@@ -418,11 +418,11 @@
         "grossPerPropertyP75": 75500,
         "platformCommissionPerPropertyAvg": 11000,
         "heimbyCommissionPerPropertyAvg": 12500,
-        "cleaningCostPerPropertyAvg": 13500,
-        "ownerIncomePerPropertyAvg": 30500,
-        "ownerIncomePerPropertyMedian": 31000,
-        "ownerIncomePerPropertyP25": 23500,
-        "ownerIncomePerPropertyP75": 36000
+        "cleaningCostPerPropertyAvg": 10000,
+        "ownerIncomePerPropertyAvg": 34000,
+        "ownerIncomePerPropertyMedian": 34000,
+        "ownerIncomePerPropertyP25": 31000,
+        "ownerIncomePerPropertyP75": 38000
       }
     ],
     "bedrooms": [
@@ -440,11 +440,11 @@
         "grossPerPropertyP75": 62500,
         "platformCommissionPerPropertyAvg": 9500,
         "heimbyCommissionPerPropertyAvg": 11000,
-        "cleaningCostPerPropertyAvg": 11500,
-        "ownerIncomePerPropertyAvg": 26500,
-        "ownerIncomePerPropertyMedian": 26000,
-        "ownerIncomePerPropertyP25": 23500,
-        "ownerIncomePerPropertyP75": 27500
+        "cleaningCostPerPropertyAvg": 8500,
+        "ownerIncomePerPropertyAvg": 29000,
+        "ownerIncomePerPropertyMedian": 27500,
+        "ownerIncomePerPropertyP25": 26500,
+        "ownerIncomePerPropertyP75": 31500
       },
       {
         "key": "3",
@@ -460,11 +460,11 @@
         "grossPerPropertyP75": 65000,
         "platformCommissionPerPropertyAvg": 8500,
         "heimbyCommissionPerPropertyAvg": 9500,
-        "cleaningCostPerPropertyAvg": 8500,
-        "ownerIncomePerPropertyAvg": 25500,
-        "ownerIncomePerPropertyMedian": 27500,
-        "ownerIncomePerPropertyP25": 21500,
-        "ownerIncomePerPropertyP75": 33000
+        "cleaningCostPerPropertyAvg": 8000,
+        "ownerIncomePerPropertyAvg": 26000,
+        "ownerIncomePerPropertyMedian": 28500,
+        "ownerIncomePerPropertyP25": 22500,
+        "ownerIncomePerPropertyP75": 32500
       },
       {
         "key": "4+",
@@ -480,11 +480,11 @@
         "grossPerPropertyP75": 79500,
         "platformCommissionPerPropertyAvg": 8000,
         "heimbyCommissionPerPropertyAvg": 9500,
-        "cleaningCostPerPropertyAvg": 8500,
-        "ownerIncomePerPropertyAvg": 25000,
-        "ownerIncomePerPropertyMedian": 23500,
-        "ownerIncomePerPropertyP25": 9500,
-        "ownerIncomePerPropertyP75": 36500
+        "cleaningCostPerPropertyAvg": 7500,
+        "ownerIncomePerPropertyAvg": 26000,
+        "ownerIncomePerPropertyMedian": 24500,
+        "ownerIncomePerPropertyP25": 10000,
+        "ownerIncomePerPropertyP75": 40000
       },
       {
         "key": "2",
@@ -500,11 +500,11 @@
         "grossPerPropertyP75": 68500,
         "platformCommissionPerPropertyAvg": 10500,
         "heimbyCommissionPerPropertyAvg": 12000,
-        "cleaningCostPerPropertyAvg": 12000,
-        "ownerIncomePerPropertyAvg": 30000,
-        "ownerIncomePerPropertyMedian": 28500,
-        "ownerIncomePerPropertyP25": 25000,
-        "ownerIncomePerPropertyP75": 33000
+        "cleaningCostPerPropertyAvg": 9500,
+        "ownerIncomePerPropertyAvg": 32000,
+        "ownerIncomePerPropertyMedian": 33000,
+        "ownerIncomePerPropertyP25": 29500,
+        "ownerIncomePerPropertyP75": 34500
       },
       {
         "key": "3",
@@ -520,11 +520,11 @@
         "grossPerPropertyP75": 75000,
         "platformCommissionPerPropertyAvg": 10000,
         "heimbyCommissionPerPropertyAvg": 12000,
-        "cleaningCostPerPropertyAvg": 10000,
-        "ownerIncomePerPropertyAvg": 31500,
-        "ownerIncomePerPropertyMedian": 32000,
-        "ownerIncomePerPropertyP25": 31000,
-        "ownerIncomePerPropertyP75": 38500
+        "cleaningCostPerPropertyAvg": 9500,
+        "ownerIncomePerPropertyAvg": 32000,
+        "ownerIncomePerPropertyMedian": 35000,
+        "ownerIncomePerPropertyP25": 32500,
+        "ownerIncomePerPropertyP75": 37500
       },
       {
         "key": "4+",
@@ -540,11 +540,11 @@
         "grossPerPropertyP75": 88000,
         "platformCommissionPerPropertyAvg": 10500,
         "heimbyCommissionPerPropertyAvg": 12500,
-        "cleaningCostPerPropertyAvg": 11000,
-        "ownerIncomePerPropertyAvg": 33000,
-        "ownerIncomePerPropertyMedian": 37000,
-        "ownerIncomePerPropertyP25": 18000,
-        "ownerIncomePerPropertyP75": 45000
+        "cleaningCostPerPropertyAvg": 10000,
+        "ownerIncomePerPropertyAvg": 33500,
+        "ownerIncomePerPropertyMedian": 38500,
+        "ownerIncomePerPropertyP25": 20500,
+        "ownerIncomePerPropertyP75": 44500
       },
       {
         "key": "2",
@@ -560,10 +560,10 @@
         "grossPerPropertyP75": 87000,
         "platformCommissionPerPropertyAvg": 12500,
         "heimbyCommissionPerPropertyAvg": 14500,
-        "cleaningCostPerPropertyAvg": 13000,
-        "ownerIncomePerPropertyAvg": 38000,
-        "ownerIncomePerPropertyMedian": 39000,
-        "ownerIncomePerPropertyP25": 34500,
+        "cleaningCostPerPropertyAvg": 11500,
+        "ownerIncomePerPropertyAvg": 39000,
+        "ownerIncomePerPropertyMedian": 40000,
+        "ownerIncomePerPropertyP25": 38000,
         "ownerIncomePerPropertyP75": 43500
       },
       {
@@ -580,10 +580,10 @@
         "grossPerPropertyP75": 97000,
         "platformCommissionPerPropertyAvg": 12500,
         "heimbyCommissionPerPropertyAvg": 15000,
-        "cleaningCostPerPropertyAvg": 11500,
+        "cleaningCostPerPropertyAvg": 12000,
         "ownerIncomePerPropertyAvg": 40000,
-        "ownerIncomePerPropertyMedian": 46000,
-        "ownerIncomePerPropertyP25": 28500,
+        "ownerIncomePerPropertyMedian": 44500,
+        "ownerIncomePerPropertyP25": 29000,
         "ownerIncomePerPropertyP75": 49000
       },
       {
@@ -600,11 +600,11 @@
         "grossPerPropertyP75": 107000,
         "platformCommissionPerPropertyAvg": 10500,
         "heimbyCommissionPerPropertyAvg": 12500,
-        "cleaningCostPerPropertyAvg": 9000,
-        "ownerIncomePerPropertyAvg": 34000,
-        "ownerIncomePerPropertyMedian": 20500,
+        "cleaningCostPerPropertyAvg": 10000,
+        "ownerIncomePerPropertyAvg": 33000,
+        "ownerIncomePerPropertyMedian": 22500,
         "ownerIncomePerPropertyP25": 15500,
-        "ownerIncomePerPropertyP75": 55500
+        "ownerIncomePerPropertyP75": 54000
       },
       {
         "key": "1",
@@ -620,11 +620,11 @@
         "grossPerPropertyP75": 30000,
         "platformCommissionPerPropertyAvg": 3000,
         "heimbyCommissionPerPropertyAvg": 3500,
-        "cleaningCostPerPropertyAvg": 2000,
-        "ownerIncomePerPropertyAvg": 11000,
-        "ownerIncomePerPropertyMedian": 8500,
-        "ownerIncomePerPropertyP25": 0,
-        "ownerIncomePerPropertyP75": 16500
+        "cleaningCostPerPropertyAvg": 3000,
+        "ownerIncomePerPropertyAvg": 10000,
+        "ownerIncomePerPropertyMedian": 7500,
+        "ownerIncomePerPropertyP25": 1500,
+        "ownerIncomePerPropertyP75": 15000
       },
       {
         "key": "2",
@@ -640,11 +640,11 @@
         "grossPerPropertyP75": 44500,
         "platformCommissionPerPropertyAvg": 5500,
         "heimbyCommissionPerPropertyAvg": 6500,
-        "cleaningCostPerPropertyAvg": 3500,
-        "ownerIncomePerPropertyAvg": 18500,
-        "ownerIncomePerPropertyMedian": 18500,
+        "cleaningCostPerPropertyAvg": 5000,
+        "ownerIncomePerPropertyAvg": 17000,
+        "ownerIncomePerPropertyMedian": 17500,
         "ownerIncomePerPropertyP25": 10000,
-        "ownerIncomePerPropertyP75": 24000
+        "ownerIncomePerPropertyP75": 22500
       },
       {
         "key": "3",
@@ -660,11 +660,11 @@
         "grossPerPropertyP75": 45000,
         "platformCommissionPerPropertyAvg": 5000,
         "heimbyCommissionPerPropertyAvg": 6000,
-        "cleaningCostPerPropertyAvg": 3500,
-        "ownerIncomePerPropertyAvg": 17000,
-        "ownerIncomePerPropertyMedian": 16500,
-        "ownerIncomePerPropertyP25": 10500,
-        "ownerIncomePerPropertyP75": 26000
+        "cleaningCostPerPropertyAvg": 4500,
+        "ownerIncomePerPropertyAvg": 15500,
+        "ownerIncomePerPropertyMedian": 15000,
+        "ownerIncomePerPropertyP25": 9500,
+        "ownerIncomePerPropertyP75": 22500
       },
       {
         "key": "4+",
@@ -680,11 +680,11 @@
         "grossPerPropertyP75": 69500,
         "platformCommissionPerPropertyAvg": 8000,
         "heimbyCommissionPerPropertyAvg": 9500,
-        "cleaningCostPerPropertyAvg": 5500,
-        "ownerIncomePerPropertyAvg": 28000,
-        "ownerIncomePerPropertyMedian": 27000,
-        "ownerIncomePerPropertyP25": 16500,
-        "ownerIncomePerPropertyP75": 36000
+        "cleaningCostPerPropertyAvg": 7500,
+        "ownerIncomePerPropertyAvg": 25500,
+        "ownerIncomePerPropertyMedian": 25000,
+        "ownerIncomePerPropertyP25": 17500,
+        "ownerIncomePerPropertyP75": 35000
       },
       {
         "key": "1",
@@ -700,11 +700,11 @@
         "grossPerPropertyP75": 43000,
         "platformCommissionPerPropertyAvg": 5500,
         "heimbyCommissionPerPropertyAvg": 6500,
-        "cleaningCostPerPropertyAvg": 5500,
-        "ownerIncomePerPropertyAvg": 16500,
-        "ownerIncomePerPropertyMedian": 14500,
-        "ownerIncomePerPropertyP25": 8000,
-        "ownerIncomePerPropertyP75": 23000
+        "cleaningCostPerPropertyAvg": 5000,
+        "ownerIncomePerPropertyAvg": 17000,
+        "ownerIncomePerPropertyMedian": 15500,
+        "ownerIncomePerPropertyP25": 11500,
+        "ownerIncomePerPropertyP75": 21500
       },
       {
         "key": "2",
@@ -720,11 +720,11 @@
         "grossPerPropertyP75": 64000,
         "platformCommissionPerPropertyAvg": 8000,
         "heimbyCommissionPerPropertyAvg": 9500,
-        "cleaningCostPerPropertyAvg": 5500,
-        "ownerIncomePerPropertyAvg": 27000,
-        "ownerIncomePerPropertyMedian": 27000,
-        "ownerIncomePerPropertyP25": 16000,
-        "ownerIncomePerPropertyP75": 35500
+        "cleaningCostPerPropertyAvg": 7500,
+        "ownerIncomePerPropertyAvg": 25000,
+        "ownerIncomePerPropertyMedian": 25500,
+        "ownerIncomePerPropertyP25": 15500,
+        "ownerIncomePerPropertyP75": 32500
       },
       {
         "key": "3",
@@ -740,11 +740,11 @@
         "grossPerPropertyP75": 86500,
         "platformCommissionPerPropertyAvg": 10000,
         "heimbyCommissionPerPropertyAvg": 12000,
-        "cleaningCostPerPropertyAvg": 7500,
-        "ownerIncomePerPropertyAvg": 34000,
-        "ownerIncomePerPropertyMedian": 31000,
+        "cleaningCostPerPropertyAvg": 9500,
+        "ownerIncomePerPropertyAvg": 31500,
+        "ownerIncomePerPropertyMedian": 30500,
         "ownerIncomePerPropertyP25": 23000,
-        "ownerIncomePerPropertyP75": 40500
+        "ownerIncomePerPropertyP75": 43500
       },
       {
         "key": "4+",
@@ -760,11 +760,11 @@
         "grossPerPropertyP75": 90000,
         "platformCommissionPerPropertyAvg": 12000,
         "heimbyCommissionPerPropertyAvg": 14500,
-        "cleaningCostPerPropertyAvg": 9000,
-        "ownerIncomePerPropertyAvg": 41000,
-        "ownerIncomePerPropertyMedian": 38500,
-        "ownerIncomePerPropertyP25": 28500,
-        "ownerIncomePerPropertyP75": 49000
+        "cleaningCostPerPropertyAvg": 11500,
+        "ownerIncomePerPropertyAvg": 38500,
+        "ownerIncomePerPropertyMedian": 38000,
+        "ownerIncomePerPropertyP25": 29500,
+        "ownerIncomePerPropertyP75": 45000
       },
       {
         "key": "1",
@@ -780,11 +780,11 @@
         "grossPerPropertyP75": 63000,
         "platformCommissionPerPropertyAvg": 7500,
         "heimbyCommissionPerPropertyAvg": 8500,
-        "cleaningCostPerPropertyAvg": 7500,
-        "ownerIncomePerPropertyAvg": 22500,
-        "ownerIncomePerPropertyMedian": 22000,
-        "ownerIncomePerPropertyP25": 8000,
-        "ownerIncomePerPropertyP75": 34000
+        "cleaningCostPerPropertyAvg": 7000,
+        "ownerIncomePerPropertyAvg": 23000,
+        "ownerIncomePerPropertyMedian": 21000,
+        "ownerIncomePerPropertyP25": 15500,
+        "ownerIncomePerPropertyP75": 31500
       },
       {
         "key": "2",
@@ -800,11 +800,11 @@
         "grossPerPropertyP75": 77500,
         "platformCommissionPerPropertyAvg": 9000,
         "heimbyCommissionPerPropertyAvg": 10500,
-        "cleaningCostPerPropertyAvg": 7000,
-        "ownerIncomePerPropertyAvg": 29500,
-        "ownerIncomePerPropertyMedian": 31000,
-        "ownerIncomePerPropertyP25": 13000,
-        "ownerIncomePerPropertyP75": 43000
+        "cleaningCostPerPropertyAvg": 8500,
+        "ownerIncomePerPropertyAvg": 28000,
+        "ownerIncomePerPropertyMedian": 28000,
+        "ownerIncomePerPropertyP25": 14000,
+        "ownerIncomePerPropertyP75": 39000
       },
       {
         "key": "3",
@@ -820,11 +820,11 @@
         "grossPerPropertyP75": 82000,
         "platformCommissionPerPropertyAvg": 9500,
         "heimbyCommissionPerPropertyAvg": 11000,
-        "cleaningCostPerPropertyAvg": 7000,
-        "ownerIncomePerPropertyAvg": 32500,
-        "ownerIncomePerPropertyMedian": 25500,
-        "ownerIncomePerPropertyP25": 16500,
-        "ownerIncomePerPropertyP75": 43500
+        "cleaningCostPerPropertyAvg": 9000,
+        "ownerIncomePerPropertyAvg": 30000,
+        "ownerIncomePerPropertyMedian": 25000,
+        "ownerIncomePerPropertyP25": 17500,
+        "ownerIncomePerPropertyP75": 41000
       },
       {
         "key": "4+",
@@ -840,11 +840,11 @@
         "grossPerPropertyP75": 88500,
         "platformCommissionPerPropertyAvg": 12500,
         "heimbyCommissionPerPropertyAvg": 14500,
-        "cleaningCostPerPropertyAvg": 7500,
-        "ownerIncomePerPropertyAvg": 42500,
-        "ownerIncomePerPropertyMedian": 38000,
-        "ownerIncomePerPropertyP25": 23500,
-        "ownerIncomePerPropertyP75": 48000
+        "cleaningCostPerPropertyAvg": 11500,
+        "ownerIncomePerPropertyAvg": 38500,
+        "ownerIncomePerPropertyMedian": 42000,
+        "ownerIncomePerPropertyP25": 21500,
+        "ownerIncomePerPropertyP75": 44500
       }
     ]
   },
@@ -863,11 +863,11 @@
       "grossPerPropertyP75": 62500,
       "platformCommissionPerPropertyAvg": 9500,
       "heimbyCommissionPerPropertyAvg": 11000,
-      "cleaningCostPerPropertyAvg": 11500,
-      "ownerIncomePerPropertyAvg": 26500,
-      "ownerIncomePerPropertyMedian": 26000,
-      "ownerIncomePerPropertyP25": 23500,
-      "ownerIncomePerPropertyP75": 27500
+      "cleaningCostPerPropertyAvg": 8500,
+      "ownerIncomePerPropertyAvg": 29000,
+      "ownerIncomePerPropertyMedian": 27500,
+      "ownerIncomePerPropertyP25": 26500,
+      "ownerIncomePerPropertyP75": 31500
     },
     {
       "key": "bergen-2-1",
@@ -883,11 +883,11 @@
       "grossPerPropertyP75": 68500,
       "platformCommissionPerPropertyAvg": 10500,
       "heimbyCommissionPerPropertyAvg": 12000,
-      "cleaningCostPerPropertyAvg": 12000,
-      "ownerIncomePerPropertyAvg": 30000,
-      "ownerIncomePerPropertyMedian": 28500,
-      "ownerIncomePerPropertyP25": 25000,
-      "ownerIncomePerPropertyP75": 33000
+      "cleaningCostPerPropertyAvg": 9500,
+      "ownerIncomePerPropertyAvg": 32000,
+      "ownerIncomePerPropertyMedian": 33000,
+      "ownerIncomePerPropertyP25": 29500,
+      "ownerIncomePerPropertyP75": 34500
     },
     {
       "key": "bergen-2-1",
@@ -903,10 +903,10 @@
       "grossPerPropertyP75": 87000,
       "platformCommissionPerPropertyAvg": 12500,
       "heimbyCommissionPerPropertyAvg": 14500,
-      "cleaningCostPerPropertyAvg": 13000,
-      "ownerIncomePerPropertyAvg": 38000,
-      "ownerIncomePerPropertyMedian": 39000,
-      "ownerIncomePerPropertyP25": 34500,
+      "cleaningCostPerPropertyAvg": 11500,
+      "ownerIncomePerPropertyAvg": 39000,
+      "ownerIncomePerPropertyMedian": 40000,
+      "ownerIncomePerPropertyP25": 38000,
       "ownerIncomePerPropertyP75": 43500
     },
     {
@@ -923,11 +923,11 @@
       "grossPerPropertyP75": 43500,
       "platformCommissionPerPropertyAvg": 5500,
       "heimbyCommissionPerPropertyAvg": 6500,
-      "cleaningCostPerPropertyAvg": 4000,
-      "ownerIncomePerPropertyAvg": 18500,
-      "ownerIncomePerPropertyMedian": 19000,
-      "ownerIncomePerPropertyP25": 12000,
-      "ownerIncomePerPropertyP75": 23500
+      "cleaningCostPerPropertyAvg": 5000,
+      "ownerIncomePerPropertyAvg": 17000,
+      "ownerIncomePerPropertyMedian": 17500,
+      "ownerIncomePerPropertyP25": 11500,
+      "ownerIncomePerPropertyP75": 22000
     },
     {
       "key": "bergen-2-1",
@@ -943,11 +943,11 @@
       "grossPerPropertyP75": 61500,
       "platformCommissionPerPropertyAvg": 8000,
       "heimbyCommissionPerPropertyAvg": 9500,
-      "cleaningCostPerPropertyAvg": 5500,
-      "ownerIncomePerPropertyAvg": 27500,
-      "ownerIncomePerPropertyMedian": 26500,
-      "ownerIncomePerPropertyP25": 19000,
-      "ownerIncomePerPropertyP75": 35000
+      "cleaningCostPerPropertyAvg": 7500,
+      "ownerIncomePerPropertyAvg": 25500,
+      "ownerIncomePerPropertyMedian": 25500,
+      "ownerIncomePerPropertyP25": 17000,
+      "ownerIncomePerPropertyP75": 31000
     },
     {
       "key": "bergen-2-1",
@@ -963,11 +963,11 @@
       "grossPerPropertyP75": 88500,
       "platformCommissionPerPropertyAvg": 9500,
       "heimbyCommissionPerPropertyAvg": 11000,
-      "cleaningCostPerPropertyAvg": 6500,
-      "ownerIncomePerPropertyAvg": 32500,
-      "ownerIncomePerPropertyMedian": 31000,
-      "ownerIncomePerPropertyP25": 16000,
-      "ownerIncomePerPropertyP75": 49500
+      "cleaningCostPerPropertyAvg": 9000,
+      "ownerIncomePerPropertyAvg": 30000,
+      "ownerIncomePerPropertyMedian": 29500,
+      "ownerIncomePerPropertyP25": 14500,
+      "ownerIncomePerPropertyP75": 44500
     }
   ]
 }
