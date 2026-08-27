@@ -1,6 +1,6 @@
 {
   "title": "Hvor mye kan man tjene på Airbnb-utleie? | Heimby",
-  "metaDescription": "Det finnes ingen fast øvre inntektsgrense på Airbnb. Se hva som avgjør døgnpris, belegg og netto inntekt etter kostnader og skatt.",
+  "metaDescription": "Se faktiske, anonymiserte Heimby-tall for ADR, belegg, bruttoinntekt, renhold og estimert eierinntekt – filtrert på by og boligtype.",
   "lastUpdated": "2026-08-27",
   "h1": "Hvor mye kan man tjene på Airbnb-utleie?",
   "answerBox": {
@@ -69,6 +69,14 @@
     {
       "question": "Hvor mye kan man tjene på Airbnb-utleie?",
       "answer": "Det finnes ingen fast øvre inntektsgrense på Airbnb. Du setter døgnprisen, men faktisk inntekt bestemmes av beliggenhet, boligtype, sesong, belegg, standard og antall døgn du har lov til å leie ut. Bruttoinntekt er døgnpris ganger utleide døgn; nettoinntekt er dette beløpet minus drift, forvaltning og skatt."
+    },
+    {
+      "question": "Hva viser Heimbys faktiske Airbnb-tall?",
+      "answer": "For boliger med 2 soverom og 1 bad i Bergen i juli 2026 var median ADR 1 500 kroner, medianbelegget 71 prosent og median bruttoinntekt 48 500 kroner. Estimert inntekt til eier var 20 500 kroner før skatt og ekstra vedlikehold. Eksemplet bygger på 34 anonymiserte boliger og 194 opphold; tallene er historiske medianer, ikke en garanti."
+    },
+    {
+      "question": "Hva betyr ADR i korttidsutleie?",
+      "answer": "ADR betyr average daily rate, eller gjennomsnittlig døgnpris. Heimby beregner ADR som losjiinntekt delt på antall solgte netter. Gjestebetalt renhold og skatter holdes utenfor, slik at døgnprisen kan sammenlignes mellom boligtyper og måneder."
     },
     {
       "question": "Hva kan jeg tjene på Airbnb i Bergen?",

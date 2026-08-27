@@ -21,6 +21,7 @@ const CITY_DATA = require("../src/data/cityData.json");
 const HOME_CONTENT = require("../src/data/homeContent.json");
 const MEDIA = require("../src/data/mediaArticles.json");
 const DATA_PAGE = require("../src/data/dataPage.json");
+const RENTAL_BENCHMARKS = require("../src/data/rentalBenchmarks.json");
 const RULES_PAGE = require("../src/data/rulesPage.json");
 
 const SITE = "https://heimby.no";
@@ -704,6 +705,14 @@ function newsArticleSchemas(a) {
 
 function dataPageBody() {
   const d = DATA_PAGE;
+  const benchmark = RENTAL_BENCHMARKS.cohorts.find(
+    (row) =>
+      row.city === "Bergen" &&
+      row.bedrooms === "2" &&
+      row.bathrooms === "1" &&
+      row.month === 7,
+  );
+  const nok = (value) => `${new Intl.NumberFormat("nb-NO").format(value)} kr`;
   const cityLinks = Object.keys(CITY_DATA)
     .map(
       (slug) =>
@@ -719,6 +728,18 @@ function dataPageBody() {
 <p>${esc(d.answerBox.body)}</p>
 </section>
 ${d.intro.map((p) => `<p>${esc(p)}</p>`).join("\n")}
+
+<h2>Faktiske markedstall fra Heimby-porteføljen</h2>
+<p>Datagrunnlaget omfatter ${esc(RENTAL_BENCHMARKS.coverage.stays)} opphold i ${esc(RENTAL_BENCHMARKS.coverage.properties)} anonymiserte boliger fra ${esc(RENTAL_BENCHMARKS.period.label)}. Små grupper skjules, og hvert resultat bygger på minst ${esc(RENTAL_BENCHMARKS.privacy.minimumProperties)} boliger og ${esc(RENTAL_BENCHMARKS.privacy.minimumStays)} opphold.</p>
+${benchmark ? `<h3>Eksempel: 2 soverom og 1 bad i Bergen, juli 2026</h3>
+<dl>
+<dt>ADR, median døgnpris</dt><dd>${esc(nok(benchmark.adr.median))}</dd>
+<dt>Belegg</dt><dd>${esc(benchmark.occupancy.median)} %</dd>
+<dt>Bruttoinntekt</dt><dd>${esc(nok(benchmark.grossIncome.median))}</dd>
+<dt>Estimert til eier før skatt og ekstra vedlikehold</dt><dd>${esc(nok(benchmark.ownerIncome.median))}</dd>
+<dt>Renhold per utsjekk</dt><dd>${esc(nok(benchmark.cleaningPerCheckout.median))}</dd>
+</dl>
+<p>Eksemplet bygger på ${esc(benchmark.properties)} boliger og ${esc(benchmark.stays)} opphold. Tallene er medianer, ikke en garanti.</p>` : ""}
 
 <h2>Fire ting avgjør tallet</h2>
 ${d.drivers.map((x) => `<h3>${esc(x.title)}</h3>\n<p>${esc(x.body)}</p>`).join("\n")}
@@ -750,6 +771,29 @@ ${d.faqs.map((f) => `<h3>${esc(f.question)}</h3>\n<p>${esc(f.answer)}</p>`).join
 
 function dataPageSchemas() {
   return [
+    {
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      name: RENTAL_BENCHMARKS.title,
+      description:
+        "Anonymiserte, avrundede nøkkeltall for korttidsutleie i Heimby-porteføljen, med ADR, belegg, bruttoinntekt, renhold og estimert eierinntekt.",
+      url: `${SITE}/hvor-mye-kan-man-tjene-pa-airbnb/`,
+      temporalCoverage: `${RENTAL_BENCHMARKS.period.from}/${RENTAL_BENCHMARKS.period.to}`,
+      spatialCoverage: [...new Set(RENTAL_BENCHMARKS.cohorts.map((row) => row.city))].map(
+        (name) => ({ "@type": "Place", name }),
+      ),
+      creator: { "@id": `${SITE}/#organization` },
+      dateModified: RENTAL_BENCHMARKS.updated,
+      measurementTechnique:
+        "Median og interkvartilbredde. Kohorter med færre enn 5 boliger eller 20 opphold publiseres ikke.",
+      variableMeasured: [
+        "Average daily rate (ADR)",
+        "Occupancy rate",
+        "Gross rental income",
+        "Cleaning cost per checkout",
+        "Estimated owner income",
+      ],
+    },
     {
       "@context": "https://schema.org",
       "@type": "Article",

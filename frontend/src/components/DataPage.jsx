@@ -7,6 +7,7 @@ import FAQSection from "./FAQSection";
 import Footer from "./Footer";
 import LeadGenSection from "./LeadGenSection";
 import Navbar from "./Navbar";
+import RentalBenchmarkCalculator from "./RentalBenchmarkCalculator";
 
 const PAGE_URL = "https://heimby.no/hvor-mye-kan-man-tjene-pa-airbnb/";
 
@@ -69,6 +70,8 @@ const DataPage = () => {
             ))}
           </div>
         </section>
+
+        <RentalBenchmarkCalculator />
 
         {/* The four things that actually move the number */}
         <section className="py-14 px-6" style={{ backgroundColor: "#F9F8F4" }}>
