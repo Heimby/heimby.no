@@ -1,6 +1,6 @@
 {
   "title": "Hvor mye kan man tjene på Airbnb-utleie? | Heimby",
-  "metaDescription": "Se anonymiserte Heimby-snitt og bruttoeksempler per bolig for juni–august, med ADR og belegg fordelt på by og boligtype.",
+  "metaDescription": "Se anonymiserte Heimby-snitt per bolig for juni–august, med ADR, belegg, bruttoinntekt, provisjoner, renhold og beregnet eierinntekt.",
   "lastUpdated": "2026-08-27",
   "h1": "Hvor mye kan man tjene på Airbnb-utleie?",
   "answerBox": {
@@ -59,6 +59,7 @@
     "intro": "Brutto leieinntekt er ikke det du får utbetalt. Slik ser veien fra gjestens betaling til din konto ut:",
     "steps": [
       "Brutto leieinntekt — det gjestene betaler for oppholdet.",
+      "Minus plattformkommisjon til Airbnb eller Booking.com.",
       "Minus direkte driftskostnader: renhold mellom opphold, forbruksvarer, eventuelle reparasjoner.",
       "Minus forvaltningshonorar: hos Heimby 15 % av leieinntekten + MVA. Ingen oppstartskostnad, ingen abonnement, ingen bindingstid.",
       "Minus skatt: ved korttidsutleie av egen bolig er de første 15 000 kronene i året skattefrie, og 85 % av det overskytende er skattepliktig inntekt beskattet med 22 %. Leier du ut sekundærbolig, er hele inntekten skattepliktig, men du får fradrag for faktiske kostnader."
@@ -72,7 +73,7 @@
     },
     {
       "question": "Hva viser Heimbys faktiske Airbnb-tall?",
-      "answer": "For en anonymisert gruppe aktive boliger med 2 soverom og 1 bad i Bergen i august 2026 var vektet ADR 2 400 kroner og belegget 91,6 prosent av salgbare døgn. Bruttoinntekten var i snitt 59 500 kroner per bolig. Heimby publiserer ikke eksakte utvalgsstørrelser, oppholdstall, porteføljesummer, kostnader eller eieroppgjør."
+      "answer": "For en anonymisert gruppe aktive boliger med 2 soverom og 1 bad i Bergen i august 2026 var vektet ADR 2 400 kroner og belegget 91,6 prosent av salgbare døgn. Per bolig var bruttoinntekten i snitt 59 500 kroner, plattformkommisjonen 9 000 kroner, Heimby-kommisjonen 7 000 kroner og renholdet 6 500 kroner. Beregnet eierinntekt etter disse kostnadene var 37 500 kroner. Heimby publiserer ikke eksakte utvalgsstørrelser, oppholdstall, porteføljesummer eller individuelle eieroppgjør."
     },
     {
       "question": "Hvordan beregner Heimby belegg når boligen bare var åpen deler av måneden?",

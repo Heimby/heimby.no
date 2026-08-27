@@ -79,14 +79,6 @@ def bedroom_group(value):
     return str(value), f"{value} soverom"
 
 
-def review_group(count):
-    if count < 5:
-        return "0-4", "Ny / 0–4 anmeldelser"
-    if count < 20:
-        return "5-19", "5–19 anmeldelser"
-    return "20+", "20+ anmeldelser"
-
-
 def pct(values, fraction):
     if not values:
         return 0
@@ -111,6 +103,8 @@ SELECT eei."ExternalEntityId" AS listing_id,
        p."Bedrooms" AS bedrooms,
        p."Bathrooms" AS bathrooms,
        p."IsActive" AS property_active,
+       p."CommissionRate" AS commission_rate,
+       p."CleaningTurnoverCost" AS cleaning_turnover_cost,
        a."City" AS city,
        a."PostalCode" AS postal_code
 FROM "ExternalEntityIntegration" eei
@@ -120,17 +114,15 @@ WHERE eei."ExternalIntegrationId" = '{INTEGRATION}'
   AND p."OrganizationId" = '{ORG}'
 """)
 
-reviews = sql_json(f"""
-SELECT "PropertyId" AS property_id,
-       "SubmittedAt" AS submitted_at,
-       "Rating" AS rating,
-       "RatingScale" AS rating_scale
-FROM "GuestReviews"
-WHERE "OrganizationId" = '{ORG}'
-  AND "PropertyId" IS NOT NULL
-  AND "SubmittedAt" < '2026-09-01'
-  AND "Channel" IN ('airbnb', 'bookingCom')
-""")
+finance_defaults = sql_json(f"""
+SELECT "DefaultManagementFee" AS management_fee,
+       "DefaultCleaningFeeBase" AS cleaning_base,
+       "DefaultCleaningFeePerBedroom" AS cleaning_per_bedroom,
+       "DefaultCleaningFeePerBathroom" AS cleaning_per_bathroom,
+       COALESCE("CostVatRate", 0.25) AS cost_vat_rate
+FROM "BaseOrganization"
+WHERE "Id" = '{ORG}'
+""")[0]
 
 leases = sql_json(f"""
 SELECT l."Id" AS lease_id,
@@ -140,7 +132,10 @@ SELECT l."Id" AS lease_id,
        eei."Metadata"->>'Platform' AS platform,
        l."GrossRentalIncome" AS accommodation,
        l."CleaningFeeEstimate" AS guest_cleaning,
-       l."TotalTaxes" AS taxes
+       l."TotalTaxes" AS taxes,
+       l."CommissionFee" AS platform_commission,
+       l."PaymentProcessingFee" AS payment_processing_fee,
+       l."Refunds" AS refunds
 FROM "Leases" l
 JOIN "ExternalEntityIntegration" eei ON eei."Id" = l."ExternalEntityIntegrationId"
 WHERE l."OrganizationId" = '{ORG}'
@@ -211,8 +206,14 @@ property_month = defaultdict(lambda: {
     "saleable": 0,
     "accommodation": 0.0,
     "gross": 0.0,
+    "platform_commission": 0.0,
+    "payment_processing_fee": 0.0,
+    "refunds": 0.0,
+    "heimby_commission": 0.0,
+    "cleaning_cost": 0.0,
     "revenue_nights": 0,
     "stays": set(),
+    "checkouts": 0,
 })
 
 for day in calendar_days:
@@ -259,29 +260,54 @@ for lease in leases:
         accommodation = float(lease.get("accommodation") or 0) * share
         guest_cleaning = float(lease.get("guest_cleaning") or 0) * share
         taxes = float(lease.get("taxes") or 0) * share
+        platform_commission = float(lease.get("platform_commission") or 0) * share
+        payment_processing_fee = float(lease.get("payment_processing_fee") or 0) * share
+        refunds = float(lease.get("refunds") or 0) * share
         row["accommodation"] += accommodation
         row["gross"] += accommodation + guest_cleaning + taxes
+        row["platform_commission"] += platform_commission
+        row["payment_processing_fee"] += payment_processing_fee
+        row["refunds"] += refunds
         row["revenue_nights"] += overlap
         row["stays"].add(lease["lease_id"])
+    if dt.date(2026, 6, 1) <= end < dt.date(2026, 9, 1):
+        property_month[(lease["property_id"], end.month)]["checkouts"] += 1
 
 props_by_id = {row["property_id"]: row for row in properties}
 
-reviews_by_property = defaultdict(list)
-for review in reviews:
-    submitted = str(review.get("submitted_at") or "")
-    if not submitted:
+
+def resolved_management_rate(prop):
+    value = prop.get("commission_rate")
+    if value is None:
+        value = finance_defaults.get("management_fee")
+    return float(value or 0)
+
+
+def resolved_cleaning_cost(prop):
+    value = prop.get("cleaning_turnover_cost")
+    if value is not None:
+        return float(value)
+    terms = [
+        finance_defaults.get("cleaning_base"),
+        finance_defaults.get("cleaning_per_bedroom"),
+        finance_defaults.get("cleaning_per_bathroom"),
+    ]
+    if all(value is None for value in terms):
+        return 0.0
+    return (
+        float(finance_defaults.get("cleaning_base") or 0)
+        + float(finance_defaults.get("cleaning_per_bedroom") or 0) * int(prop.get("bedrooms") or 0)
+        + float(finance_defaults.get("cleaning_per_bathroom") or 0) * float(prop.get("bathrooms") or 0)
+    )
+
+
+cost_vat_multiplier = 1 + float(finance_defaults.get("cost_vat_rate") or 0)
+for (property_id, month), row in property_month.items():
+    prop = props_by_id.get(property_id)
+    if not prop:
         continue
-    rating = review.get("rating")
-    scale = review.get("rating_scale")
-    normalized = float(rating) * 10 / float(scale) if rating is not None and scale else None
-    reviews_by_property[review["property_id"]].append((submitted[:10], normalized))
-
-
-def review_snapshot(property_id, month):
-    cutoff = f"2026-{month:02d}-01"
-    rows = [rating for submitted, rating in reviews_by_property.get(property_id, []) if submitted < cutoff]
-    rated = [rating for rating in rows if rating is not None]
-    return len(rows), (statistics.mean(rated) if rated else None)
+    row["heimby_commission"] = row["gross"] * resolved_management_rate(prop) * cost_vat_multiplier
+    row["cleaning_cost"] = row["checkouts"] * resolved_cleaning_cost(prop) * cost_vat_multiplier
 
 
 eligible = {}
@@ -289,7 +315,6 @@ for (property_id, month), row in property_month.items():
     if row["saleable"] < 7:
         continue
     prop = props_by_id[property_id]
-    count, average = review_snapshot(property_id, month)
     eligible[(property_id, month)] = {
         **row,
         "property_id": property_id,
@@ -298,10 +323,6 @@ for (property_id, month), row in property_month.items():
         "bedroom_key": bedroom_group(int(prop.get("bedrooms") or 0))[0],
         "bedroom_label": bedroom_group(int(prop.get("bedrooms") or 0))[1],
         "bathrooms": int(prop.get("bathrooms") or 0),
-        "review_count": count,
-        "review_average": average,
-        "review_key": review_group(count)[0],
-        "review_label": review_group(count)[1],
     }
 
 
@@ -315,7 +336,16 @@ def aggregate(rows, month, key, label):
     revenue_nights = sum(row["revenue_nights"] for row in rows)
     gross_values = [row["gross"] for row in rows]
     adr_values = [row["accommodation"] / row["revenue_nights"] for row in rows if row["revenue_nights"]]
-    rated = [row["review_average"] for row in rows if row["review_average"] is not None]
+    platform_commission_values = [row["platform_commission"] for row in rows]
+    heimby_commission_values = [row["heimby_commission"] for row in rows]
+    cleaning_cost_values = [row["cleaning_cost"] for row in rows]
+    owner_income_values = [
+        row["gross"]
+        - row["platform_commission"]
+        - row["heimby_commission"]
+        - row["cleaning_cost"]
+        for row in rows
+    ]
     return {
         "key": key,
         "label": label,
@@ -334,12 +364,17 @@ def aggregate(rows, month, key, label):
         "grossPerPropertyMedian": round_to(statistics.median(gross_values), 500),
         "grossPerPropertyP25": round_to(pct(gross_values, 0.25), 500),
         "grossPerPropertyP75": round_to(pct(gross_values, 0.75), 500),
-        "reviewsAtMonthStart": sum(row["review_count"] for row in rows),
-        "averageRating10": round(statistics.mean(rated), 2) if rated else None,
+        "platformCommissionPerPropertyAvg": round_to(statistics.mean(platform_commission_values), 500),
+        "heimbyCommissionPerPropertyAvg": round_to(statistics.mean(heimby_commission_values), 500),
+        "cleaningCostPerPropertyAvg": round_to(statistics.mean(cleaning_cost_values), 500),
+        "ownerIncomePerPropertyAvg": round_to(statistics.mean(owner_income_values), 500),
+        "ownerIncomePerPropertyMedian": round_to(statistics.median(owner_income_values), 500),
+        "ownerIncomePerPropertyP25": round_to(pct(owner_income_values, 0.25), 500),
+        "ownerIncomePerPropertyP75": round_to(pct(owner_income_values, 0.75), 500),
     }
 
 
-groups = {"overall": [], "city": [], "bedrooms": [], "reviews": []}
+groups = {"overall": [], "city": [], "bedrooms": []}
 for month in MONTHS:
     month_rows = [row for row in eligible.values() if row["month"] == month]
     overall = aggregate(month_rows, month, "all", "Alle aktive boliger")
@@ -348,11 +383,9 @@ for month in MONTHS:
     for dimension, value_key, label_key in [
         ("city", "market", "market"),
         ("bedrooms", "bedroom_key", "bedroom_label"),
-        ("reviews", "review_key", "review_label"),
     ]:
         order = {
             "bedrooms": {"studio": 0, "1": 1, "2": 2, "3": 3, "4+": 4},
-            "reviews": {"0-4": 0, "5-19": 1, "20+": 2},
         }.get(dimension, {})
         values = sorted({row[value_key] for row in month_rows}, key=lambda value: (order.get(value, 99), value))
         for value in values:
@@ -396,7 +429,13 @@ def public_row(row):
         "grossPerPropertyMedian": row["grossPerPropertyMedian"],
         "grossPerPropertyP25": row["grossPerPropertyP25"],
         "grossPerPropertyP75": row["grossPerPropertyP75"],
-        "averageRating10": row["averageRating10"],
+        "platformCommissionPerPropertyAvg": row["platformCommissionPerPropertyAvg"],
+        "heimbyCommissionPerPropertyAvg": row["heimbyCommissionPerPropertyAvg"],
+        "cleaningCostPerPropertyAvg": row["cleaningCostPerPropertyAvg"],
+        "ownerIncomePerPropertyAvg": row["ownerIncomePerPropertyAvg"],
+        "ownerIncomePerPropertyMedian": row["ownerIncomePerPropertyMedian"],
+        "ownerIncomePerPropertyP25": row["ownerIncomePerPropertyP25"],
+        "ownerIncomePerPropertyP75": row["ownerIncomePerPropertyP75"],
     }
 
 result = {
@@ -404,7 +443,7 @@ result = {
     "updated": "2026-08-27",
     "period": {"from": "2026-06-01", "to": "2026-08-31", "label": "juni–august 2026"},
     "privacy": {
-        "groupRule": "Små grupper skjules. Eksakte antall boliger, opphold, døgn, porteføljesummer og interne regnskapstall publiseres ikke.",
+        "groupRule": "Små grupper skjules. Eksakte antall boliger, opphold, døgn og porteføljesummer publiseres ikke.",
         "rounding": "Beløp per bolig er avrundet til nærmeste 500 kroner.",
     },
     "method": {
@@ -412,8 +451,11 @@ result = {
         "availability": "Ledige døgn pluss Airbnb- og Booking.com-bookede døgn regnes som salgbare. Eierblokker, manuelle reservasjoner, stengte døgn og tid før annonsen åpnet er trukket fra.",
         "adr": "Losjiinntekt delt på Airbnb- og Booking.com-netter med inntektsdata.",
         "occupancy": "Airbnb- og Booking.com-bookede døgn delt på salgbare døgn, vektet på tvers av boligene.",
-        "grossIncome": "Losji, gjestebetalt renhold og registrerte gjesteskatter periodisert over oppholdets netter. Interne kostnader, provisjoner og eieroppgjør publiseres ikke.",
-        "reviews": "Reviewgruppe og rating er basert på publiserte anmeldelser som forelå ved starten av måneden.",
+        "grossIncome": "Losji, gjestebetalt renhold og registrerte gjesteskatter periodisert over oppholdets netter.",
+        "platformCommission": "Registrert vertskommisjon fra Airbnb eller Booking.com, periodisert over oppholdets netter og vist som snitt per aktiv bolig.",
+        "heimbyCommission": "Heimby-kommisjon beregnet av bruttoinntekten med boligens sats eller organisasjonens standardsats, inkludert registrert kostnads-MVA.",
+        "cleaningCost": "Registrert renholdskostnad per utsjekk med organisasjonens standardformel som reserve, inkludert registrert kostnads-MVA.",
+        "ownerIncome": "Bruttoinntekt minus plattformkommisjon, Heimby-kommisjon og renhold. Før eierens skatt, vedlikehold, skader og andre individuelle kostnader.",
         "august": "August omfatter bekreftede bookinger og åpne kalenderdøgn per 27. august 2026, også de siste dagene av måneden.",
     },
     "months": [{"value": month, "label": label} for month, label in MONTHS.items()],
@@ -447,10 +489,7 @@ def main() -> None:
     forbidden_public_fields = {
         "properties", "stays", "checkouts", "saleableNights", "bookedNights",
         "grossTotal", "ownerTotal", "ownerSampleProperties", "reviewsAtMonthStart",
-        "ownerPerPropertyAvg", "ownerPerPropertyMedian", "ownerPerPropertyP25",
-        "ownerPerPropertyP75", "ownerSampleGrossPerPropertyAvg",
-        "ownerSampleGrossPerPropertyMedian", "ownerSampleGrossPerPropertyP25",
-        "ownerSampleGrossPerPropertyP75", "cleaningPerCheckout",
+        "averageRating10", "reviews",
     }
     serialized = json.dumps(data, ensure_ascii=False)
     leaked = sorted(field for field in forbidden_public_fields if f'"{field}"' in serialized)
