@@ -240,7 +240,16 @@ const PRERENDER_STYLE = `<style>
 
 function buildPage(
   template,
-  { url, title, description, body, schemas, image = OG_IMAGE, ogType = "website" },
+  {
+    url,
+    title,
+    description,
+    body,
+    schemas,
+    image = OG_IMAGE,
+    ogType = "website",
+    robots = "index, follow",
+  },
 ) {
   let html = template;
 
@@ -252,6 +261,10 @@ function buildPage(
   html = html.replace(
     /<link rel="canonical" href="[^"]*"\s*\/?>/,
     `<link rel="canonical" href="${esc(url)}"/>`,
+  );
+  html = html.replace(
+    /<meta name="robots" content="[^"]*"\s*\/?>/,
+    `<meta name="robots" content="${esc(robots)}"/>`,
   );
   html = html.replace(
     /<meta property="og:url" content="[^"]*"\s*\/?>/,
@@ -305,8 +318,11 @@ function buildPage(
   }
 
   html = html.replace("</head>", `${PRERENDER_STYLE}</head>`);
+  // Accept both the empty CRA shell and an already prerendered root. This makes
+  // `npm run prerender` idempotent instead of silently reusing homepage copy as
+  // the template for every route on a second run.
   html = html.replace(
-    '<div id="root"></div>',
+    /<div id="root">[\s\S]*?<\/div>/,
     `<div id="root">${body}</div>`,
   );
 
@@ -771,6 +787,9 @@ ${historicalBenchmark ? `<h3>Bergen i august 2025</h3>
 <dt>Vektet ADR</dt><dd>${esc(nok(historicalBenchmark.adr))}</dd>
 <dt>Belegg av salgbare døgn</dt><dd>${esc(String(historicalBenchmark.occupancyPct).replace(".", ","))} %</dd>
 <dt>Bruttoinntekt, terskel for topp 25 %</dt><dd>${esc(nok(historicalTop25.gross))}</dd>
+<dt>Plattformkommisjon, 16 %</dt><dd>${esc(nok(historicalTop25.platform))}</dd>
+<dt>Heimby, 15 % pluss MVA</dt><dd>${esc(nok(historicalTop25.heimby))}</dd>
+<dt>Renhold, cirka 15 %</dt><dd>${esc(nok(historicalTop25.cleaning))}</dd>
 <dt>Beregnet til eier, topp 25 %</dt><dd>${esc(nok(historicalTop25.owner))}</dd>
 </dl>
 <p>2025-tallene er hentet fra de samme reservasjons- og kalenderkildene og filtrert på faktisk opprettet OTA-tilkobling og salgbare døgn.</p>` : ""}
@@ -804,20 +823,24 @@ ${d.faqs.map((f) => `<h3>${esc(f.question)}</h3>\n<p>${esc(f.answer)}</p>`).join
 }
 
 function dataPageSchemas() {
+  const pageUrl = `${SITE}/hvor-mye-kan-man-tjene-pa-airbnb/`;
   return [
     {
       "@context": "https://schema.org",
       "@type": "Dataset",
+      "@id": `${pageUrl}#dataset`,
       name: RENTAL_BENCHMARKS.title,
       description:
         "Anonymiserte, avrundede markedsmål per bolig for korttidsutleie, med ADR, belegg, inntekt og kostnadsfordeling.",
-      url: `${SITE}/hvor-mye-kan-man-tjene-pa-airbnb/`,
+      url: pageUrl,
       temporalCoverage: `${RENTAL_BENCHMARKS.period.from}/${RENTAL_BENCHMARKS.period.to}`,
       spatialCoverage: [...new Set(RENTAL_BENCHMARKS.groups.city.map((row) => row.label))].map(
         (name) => ({ "@type": "Place", name }),
       ),
       creator: { "@id": `${SITE}/#organization` },
       dateModified: RENTAL_BENCHMARKS.updated,
+      inLanguage: "nb-NO",
+      isAccessibleForFree: true,
       measurementTechnique:
         "Vektet ADR og belegg av salgbare døgn, med avrundede gjennomsnitt, medianer og terskel for topp 25 prosent per aktiv bolig. Små grupper og eksakte utvalgsstørrelser publiseres ikke.",
       variableMeasured: [
@@ -833,9 +856,12 @@ function dataPageSchemas() {
     {
       "@context": "https://schema.org",
       "@type": "Article",
+      "@id": `${pageUrl}#article`,
       headline: DATA_PAGE.h1,
       description: DATA_PAGE.metaDescription,
-      url: `${SITE}/hvor-mye-kan-man-tjene-pa-airbnb/`,
+      url: pageUrl,
+      mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
+      image: OG_IMAGE,
       dateModified: DATA_PAGE.lastUpdated,
       inLanguage: "nb-NO",
       author: { "@id": `${SITE}/#organization` },
@@ -855,7 +881,7 @@ function dataPageSchemas() {
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Heimby", item: `${SITE}/` },
-        { "@type": "ListItem", position: 2, name: DATA_PAGE.h1, item: `${SITE}/hvor-mye-kan-man-tjene-pa-airbnb/` },
+        { "@type": "ListItem", position: 2, name: DATA_PAGE.h1, item: pageUrl },
       ],
     },
   ];
@@ -1013,6 +1039,7 @@ function main() {
       description: DATA_PAGE.metaDescription,
       body: dataPageBody(),
       schemas: dataPageSchemas(),
+      ogType: "article",
     }),
   );
   written.push(`/${earningsRoute}`);
@@ -1027,10 +1054,11 @@ function main() {
     description: DATA_PAGE.metaDescription,
     body: `<main class="prerendered"><h1>Siden har flyttet</h1><p><a href="/${earningsRoute}/">Gå til ${esc(DATA_PAGE.h1)}</a></p></main>`,
     schemas: [],
+    robots: "noindex, follow",
   });
   legacyPage = legacyPage.replace(
     "</head>",
-    `<meta name="robots" content="noindex,follow"/><meta http-equiv="refresh" content="0;url=${legacyTarget}"/></head>`,
+    `<meta http-equiv="refresh" content="0;url=${legacyTarget}"/></head>`,
   );
   fs.writeFileSync(path.join(legacyDataDir, "index.html"), legacyPage);
   written.push("/data (redirect)");

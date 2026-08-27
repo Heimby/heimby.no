@@ -57,9 +57,10 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build && node scripts/prerender.js",
+    "build": "craco build && node scripts/prerender.js && node scripts/validate-prerender-seo.js",
     "test": "craco test",
-    "prerender": "node scripts/prerender.js"
+    "prerender": "node scripts/prerender.js && node scripts/validate-prerender-seo.js",
+    "check:seo": "node scripts/validate-prerender-seo.js"
   },
   "browserslist": {
     "production": [
