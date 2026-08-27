@@ -64,15 +64,18 @@ const ScenarioCard = ({ eyebrow, title, value, highlighted = false }) => (
 );
 
 const RentalBenchmarkCalculator = () => {
+  const [year, setYear] = useState(benchmarks.years[0]);
   const [month, setMonth] = useState(8);
   const [dimension, setDimension] = useState("city");
 
   const bergen = benchmarks.groups.city.find(
-    (row) => row.key === "Bergen" && row.month === month,
+    (row) => row.key === "Bergen" && row.year === year && row.month === month,
   );
   const rows = useMemo(
-    () => benchmarks.groups[dimension].filter((row) => row.month === month),
-    [dimension, month],
+    () => benchmarks.groups[dimension].filter(
+      (row) => row.year === year && row.month === month,
+    ),
+    [dimension, month, year],
   );
 
   if (!bergen) return null;
@@ -100,7 +103,25 @@ const RentalBenchmarkCalculator = () => {
           </p>
         </div>
 
-        <div className="my-8 flex flex-wrap gap-2" aria-label="Velg måned">
+        <div className="mt-8 flex flex-wrap gap-2" aria-label="Velg år">
+          {benchmarks.years.map((item) => (
+            <button
+              key={item}
+              type="button"
+              onClick={() => setYear(item)}
+              aria-pressed={year === item}
+              className={`min-h-11 rounded-full px-5 py-2.5 text-sm font-bold transition-colors ${
+                year === item
+                  ? "bg-gray-900 text-white"
+                  : "border border-gray-300 bg-white text-gray-700 hover:border-gray-900"
+              }`}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+
+        <div className="mb-8 mt-3 flex flex-wrap gap-2" aria-label="Velg måned">
           {benchmarks.months.map((item) => (
             <button
               key={item.value}
@@ -118,9 +139,9 @@ const RentalBenchmarkCalculator = () => {
           ))}
         </div>
 
-        {month === 8 && (
+        {year === 2026 && month === 8 && (
           <p className="mb-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-relaxed text-amber-950">
-            August viser bekreftede bookinger og åpne kalenderdøgn per 27. august,
+            August viser bekreftede bookinger og åpne kalenderdøgn per 28. august,
             inkludert de siste dagene i måneden. Tallet er derfor en oppdatert bookingstatus,
             ikke et endelig månedsoppgjør.
           </p>
@@ -130,7 +151,7 @@ const RentalBenchmarkCalculator = () => {
           <p className="font-semibold text-gray-900">
             Bergen som markedseksempel
           </p>
-          <p className="text-sm text-gray-500">{selectedMonth.label} 2026</p>
+          <p className="text-sm text-gray-500">{selectedMonth.label} {year}</p>
         </div>
 
         <p className="mb-5 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm leading-relaxed text-emerald-950">
@@ -151,7 +172,7 @@ const RentalBenchmarkCalculator = () => {
             icon={Building2}
             label="Beregnet til eier per bolig"
             value={money(bergen.ownerIncomePerPropertyAvg)}
-            note={`Etter Airbnb/Booking.com, Heimby og renhold. Topp 25 %: fra ${money(bergen.ownerIncomePerPropertyP75)}.`}
+            note={`Etter plattform 16 %, Heimby 15 % + MVA og renhold. Topp 25 %: fra ${money(bergen.ownerIncomePerPropertyP75)}.`}
           />
           <SummaryCard
             icon={Gauge}
@@ -177,13 +198,13 @@ const RentalBenchmarkCalculator = () => {
                 Fra bruttoinntekt til beregnet eierinntekt
               </h3>
             </div>
-            <p className="text-sm text-gray-500">Gjennomsnitt · {selectedMonth.label} 2026</p>
+            <p className="text-sm text-gray-500">Gjennomsnitt · {selectedMonth.label} {year}</p>
           </div>
           <dl className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {[
               ["Bruttoinntekt", bergen.grossPerPropertyAvg, false],
-              ["Airbnb / Booking.com", bergen.platformCommissionPerPropertyAvg, true],
-              ["Heimby inkl. MVA", bergen.heimbyCommissionPerPropertyAvg, true],
+              ["Plattform 16 %", bergen.platformCommissionPerPropertyAvg, true],
+              ["Heimby 15 % + MVA", bergen.heimbyCommissionPerPropertyAvg, true],
               ["Renhold inkl. MVA", bergen.cleaningCostPerPropertyAvg, true],
               ["Beregnet til eier", bergen.ownerIncomePerPropertyAvg, false],
             ].map(([label, value, deduction], index) => (
@@ -199,14 +220,15 @@ const RentalBenchmarkCalculator = () => {
             ))}
           </dl>
           <p className="mt-4 text-sm leading-relaxed text-gray-500">
-            Plattformkommisjonen er registrert vertskommisjon fra Airbnb eller Booking.com.
+            Plattformkommisjonen er standardisert til 16 prosent for sammenligning.
+            Heimby-honoraret er 15 prosent pluss MVA.
             Eierbeløpet er før skatt, vedlikehold, skader, refusjoner og andre individuelle kostnader.
           </p>
         </div>
 
         <div className="mt-12">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-gray-500">
-            Bergen · {selectedMonth.label} 2026
+            Bergen · {selectedMonth.label} {year}
           </p>
           <h3 className="mt-2 text-2xl font-bold text-gray-900 md:text-3xl">
             Hva kan én bolig i Bergen sitte igjen med?
@@ -272,10 +294,13 @@ const RentalBenchmarkCalculator = () => {
 
           {dimension === "city" && (
             <p className="mt-4 text-sm leading-relaxed text-gray-600">
-              Bergen-eksemplet vises over. Tabellen viser de øvrige markedene for samme måned.
+              {visibleRows.length > 0
+                ? "Bergen-eksemplet vises over. Tabellen viser de øvrige markedene for samme måned."
+                : "Bergen-eksemplet vises over. Andre bygrupper skjules denne måneden fordi de ikke oppfyller anonymiseringskravet."}
             </p>
           )}
 
+          {visibleRows.length > 0 && (
           <div className="mt-6 overflow-x-auto rounded-2xl border border-gray-200 bg-white">
             <table className="min-w-[1180px] w-full text-left text-sm">
               <thead className="border-b border-gray-200 bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
@@ -284,15 +309,15 @@ const RentalBenchmarkCalculator = () => {
                   <th className="px-4 py-3 font-bold">Belegg</th>
                   <th className="px-4 py-3 font-bold">ADR</th>
                   <th className="px-4 py-3 font-bold">Brutto / bolig</th>
-                  <th className="px-4 py-3 font-bold">Airbnb / Booking.com</th>
-                  <th className="px-4 py-3 font-bold">Heimby inkl. MVA</th>
+                  <th className="px-4 py-3 font-bold">Plattform 16 %</th>
+                  <th className="px-4 py-3 font-bold">Heimby 15 % + MVA</th>
                   <th className="px-4 py-3 font-bold">Renhold inkl. MVA</th>
                   <th className="px-4 py-3 font-bold">Til eier / bolig</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {visibleRows.map((row) => (
-                  <tr key={`${row.key}-${row.month}`}>
+                  <tr key={`${row.key}-${row.year}-${row.month}`}>
                     <th scope="row" className="whitespace-nowrap px-4 py-4 font-bold text-gray-900">
                       {row.label}
                     </th>
@@ -320,6 +345,7 @@ const RentalBenchmarkCalculator = () => {
               </tbody>
             </table>
           </div>
+          )}
         </div>
 
         <div className="mt-8 rounded-xl border border-gray-200 bg-white/70 p-5 text-sm leading-relaxed text-gray-600">
@@ -333,7 +359,7 @@ const RentalBenchmarkCalculator = () => {
           <p className="mt-2">{benchmarks.privacy.groupRule} {benchmarks.privacy.rounding}</p>
           <p className="mt-3 text-xs text-gray-500">
             Kilde: live Guesty-kalender og anonymiserte reservasjons-, kostnads- og
-            markedstall i Proptonomy. Oppdatert 27. august 2026.
+            markedstall i Proptonomy. Oppdatert 28. august 2026.
           </p>
         </div>
       </div>

@@ -706,10 +706,13 @@ function newsArticleSchemas(a) {
 function dataPageBody() {
   const d = DATA_PAGE;
   const benchmark = RENTAL_BENCHMARKS.groups.city.find(
-    (row) => row.key === "Bergen" && row.month === 8,
+    (row) => row.key === "Bergen" && row.year === 2026 && row.month === 8,
   );
   const comparison = RENTAL_BENCHMARKS.groups.city.filter(
-    (row) => row.key !== "Bergen" && row.month === 8,
+    (row) => row.key !== "Bergen" && row.year === 2026 && row.month === 8,
+  );
+  const historicalBenchmark = RENTAL_BENCHMARKS.groups.city.find(
+    (row) => row.key === "Bergen" && row.year === 2025 && row.month === 8,
   );
   const nok = (value) => `${new Intl.NumberFormat("nb-NO").format(value)} kr`;
   const cityLinks = Object.keys(CITY_DATA)
@@ -729,15 +732,15 @@ function dataPageBody() {
 ${d.intro.map((p) => `<p>${esc(p)}</p>`).join("\n")}
 
 <h2>Faktiske markedstall fra Heimby</h2>
-<p>Datagrunnlaget er et anonymisert utvalg fra ${esc(RENTAL_BENCHMARKS.period.label)}. Bare aktive og publiserte annonser med live Airbnb- eller Booking.com-tilkobling og minst sju salgbare kalenderdøgn i måneden er med. Små grupper skjules, og eksakte antall boliger, opphold, døgn og porteføljesummer publiseres ikke.</p>
+<p>Datagrunnlaget er et anonymisert utvalg fra ${esc(RENTAL_BENCHMARKS.period.label)}. Bare boligmåneder etter at annonsen og Airbnb- eller Booking.com-tilkoblingen var opprettet, og med minst sju salgbare kalenderdøgn, er med. For 2026 kreves også at annonsen er aktiv, publisert og live i Guesty ved uttrekket. Små grupper skjules, og eksakte antall boliger, opphold, døgn og porteføljesummer publiseres ikke.</p>
 ${benchmark ? `<h3>Eksempel: Bergen, august 2026</h3>
 <dl>
 <dt>Vektet ADR</dt><dd>${esc(nok(benchmark.adr))}</dd>
 <dt>Belegg av salgbare døgn</dt><dd>${esc(String(benchmark.occupancyPct).replace(".", ","))} %</dd>
 <dt>Bruttoinntekt, snitt per aktiv bolig</dt><dd>${esc(nok(benchmark.grossPerPropertyAvg))}</dd>
 <dt>Topp 25 % bruttoinntekt per bolig</dt><dd>Fra ${esc(nok(benchmark.grossPerPropertyP75))}</dd>
-<dt>Airbnb- og Booking.com-kommisjon per bolig</dt><dd>${esc(nok(benchmark.platformCommissionPerPropertyAvg))}</dd>
-<dt>Heimby-kommisjon inkludert MVA per bolig</dt><dd>${esc(nok(benchmark.heimbyCommissionPerPropertyAvg))}</dd>
+<dt>Plattformkommisjon, 16 % per bolig</dt><dd>${esc(nok(benchmark.platformCommissionPerPropertyAvg))}</dd>
+<dt>Heimby, 15 % pluss MVA per bolig</dt><dd>${esc(nok(benchmark.heimbyCommissionPerPropertyAvg))}</dd>
 <dt>Renhold inkludert MVA per bolig</dt><dd>${esc(nok(benchmark.cleaningCostPerPropertyAvg))}</dd>
 <dt>Beregnet til eier per bolig</dt><dd>${esc(nok(benchmark.ownerIncomePerPropertyAvg))}</dd>
 <dt>Topp 25 % beregnet eierinntekt per bolig</dt><dd>Fra ${esc(nok(benchmark.ownerIncomePerPropertyP75))}</dd>
@@ -751,6 +754,16 @@ ${benchmark ? `<h3>Eksempel: Bergen, august 2026</h3>
 ${comparison.map((row) => `<tr><td>${esc(row.label)}</td><td>${esc(nok(row.adr))}</td><td>${esc(String(row.occupancyPct).replace(".", ","))} %</td><td>${esc(nok(row.grossPerPropertyAvg))}</td><td>${esc(nok(row.ownerIncomePerPropertyAvg))}</td></tr>`).join("\n")}
 </tbody>
 </table>
+
+${historicalBenchmark ? `<h3>Bergen i august 2025</h3>
+<dl>
+<dt>Vektet ADR</dt><dd>${esc(nok(historicalBenchmark.adr))}</dd>
+<dt>Belegg av salgbare døgn</dt><dd>${esc(String(historicalBenchmark.occupancyPct).replace(".", ","))} %</dd>
+<dt>Bruttoinntekt, snitt per aktiv bolig</dt><dd>${esc(nok(historicalBenchmark.grossPerPropertyAvg))}</dd>
+<dt>Beregnet til eier per bolig</dt><dd>${esc(nok(historicalBenchmark.ownerIncomePerPropertyAvg))}</dd>
+<dt>Topp 25 % beregnet eierinntekt per bolig</dt><dd>Fra ${esc(nok(historicalBenchmark.ownerIncomePerPropertyP75))}</dd>
+</dl>
+<p>2025-tallene er hentet fra de samme reservasjons- og kalenderkildene og filtrert på faktisk opprettet OTA-tilkobling og salgbare døgn.</p>` : ""}
 
 <h2>Fire ting avgjør tallet</h2>
 ${d.drivers.map((x) => `<h3>${esc(x.title)}</h3>\n<p>${esc(x.body)}</p>`).join("\n")}

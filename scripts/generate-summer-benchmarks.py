@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the public June-August benchmark from live Proptonomy and Guesty data.
+"""Build public June-August benchmarks from live Proptonomy and Guesty data.
 
 The script deliberately returns aggregates only. Guest names, addresses, listing IDs,
 property IDs and reservation IDs never enter the generated website JSON.
@@ -30,9 +30,12 @@ from collections import defaultdict
 
 ORG = "7b6adf42-78a8-47cd-92d0-4aa7bbd8c090"
 INTEGRATION = "f0839db0-e2fb-4108-8852-752bb80a92d5"
+YEARS = (2025, 2026)
 MONTHS = {6: "Juni", 7: "Juli", 8: "August"}
 MIN_PROPERTIES = 5
 MIN_STAYS = 20
+PLATFORM_COMMISSION_RATE = 0.16
+HEIMBY_COMMISSION_RATE = 0.15
 
 
 def sql(query):
@@ -103,7 +106,6 @@ SELECT eei."ExternalEntityId" AS listing_id,
        p."Bedrooms" AS bedrooms,
        p."Bathrooms" AS bathrooms,
        p."IsActive" AS property_active,
-       p."CommissionRate" AS commission_rate,
        p."CleaningTurnoverCost" AS cleaning_turnover_cost,
        a."City" AS city,
        a."PostalCode" AS postal_code
@@ -132,17 +134,14 @@ SELECT l."Id" AS lease_id,
        eei."Metadata"->>'Platform' AS platform,
        l."GrossRentalIncome" AS accommodation,
        l."CleaningFeeEstimate" AS guest_cleaning,
-       l."TotalTaxes" AS taxes,
-       l."CommissionFee" AS platform_commission,
-       l."PaymentProcessingFee" AS payment_processing_fee,
-       l."Refunds" AS refunds
+       l."TotalTaxes" AS taxes
 FROM "Leases" l
 JOIN "ExternalEntityIntegration" eei ON eei."Id" = l."ExternalEntityIntegrationId"
 WHERE l."OrganizationId" = '{ORG}'
   AND l."Type" = 'ShortTerm'
   AND l."Status" IN (0, 1, 2, 5)
   AND l."StartDate" < '2026-09-01'
-  AND COALESCE(l."EndDate", l."StartDate" + 1) > '2026-06-01'
+  AND COALESCE(l."EndDate", l."StartDate" + 1) > '2025-06-01'
   AND eei."Metadata"->>'Platform' IN ('airbnb2', 'bookingCom')
 """)
 
@@ -151,7 +150,7 @@ for skip in range(0, 500, 100):
     page = api_get(token, "/v1/listings", {
         "limit": 100,
         "skip": skip,
-        "fields": "_id active isListed integrations",
+        "fields": "_id active isListed createdAt integrations",
     })
     rows = page.get("results", [])
     listing_rows.extend(rows)
@@ -169,17 +168,44 @@ def live_ota(integration):
     )
 
 
+def ota_start(row):
+    listing_created = str(row.get("createdAt") or "")[:10]
+    integration_dates = []
+    has_ota = False
+    for integration in row.get("integrations", []):
+        platform = str(integration.get("platform") or "")
+        if platform not in {"airbnb2", "bookingCom"}:
+            continue
+        has_ota = True
+        nested = integration.get(platform) if isinstance(integration.get(platform), dict) else {}
+        created = str(nested.get("createdAt") or "")[:10]
+        if created:
+            integration_dates.append(created)
+    if not has_ota:
+        return None
+    if not integration_dates:
+        return listing_created or None
+    first_ota_connection = min(integration_dates)
+    return max(listing_created, first_ota_connection) if listing_created else first_ota_connection
+
+
 listing_meta = {
     row.get("_id"): {
         "active": row.get("active") is True,
         "listed": row.get("isListed") is True,
         "live_ota": any(live_ota(item) for item in row.get("integrations", [])),
+        "ota_start": ota_start(row),
     }
     for row in listing_rows
 }
 
 property_by_listing = {row["listing_id"]: row for row in properties}
-eligible_listings = [
+historical_listings = [
+    listing_id
+    for listing_id in property_by_listing
+    if listing_meta.get(listing_id, {}).get("ota_start")
+]
+current_listings = [
     listing_id
     for listing_id, row in property_by_listing.items()
     if row["property_active"]
@@ -189,16 +215,18 @@ eligible_listings = [
 ]
 
 calendar_days = []
-for index in range(0, len(eligible_listings), 20):
-    page = api_get(token, "/v1/availability-pricing/api/calendar/listings", {
-        "listingIds": ",".join(eligible_listings[index:index + 20]),
-        "startDate": "2026-06-01",
-        "endDate": "2026-08-31",
-        "includeAllotment": "true",
-        "ignoreInactiveChildAllotment": "true",
-        "ignoreUnlistedChildAllotment": "true",
-    })
-    calendar_days.extend((page.get("data") or {}).get("days", []))
+for year in YEARS:
+    listing_ids = current_listings if year == 2026 else historical_listings
+    for index in range(0, len(listing_ids), 20):
+        page = api_get(token, "/v1/availability-pricing/api/calendar/listings", {
+            "listingIds": ",".join(listing_ids[index:index + 20]),
+            "startDate": f"{year}-06-01",
+            "endDate": f"{year}-08-31",
+            "includeAllotment": "true",
+            "ignoreInactiveChildAllotment": "true",
+            "ignoreUnlistedChildAllotment": "true",
+        })
+        calendar_days.extend((page.get("data") or {}).get("days", []))
 
 property_month = defaultdict(lambda: {
     "available": 0,
@@ -207,8 +235,6 @@ property_month = defaultdict(lambda: {
     "accommodation": 0.0,
     "gross": 0.0,
     "platform_commission": 0.0,
-    "payment_processing_fee": 0.0,
-    "refunds": 0.0,
     "heimby_commission": 0.0,
     "cleaning_cost": 0.0,
     "revenue_nights": 0,
@@ -220,14 +246,17 @@ for day in calendar_days:
     date = str(day.get("date") or "")[:10]
     if len(date) != 10:
         continue
+    year = int(date[:4])
     month = int(date[5:7])
-    if month not in MONTHS:
+    if year not in YEARS or month not in MONTHS:
         continue
     listing_id = day.get("listingId")
     prop = property_by_listing.get(listing_id)
     if not prop:
         continue
-    row = property_month[(prop["property_id"], month)]
+    if date < listing_meta.get(listing_id, {}).get("ota_start", date):
+        continue
+    row = property_month[(prop["property_id"], year, month)]
     status = str(day.get("status") or "").lower()
     if status == "available":
         row["available"] += 1
@@ -249,38 +278,27 @@ for lease in leases:
     start = dt.date.fromisoformat(lease["start_date"])
     end = dt.date.fromisoformat(lease["end_date"])
     total_nights = max(1, (end - start).days)
-    for month, label in MONTHS.items():
-        month_start = dt.date(2026, month, 1)
-        month_end = dt.date(2026, month + 1, 1) if month < 12 else dt.date(2027, 1, 1)
-        overlap = max(0, (min(end, month_end) - max(start, month_start)).days)
-        if overlap == 0:
-            continue
-        row = property_month[(lease["property_id"], month)]
-        share = overlap / total_nights
-        accommodation = float(lease.get("accommodation") or 0) * share
-        guest_cleaning = float(lease.get("guest_cleaning") or 0) * share
-        taxes = float(lease.get("taxes") or 0) * share
-        platform_commission = float(lease.get("platform_commission") or 0) * share
-        payment_processing_fee = float(lease.get("payment_processing_fee") or 0) * share
-        refunds = float(lease.get("refunds") or 0) * share
-        row["accommodation"] += accommodation
-        row["gross"] += accommodation + guest_cleaning + taxes
-        row["platform_commission"] += platform_commission
-        row["payment_processing_fee"] += payment_processing_fee
-        row["refunds"] += refunds
-        row["revenue_nights"] += overlap
-        row["stays"].add(lease["lease_id"])
-    if dt.date(2026, 6, 1) <= end < dt.date(2026, 9, 1):
-        property_month[(lease["property_id"], end.month)]["checkouts"] += 1
+    for year in YEARS:
+        for month in MONTHS:
+            month_start = dt.date(year, month, 1)
+            month_end = dt.date(year, month + 1, 1)
+            overlap = max(0, (min(end, month_end) - max(start, month_start)).days)
+            if overlap == 0:
+                continue
+            row = property_month[(lease["property_id"], year, month)]
+            share = overlap / total_nights
+            accommodation = float(lease.get("accommodation") or 0) * share
+            guest_cleaning = float(lease.get("guest_cleaning") or 0) * share
+            taxes = float(lease.get("taxes") or 0) * share
+            row["accommodation"] += accommodation
+            row["gross"] += accommodation + guest_cleaning + taxes
+            row["revenue_nights"] += overlap
+            row["stays"].add(lease["lease_id"])
+    for year in YEARS:
+        if dt.date(year, 6, 1) <= end < dt.date(year, 9, 1):
+            property_month[(lease["property_id"], year, end.month)]["checkouts"] += 1
 
 props_by_id = {row["property_id"]: row for row in properties}
-
-
-def resolved_management_rate(prop):
-    value = prop.get("commission_rate")
-    if value is None:
-        value = finance_defaults.get("management_fee")
-    return float(value or 0)
 
 
 def resolved_cleaning_cost(prop):
@@ -302,22 +320,24 @@ def resolved_cleaning_cost(prop):
 
 
 cost_vat_multiplier = 1 + float(finance_defaults.get("cost_vat_rate") or 0)
-for (property_id, month), row in property_month.items():
+for (property_id, year, month), row in property_month.items():
     prop = props_by_id.get(property_id)
     if not prop:
         continue
-    row["heimby_commission"] = row["gross"] * resolved_management_rate(prop) * cost_vat_multiplier
+    row["platform_commission"] = row["gross"] * PLATFORM_COMMISSION_RATE
+    row["heimby_commission"] = row["gross"] * HEIMBY_COMMISSION_RATE * cost_vat_multiplier
     row["cleaning_cost"] = row["checkouts"] * resolved_cleaning_cost(prop) * cost_vat_multiplier
 
 
 eligible = {}
-for (property_id, month), row in property_month.items():
+for (property_id, year, month), row in property_month.items():
     if row["saleable"] < 7:
         continue
     prop = props_by_id[property_id]
-    eligible[(property_id, month)] = {
+    eligible[(property_id, year, month)] = {
         **row,
         "property_id": property_id,
+        "year": year,
         "month": month,
         "market": market(prop.get("city"), prop.get("postal_code")),
         "bedroom_key": bedroom_group(int(prop.get("bedrooms") or 0))[0],
@@ -326,7 +346,7 @@ for (property_id, month), row in property_month.items():
     }
 
 
-def aggregate(rows, month, key, label):
+def aggregate(rows, year, month, key, label):
     properties_count = len(rows)
     stays = sum(len(row["stays"]) for row in rows)
     if properties_count < MIN_PROPERTIES or stays < MIN_STAYS:
@@ -349,6 +369,7 @@ def aggregate(rows, month, key, label):
     return {
         "key": key,
         "label": label,
+        "year": year,
         "month": month,
         "monthLabel": MONTHS[month],
         "properties": properties_count,
@@ -375,38 +396,44 @@ def aggregate(rows, month, key, label):
 
 
 groups = {"overall": [], "city": [], "bedrooms": []}
-for month in MONTHS:
-    month_rows = [row for row in eligible.values() if row["month"] == month]
-    overall = aggregate(month_rows, month, "all", "Alle aktive boliger")
-    if overall:
-        groups["overall"].append(overall)
-    for dimension, value_key, label_key in [
-        ("city", "market", "market"),
-        ("bedrooms", "bedroom_key", "bedroom_label"),
-    ]:
-        order = {
-            "bedrooms": {"studio": 0, "1": 1, "2": 2, "3": 3, "4+": 4},
-        }.get(dimension, {})
-        values = sorted({row[value_key] for row in month_rows}, key=lambda value: (order.get(value, 99), value))
-        for value in values:
-            if dimension == "city" and value == "Annet":
-                continue
-            selected = [row for row in month_rows if row[value_key] == value]
-            label = selected[0][label_key]
-            result = aggregate(selected, month, value, label)
-            if result:
-                groups[dimension].append(result)
+for year in YEARS:
+    for month in MONTHS:
+        month_rows = [
+            row for row in eligible.values()
+            if row["year"] == year and row["month"] == month
+        ]
+        overall = aggregate(month_rows, year, month, "all", "Alle aktive boliger")
+        if overall:
+            groups["overall"].append(overall)
+        for dimension, value_key, label_key in [
+            ("city", "market", "market"),
+            ("bedrooms", "bedroom_key", "bedroom_label"),
+        ]:
+            order = {
+                "bedrooms": {"studio": 0, "1": 1, "2": 2, "3": 3, "4+": 4},
+            }.get(dimension, {})
+            values = sorted({row[value_key] for row in month_rows}, key=lambda value: (order.get(value, 99), value))
+            for value in values:
+                if dimension == "city" and value == "Annet":
+                    continue
+                selected = [row for row in month_rows if row[value_key] == value]
+                label = selected[0][label_key]
+                result = aggregate(selected, year, month, value, label)
+                if result:
+                    groups[dimension].append(result)
 
 featured = []
-for month in MONTHS:
-    rows = [
-        row for row in eligible.values()
-        if row["month"] == month and row["market"] == "Bergen"
-        and row["bedroom_key"] == "2" and row["bathrooms"] == 1
-    ]
-    result = aggregate(rows, month, "bergen-2-1", "Bergen · 2 soverom · 1 bad")
-    if result:
-        featured.append(result)
+for year in YEARS:
+    for month in MONTHS:
+        rows = [
+            row for row in eligible.values()
+            if row["year"] == year and row["month"] == month
+            and row["market"] == "Bergen"
+            and row["bedroom_key"] == "2" and row["bathrooms"] == 1
+        ]
+        result = aggregate(rows, year, month, "bergen-2-1", "Bergen · 2 soverom · 1 bad")
+        if result:
+            featured.append(result)
 
 for dimension, rows in groups.items():
     for row in rows:
@@ -421,6 +448,7 @@ def public_row(row):
     return {
         "key": row["key"],
         "label": row["label"],
+        "year": row["year"],
         "month": row["month"],
         "monthLabel": row["monthLabel"],
         "occupancyPct": row["occupancyPct"],
@@ -439,25 +467,26 @@ def public_row(row):
     }
 
 result = {
-    "title": "Heimby sommerstatistikk 2026",
-    "updated": "2026-08-27",
-    "period": {"from": "2026-06-01", "to": "2026-08-31", "label": "juni–august 2026"},
+    "title": "Heimby sommerstatistikk 2025–2026",
+    "updated": "2026-08-28",
+    "period": {"from": "2025-06-01", "to": "2026-08-31", "label": "juni–august 2025 og 2026"},
     "privacy": {
         "groupRule": "Små grupper skjules. Eksakte antall boliger, opphold, døgn og porteføljesummer publiseres ikke.",
         "rounding": "Beløp per bolig er avrundet til nærmeste 500 kroner.",
     },
     "method": {
-        "basis": "Bare boliger som var aktive og publiserte i Guesty, hadde en live Airbnb- eller Booking.com-kobling og minst sju salgbare kalenderdøgn i måneden er med.",
+        "basis": "Bare boligmåneder etter at annonsen og Airbnb- eller Booking.com-tilkoblingen faktisk var opprettet, og med minst sju salgbare kalenderdøgn, er med. For 2026 kreves også at annonsen er aktiv, publisert og live i Guesty ved uttrekket.",
         "availability": "Ledige døgn pluss Airbnb- og Booking.com-bookede døgn regnes som salgbare. Eierblokker, manuelle reservasjoner, stengte døgn og tid før annonsen åpnet er trukket fra.",
         "adr": "Losjiinntekt delt på Airbnb- og Booking.com-netter med inntektsdata.",
         "occupancy": "Airbnb- og Booking.com-bookede døgn delt på salgbare døgn, vektet på tvers av boligene.",
         "grossIncome": "Losji, gjestebetalt renhold og registrerte gjesteskatter periodisert over oppholdets netter.",
-        "platformCommission": "Registrert vertskommisjon fra Airbnb eller Booking.com, periodisert over oppholdets netter og vist som snitt per aktiv bolig.",
-        "heimbyCommission": "Heimby-kommisjon beregnet av bruttoinntekten med boligens sats eller organisasjonens standardsats, inkludert registrert kostnads-MVA.",
+        "platformCommission": "Standardisert Airbnb- og Booking.com-kommisjon på 16 prosent av bruttoinntekten, vist som snitt per aktiv bolig.",
+        "heimbyCommission": "Heimby-kommisjon på 15 prosent av bruttoinntekten, pluss MVA, vist som snitt per aktiv bolig.",
         "cleaningCost": "Registrert renholdskostnad per utsjekk med organisasjonens standardformel som reserve, inkludert registrert kostnads-MVA.",
         "ownerIncome": "Bruttoinntekt minus plattformkommisjon, Heimby-kommisjon og renhold. Før eierens skatt, vedlikehold, skader og andre individuelle kostnader.",
-        "august": "August omfatter bekreftede bookinger og åpne kalenderdøgn per 27. august 2026, også de siste dagene av måneden.",
+        "august": "August omfatter bekreftede bookinger og åpne kalenderdøgn per 28. august 2026, også de siste dagene av måneden.",
     },
+    "years": list(reversed(YEARS)),
     "months": [{"value": month, "label": label} for month, label in MONTHS.items()],
     "groups": {
         dimension: [public_row(row) for row in rows]
@@ -480,12 +509,12 @@ def main() -> None:
     if completed.returncode != 0:
         raise RuntimeError(completed.stderr.strip() or "Remote benchmark generation failed")
     data = json.loads(completed.stdout)
-    required = {"method", "groups", "featured", "privacy"}
+    required = {"method", "groups", "featured", "privacy", "years"}
     missing = required.difference(data)
     if missing:
         raise RuntimeError(f"Generated benchmark is missing: {sorted(missing)}")
-    if len(data["groups"]["overall"]) != 3:
-        raise RuntimeError("Expected one overall row for each of June, July and August")
+    if len(data["groups"]["overall"]) != 6:
+        raise RuntimeError("Expected one overall row for each summer month in 2025 and 2026")
     forbidden_public_fields = {
         "properties", "stays", "checkouts", "saleableNights", "bookedNights",
         "grossTotal", "ownerTotal", "ownerSampleProperties", "reviewsAtMonthStart",
