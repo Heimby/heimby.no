@@ -10,14 +10,17 @@ const WhatWeAreSection = () => {
 
   const services = [
     {
+      id: 'korttidsutleie',
       title: 'Airbnb-utleie',
       description: 'Vi lager annonsen med profesjonelle bilder, setter prisen løpende etter etterspørsel, svarer gjestene og koordinerer renhold mellom hvert opphold. Du leverer nøklene og ser tallene i eierportalen.'
     },
     {
+      id: 'langtidsutleie',
       title: 'Langtidsutleie',
       description: 'Annonsering, visninger, kredittsjekk av leietaker, kontrakt, innflytting og all løpende kontakt. Du får fast månedlig leie, og vi tar telefonen når leietaker ringer.'
     },
     {
+      id: 'dynamisk-utleie',
       title: 'Dynamisk (10-2)',
       description: 'Ti måneder på studentkontrakt gir stabil grunninntekt gjennom lavsesongen, og to sommermåneder på Airbnb tar ut inntektstoppen. Modellen holder deg samtidig innenfor 90-dagersgrensen i eierseksjonsloven § 24. Dette er modellen vi bruker for flest boliger i Bergen.'
     }
@@ -73,10 +76,16 @@ const WhatWeAreSection = () => {
 
               <div className="space-y-3">
                 {services.map((service, index) => (
-                  <div key={index} className="border-b border-gray-300 pb-3">
+                  <div
+                    id={service.id}
+                    key={service.id}
+                    className="scroll-mt-20 border-b border-gray-300 pb-3"
+                  >
                     <button
                       onClick={() => toggleExpand(index)}
                       className="w-full flex items-center justify-between text-left py-2 hover:opacity-70 transition-opacity"
+                      aria-expanded={expandedIndex === index}
+                      aria-controls={`${service.id}-description`}
                     >
                       <span className="text-lg md:text-xl font-semibold text-gray-900">
                         {service.title}
@@ -88,7 +97,10 @@ const WhatWeAreSection = () => {
                       )}
                     </button>
                     {expandedIndex === index && (
-                      <div className="mt-3 text-base text-gray-700 leading-relaxed animate-fade-in">
+                      <div
+                        id={`${service.id}-description`}
+                        className="mt-3 text-base text-gray-700 leading-relaxed animate-fade-in"
+                      >
                         {service.description}
                       </div>
                     )}
