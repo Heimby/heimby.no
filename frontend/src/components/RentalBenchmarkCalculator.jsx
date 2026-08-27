@@ -17,7 +17,6 @@ const nok = new Intl.NumberFormat("nb-NO", {
   maximumFractionDigits: 0,
 });
 
-const integer = new Intl.NumberFormat("nb-NO", { maximumFractionDigits: 0 });
 const money = (value) => (value == null ? "Ikke publisert" : nok.format(value));
 
 const dimensions = [
@@ -44,6 +43,29 @@ const SummaryCard = ({ icon: Icon, label, value, note, dark = false }) => (
     <p className={`mt-3 text-sm leading-relaxed ${dark ? "text-white/60" : "text-gray-500"}`}>
       {note}
     </p>
+  </div>
+);
+
+const ScenarioCard = ({ eyebrow, title, ownerValue, grossValue, highlighted = false }) => (
+  <div
+    className={`rounded-2xl border p-5 md:p-6 ${
+      highlighted
+        ? "border-gray-900 bg-gray-900 text-white"
+        : "border-gray-200 bg-white text-gray-900"
+    }`}
+  >
+    <p className={`text-xs font-bold uppercase tracking-[0.16em] ${highlighted ? "text-white/60" : "text-gray-500"}`}>
+      {eyebrow}
+    </p>
+    <h4 className="mt-2 text-lg font-bold">{title}</h4>
+    <p className="mt-5 text-3xl font-bold tracking-tight md:text-4xl">{money(ownerValue)}</p>
+    <p className={`mt-1 text-sm ${highlighted ? "text-white/65" : "text-gray-500"}`}>
+      beregnet til eier per bolig
+    </p>
+    <div className={`mt-5 border-t pt-4 ${highlighted ? "border-white/15" : "border-gray-200"}`}>
+      <p className={`text-sm ${highlighted ? "text-white/65" : "text-gray-500"}`}>Brutto i samme utvalg</p>
+      <p className="mt-1 text-lg font-bold">{money(grossValue)}</p>
+    </div>
   </div>
 );
 
@@ -107,35 +129,35 @@ const RentalBenchmarkCalculator = () => {
 
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-gray-200 bg-white px-5 py-4">
           <p className="font-semibold text-gray-900">
-            {overall.properties} aktive boliger · {integer.format(overall.saleableNights)} salgbare døgn · {integer.format(overall.stays)} opphold
+            Anonymiserte nøkkeltall og eksempler per aktiv bolig
           </p>
           <p className="text-sm text-gray-500">{selectedMonth.label} 2026</p>
         </div>
 
         <p className="mb-5 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm leading-relaxed text-emerald-950">
-          Å dele på alle kalenderdager ville gitt {String(overall.calendarMonthOccupancyPct).replace(".", ",")} % belegg.
-          Når bare reelt salgbare døgn brukes, er riktig porteføljebelegg {String(overall.occupancyPct).replace(".", ",")} %.
+          Belegget beregnes bare av døgn boligen faktisk kunne selges. Tid før annonsen
+          åpnet, eierblokker og andre stengte døgn registreres ikke som tomgang.
         </p>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <SummaryCard
             icon={Banknote}
-            label="Brutto totalt"
-            value={money(overall.grossTotal)}
-            note="Sum losji, gjestebetalt renhold og registrerte gjesteskatter."
+            label="Snitt til eier per bolig"
+            value={money(overall.ownerPerPropertyAvg)}
+            note={`For boliger med komplett kostnadsoppsett. Brutto for de samme boligene var i snitt ${money(overall.ownerSampleGrossPerPropertyAvg)}.`}
             dark
           />
           <SummaryCard
             icon={Building2}
-            label="Brutto per aktiv bolig"
-            value={money(overall.grossPerPropertyAvg)}
-            note={`Median ${money(overall.grossPerPropertyMedian)}. Midtre 50 %: ${money(overall.grossPerPropertyP25)}–${money(overall.grossPerPropertyP75)}.`}
+            label="Typisk brutto per bolig"
+            value={money(overall.grossPerPropertyMedian)}
+            note={`Median. Gjennomsnitt ${money(overall.grossPerPropertyAvg)} og midtre 50 % ${money(overall.grossPerPropertyP25)}–${money(overall.grossPerPropertyP75)}.`}
           />
           <SummaryCard
             icon={Gauge}
             label="Belegg av salgbare døgn"
             value={`${String(overall.occupancyPct).replace(".", ",")} %`}
-            note={`${integer.format(overall.bookedNights)} bookede av ${integer.format(overall.saleableNights)} åpne eller bookede døgn.`}
+            note="Bookede Airbnb- og Booking.com-døgn delt på døgn boligene faktisk var åpne for salg."
           />
           <SummaryCard
             icon={CalendarDays}
@@ -145,26 +167,42 @@ const RentalBenchmarkCalculator = () => {
           />
         </div>
 
-        <div className="mt-4 grid gap-4 md:grid-cols-2">
-          <div className="rounded-2xl border border-gray-200 bg-white p-5 md:p-6">
-            <p className="text-sm font-semibold text-gray-600">Beregnet til huseier</p>
-            <div className="mt-2 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-              <p className="text-3xl font-bold text-gray-900">{money(overall.ownerPerPropertyAvg)}</p>
-              <p className="text-sm text-gray-500">i snitt per bolig</p>
-            </div>
-            <p className="mt-3 text-sm leading-relaxed text-gray-500">
-              Sum {money(overall.ownerTotal)} for {overall.ownerSampleProperties} boliger med komplett
-              kostnadsoppsett. Guesty-utbetaling minus registrert Heimby-provisjon og turnover-renhold,
-              før eierens skatt og ekstra vedlikehold.
-            </p>
+        <div className="mt-12">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-gray-500">Tre historiske nivåer</p>
+          <h3 className="mt-2 text-2xl font-bold text-gray-900 md:text-3xl">
+            Hva kan én bolig sitte igjen med?
+          </h3>
+          <p className="mt-3 max-w-3xl leading-relaxed text-gray-600">
+            Eksemplene viser nedre kvartil, median og øvre kvartil for måneden. De er
+            avrundede observasjoner fra de samme boligene med komplett kostnadsoppsett,
+            ikke et inntektsløfte.
+          </p>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            <ScenarioCard
+              eyebrow="Nedre kvartil"
+              title="Forsiktig eksempel"
+              ownerValue={overall.ownerPerPropertyP25}
+              grossValue={overall.ownerSampleGrossPerPropertyP25}
+            />
+            <ScenarioCard
+              eyebrow="Median"
+              title="Typisk eksempel"
+              ownerValue={overall.ownerPerPropertyMedian}
+              grossValue={overall.ownerSampleGrossPerPropertyMedian}
+              highlighted
+            />
+            <ScenarioCard
+              eyebrow="Øvre kvartil"
+              title="Sterkt eksempel"
+              ownerValue={overall.ownerPerPropertyP75}
+              grossValue={overall.ownerSampleGrossPerPropertyP75}
+            />
           </div>
-          <div className="rounded-2xl border border-gray-200 bg-white p-5 md:p-6">
-            <p className="text-sm font-semibold text-gray-600">Renhold per utsjekk</p>
-            <p className="mt-2 text-3xl font-bold text-gray-900">{money(overall.cleaningPerCheckout)}</p>
-            <p className="mt-3 text-sm leading-relaxed text-gray-500">
-              Vektet turnover-kostnad fra boliger med registrert renholdsoppsett. Søndag,
-              helligdag, ekstraarbeid og skader kan komme i tillegg.
-            </p>
+          <div className="mt-4 rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm leading-relaxed text-gray-600">
+            Beregnet til eier er Guesty-utbetaling minus registrert Heimby-provisjon og
+            turnover-renhold. Eierens skatt, ekstra vedlikehold, skader og andre individuelle
+            kostnader kommer i tillegg. Gjennomsnittlig registrert renhold per utsjekk denne
+            måneden er <span className="font-semibold text-gray-900">{money(overall.cleaningPerCheckout)}</span>.
           </div>
         </div>
 
@@ -196,17 +234,15 @@ const RentalBenchmarkCalculator = () => {
           </div>
 
           <div className="mt-6 overflow-x-auto rounded-2xl border border-gray-200 bg-white">
-            <table className="min-w-[1080px] w-full text-left text-sm">
+            <table className="min-w-[940px] w-full text-left text-sm">
               <thead className="border-b border-gray-200 bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
                 <tr>
                   <th className="px-4 py-3 font-bold">Gruppe</th>
-                  <th className="px-4 py-3 font-bold">Boliger</th>
-                  <th className="px-4 py-3 font-bold">Salgbare døgn</th>
                   <th className="px-4 py-3 font-bold">Belegg</th>
                   <th className="px-4 py-3 font-bold">ADR</th>
-                  <th className="px-4 py-3 font-bold">Brutto sum</th>
-                  <th className="px-4 py-3 font-bold">Snitt / bolig</th>
+                  <th className="px-4 py-3 font-bold">Brutto / bolig</th>
                   <th className="px-4 py-3 font-bold">Til eier / bolig</th>
+                  <th className="px-4 py-3 font-bold">Renhold / utsjekk</th>
                   <th className="px-4 py-3 font-bold">Reviewscore</th>
                 </tr>
               </thead>
@@ -216,20 +252,25 @@ const RentalBenchmarkCalculator = () => {
                     <th scope="row" className="whitespace-nowrap px-4 py-4 font-bold text-gray-900">
                       {row.label}
                     </th>
-                    <td className="px-4 py-4 text-gray-700">{row.properties}</td>
-                    <td className="px-4 py-4 text-gray-700">{integer.format(row.saleableNights)}</td>
                     <td className="px-4 py-4 font-semibold text-gray-900">
                       {String(row.occupancyPct).replace(".", ",")} %
                     </td>
                     <td className="px-4 py-4 text-gray-700">{money(row.adr)}</td>
-                    <td className="px-4 py-4 font-semibold text-gray-900">{money(row.grossTotal)}</td>
-                    <td className="px-4 py-4 text-gray-700">{money(row.grossPerPropertyAvg)}</td>
+                    <td className="px-4 py-4 text-gray-700">
+                      <span className="font-semibold text-gray-900">{money(row.grossPerPropertyAvg)}</span>
+                      <span className="mt-1 block text-xs text-gray-400">
+                        Midtre 50 %: {money(row.grossPerPropertyP25)}–{money(row.grossPerPropertyP75)}
+                      </span>
+                    </td>
                     <td className="px-4 py-4 text-gray-700">
                       {money(row.ownerPerPropertyAvg)}
                       {row.ownerPerPropertyAvg != null && (
-                        <span className="mt-1 block text-xs text-gray-400">{row.ownerSampleProperties} boliger</span>
+                        <span className="mt-1 block text-xs text-gray-400">
+                          Midtre 50 %: {money(row.ownerPerPropertyP25)}–{money(row.ownerPerPropertyP75)}
+                        </span>
                       )}
                     </td>
+                    <td className="px-4 py-4 text-gray-700">{money(row.cleaningPerCheckout)}</td>
                     <td className="px-4 py-4 text-gray-700">
                       {row.averageRating10 == null
                         ? "For lite data"
@@ -245,13 +286,11 @@ const RentalBenchmarkCalculator = () => {
         <div className="mt-8 rounded-xl border border-gray-200 bg-white/70 p-5 text-sm leading-relaxed text-gray-600">
           <p className="font-semibold text-gray-900">Hva som er med – og hva som er trukket fra</p>
           <p className="mt-2">{benchmarks.method.basis}</p>
-          <p className="mt-2">{benchmarks.method.saleableNights}</p>
-          <p className="mt-2">
-            Små grupper skjules. Hver rad har minst {benchmarks.privacy.minimumProperties} boliger og {benchmarks.privacy.minimumStays} opphold.
-            {" "}{benchmarks.privacy.rounding}
-          </p>
+          <p className="mt-2">{benchmarks.method.availability}</p>
+          <p className="mt-2">{benchmarks.privacy.groupRule} {benchmarks.privacy.rounding}</p>
           <p className="mt-3 text-xs text-gray-500">
-            Kilde: live Guesty-kalender, anonymiserte reservasjoner, økonomidata og {integer.format(benchmarks.coverage.reviews)} Airbnb- og Booking.com-anmeldelser i Proptonomy. Oppdatert 27. august 2026.
+            Kilde: live Guesty-kalender, anonymiserte reservasjoner, økonomidata og
+            Airbnb- og Booking.com-anmeldelser i Proptonomy. Oppdatert 27. august 2026.
           </p>
         </div>
       </div>

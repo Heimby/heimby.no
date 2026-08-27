@@ -724,17 +724,16 @@ function dataPageBody() {
 ${d.intro.map((p) => `<p>${esc(p)}</p>`).join("\n")}
 
 <h2>Faktiske markedstall fra Heimby-porteføljen</h2>
-<p>Datagrunnlaget omfatter ${esc(RENTAL_BENCHMARKS.coverage.stays)} opphold i ${esc(RENTAL_BENCHMARKS.coverage.properties)} anonymiserte boliger fra ${esc(RENTAL_BENCHMARKS.period.label)}. Bare aktive og publiserte annonser med live Airbnb- eller Booking.com-tilkobling og minst sju salgbare kalenderdøgn i måneden er med. Små grupper skjules.</p>
+<p>Datagrunnlaget er et anonymisert utvalg fra ${esc(RENTAL_BENCHMARKS.period.label)}. Bare aktive og publiserte annonser med live Airbnb- eller Booking.com-tilkobling og minst sju salgbare kalenderdøgn i måneden er med. Små grupper skjules, og eksakte antall boliger, opphold, døgn og porteføljesummer publiseres ikke.</p>
 ${benchmark ? `<h3>Eksempel: 2 soverom og 1 bad i Bergen, juli 2026</h3>
 <dl>
 <dt>Vektet ADR</dt><dd>${esc(nok(benchmark.adr))}</dd>
 <dt>Belegg av salgbare døgn</dt><dd>${esc(benchmark.occupancyPct)} %</dd>
-<dt>Bruttoinntekt, sum</dt><dd>${esc(nok(benchmark.grossTotal))}</dd>
 <dt>Bruttoinntekt, snitt per aktiv bolig</dt><dd>${esc(nok(benchmark.grossPerPropertyAvg))}</dd>
 <dt>Beregnet til eier, snitt for boliger med komplett kostnadsoppsett</dt><dd>${esc(nok(benchmark.ownerPerPropertyAvg))}</dd>
 <dt>Renhold per utsjekk</dt><dd>${esc(nok(benchmark.cleaningPerCheckout))}</dd>
 </dl>
-<p>Eksemplet bygger på ${esc(benchmark.properties)} aktive boliger, ${esc(benchmark.saleableNights)} salgbare døgn og ${esc(benchmark.stays)} opphold. Tallene er historiske og avrundede, ikke en garanti.</p>` : ""}
+<p>Eksemplet er et avrundet gruppesnitt per bolig. Det er historisk og ikke en garanti for fremtidig inntekt.</p>` : ""}
 
 <h2>Fire ting avgjør tallet</h2>
 ${d.drivers.map((x) => `<h3>${esc(x.title)}</h3>\n<p>${esc(x.body)}</p>`).join("\n")}
@@ -780,7 +779,7 @@ function dataPageSchemas() {
       creator: { "@id": `${SITE}/#organization` },
       dateModified: RENTAL_BENCHMARKS.updated,
       measurementTechnique:
-        "Vektet ADR og belegg av salgbare døgn, med summer, gjennomsnitt og median per aktiv bolig. Grupper med færre enn 5 boliger eller 20 opphold publiseres ikke.",
+        "Vektet ADR og belegg av salgbare døgn, med avrundede gjennomsnitt, medianer og kvartiler per aktiv bolig. Små grupper og eksakte utvalgsstørrelser publiseres ikke.",
       variableMeasured: [
         "Average daily rate (ADR)",
         "Occupancy rate",

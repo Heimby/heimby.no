@@ -338,6 +338,7 @@ def aggregate(rows, month, key, label):
     gross_values = [row["gross"] for row in rows]
     adr_values = [row["accommodation"] / row["revenue_nights"] for row in rows if row["revenue_nights"]]
     owner_rows = [row for row in rows if row["owner_configured"]]
+    owner_gross_values = [row["gross"] for row in owner_rows]
     owner_values = [
         row["host_payout"] - row["manager_fee"] - row["cleaning_cost"]
         for row in owner_rows
@@ -369,6 +370,12 @@ def aggregate(rows, month, key, label):
         "ownerTotal": round_to(sum(owner_values), 1000) if len(owner_rows) >= MIN_PROPERTIES else None,
         "ownerPerPropertyAvg": round_to(statistics.mean(owner_values), 500) if len(owner_rows) >= MIN_PROPERTIES else None,
         "ownerPerPropertyMedian": round_to(statistics.median(owner_values), 500) if len(owner_rows) >= MIN_PROPERTIES else None,
+        "ownerPerPropertyP25": round_to(pct(owner_values, 0.25), 500) if len(owner_rows) >= MIN_PROPERTIES else None,
+        "ownerPerPropertyP75": round_to(pct(owner_values, 0.75), 500) if len(owner_rows) >= MIN_PROPERTIES else None,
+        "ownerSampleGrossPerPropertyAvg": round_to(statistics.mean(owner_gross_values), 500) if len(owner_rows) >= MIN_PROPERTIES else None,
+        "ownerSampleGrossPerPropertyMedian": round_to(statistics.median(owner_gross_values), 500) if len(owner_rows) >= MIN_PROPERTIES else None,
+        "ownerSampleGrossPerPropertyP25": round_to(pct(owner_gross_values, 0.25), 500) if len(owner_rows) >= MIN_PROPERTIES else None,
+        "ownerSampleGrossPerPropertyP75": round_to(pct(owner_gross_values, 0.75), 500) if len(owner_rows) >= MIN_PROPERTIES else None,
         "cleaningPerCheckout": round_to(cleaning_total / configured_checkouts, 50) if configured_checkouts else None,
         "reviewsAtMonthStart": sum(row["review_count"] for row in rows),
         "averageRating10": round(statistics.mean(rated), 2) if rated else None,
@@ -411,68 +418,63 @@ for month in MONTHS:
     if result:
         featured.append(result)
 
-unique_properties = {property_id for property_id, month in eligible}
-all_rows = list(eligible.values())
-unique_stays = set()
-for row in all_rows:
-    unique_stays.update(row["stays"])
-old_naive_denominator = sum(30 if row["month"] == 6 else 31 for row in all_rows)
-corrected_denominator = sum(row["saleable"] for row in all_rows)
-booked_total = sum(row["booked"] for row in all_rows)
+for dimension, rows in groups.items():
+    for row in rows:
+        if row["properties"] < MIN_PROPERTIES or row["stays"] < MIN_STAYS:
+            raise RuntimeError(f"Privacy threshold failed for {dimension}/{row['label']}")
+        if row["bookedNights"] > row["saleableNights"]:
+            raise RuntimeError(f"Booked nights exceed saleable nights for {dimension}/{row['label']}")
 
-cohorts = []
-for row in featured:
-    cohorts.append({
-        "city": "Bergen",
-        "bedrooms": "2",
-        "bathrooms": "1",
+
+def public_row(row):
+    """Return only rounded per-home statistics safe to ship to a public browser."""
+    return {
+        "key": row["key"],
+        "label": row["label"],
         "month": row["month"],
         "monthLabel": row["monthLabel"],
-        "properties": row["properties"],
-        "stays": row["stays"],
-        "adr": {"median": row["adr"], "low": row["adrMedianProperty"], "high": row["adrMedianProperty"]},
-        "occupancy": {"median": row["occupancyPct"], "low": row["occupancyPct"], "high": row["occupancyPct"]},
-        "grossIncome": {"median": row["grossPerPropertyAvg"], "low": row["grossPerPropertyP25"], "high": row["grossPerPropertyP75"]},
-        "ownerIncome": {"median": row["ownerPerPropertyAvg"] or 0, "low": row["ownerPerPropertyMedian"] or 0, "high": row["ownerPerPropertyMedian"] or 0},
-        "cleaningPerCheckout": {"median": row["cleaningPerCheckout"] or 0, "low": row["cleaningPerCheckout"] or 0, "high": row["cleaningPerCheckout"] or 0},
-    })
+        "occupancyPct": row["occupancyPct"],
+        "adr": row["adr"],
+        "grossPerPropertyAvg": row["grossPerPropertyAvg"],
+        "grossPerPropertyMedian": row["grossPerPropertyMedian"],
+        "grossPerPropertyP25": row["grossPerPropertyP25"],
+        "grossPerPropertyP75": row["grossPerPropertyP75"],
+        "ownerPerPropertyAvg": row["ownerPerPropertyAvg"],
+        "ownerPerPropertyMedian": row["ownerPerPropertyMedian"],
+        "ownerPerPropertyP25": row["ownerPerPropertyP25"],
+        "ownerPerPropertyP75": row["ownerPerPropertyP75"],
+        "ownerSampleGrossPerPropertyAvg": row["ownerSampleGrossPerPropertyAvg"],
+        "ownerSampleGrossPerPropertyMedian": row["ownerSampleGrossPerPropertyMedian"],
+        "ownerSampleGrossPerPropertyP25": row["ownerSampleGrossPerPropertyP25"],
+        "ownerSampleGrossPerPropertyP75": row["ownerSampleGrossPerPropertyP75"],
+        "cleaningPerCheckout": row["cleaningPerCheckout"],
+        "averageRating10": row["averageRating10"],
+    }
 
 result = {
     "title": "Heimby sommerstatistikk 2026",
     "updated": "2026-08-27",
     "period": {"from": "2026-06-01", "to": "2026-08-31", "label": "juni–august 2026"},
     "privacy": {
-        "minimumProperties": MIN_PROPERTIES,
-        "minimumStays": MIN_STAYS,
-        "rounding": "Summer er avrundet til nærmeste 1 000 kroner. Boliggjennomsnitt og medianer er avrundet til nærmeste 500 kroner.",
-    },
-    "coverage": {
-        "properties": len(unique_properties),
-        "propertyMonths": len(all_rows),
-        "stays": len(unique_stays),
-        "propertyMonthStayReferences": sum(len(row["stays"]) for row in all_rows),
-        "reviews": len(reviews),
-        "saleableNights": corrected_denominator,
-        "bookedNights": booked_total,
-        "markets": len({row["market"] for row in all_rows if row["market"] != "Annet"}),
-        "activeListedWithLiveOta": len(eligible_listings),
+        "groupRule": "Små grupper skjules, og eksakte antall boliger, opphold, døgn og porteføljesummer publiseres ikke.",
+        "rounding": "Beløp per bolig er avrundet til nærmeste 500 kroner.",
     },
     "method": {
         "basis": "Bare boliger som var aktive og publiserte i Guesty, hadde en live Airbnb- eller Booking.com-kobling og minst sju salgbare kalenderdøgn i måneden er med.",
-        "saleableNights": "Ledige døgn pluss Airbnb- og Booking.com-bookede døgn. Eierblokker, manuelle reservasjoner, stengte døgn og tid før annonsen åpnet er trukket fra.",
+        "availability": "Ledige døgn pluss Airbnb- og Booking.com-bookede døgn regnes som salgbare. Eierblokker, manuelle reservasjoner, stengte døgn og tid før annonsen åpnet er trukket fra.",
         "adr": "Losjiinntekt delt på Airbnb- og Booking.com-netter med inntektsdata.",
         "occupancy": "Airbnb- og Booking.com-bookede døgn delt på salgbare døgn, vektet på tvers av boligene.",
         "grossIncome": "Losji, gjestebetalt renhold og registrerte gjesteskatter periodisert over oppholdets netter.",
         "ownerIncome": "Beregnet Guesty-utbetaling minus Heimbys registrerte provisjon og registrert turnover-renhold. Vises bare når minst fem boliger har komplett kostnadsoppsett; før eierens skatt og ekstra vedlikehold.",
         "reviews": "Reviewgruppe og rating er basert på publiserte anmeldelser som forelå ved starten av måneden.",
         "august": "August omfatter bekreftede bookinger og åpne kalenderdøgn per 27. august 2026, også de siste dagene av måneden.",
-        "naiveOccupancyPct": round(100 * booked_total / old_naive_denominator, 1),
-        "correctedOccupancyPct": round(100 * booked_total / corrected_denominator, 1),
     },
     "months": [{"value": month, "label": label} for month, label in MONTHS.items()],
-    "groups": groups,
-    "featured": featured,
-    "cohorts": cohorts,
+    "groups": {
+        dimension: [public_row(row) for row in rows]
+        for dimension, rows in groups.items()
+    },
+    "featured": [public_row(row) for row in featured],
 }
 print(json.dumps(result, ensure_ascii=False))
 '''
@@ -489,26 +491,22 @@ def main() -> None:
     if completed.returncode != 0:
         raise RuntimeError(completed.stderr.strip() or "Remote benchmark generation failed")
     data = json.loads(completed.stdout)
-    required = {"coverage", "method", "groups", "featured", "cohorts"}
+    required = {"method", "groups", "featured", "privacy"}
     missing = required.difference(data)
     if missing:
         raise RuntimeError(f"Generated benchmark is missing: {sorted(missing)}")
     if len(data["groups"]["overall"]) != 3:
         raise RuntimeError("Expected one overall row for each of June, July and August")
-    for dimension, rows in data["groups"].items():
-        for row in rows:
-            if row["properties"] < data["privacy"]["minimumProperties"]:
-                raise RuntimeError(f"Privacy threshold failed for {dimension}/{row['label']}")
-            if row["stays"] < data["privacy"]["minimumStays"]:
-                raise RuntimeError(f"Stay threshold failed for {dimension}/{row['label']}")
-            if row["bookedNights"] > row["saleableNights"]:
-                raise RuntimeError(f"Booked nights exceed saleable nights for {dimension}/{row['label']}")
+    forbidden_public_fields = {
+        "properties", "stays", "checkouts", "saleableNights", "bookedNights",
+        "grossTotal", "ownerTotal", "ownerSampleProperties", "reviewsAtMonthStart",
+    }
+    serialized = json.dumps(data, ensure_ascii=False)
+    leaked = sorted(field for field in forbidden_public_fields if f'"{field}"' in serialized)
+    if leaked:
+        raise RuntimeError(f"Public benchmark leaks portfolio fields: {leaked}")
     OUTPUT.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(
-        f"Wrote {OUTPUT.relative_to(ROOT)}: "
-        f"{data['coverage']['properties']} properties, "
-        f"{data['coverage']['stays']} property-month stay references"
-    )
+    print(f"Wrote anonymized per-property benchmarks to {OUTPUT.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":
