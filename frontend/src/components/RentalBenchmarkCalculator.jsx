@@ -66,7 +66,7 @@ const ScenarioCard = ({ eyebrow, title, value, highlighted = false }) => (
 );
 
 const RentalBenchmarkCalculator = () => {
-  const [month, setMonth] = useState(7);
+  const [month, setMonth] = useState(8);
   const [dimension, setDimension] = useState("city");
 
   const overall = benchmarks.groups.overall.find((row) => row.month === month);

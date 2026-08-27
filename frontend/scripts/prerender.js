@@ -705,7 +705,7 @@ function newsArticleSchemas(a) {
 
 function dataPageBody() {
   const d = DATA_PAGE;
-  const benchmark = RENTAL_BENCHMARKS.featured.find((row) => row.month === 7);
+  const benchmark = RENTAL_BENCHMARKS.featured.find((row) => row.month === 8);
   const nok = (value) => `${new Intl.NumberFormat("nb-NO").format(value)} kr`;
   const cityLinks = Object.keys(CITY_DATA)
     .map(
@@ -725,7 +725,7 @@ ${d.intro.map((p) => `<p>${esc(p)}</p>`).join("\n")}
 
 <h2>Faktiske markedstall fra Heimby-porteføljen</h2>
 <p>Datagrunnlaget er et anonymisert utvalg fra ${esc(RENTAL_BENCHMARKS.period.label)}. Bare aktive og publiserte annonser med live Airbnb- eller Booking.com-tilkobling og minst sju salgbare kalenderdøgn i måneden er med. Små grupper skjules, og eksakte antall boliger, opphold, døgn og porteføljesummer publiseres ikke.</p>
-${benchmark ? `<h3>Eksempel: 2 soverom og 1 bad i Bergen, juli 2026</h3>
+${benchmark ? `<h3>Eksempel: 2 soverom og 1 bad i Bergen, august 2026</h3>
 <dl>
 <dt>Vektet ADR</dt><dd>${esc(nok(benchmark.adr))}</dd>
 <dt>Belegg av salgbare døgn</dt><dd>${esc(benchmark.occupancyPct)} %</dd>
