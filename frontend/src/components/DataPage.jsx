@@ -15,12 +15,21 @@ const DataPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    // The prerendered page provides a canonical before JavaScript loads.
-    // Remove that unmanaged tag after hydration so client-side navigation from
-    // the homepage cannot leave its old canonical alongside this page's URL.
-    document
-      .querySelectorAll('link[rel="canonical"]:not([data-react-helmet])')
-      .forEach((link) => link.remove());
+    // The prerendered response provides these tags before JavaScript loads.
+    // Helmet owns the same fields after hydration, so remove only their static
+    // copies to avoid duplicate canonical and Open Graph signals in the DOM.
+    [
+      'link[rel="canonical"]',
+      'meta[name="description"]',
+      'meta[property="og:title"]',
+      'meta[property="og:description"]',
+      'meta[property="og:type"]',
+      'meta[property="og:url"]',
+    ].forEach((selector) => {
+      document
+        .querySelectorAll(`${selector}:not([data-react-helmet])`)
+        .forEach((element) => element.remove());
+    });
   }, []);
 
   return (
