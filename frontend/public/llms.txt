@@ -9,7 +9,7 @@
 
 - Navn: Heimby
 - Hovedkontor: Bergen, Norge
-- Kontakt: endre.jenssen@heimby.no
+- Kontakt: kontakt@heimby.no
 - Tjenester: Airbnb-forvaltning, korttidsutleie, langtidsutleie, hybrid 10-2-modell
 - Pris: 15 % av leieinntekten + MVA. Ingen oppstartskostnad, ingen abonnement, ingen bindingstid.
 - Byer: Bergen, Oslo, Stavanger, Trondheim, Tromsø, Haugesund, Kristiansand

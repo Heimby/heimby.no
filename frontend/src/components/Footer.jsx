@@ -104,11 +104,11 @@ const Footer = () => {
 
 						<div className="mt-6 space-y-3 text-sm">
 							<a
-								href="mailto:endre.jenssen@heimby.no"
+								href="mailto:kontakt@heimby.no"
 								className="flex min-h-11 w-fit items-center gap-2 text-gray-300 transition-colors hover:text-white focus-visible:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:min-h-6"
 							>
 								<Mail className="h-4 w-4 text-gray-500" aria-hidden="true" />
-								endre.jenssen@heimby.no
+								kontakt@heimby.no
 							</a>
 							<div className="flex items-center gap-2 text-gray-400">
 								<MapPin className="h-4 w-4 text-gray-500" aria-hidden="true" />
