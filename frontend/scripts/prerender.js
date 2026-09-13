@@ -384,7 +384,7 @@ ${MEDIA.articles
 ${HOME_CONTENT.faqs.map((f) => `<h3>${esc(f.question)}</h3>\n<p>${esc(f.answer)}</p>`).join("\n")}
 
 <h2>Kontakt</h2>
-<p>E-post: <a href="mailto:endre.jenssen@heimby.no">endre.jenssen@heimby.no</a>. Hovedkontor i Bergen.</p>
+<p>E-post: <a href="mailto:kontakt@heimby.no">kontakt@heimby.no</a>. Hovedkontor i Bergen.</p>
 </main>`;
 }
 
@@ -400,7 +400,7 @@ function homeSchemas() {
       image: OG_IMAGE,
       description:
         "Heimby forvalter korttidsutleie, langtidsutleie og hybride 10-2-løsninger for boligeiere i Norge.",
-      email: "endre.jenssen@heimby.no",
+      email: "kontakt@heimby.no",
       founder: [
         { "@type": "Person", name: "Njål Hopen Eliasson" },
         { "@type": "Person", name: "Mathias Haugsbø" },
