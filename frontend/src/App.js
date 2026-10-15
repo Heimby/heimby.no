@@ -5,6 +5,7 @@ import "./App.css";
 import AdminDashboard from "./components/AdminDashboard";
 import FAQSection from "./components/FAQSection";
 import CityPage from "./components/CityPage";
+import ConsentBanner from "./components/ConsentBanner";
 import DataPage from "./components/DataPage";
 import Footer from "./components/Footer";
 import HeroSection from "./components/HeroSection";
@@ -19,6 +20,7 @@ import NewsIndexPage from "./components/NewsIndexPage";
 import OurPresenceSection from "./components/OurPresenceSection";
 import OwnerPortalDashboard from "./components/OwnerPortalDashboard";
 import PricingSection from "./components/PricingSection";
+import PrivacyPage from "./components/PrivacyPage";
 import ProcessTimelineSection from "./components/ProcessTimelineSection";
 import RulesPage from "./components/RulesPage";
 import ProfessionalServicesSection from "./components/ProfessionalServicesSection";
@@ -139,6 +141,9 @@ function App() {
           {/* National rules explainer — the query digihome owns today */}
           <Route path="/korttidsutleie-regler" element={<RulesPage />} />
 
+          {/* Privacy statement and cookie list */}
+          <Route path="/personvern" element={<PrivacyPage />} />
+
           {/* Press coverage */}
           <Route path="/nyheter" element={<NewsIndexPage />} />
           <Route path="/nyheter/:slug" element={<NewsArticlePage />} />
@@ -153,6 +158,7 @@ function App() {
           <Route path="/korttidsutleie-i-trondheim" element={<CityPage />} />
           <Route path="/korttidsutleie-i/:city" element={<CityPage />} />
         </Routes>
+        <ConsentBanner />
       </div>
     </Router>
   );
