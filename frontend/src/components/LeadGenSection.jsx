@@ -5,6 +5,10 @@ import useGeocoding from "../hooks/useGeocoding";
 
 const ORGANIZATION_ID = "7b6adf42-78a8-47cd-92d0-4aa7bbd8c090";
 
+// UTM-parameterne fra adressen besøkende kom inn på. Holdes i minnet (ikke lagret i nettleseren),
+// så annonsen følger leaden selv om besøkende klikker seg videre på siden før skjemaet sendes.
+const START_PARAMS = new URLSearchParams(window.location.search);
+
 const LeadGenSection = () => {
 	const [step, setStep] = useState(1); // 1: form, 2: loading, 3: success
 	const [isExpanded, setIsExpanded] = useState(false);
@@ -217,14 +221,17 @@ const LeadGenSection = () => {
 	 * Get UTM parameters from URL for lead source tracking
 	 */
 	function getUtmSource() {
-		const params = new URLSearchParams(window.location.search);
+		const current = new URLSearchParams(window.location.search);
+		const params = current.has("utm_source") || current.has("utm_campaign") ? current : START_PARAMS;
 		const utmSource = params.get("utm_source");
 		const utmMedium = params.get("utm_medium");
 		const utmCampaign = params.get("utm_campaign");
+		// utm_content er annonsenavnet, så hver lead (og hver signering) kan knyttes til annonsen
+		const utmContent = params.get("utm_content");
 
 		if (utmSource || utmMedium || utmCampaign) {
 			return (
-				[utmSource, utmMedium, utmCampaign].filter(Boolean).join(" / ") +
+				[utmSource, utmMedium, utmCampaign, utmContent].filter(Boolean).join(" / ") +
 				" / Heimby.no"
 			);
 		}
