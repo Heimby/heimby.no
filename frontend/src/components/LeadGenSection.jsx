@@ -253,19 +253,30 @@ const LeadGenSection = () => {
 		setError("");
 		setSuccess(false);
 
-		try {
-			const phone = formData.phone ? `${countryCode} ${formData.phone}` : "";
-			// The 227xx id is our facebook pixel workspace id
-			window.fbq("init", "2272981473189377", {
-				em: formData.email?.toLowerCase().trim() || "",
-				ph: phone.trim(),
-			});
-			window.fbq("track", "CompleteRegistration", {
-				content_name: "Lead registrert",
-			});
-		} catch (error) {
-			console.error("Unable to submit meta pixel track", error);
-		}
+		const phone = formData.phone ? `${countryCode} ${formData.phone}` : "";
+		// One id per submission so Meta can deduplicate browser and server events
+		const metaEventId =
+			window.crypto?.randomUUID?.() ||
+			`${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
+		// Only report the registration to Meta once the lead is saved
+		const trackRegistration = () => {
+			try {
+				// The 227xx id is our facebook pixel workspace id
+				window.fbq("init", "2272981473189377", {
+					em: formData.email?.toLowerCase().trim() || "",
+					ph: phone.trim(),
+				});
+				window.fbq(
+					"track",
+					"CompleteRegistration",
+					{ content_name: "Lead registrert" },
+					{ eventID: metaEventId },
+				);
+			} catch (error) {
+				console.error("Unable to submit meta pixel track", error);
+			}
+		};
 
 		try {
 			const leadData = {
@@ -298,6 +309,7 @@ const LeadGenSection = () => {
 
 			if (response.status >= 200 && response.status < 300) {
 				console.debug("Lead successfully submitted");
+				trackRegistration();
 				setSuccess(true);
 				// Reset form after 5 seconds
 				setTimeout(() => {
