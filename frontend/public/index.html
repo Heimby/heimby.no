@@ -85,14 +85,22 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Airbnb-forvaltning og korttidsutleie i Norge | Heimby</title>
-    <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
     <!--
-        These two scripts have been added for the testing, please do not edit or remove them
+        Emergent preview and testing scripts (logger and rrweb session recorder). They only load
+        inside the Emergent editor iframe, never for visitors on heimby.no (privacy, 2026-10-15).
         -->
-    <script src="https://unpkg.com/rrweb@latest/dist/rrweb.min.js"></script>
-    <script src="https://d2adkz2s9zrlge.cloudfront.net/rrweb-recorder-20250919-1.js"></script>
-    <script src="https://cdn.counter.dev/script.js" data-id="b3798075-40aa-4fd7-ac58-6c2574a4892d"
-        data-utcoffset="1"></script>
+    <script>
+        if (window.self !== window.top) {
+            ['https://assets.emergent.sh/scripts/emergent-main.js',
+             'https://unpkg.com/rrweb@latest/dist/rrweb.min.js',
+             'https://d2adkz2s9zrlge.cloudfront.net/rrweb-recorder-20250919-1.js'].forEach(function (src) {
+                var s = document.createElement('script');
+                s.src = src;
+                s.async = false;
+                document.head.appendChild(s);
+            });
+        }
+    </script>
     <!--
         These two scripts have been added for the Visual Edits, please do not edit or remove them
         -->
@@ -117,25 +125,69 @@
         }
     </script>
 
-    <!-- Meta Pixel Code -->
+    <!--
+        Consent gate (ekomloven § 3-15 and GDPR). Statistics (counter.dev) and the Meta Pixel only load
+        after the visitor says yes in the consent banner (src/components/ConsentBanner.jsx), which stores
+        the choice in localStorage "heimby-samtykke". Withdrawing consent stops the pixel and removes its cookies.
+        -->
     <script>
-        !((f, b, e, v, n, t, s) => {
-            if (f.fbq) return; n = f.fbq = function () {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        (function () {
+            var GYLDIG_MS = 365 * 24 * 60 * 60 * 1000;
+
+            function lastStatistikk() {
+                if (window.__heimbyStatistikk) return;
+                window.__heimbyStatistikk = true;
+                try { sessionStorage.removeItem('doNotTrack'); } catch (e) {}
+                var s = document.createElement('script');
+                s.src = 'https://cdn.counter.dev/script.js';
+                s.setAttribute('data-id', 'b3798075-40aa-4fd7-ac58-6c2574a4892d');
+                s.setAttribute('data-utcoffset', '1');
+                document.head.appendChild(s);
+            }
+
+            function lastMarkedsforing() {
+                if (window.fbq) { window.fbq('consent', 'grant'); return; }
+                !((f, b, e, v, n, t, s) => {
+                    if (f.fbq) return; n = f.fbq = function () {
+                        n.callMethod ?
+                            n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                    };
+                    if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+                    n.queue = []; t = b.createElement(e); t.async = !0;
+                    t.src = v; s = b.getElementsByTagName(e)[0];
+                    s.parentNode.insertBefore(t, s)
+                })(window, document, 'script',
+                    'https://connect.facebook.net/en_US/fbevents.js');
+                fbq('init', '2272981473189377');
+                fbq('track', 'PageView');
+            }
+
+            function slettKapsel(navn) {
+                var verter = ['', '; domain=' + location.hostname, '; domain=.' + location.hostname.replace(/^www\./, '')];
+                verter.forEach(function (d) { document.cookie = navn + '=; Max-Age=0; path=/' + d; });
+            }
+
+            window.heimbyBrukSamtykke = function (valg) {
+                if (valg && valg.statistikk) lastStatistikk();
+                else {
+                    try { sessionStorage.setItem('doNotTrack', '1'); sessionStorage.removeItem('_swa'); } catch (e) {}
+                }
+                if (valg && valg.markedsforing) lastMarkedsforing();
+                else {
+                    if (window.fbq) window.fbq('consent', 'revoke');
+                    slettKapsel('_fbp');
+                    slettKapsel('_fbc');
+                }
             };
-            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-            n.queue = []; t = b.createElement(e); t.async = !0;
-            t.src = v; s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        })(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '2272981473189377');
-        fbq('track', 'PageView');
+
+            try {
+                var v = JSON.parse(localStorage.getItem('heimby-samtykke'));
+                if (v && v.versjon === 1 && Date.now() - new Date(v.tidspunkt).getTime() <= GYLDIG_MS) {
+                    window.heimbyBrukSamtykke(v);
+                }
+            } catch (e) {}
+        })();
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=2272981473189377&ev=PageView&noscript=1" /></noscript>
-    <!-- End Meta Pixel Code -->
 </head>
 
 <body>

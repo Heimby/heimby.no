@@ -1,6 +1,7 @@
 import axios from "axios";
 import { CheckCircle, Mail, MapPin, Phone, User } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import useGeocoding from "../hooks/useGeocoding";
 
 const ORGANIZATION_ID = "7b6adf42-78a8-47cd-92d0-4aa7bbd8c090";
@@ -526,6 +527,14 @@ const LeadGenSection = () => {
 														? "Sender..."
 														: "Kom i gang med korttidsutleie i dag"}
 												</button>
+												<p className="mt-3 text-center text-xs text-gray-500">
+													Vi bruker opplysningene til å kontakte deg om utleie av
+													boligen. Les mer i{" "}
+													<Link to="/personvern" className="underline">
+														personvernerklæringen
+													</Link>
+													.
+												</p>
 											</div>
 										</>
 									)}

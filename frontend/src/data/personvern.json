@@ -1,0 +1,133 @@
+{
+  "title": "Personvernerklæring | Heimby",
+  "metaDescription": "Slik behandler Heimby AS personopplysninger om besøkende, boligeiere og gjester, hvilke informasjonskapsler vi bruker og hvilke rettigheter du har.",
+  "h1": "Personvernerklæring",
+  "lastUpdated": "2026-10-15",
+  "intro": [
+    "Her forklarer vi hvilke personopplysninger Heimby samler inn, hva vi bruker dem til, hvem vi deler dem med og hvor lenge vi tar vare på dem. Erklæringen gjelder deg som besøker heimby.no, tar kontakt med oss, er boligeier hos oss eller bor i en bolig vi forvalter."
+  ],
+  "sections": [
+    {
+      "id": "ansvarlig",
+      "title": "Hvem er ansvarlig",
+      "paragraphs": [
+        "Heimby AS (org.nr. 935 746 930), Kokstadvegen 46, 5257 Kokstad, er behandlingsansvarlig for personopplysningene som beskrives her.",
+        "Spørsmål om personvern sender du til kontakt@heimby.no. Vi har ikke personvernombud."
+      ]
+    },
+    {
+      "id": "nettsiden",
+      "title": "Når du besøker heimby.no",
+      "paragraphs": [
+        "Nettsiden kan brukes uten at du godtar informasjonskapsler. Statistikk og markedsføring slås bare på hvis du sier ja i samtykkevinduet. Du kan endre valget når som helst under «Informasjonskapsler» nederst på siden."
+      ],
+      "list": [
+        "Nødvendig: Vi lagrer valget ditt om informasjonskapsler i nettleseren din, så vi ikke spør på nytt hver gang. Nettsiden driftes hos GitHub, som registrerer teknisk informasjon som IP-adresse i serverlogger for å holde tjenesten sikker.",
+        "Statistikk, bare med samtykke: Vi bruker counter.dev til å telle besøk. Vi ser hvilke sider som blir besøkt, hvilken side du kom fra og skjermstørrelse, som samlede tall. Vi ser ikke hvem du er.",
+        "Markedsføring, bare med samtykke: Vi bruker Meta-pikselen fra Meta Platforms Ireland Ltd. Den registrerer hvilke sider du besøker og om du sender inn skjemaet. Når du sender inn skjemaet, sendes e-postadressen og telefonnummeret ditt i kryptert form (hash) til Meta, slik at Meta kan koble besøket til en Facebook- eller Instagram-konto. Vi bruker dette til å måle hvilke annonser som virker, og til å vise annonser til personer som ligner på dem som har tatt kontakt med oss. Heimby og Meta er felles ansvarlige for innsamlingen og overføringen til Meta. Det Meta selv gjør med opplysningene etterpå, er Metas ansvar og står i Metas personvernregler."
+      ],
+      "basis": "Grunnlaget er samtykke for statistikk og markedsføring (personvernforordningen artikkel 6 nr. 1 bokstav a og ekomloven § 3-15). Det nødvendige gjør vi for å levere nettsiden du har bedt om (ekomloven § 3-15 og vår berettigede interesse etter artikkel 6 nr. 1 bokstav f i en sikker nettside)."
+    },
+    {
+      "id": "skjema",
+      "title": "Når du sender inn skjemaet eller tar kontakt",
+      "paragraphs": [
+        "Vi registrerer boligens adresse, navn, telefonnummer, e-postadresse, tidspunkt og hvilken annonse eller side du kom fra. Adressen lagres når du har fylt den inn, også før du trykker på knappen, slik at vi kan forberede et estimat for boligen din.",
+        "Vi bruker opplysningene til å svare deg, ringe deg, gi deg et estimat og sende deg tilbud og avtale. Når vi snakker med deg på telefon, kan vi bruke et verktøy som skriver notater fra samtalen. Det sier vi fra om i starten av samtalen. Notatene lagres i kundesystemet vårt.",
+        "Det er frivillig å gi oss opplysningene, men uten kontaktinformasjon kan vi ikke svare deg."
+      ],
+      "basis": "Grunnlaget er at du har bedt om å bli kontaktet, og at vi trenger opplysningene for å gi deg et tilbud (artikkel 6 nr. 1 bokstav b). For adresse som er fylt inn uten at skjemaet er sendt, og for samtalenotater, er grunnlaget vår berettigede interesse i å følge opp henvendelser (artikkel 6 nr. 1 bokstav f).",
+      "storage": "Blir du ikke kunde, sletter vi opplysningene senest 24 måneder etter siste kontakt. Ber du oss slette dem før det, gjør vi det."
+    },
+    {
+      "id": "eiere",
+      "title": "Når du er boligeier hos oss",
+      "paragraphs": [
+        "Vi behandler kontaktinformasjon, opplysninger om boligen, avtalen med deg, kontonummer for utbetaling, inntekter, kostnader og utbetalinger, og det vi skriver til hverandre.",
+        "Vi bruker opplysningene til å leie ut og drifte boligen, betale ut leieinntekter, sende deg rapporter og oppfylle regnskapsreglene."
+      ],
+      "basis": "Grunnlaget er avtalen med deg (artikkel 6 nr. 1 bokstav b) og plikter etter regnskaps- og bokføringsreglene (artikkel 6 nr. 1 bokstav c).",
+      "storage": "Vi tar vare på opplysningene mens avtalen gjelder. Regnskapsmateriale oppbevarer vi i fem år etter utgangen av regnskapsåret, slik bokføringsloven krever. Annet sletter vi senest tre år etter at avtalen er avsluttet."
+    },
+    {
+      "id": "gjester",
+      "title": "Når du bor i en bolig vi forvalter",
+      "paragraphs": [
+        "Når du booker via Airbnb, Booking.com eller andre kanaler, får vi navn, kontaktinformasjon, datoer, antall gjester, beløp og meldingene du sender oss. Vi bruker dette til å gjennomføre oppholdet, gi deg tilgang til boligen, planlegge renhold og svare på spørsmål. Eieren av boligen får oversikt over bookingene i sin bolig."
+      ],
+      "basis": "Grunnlaget er avtalen om oppholdet (artikkel 6 nr. 1 bokstav b) og regnskapsreglene (artikkel 6 nr. 1 bokstav c).",
+      "storage": "Regnskapsmateriale oppbevarer vi i fem år etter utgangen av regnskapsåret. Meldinger og andre opplysninger om oppholdet sletter vi senest tre år etter utsjekk, med mindre vi trenger dem i en sak om skade eller betaling."
+    },
+    {
+      "id": "deling",
+      "title": "Hvem vi deler opplysningene med",
+      "paragraphs": [
+        "Vi selger aldri personopplysninger. Vi bruker leverandører som behandler opplysninger på våre vegne, og de har avtale med oss om hva de kan gjøre med dem:"
+      ],
+      "list": [
+        "Kundesystem og drift: Proptonomy AS",
+        "E-post, kalender og dokumenter: Google",
+        "Booking og kanalstyring: Guesty, i tillegg til bookingkanalen du har brukt",
+        "Signering av avtaler: Oneflow",
+        "Regnskap: PowerOffice",
+        "Drift av nettsiden: GitHub",
+        "Statistikk, med samtykke: counter.dev",
+        "Annonser, med samtykke: Meta"
+      ],
+      "after": "Renholds- og vedlikeholdspartnere får bare det de trenger for å gjøre jobben, som adresse og tidspunkt. Vi gir opplysninger til offentlige myndigheter når loven krever det."
+    },
+    {
+      "id": "utland",
+      "title": "Overføring ut av EØS",
+      "paragraphs": [
+        "Noen av leverandørene våre, blant annet Google, Meta, GitHub og Guesty, kan behandle opplysninger utenfor EØS, for eksempel i USA. Da skjer overføringen med EU-kommisjonens standardavtaler eller under rammeverket mellom EU og USA (Data Privacy Framework) når leverandøren er sertifisert."
+      ]
+    },
+    {
+      "id": "rettigheter",
+      "title": "Dine rettigheter",
+      "paragraphs": [
+        "Du kan be om innsyn i opplysningene vi har om deg, be oss rette feil, slette opplysninger eller begrense bruken av dem. Du kan også be om å få opplysningene utlevert i et vanlig format, og protestere mot behandling som bygger på vår berettigede interesse. Har du gitt samtykke, kan du trekke det tilbake når som helst, like enkelt som du ga det.",
+        "Send en e-post til kontakt@heimby.no. Vi svarer innen en måned.",
+        "Mener du at vi behandler opplysningene dine i strid med reglene, kan du klage til Datatilsynet (datatilsynet.no). Vi setter pris på om du tar kontakt med oss først.",
+        "Vi tar ingen beslutninger om deg som bare er basert på automatisk behandling."
+      ]
+    }
+  ],
+  "cookies": {
+    "title": "Informasjonskapsler og lagring i nettleseren",
+    "intro": "Dette er det som lagres i nettleseren din når du bruker heimby.no:",
+    "rows": [
+      {
+        "name": "heimby-samtykke",
+        "provider": "Heimby",
+        "purpose": "Husker valget ditt om informasjonskapsler",
+        "category": "Nødvendig",
+        "duration": "12 måneder"
+      },
+      {
+        "name": "_swa",
+        "provider": "counter.dev",
+        "purpose": "Teller et besøk bare én gang per økt",
+        "category": "Statistikk",
+        "duration": "Til du lukker fanen"
+      },
+      {
+        "name": "_fbp",
+        "provider": "Meta",
+        "purpose": "Kjenner igjen nettleseren for å måle annonser",
+        "category": "Markedsføring",
+        "duration": "90 dager"
+      },
+      {
+        "name": "_fbc",
+        "provider": "Meta",
+        "purpose": "Husker at du kom fra en annonse på Facebook eller Instagram",
+        "category": "Markedsføring",
+        "duration": "90 dager"
+      }
+    ],
+    "after": "Meta kan i tillegg bruke egne informasjonskapsler på sine domener når du er logget inn på Facebook eller Instagram."
+  },
+  "changes": "Vi oppdaterer erklæringen når vi endrer hvordan vi behandler personopplysninger. Datoen øverst viser når den sist ble endret."
+}

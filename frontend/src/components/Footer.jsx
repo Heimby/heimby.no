@@ -1,6 +1,7 @@
 import { ArrowRight, Mail, MapPin } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
+import { visSamtykkevalg } from "./ConsentBanner";
 
 const footerLinks = {
 	services: [
@@ -129,9 +130,27 @@ const Footer = () => {
 
 			<div className="border-t border-gray-800">
 				<div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-					<p className="text-sm text-gray-400">
-						© {currentYear} Heimby. Alle rettigheter reservert.
-					</p>
+					<div className="flex flex-col gap-2 text-sm text-gray-400 sm:flex-row sm:items-center sm:justify-between">
+						<p>
+							© {currentYear} Heimby AS, org.nr. 935 746 930. Alle rettigheter
+							reservert.
+						</p>
+						<div className="flex gap-5">
+							<Link
+								to="/personvern"
+								className="min-h-11 inline-flex items-center transition-colors hover:text-white lg:min-h-6"
+							>
+								Personvern
+							</Link>
+							<button
+								type="button"
+								onClick={visSamtykkevalg}
+								className="min-h-11 inline-flex items-center transition-colors hover:text-white lg:min-h-6"
+							>
+								Informasjonskapsler
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</footer>

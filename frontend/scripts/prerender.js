@@ -23,6 +23,7 @@ const MEDIA = require("../src/data/mediaArticles.json");
 const DATA_PAGE = require("../src/data/dataPage.json");
 const RENTAL_BENCHMARKS = require("../src/data/rentalBenchmarks.json");
 const RULES_PAGE = require("../src/data/rulesPage.json");
+const PRIVACY_PAGE = require("../src/data/personvern.json");
 
 const SITE = "https://heimby.no";
 const OG_IMAGE = `${SITE}/og-image.jpg`;
@@ -888,6 +889,38 @@ function dataPageSchemas() {
 }
 
 /* ------------------------------------------------------------------ *
+ * /personvern: privacy statement and cookie list (same source as the React page)
+ * ------------------------------------------------------------------ */
+
+function privacyPageBody() {
+  const d = PRIVACY_PAGE;
+  const section = (s) =>
+    [
+      `<h2 id="${esc(s.id)}">${esc(s.title)}</h2>`,
+      ...(s.paragraphs || []).map((p) => `<p>${esc(p)}</p>`),
+      s.list ? `<ul>${s.list.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>` : "",
+      s.after ? `<p>${esc(s.after)}</p>` : "",
+      s.basis ? `<p>${esc(s.basis)}</p>` : "",
+      s.storage ? `<p><strong>Lagringstid:</strong> ${esc(s.storage)}</p>` : "",
+    ].join("\n");
+  const c = d.cookies;
+  return `<main class="prerendered">
+<h1>${esc(d.h1)}</h1>
+<p>Sist oppdatert ${esc(d.lastUpdated)}</p>
+${d.intro.map((p) => `<p>${esc(p)}</p>`).join("\n")}
+${d.sections.map(section).join("\n")}
+<h2 id="informasjonskapsler">${esc(c.title)}</h2>
+<p>${esc(c.intro)}</p>
+<table><thead><tr><th>Navn</th><th>Fra</th><th>Formål</th><th>Type</th><th>Varighet</th></tr></thead><tbody>
+${c.rows.map((r) => `<tr><td>${esc(r.name)}</td><td>${esc(r.provider)}</td><td>${esc(r.purpose)}</td><td>${esc(r.category)}</td><td>${esc(r.duration)}</td></tr>`).join("\n")}
+</tbody></table>
+<p>${esc(c.after)}</p>
+<h2>Endringer</h2>
+<p>${esc(d.changes)}</p>
+</main>`;
+}
+
+/* ------------------------------------------------------------------ *
  * /korttidsutleie-regler — national rules explainer
  * ------------------------------------------------------------------ */
 
@@ -1078,6 +1111,21 @@ function main() {
   );
   written.push("/korttidsutleie-regler");
 
+  // Privacy statement.
+  const privacyDir = path.join(BUILD_DIR, "personvern");
+  fs.mkdirSync(privacyDir, { recursive: true });
+  fs.writeFileSync(
+    path.join(privacyDir, "index.html"),
+    buildPage(template, {
+      url: `${SITE}/personvern/`,
+      title: PRIVACY_PAGE.title,
+      description: PRIVACY_PAGE.metaDescription,
+      body: privacyPageBody(),
+      schemas: [],
+    }),
+  );
+  written.push("/personvern");
+
   // Press coverage index and one page per article.
   const newsDir = path.join(BUILD_DIR, "nyheter");
   fs.mkdirSync(newsDir, { recursive: true });
@@ -1137,6 +1185,7 @@ function main() {
     { loc: `${SITE}/hvor-mye-kan-man-tjene-pa-airbnb/`, priority: "0.9", changefreq: "monthly", lastmod: DATA_PAGE.lastUpdated },
     { loc: `${SITE}/korttidsutleie-regler/`, priority: "0.9", changefreq: "monthly", lastmod: RULES_PAGE.lastUpdated },
     { loc: `${SITE}/nyheter/`, priority: "0.7", changefreq: "monthly" },
+    { loc: `${SITE}/personvern/`, priority: "0.3", changefreq: "yearly", lastmod: PRIVACY_PAGE.lastUpdated },
     ...MEDIA.articles.map((a) => ({
       loc: `${SITE}/nyheter/${a.slug}/`,
       priority: a.kind === "guide" ? "0.8" : "0.5",
